@@ -1,20 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { GlassPanel } from "@/components/glass-panel";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { demoUser } from "@/lib/data/demo";
+import { signOut } from "@/app/auth-actions";
 
 export default function SettingsPage() {
-  const router = useRouter();
-
-  async function logout() {
-    await fetch("/api/auth/session", { method: "DELETE" });
-    router.push("/");
-    router.refresh();
-  }
-
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
@@ -51,9 +43,11 @@ export default function SettingsPage() {
           Auto-fix stays off. Velora recommends; people decide. That is the trust model this prototype is built to test.
         </p>
       </GlassPanel>
-      <Button variant="outline" className="border-white/15" onClick={() => void logout()}>
-        Sign out
-      </Button>
+      <form action={signOut}>
+        <Button type="submit" variant="outline" className="border-white/15">
+          Sign out
+        </Button>
+      </form>
     </div>
   );
 }

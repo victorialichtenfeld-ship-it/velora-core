@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Activity,
   Bell,
@@ -18,6 +18,7 @@ import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { demoUser } from "@/lib/data/demo";
+import { signOut } from "@/app/auth-actions";
 
 const items = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
@@ -32,13 +33,6 @@ const items = [
 
 export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
-  const router = useRouter();
-
-  async function logout() {
-    await fetch("/api/auth/session", { method: "DELETE" });
-    router.push("/");
-    router.refresh();
-  }
 
   return (
     <aside className="flex h-full flex-col bg-sidebar/80">
@@ -85,10 +79,12 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
           <Shield className="size-3.5" />
           Demo mode
         </div>
-        <Button variant="ghost" className="mt-2 w-full justify-start" onClick={() => void logout()}>
-          <LogOut />
-          Sign out
-        </Button>
+        <form action={signOut}>
+          <Button type="submit" variant="ghost" className="mt-2 w-full justify-start">
+            <LogOut />
+            Sign out
+          </Button>
+        </form>
       </div>
     </aside>
   );

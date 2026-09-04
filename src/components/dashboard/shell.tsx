@@ -20,10 +20,12 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           <header className="flex h-16 items-center justify-between border-b border-white/8 px-4 lg:hidden">
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger
-                render={<Button variant="ghost" size="icon" aria-label="Open navigation" />}
-              >
-                <Menu />
-              </SheetTrigger>
+                render={
+                  <Button variant="ghost" size="icon" aria-label="Open navigation">
+                    <Menu />
+                  </Button>
+                }
+              />
               <SheetContent side="left" className="w-64 bg-[#0b0e16] p-0">
                 <DashboardSidebar onNavigate={() => setOpen(false)} />
               </SheetContent>

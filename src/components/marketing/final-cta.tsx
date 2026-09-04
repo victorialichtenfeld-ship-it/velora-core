@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
+import { cn } from "@/lib/utils";
 
 export function FinalCta() {
   return (
@@ -14,16 +15,18 @@ export function FinalCta() {
           Open the Meridian Supply demo, walk an alert from evidence to decision, and see if Velora belongs in your finance stack.
         </p>
         <div className="relative mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button className="h-12 rounded-full px-6" render={<Link href="/signup" />}>
+          <Link href="/signup" className={cn(buttonVariants(), "h-12 rounded-full px-6")}>
             Try Velora
-          </Button>
-          <Button
-            variant="outline"
-            className="h-12 rounded-full border-white/15 bg-white/5 px-6"
-            render={<Link href="/login" />}
+          </Link>
+          <Link
+            href="/login"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              "h-12 rounded-full border-white/15 bg-white/5 px-6"
+            )}
           >
             Launch demo workspace
-          </Button>
+          </Link>
         </div>
       </div>
     </section>

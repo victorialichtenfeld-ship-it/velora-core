@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { HeroVisual } from "@/components/marketing/hero-visual";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
@@ -19,17 +20,19 @@ export function Hero() {
             Velora monitors business activity and detects financial, contractual, pricing, and operational mistakes before they become expensive.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button className="h-12 rounded-full px-6 text-sm" render={<Link href="/signup" />}>
+            <Link href="/signup" className={cn(buttonVariants(), "h-12 rounded-full px-6 text-sm")}>
               Try Velora
-              <ArrowRight data-icon="inline-end" />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-12 rounded-full border-white/15 bg-white/4 px-6 text-sm"
-              render={<a href="#how" />}
+              <ArrowRight className="size-4" />
+            </Link>
+            <a
+              href="#how"
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "h-12 rounded-full border-white/15 bg-white/4 px-6 text-sm"
+              )}
             >
               See how it works
-            </Button>
+            </a>
           </div>
           <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/8 pt-6">
             <Stat value="$184k" label="Protected this month" />

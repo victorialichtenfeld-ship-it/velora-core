@@ -5,7 +5,9 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 const links = [
   { href: "#product", label: "Product" },
@@ -31,22 +33,22 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <div className="hidden items-center gap-2 md:flex">
-          <Button variant="ghost" render={<Link href="/login" />}>
-            Sign in
-          </Button>
-          <Button className="h-9 px-4" render={<Link href="/signup" />}>
-            Try Velora
-          </Button>
-        </div>
+          <div className="hidden items-center gap-2 md:flex">
+            <Link href="/login" className={cn(buttonVariants({ variant: "ghost" }))}>
+              Sign in
+            </Link>
+            <Link href="/signup" className={cn(buttonVariants(), "h-9 px-4")}>
+              Try Velora
+            </Link>
+          </div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
             render={
-              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu" />
+              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
+                <Menu />
+              </Button>
             }
-          >
-            <Menu />
-          </SheetTrigger>
+          />
           <SheetContent className="w-72 bg-[#0b0e16]">
             <div className="mt-8 flex flex-col gap-4">
               {links.map((link) => (
@@ -59,9 +61,9 @@ export function SiteHeader() {
                   {link.label}
                 </a>
               ))}
-              <Button render={<Link href="/signup" />} className="mt-4">
+              <Link href="/signup" className={cn(buttonVariants(), "mt-4 h-9 px-4")}>
                 Try Velora
-              </Button>
+              </Link>
             </div>
           </SheetContent>
         </Sheet>

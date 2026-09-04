@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { completeOnboarding } from "@/app/auth-actions";
 import { GlassPanel } from "@/components/glass-panel";
 import { detectedAlerts } from "@/lib/risk-engine";
 import { onboardingScanTotal } from "@/lib/data/demo";
@@ -48,14 +48,12 @@ const scanSteps = [
 ];
 
 export function OnboardingFlow() {
-  const router = useRouter();
   const [step, setStep] = useState(0);
   const [businessType, setBusinessType] = useState(businesses[0]);
   const [selectedSystems, setSelectedSystems] = useState<string[]>(["quickbooks", "salesforce", "gmail"]);
   const [selectedRisks, setSelectedRisks] = useState<string[]>(["Revenue leakage", "Duplicate payments", "Pricing mistakes"]);
   const [scanIndex, setScanIndex] = useState(0);
   const [done, setDone] = useState(false);
-  const [saving, setSaving] = useState(false);
 
   const issueCount = detectedAlerts.length;
   const impact = useMemo(
@@ -74,22 +72,6 @@ export function OnboardingFlow() {
       await new Promise((resolve) => setTimeout(resolve, 900));
     }
     setDone(true);
-  }
-
-  async function openDashboard() {
-    setSaving(true);
-    await fetch("/api/onboarding", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        businessType,
-        systems: selectedSystems,
-        risks: selectedRisks,
-        completed: true,
-      }),
-    });
-    router.push("/dashboard");
-    router.refresh();
   }
 
   return (
@@ -200,9 +182,14 @@ export function OnboardingFlow() {
                   <p className="mx-auto mt-4 max-w-md text-sm text-muted-foreground">
                     None of these have been sent, paid, or approved. Open the dashboard to inspect evidence and decide.
                   </p>
-                  <Button className="mt-8 h-12 px-6" onClick={() => void openDashboard()} disabled={saving}>
-                    {saving ? "Opening dashboard…" : "Open dashboard"}
-                  </Button>
+                  <form action={completeOnboarding}>
+                    <input type="hidden" name="businessType" value={businessType} />
+                    <input type="hidden" name="systems" value={selectedSystems.join(",")} />
+                    <input type="hidden" name="risks" value={selectedRisks.join(",")} />
+                    <Button type="submit" className="mt-8 h-12 px-6">
+                      Open dashboard
+                    </Button>
+                  </form>
                 </motion.div>
               )}
             </div>

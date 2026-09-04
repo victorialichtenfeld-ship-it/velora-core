@@ -20,9 +20,9 @@ export default function AlertDetailPage() {
     return (
       <div>
         <h1 className="font-serif text-3xl">Alert not found</h1>
-        <Button className="mt-4" render={<Link href="/dashboard/alerts" />}>
+        <Link href="/dashboard/alerts" className="mt-4 inline-flex text-sm text-gold hover:underline">
           Back to alerts
-        </Button>
+        </Link>
       </div>
     );
   }

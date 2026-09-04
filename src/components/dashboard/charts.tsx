@@ -22,7 +22,7 @@ const tooltipStyle = {
 
 export function RiskTrendChart() {
   return (
-    <div className="h-64 w-full">
+    <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={riskTrend}>
           <defs>
@@ -50,7 +50,7 @@ export function RiskTrendChart() {
 
 export function RiskTypeChart() {
   return (
-    <div className="h-64 w-full">
+    <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={riskByType} layout="vertical" margin={{ left: 24 }}>
           <CartesianGrid stroke="rgba(255,255,255,0.06)" horizontal={false} />

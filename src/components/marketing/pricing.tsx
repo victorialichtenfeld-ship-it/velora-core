@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { GlassPanel } from "@/components/glass-panel";
+import { cn } from "@/lib/utils";
 
 const plans = [
   {
@@ -78,13 +79,15 @@ export function Pricing() {
                 </li>
               ))}
             </ul>
-            <Button
-              className="mt-8 h-11"
-              variant={plan.highlighted ? "default" : "outline"}
-              render={<Link href="/signup" />}
+            <Link
+              href="/signup"
+              className={cn(
+                buttonVariants({ variant: plan.highlighted ? "default" : "outline" }),
+                "mt-8 h-11"
+              )}
             >
               {plan.name === "Enterprise" ? "Talk to us" : "Start with demo data"}
-            </Button>
+            </Link>
           </GlassPanel>
         ))}
       </div>

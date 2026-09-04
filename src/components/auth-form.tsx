@@ -1,46 +1,10 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { GlassPanel } from "@/components/glass-panel";
+import { launchDemoWorkspace, startWorkspace } from "@/app/auth-actions";
 
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
-  const router = useRouter();
-  const [email, setEmail] = useState("jordan@meridian-supply.com");
-  const [name, setName] = useState("Jordan Hale");
-  const [company, setCompany] = useState("Meridian Supply");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  async function submit(demo = false) {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await fetch("/api/auth/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          demo,
-          email,
-          name,
-          company,
-          role: "VP of Finance",
-        }),
-      });
-      if (!response.ok) throw new Error("Could not start session");
-      router.push(demo ? "/dashboard" : "/onboarding");
-      router.refresh();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
-      setLoading(false);
-    }
-  }
-
   return (
     <div className="relative flex min-h-screen items-center justify-center px-4 py-16">
       <div className="pointer-events-none absolute inset-0 grid-fade" />
@@ -58,35 +22,29 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           <p className="mt-2 text-sm text-muted-foreground">
             Authentication is mocked for this prototype. Use any details, or launch the prepared Finance demo.
           </p>
-          <form
-            className="mt-6 space-y-4"
-            onSubmit={(event) => {
-              event.preventDefault();
-              void submit(false);
-            }}
-          >
+          <form action={startWorkspace} className="mt-6 space-y-4">
             {mode === "signup" ? (
               <>
-                <Field label="Full name" value={name} onChange={setName} />
-                <Field label="Company" value={company} onChange={setCompany} />
+                <Field label="Full name" name="name" defaultValue="Jordan Hale" />
+                <Field label="Company" name="company" defaultValue="Meridian Supply" />
               </>
             ) : null}
-            <Field label="Work email" value={email} onChange={setEmail} type="email" />
-            <Field label="Password" value="••••••••" onChange={() => undefined} type="password" />
-            {error ? <p className="text-sm text-risk">{error}</p> : null}
-            <Button type="submit" className="h-11 w-full" disabled={loading}>
-              {loading ? "Opening…" : mode === "signup" ? "Create workspace" : "Sign in"}
+            <Field
+              label="Work email"
+              name="email"
+              type="email"
+              defaultValue="jordan@meridian-supply.com"
+            />
+            <Field label="Password" name="password" type="password" defaultValue="password" />
+            <Button type="submit" className="h-11 w-full">
+              {mode === "signup" ? "Create workspace" : "Sign in"}
             </Button>
           </form>
-          <Button
-            type="button"
-            variant="outline"
-            className="mt-3 h-11 w-full border-white/15"
-            disabled={loading}
-            onClick={() => void submit(true)}
-          >
-            Launch demo workspace
-          </Button>
+          <form action={launchDemoWorkspace}>
+            <Button type="submit" variant="outline" className="mt-3 h-11 w-full border-white/15">
+              Launch demo workspace
+            </Button>
+          </form>
           <p className="mt-5 text-center text-sm text-muted-foreground">
             {mode === "signup" ? (
               <>
@@ -112,24 +70,24 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
 
 function Field({
   label,
-  value,
-  onChange,
+  name,
+  defaultValue,
   type = "text",
 }: {
   label: string;
-  value: string;
-  onChange: (value: string) => void;
+  name: string;
+  defaultValue: string;
   type?: string;
 }) {
   return (
-    <div className="space-y-1.5">
-      <Label>{label}</Label>
-      <Input
+    <label className="block space-y-1.5 text-sm font-medium">
+      {label}
+      <input
+        name={name}
         type={type}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-10 bg-black/30"
+        defaultValue={defaultValue}
+        className="h-10 w-full rounded-lg border border-white/10 bg-black/30 px-3 text-sm font-normal text-foreground outline-none focus-visible:ring-2 focus-visible:ring-gold/40"
       />
-    </div>
+    </label>
   );
 }

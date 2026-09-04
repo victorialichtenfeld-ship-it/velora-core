@@ -35,7 +35,9 @@ export function AskVelora({ alert }: { alert: Alert }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline" className="border-white/15" />}>
+      <DialogTrigger
+        render={<Button type="button" variant="outline" className="border-white/15" />}
+      >
         <Sparkles className="size-4" />
         Ask Velora why this was flagged
       </DialogTrigger>
