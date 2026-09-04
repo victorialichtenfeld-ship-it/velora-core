@@ -12,7 +12,7 @@ import { Pricing } from "@/components/marketing/pricing";
 import { FinalCta } from "@/components/marketing/final-cta";
 import { Reveal } from "@/components/reveal";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
   return (
