@@ -1,0 +1,26 @@
+import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+
+export function GlassPanel({
+  className,
+  children,
+  glow,
+}: {
+  className?: string;
+  children: ReactNode;
+  glow?: "gold" | "protect" | "risk" | "none";
+}) {
+  return (
+    <div
+      className={cn(
+        "glass relative overflow-hidden rounded-2xl ring-1 ring-white/10",
+        glow === "gold" && "gold-glow",
+        glow === "protect" && "protect-glow",
+        glow === "risk" && "risk-glow",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}
