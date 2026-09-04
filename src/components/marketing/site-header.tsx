@@ -10,9 +10,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#product", label: "Product" },
+  { href: "#demo", label: "Product" },
   { href: "#how", label: "How it works" },
-  { href: "#use-cases", label: "Use cases" },
+  { href: "#also-covers", label: "Also covers" },
   { href: "#integrations", label: "Integrations" },
   { href: "#pricing", label: "Pricing" },
 ];
@@ -21,26 +21,26 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/92 backdrop-blur-md">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />
         </Link>
-        <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="transition-colors hover:text-primary">
+            <a key={link.href} href={link.href} className="transition-colors hover:text-foreground">
               {link.label}
             </a>
           ))}
         </nav>
-          <div className="hidden items-center gap-2 md:flex">
-            <Link href="/login" className={cn(buttonVariants({ variant: "ghost" }))}>
-              Sign in
-            </Link>
-            <Link href="/signup" className={cn(buttonVariants(), "h-9 px-4")}>
-              Try Velora
-            </Link>
-          </div>
+        <div className="hidden items-center gap-2 md:flex">
+          <a href="#demo" className={cn(buttonVariants({ variant: "ghost" }))}>
+            See it work
+          </a>
+          <Link href="/signup" className={cn(buttonVariants(), "h-8 px-3")}>
+            Start free trial
+          </Link>
+        </div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
             render={
@@ -61,8 +61,11 @@ export function SiteHeader() {
                   {link.label}
                 </a>
               ))}
-              <Link href="/signup" className={cn(buttonVariants(), "mt-4 h-9 px-4")}>
-                Try Velora
+              <a href="#demo" onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "outline" }), "mt-2 h-9")}>
+                See it work
+              </a>
+              <Link href="/signup" className={cn(buttonVariants(), "h-9")}>
+                Start free trial
               </Link>
             </div>
           </SheetContent>

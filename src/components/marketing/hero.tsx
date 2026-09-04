@@ -1,78 +1,47 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { HeroVisual } from "@/components/marketing/hero-visual";
+import { SampleDataBadge } from "@/components/sample-data-badge";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
+    <section className="relative">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
         <div>
-          <motion.p
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-5 text-xs uppercase tracking-[0.22em] text-gold"
-          >
-            Intelligence before impact
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-4xl leading-[1.08] text-balance text-foreground sm:text-5xl lg:text-[3.6rem]"
-          >
-            Catch costly mistakes before they happen.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.16, duration: 0.7 }}
-            className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg"
-          >
-            Velora monitors business activity and detects financial, contractual, pricing, and operational mistakes before they become expensive.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.24, duration: 0.7 }}
-            className="mt-8 flex flex-col gap-3 sm:flex-row"
-          >
-            <Link href="/signup" className={cn(buttonVariants(), "h-12 rounded-full px-6 text-sm")}>
-              Try Velora
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+            For finance and operations teams
+          </p>
+          <h1 className="text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-foreground sm:text-5xl lg:text-[3.25rem]">
+            Stop the second payment before it clears.
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+            Velora sits in accounts payable for mid-size companies. It holds duplicate vendor payments and invoice pricing mismatches so cash does not leave on a bad bill.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#demo" className={cn(buttonVariants(), "h-11 px-5 text-sm")}>
+              See it work
               <ArrowRight className="size-4" />
-            </Link>
-            <a
-              href="#how"
-              className={cn(
-                buttonVariants({ variant: "outline" }),
-                "h-12 rounded-full px-6 text-sm"
-              )}
-            >
-              See how it works
             </a>
-          </motion.div>
-          <motion.dl
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6"
-          >
-            <Stat value="$184k" label="Protected this month" />
-            <Stat value="47" label="Mistakes prevented" />
-            <Stat value="8" label="Systems watched" />
-          </motion.dl>
+            <a href="#how" className={cn(buttonVariants({ variant: "outline" }), "h-11 px-5 text-sm")}>
+              How it works
+            </a>
+          </div>
+          <div className="mt-10 border-t border-border pt-6">
+            <div className="mb-4 flex items-center gap-2">
+              <SampleDataBadge />
+              <p className="text-xs text-muted-foreground">Meridian Supply walkthrough — not live customer activity</p>
+            </div>
+            <dl className="grid max-w-lg grid-cols-3 gap-4">
+              <Stat value="$184,320" label="Held this month" />
+              <Stat value="47" label="Payments stopped" />
+              <Stat value="2" label="Core checks" />
+            </dl>
+          </div>
         </div>
-        <motion.div
-          initial={{ opacity: 1, x: 0 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.18, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <HeroVisual />
-        </motion.div>
+        <HeroVisual />
       </div>
     </section>
   );
@@ -81,8 +50,8 @@ export function Hero() {
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <dt className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{label}</dt>
-      <dd className="mt-1 font-mono text-lg text-gold">{value}</dd>
+      <dt className="text-[11px] text-muted-foreground">{label}</dt>
+      <dd className="mt-1 font-mono text-2xl tabular tracking-tight text-foreground sm:text-[1.65rem]">{value}</dd>
     </div>
   );
 }

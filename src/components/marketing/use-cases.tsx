@@ -1,62 +1,41 @@
-"use client";
-
-import { motion } from "motion/react";
-import { GlassPanel } from "@/components/glass-panel";
-
 const cases = [
   {
-    team: "Finance",
-    example: "A second $11,240 ACH to Apex Logistics is held before it clears.",
-    result: "Duplicate payment never leaves the account.",
+    team: "Sales discounts",
+    example: "A quote applies 16% off with no exception in the CRM.",
+    result: "Finance reviews before margin is given away.",
   },
   {
-    team: "Sales",
-    example: "A quote applies 16% off with no exception recorded in HubSpot.",
-    result: "Finance is asked before margin is given away.",
-  },
-  {
-    team: "Contracts",
-    example: "Harborline's invoice uses $84/unit against a $102 MSA.",
-    result: "The draft is blocked and rewritten to contract rate.",
-  },
-  {
-    team: "Purchasing",
-    example: "PO-2201 to Helios Industrial exceeds the $25,000 approval limit.",
+    team: "Purchase limits",
+    example: "A PO exceeds the $25,000 approval threshold.",
     result: "The order waits for a named approver.",
   },
   {
-    team: "Operations",
-    example: "A shipment overage is logged but never billed.",
+    team: "Operations billing",
+    example: "A shipment overage is logged but never invoiced.",
     result: "Billing is prompted before the window closes.",
   },
   {
-    team: "Security",
-    example: "A wire goes to a vendor that is not on the master file.",
-    result: "Treasury verifies the beneficiary before release.",
+    team: "Vendor master",
+    example: "A wire goes to a payee that is not on the approved vendor file.",
+    result: "Treasury confirms the beneficiary before release.",
   },
 ];
 
 export function UseCases() {
   return (
-    <section id="use-cases" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-protect">Use cases</p>
-      <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Every team that can lose money quietly.</h2>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {cases.map((item, index) => (
-          <motion.div
-            key={item.team}
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
-            whileHover={{ y: -6 }}
-          >
-            <GlassPanel className="h-full p-6">
-              <p className="text-xs uppercase tracking-[0.16em] text-protect">{item.team}</p>
-              <p className="mt-3 text-base leading-6">{item.example}</p>
-              <p className="mt-4 text-sm text-protect">{item.result}</p>
-            </GlassPanel>
-          </motion.div>
+    <section id="also-covers" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+      <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Also on the roadmap</p>
+      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Adjacent checks, not the core product.</h2>
+      <p className="mt-4 max-w-2xl text-muted-foreground">
+        The walkthrough includes these detectors so finance can see the control layer expand. They are not the reason to buy Velora today.
+      </p>
+      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+        {cases.map((item) => (
+          <div key={item.team} className="rounded-xl bg-card p-5 ring-1 ring-border">
+            <p className="text-sm font-medium">{item.team}</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.example}</p>
+            <p className="mt-3 text-sm text-foreground">{item.result}</p>
+          </div>
         ))}
       </div>
     </section>

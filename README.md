@@ -1,21 +1,17 @@
 # Velora AI
 
-Velora is an AI safety layer for businesses. It watches invoices, payments, contracts, and purchase orders, then **catches expensive mistakes before they happen**.
+Velora is a **finance/ops control layer** for mid-size companies. It holds **duplicate vendor payments** and **invoice vs contract pricing mismatches** before cash leaves the account.
 
-This repository is a customer-ready prototype: a premium marketing site, a demo workspace, a deterministic risk engine, and adapter interfaces for live APIs later.
+This repository is a customer-ready prototype: a marketing site, a Meridian Supply walkthrough workspace (sample data), a deterministic risk engine, and adapter interfaces for live APIs later.
 
-Tagline: **Velora — Intelligence before impact.**
+Adjacent detectors (discounts, purchase limits, vendor master) exist in the walkthrough. They are not the marketed product.
 
 ## What you can show today
 
-Open the app and walk a prospect through this path:
-
-1. Landing page — “Do I immediately understand this?”
-2. Onboarding — “Would I connect QuickBooks / Salesforce / email?”
-3. Alert detail — “Do I trust this enough to act?”
-4. Pricing — “Would I pay $299–$799 / month?”
-
-The Meridian Supply demo workspace is fully populated. No integrations are required.
+1. Landing — finance/ops buyer understands the two core checks
+2. **See it work** — hold or approve a sample alert on the page
+3. Full walkthrough — Meridian Supply dashboard, labeled sample data
+4. **Start free trial** vs **Book a call** — different conversion paths
 
 ## Run locally
 
@@ -26,8 +22,10 @@ npm run dev
 
 Visit [http://localhost:4317](http://localhost:4317).
 
-- **Try Velora** creates a mocked session and starts onboarding.
-- **Launch demo workspace** skips onboarding and opens the dashboard.
+- **See it work** jumps to the interactive alert on the homepage.
+- **Start free trial** (`/signup`) creates a mocked session and starts onboarding.
+- **Open Meridian walkthrough** skips onboarding and opens the dashboard.
+- **Book a call** (`/book`) is the enterprise path — not the same as signup.
 
 Optional: copy `.env.example` to `.env.local` and add `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`) so “Ask Velora why this was flagged” uses a live model. Without a key, explanations are generated from the alert evidence.
 
@@ -37,7 +35,8 @@ Deploy on Vercel as a standard Next.js app. No database is required for the prot
 
 | Area | Route | What it proves |
 | --- | --- | --- |
-| Marketing | `/` | Positioning, hero catch-animation, pricing |
+| Marketing | `/` | Finance/ops positioning, interactive alert, pricing |
+| Book a call | `/book` | Enterprise conversion path |
 | Auth | `/login`, `/signup` | Frictionless entry (mocked) |
 | Onboarding | `/onboarding` | Business type, systems, risks, scan |
 | Overview | `/dashboard` | Value protected, trend, high-risk queue |

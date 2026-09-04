@@ -1,3 +1,12 @@
+/**
+ * Product scope (do not broaden on this page):
+ * Velora is a finance/ops control layer for mid-size companies.
+ * Primary job: hold duplicate vendor payments and catch invoice vs contract
+ * pricing mismatches before cash or invoices go out.
+ * Adjacent detectors (discounts, POs, vendor master, ops billing) exist in
+ * the demo workspace but are not the marketed product. This is not a sales,
+ * security, or legal suite.
+ */
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { Hero } from "@/components/marketing/hero";
@@ -10,7 +19,6 @@ import { IntegrationsSection } from "@/components/marketing/integrations";
 import { TrustSection } from "@/components/marketing/trust";
 import { Pricing } from "@/components/marketing/pricing";
 import { FinalCta } from "@/components/marketing/final-cta";
-import { Reveal } from "@/components/reveal";
 
 export const dynamic = "force-dynamic";
 
@@ -21,30 +29,14 @@ export default function HomePage() {
       <main>
         <Hero />
         <LiveTicker />
-        <Reveal>
-          <ProblemSection />
-        </Reveal>
-        <Reveal>
-          <HowItWorks />
-        </Reveal>
-        <Reveal>
-          <ProductDemo />
-        </Reveal>
-        <Reveal>
-          <UseCases />
-        </Reveal>
-        <Reveal>
-          <IntegrationsSection />
-        </Reveal>
-        <Reveal>
-          <TrustSection />
-        </Reveal>
-        <Reveal>
-          <Pricing />
-        </Reveal>
-        <Reveal>
-          <FinalCta />
-        </Reveal>
+        <ProblemSection />
+        <ProductDemo />
+        <HowItWorks />
+        <UseCases />
+        <IntegrationsSection />
+        <TrustSection />
+        <Pricing />
+        <FinalCta />
       </main>
       <SiteFooter />
     </div>

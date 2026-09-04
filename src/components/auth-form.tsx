@@ -7,20 +7,20 @@ import { launchDemoWorkspace, startWorkspace } from "@/app/auth-actions";
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   return (
     <div className="relative flex min-h-screen items-center justify-center px-4 py-16">
-      <div className="pointer-events-none absolute inset-0 grid-fade" />
+      <div className="pointer-events-none absolute inset-0" />
       <div className="relative w-full max-w-md">
         <Link href="/" className="mb-8 flex justify-center">
           <Logo />
         </Link>
-        <GlassPanel className="p-6 sm:p-8" glow="gold">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold">
-            {mode === "signup" ? "Start a workspace" : "Welcome back"}
+        <GlassPanel className="p-6 sm:p-8">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            {mode === "signup" ? "Start free trial" : "Sign in"}
           </p>
-          <h1 className="mt-2 font-serif text-3xl">
-            {mode === "signup" ? "Try Velora on demo data." : "Enter the Meridian workspace."}
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight">
+            {mode === "signup" ? "Open a trial workspace." : "Enter the Meridian walkthrough."}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Authentication is mocked for this prototype. Use any details, or launch the prepared Finance demo.
+            Auth is mocked. Use any details to start a trial, or open the prepared Meridian Supply walkthrough — sample data, not a live customer.
           </p>
           <form action={startWorkspace} className="mt-6 space-y-4">
             {mode === "signup" ? (
@@ -37,27 +37,27 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             />
             <Field label="Password" name="password" type="password" defaultValue="password" />
             <Button type="submit" className="h-11 w-full">
-              {mode === "signup" ? "Create workspace" : "Sign in"}
+              {mode === "signup" ? "Start free trial" : "Sign in"}
             </Button>
           </form>
           <form action={launchDemoWorkspace}>
             <Button type="submit" variant="outline" className="mt-3 h-11 w-full">
-              Launch demo workspace
+              Open Meridian walkthrough
             </Button>
           </form>
           <p className="mt-5 text-center text-sm text-muted-foreground">
             {mode === "signup" ? (
               <>
                 Already have access?{" "}
-                <Link href="/login" className="text-gold hover:underline">
+                <Link href="/login" className="text-primary hover:underline">
                   Sign in
                 </Link>
               </>
             ) : (
               <>
                 New here?{" "}
-                <Link href="/signup" className="text-gold hover:underline">
-                  Try Velora
+                <Link href="/signup" className="text-primary hover:underline">
+                  Start free trial
                 </Link>
               </>
             )}
@@ -86,7 +86,7 @@ function Field({
         name={name}
         type={type}
         defaultValue={defaultValue}
-        className="h-10 w-full rounded-lg border border-ink/10 bg-background px-3 text-sm font-normal text-foreground outline-none focus-visible:ring-2 focus-visible:ring-gold/40"
+        className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
       />
     </label>
   );

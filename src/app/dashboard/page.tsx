@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { AnimatedNumber } from "@/components/animated-number";
 import { GlassPanel } from "@/components/glass-panel";
+import { SampleDataBadge } from "@/components/sample-data-badge";
 import { SeverityBadge } from "@/components/severity-badge";
 import { RiskTrendChart } from "@/components/dashboard/charts";
 import { useDemo } from "@/components/demo-store";
@@ -17,15 +18,18 @@ export default function OverviewPage() {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-xs uppercase tracking-[0.18em] text-gold">Overview</p>
-        <h1 className="mt-1 font-serif text-3xl">Meridian Supply control room</h1>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Overview</p>
+          <SampleDataBadge />
+        </div>
+        <h1 className="mt-1 text-3xl font-semibold tracking-tight">Meridian Supply walkthrough</h1>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Velora is watching invoices, payments, contracts, and purchase orders. Nothing leaves without a human decision.
+          Prepared AP sample data — not a live customer. Velora is watching invoices and payments. Nothing leaves without a human decision.
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat label="Total value protected" value={dashboardStats.moneyProtected} prefix="$" />
-        <Stat label="Mistakes prevented" value={dashboardStats.mistakesPrevented} />
+        <Stat label="Total value protected" value={dashboardStats.moneyProtected} prefix="$" sample />
+        <Stat label="Mistakes prevented" value={dashboardStats.mistakesPrevented} sample />
         <Stat label="Open impact" value={open.reduce((sum, alert) => sum + alert.dollarImpact, 0)} prefix="$" />
         <Stat label="Connected systems" value={connected} />
       </div>
@@ -45,13 +49,13 @@ export default function OverviewPage() {
                 <Link
                   key={alert.id}
                   href={`/dashboard/alerts/${alert.id}`}
-                  className="block rounded-xl bg-ink/5 p-3 ring-1 ring-ink/8 transition hover:ring-gold/30"
+                  className="block rounded-xl bg-ink/5 p-3 ring-1 ring-ink/8 transition hover:ring-primary/30"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm">{alert.title}</p>
                     <SeverityBadge severity={alert.severity} />
                   </div>
-                  <p className="mt-1 font-mono text-xs text-gold">{formatCurrency(alert.dollarImpact)}</p>
+                  <p className="mt-1 font-mono text-xs tabular text-foreground">{formatCurrency(alert.dollarImpact)}</p>
                 </Link>
               ))}
           </div>
@@ -70,7 +74,7 @@ export default function OverviewPage() {
                       : event.tone === "protect"
                         ? "bg-protect"
                         : event.tone === "system"
-                          ? "bg-gold"
+                          ? "bg-primary"
                           : "bg-ink/30"
                   }`}
                 />
@@ -91,7 +95,7 @@ export default function OverviewPage() {
               .map((item) => (
                 <li key={item.id} className="flex items-center justify-between rounded-xl bg-ink/5 px-3 py-2 text-sm">
                   <span>{item.name}</span>
-                  <span className="text-xs text-protect">Live · demo</span>
+                  <span className="text-xs text-muted-foreground">Connected</span>
                 </li>
               ))}
           </ul>
@@ -101,11 +105,24 @@ export default function OverviewPage() {
   );
 }
 
-function Stat({ label, value, prefix }: { label: string; value: number; prefix?: string }) {
+function Stat({
+  label,
+  value,
+  prefix,
+  sample,
+}: {
+  label: string;
+  value: number;
+  prefix?: string;
+  sample?: boolean;
+}) {
   return (
     <GlassPanel className="p-5">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
-      <p className="mt-2 text-2xl">
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-[11px] text-muted-foreground">{label}</p>
+        {sample ? <SampleDataBadge /> : null}
+      </div>
+      <p className="mt-2 font-mono text-3xl tabular tracking-tight">
         <AnimatedNumber value={value} prefix={prefix} />
       </p>
     </GlassPanel>
