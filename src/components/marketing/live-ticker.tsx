@@ -12,7 +12,7 @@ const items = [
 export function LiveTicker() {
   const loop = [...items, ...items];
   return (
-    <div className="relative overflow-hidden border-y border-border bg-white py-3">
+    <div className="relative overflow-hidden border-y border-border bg-card py-3">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
       <div className="animate-ticker flex w-max gap-10 whitespace-nowrap px-6 text-[12px] uppercase tracking-[0.16em] text-foreground/75">

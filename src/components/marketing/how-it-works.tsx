@@ -54,7 +54,7 @@ export function HowItWorks() {
               strokeDasharray="8 10"
               className="[animation:dashMove_2.2s_linear_infinite]"
             />
-            <circle cx="320" cy="56" r="22" fill="#ffffff" stroke="#0c0c0c" strokeWidth="1.6" />
+            <circle cx="320" cy="56" r="22" fill="#1a1916" stroke="#C4A35A" strokeWidth="1.6" />
             <circle cx="320" cy="56" r="7" fill="#C4A35A" />
           </svg>
         </div>
