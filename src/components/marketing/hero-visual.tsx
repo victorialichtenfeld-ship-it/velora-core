@@ -34,7 +34,7 @@ export function HeroVisual() {
       <div className="mt-3 rounded-lg bg-background p-4 ring-1 ring-border">
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Match</p>
         <p className="mt-1 text-sm">Same vendor, same amount, already cleared as ACH-4410.</p>
-        <p className="mt-3 font-mono text-2xl tabular text-foreground">$11,240</p>
+        <p className="mt-3 font-mono text-2xl tabular text-gold">$11,240</p>
         <p className="mt-1 text-xs text-muted-foreground">Would have left the account today</p>
       </div>
 

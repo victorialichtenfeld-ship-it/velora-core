@@ -58,76 +58,76 @@
 }
 
 :root {
-  --background: #161410;
-  --foreground: #f4efe6;
-  --ink: #f4efe6;
-  --frame: #12110e;
-  --card: #211e19;
-  --card-foreground: #f4efe6;
-  --popover: #211e19;
-  --popover-foreground: #f4efe6;
-  --primary: #c4a35a;
-  --primary-foreground: #161410;
-  --secondary: #2a2620;
-  --secondary-foreground: #f4efe6;
-  --muted: #2a2620;
-  --muted-foreground: #b8b0a4;
-  --accent: #2a2620;
-  --accent-foreground: #f4efe6;
-  --destructive: #c45a4a;
-  --border: rgb(244 239 230 / 12%);
-  --input: rgb(244 239 230 / 12%);
-  --ring: rgb(196 163 90 / 45%);
-  --gold: #c4a35a;
-  --gold-foreground: #161410;
-  --protect: #c4a35a;
-  --protect-foreground: #161410;
-  --risk: #c45a4a;
-  --warn: #c4a35a;
-  --sample: #c4a35a;
-  --chart-1: #c4a35a;
-  --chart-2: #f4efe6;
-  --chart-3: #c45a4a;
-  --chart-4: #b8b0a4;
-  --chart-5: #8a7a5a;
+  --background: #0c0c0c;
+  --foreground: #f7f3ea;
+  --ink: #f7f3ea;
+  --frame: #0c0c0c;
+  --card: #151515;
+  --card-foreground: #f7f3ea;
+  --popover: #151515;
+  --popover-foreground: #f7f3ea;
+  --primary: #e2c278;
+  --primary-foreground: #0c0c0c;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #f7f3ea;
+  --muted: #1c1c1c;
+  --muted-foreground: #9c968c;
+  --accent: #1c1c1c;
+  --accent-foreground: #f7f3ea;
+  --destructive: #c75b52;
+  --border: rgb(226 194 120 / 16%);
+  --input: rgb(226 194 120 / 16%);
+  --ring: rgb(226 194 120 / 45%);
+  --gold: #e2c278;
+  --gold-foreground: #0c0c0c;
+  --protect: #e2c278;
+  --protect-foreground: #0c0c0c;
+  --risk: #c75b52;
+  --warn: #e2c278;
+  --sample: #e2c278;
+  --chart-1: #e2c278;
+  --chart-2: #f7f3ea;
+  --chart-3: #c75b52;
+  --chart-4: #9c968c;
+  --chart-5: #8a7a52;
   --radius: 0.5rem;
-  --sidebar: #12110e;
-  --sidebar-foreground: #f4efe6;
-  --sidebar-primary: #c4a35a;
-  --sidebar-primary-foreground: #161410;
-  --sidebar-accent: #2a2620;
-  --sidebar-accent-foreground: #f4efe6;
-  --sidebar-border: rgb(244 239 230 / 10%);
-  --sidebar-ring: rgb(196 163 90 / 45%);
+  --sidebar: #0c0c0c;
+  --sidebar-foreground: #f7f3ea;
+  --sidebar-primary: #e2c278;
+  --sidebar-primary-foreground: #0c0c0c;
+  --sidebar-accent: #1c1c1c;
+  --sidebar-accent-foreground: #f7f3ea;
+  --sidebar-border: rgb(226 194 120 / 14%);
+  --sidebar-ring: rgb(226 194 120 / 45%);
 }
 
 .dark {
-  --background: #161410;
-  --foreground: #f4efe6;
-  --card: #211e19;
-  --card-foreground: #f4efe6;
-  --popover: #211e19;
-  --popover-foreground: #f4efe6;
-  --primary: #c4a35a;
-  --primary-foreground: #161410;
-  --secondary: #2a2620;
-  --secondary-foreground: #f4efe6;
-  --muted: #2a2620;
-  --muted-foreground: #b8b0a4;
-  --accent: #2a2620;
-  --accent-foreground: #f4efe6;
-  --destructive: #c45a4a;
-  --border: rgb(244 239 230 / 12%);
-  --input: rgb(244 239 230 / 12%);
-  --ring: rgb(196 163 90 / 45%);
-  --sidebar: #12110e;
-  --sidebar-foreground: #f4efe6;
-  --sidebar-primary: #c4a35a;
-  --sidebar-primary-foreground: #161410;
-  --sidebar-accent: #2a2620;
-  --sidebar-accent-foreground: #f4efe6;
-  --sidebar-border: rgb(244 239 230 / 10%);
-  --sidebar-ring: rgb(196 163 90 / 45%);
+  --background: #0c0c0c;
+  --foreground: #f7f3ea;
+  --card: #151515;
+  --card-foreground: #f7f3ea;
+  --popover: #151515;
+  --popover-foreground: #f7f3ea;
+  --primary: #e2c278;
+  --primary-foreground: #0c0c0c;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #f7f3ea;
+  --muted: #1c1c1c;
+  --muted-foreground: #9c968c;
+  --accent: #1c1c1c;
+  --accent-foreground: #f7f3ea;
+  --destructive: #c75b52;
+  --border: rgb(226 194 120 / 16%);
+  --input: rgb(226 194 120 / 16%);
+  --ring: rgb(226 194 120 / 45%);
+  --sidebar: #0c0c0c;
+  --sidebar-foreground: #f7f3ea;
+  --sidebar-primary: #e2c278;
+  --sidebar-primary-foreground: #0c0c0c;
+  --sidebar-accent: #1c1c1c;
+  --sidebar-accent-foreground: #f7f3ea;
+  --sidebar-border: rgb(226 194 120 / 14%);
+  --sidebar-ring: rgb(226 194 120 / 45%);
 }
 
 @layer base {
@@ -147,14 +147,14 @@
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
   .glass {
-    background: #211e19;
+    background: #151515;
   }
   .glass-strong {
-    background: #211e19;
+    background: #151515;
   }
   .product-frame {
-    background: #211e19;
-    color: #f4efe6;
+    background: #151515;
+    color: #f7f3ea;
   }
   .gold-glow,
   .protect-glow,
@@ -187,7 +187,7 @@
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(196 163 90 / 28%);
+  background: rgb(226 194 120 / 32%);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {

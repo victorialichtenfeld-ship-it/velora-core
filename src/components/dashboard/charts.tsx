@@ -14,11 +14,11 @@ import {
 import { riskByType, riskTrend } from "@/lib/data/demo";
 
 const tooltipStyle = {
-  background: "#211E19",
-  border: "1px solid rgba(244,239,230,0.12)",
+  background: "#151515",
+  border: "1px solid rgba(226,194,120,0.16)",
   borderRadius: 8,
   fontSize: 12,
-  color: "#F4EFE6",
+  color: "#F7F3EA",
 };
 
 export function RiskTrendChart() {
@@ -28,18 +28,18 @@ export function RiskTrendChart() {
         <AreaChart data={riskTrend}>
           <defs>
             <linearGradient id="protected" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#C4A35A" stopOpacity={0.35} />
-              <stop offset="100%" stopColor="#C4A35A" stopOpacity={0} />
+              <stop offset="0%" stopColor="#E2C278" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="#E2C278" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid stroke="rgba(244,239,230,0.08)" vertical={false} />
-          <XAxis dataKey="day" stroke="#B8B0A4" fontSize={12} tickLine={false} axisLine={false} />
-          <YAxis stroke="#B8B0A4" fontSize={12} tickLine={false} axisLine={false} />
+          <XAxis dataKey="day" stroke="#9C968C" fontSize={12} tickLine={false} axisLine={false} />
+          <YAxis stroke="#9C968C" fontSize={12} tickLine={false} axisLine={false} />
           <Tooltip contentStyle={tooltipStyle} />
           <Area
             type="monotone"
             dataKey="protected"
-            stroke="#C4A35A"
+            stroke="#E2C278"
             fill="url(#protected)"
             strokeWidth={2}
           />
@@ -59,14 +59,14 @@ export function RiskTypeChart() {
           <YAxis
             type="category"
             dataKey="type"
-            stroke="#B8B0A4"
+            stroke="#9C968C"
             fontSize={12}
             width={130}
             tickLine={false}
             axisLine={false}
           />
           <Tooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="value" fill="#C4A35A" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="value" fill="#E2C278" radius={[0, 4, 4, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>

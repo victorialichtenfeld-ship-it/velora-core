@@ -100,7 +100,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md bg-background p-4 ring-1 ring-border">
       <p className="text-[11px] text-muted-foreground">{label}</p>
-      <p className="mt-2 font-mono text-3xl tabular tracking-tight text-foreground sm:text-4xl">{value}</p>
+      <p className="mt-2 font-mono text-3xl tabular tracking-tight text-gold sm:text-4xl">{value}</p>
     </div>
   );
 }

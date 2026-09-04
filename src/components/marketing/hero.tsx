@@ -11,7 +11,7 @@ export function Hero() {
     <section className="relative">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
         <div>
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-gold">
             For finance and operations teams
           </p>
           <h1 className="text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-foreground sm:text-5xl lg:text-[3.25rem]">
@@ -51,7 +51,7 @@ function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
       <dt className="text-[11px] text-muted-foreground">{label}</dt>
-      <dd className="mt-1 font-mono text-2xl tabular tracking-tight text-foreground sm:text-[1.65rem]">{value}</dd>
+      <dd className="mt-1 font-mono text-2xl tabular tracking-tight text-gold sm:text-[1.65rem]">{value}</dd>
     </div>
   );
 }
