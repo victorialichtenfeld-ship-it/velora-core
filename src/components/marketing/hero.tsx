@@ -15,12 +15,8 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-5 inline-flex items-center gap-2 rounded-full bg-gold/18 px-3 py-1 text-xs uppercase tracking-[0.18em] text-gold ring-1 ring-gold/40"
+            className="mb-5 text-xs uppercase tracking-[0.2em] text-primary"
           >
-            <span className="relative flex size-2">
-              <span className="absolute inset-0 rounded-full bg-protect animate-pulse-ring" />
-              <span className="relative size-2 rounded-full bg-protect" />
-            </span>
             Intelligence before impact
           </motion.p>
           <motion.h1
@@ -29,8 +25,7 @@ export function Hero() {
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-4xl leading-[1.08] text-balance text-foreground sm:text-5xl lg:text-[3.6rem]"
           >
-            Catch costly mistakes{" "}
-            <span className="text-gold-shine">before they happen.</span>
+            Catch costly mistakes before they happen.
           </motion.h1>
           <motion.p
             initial={{ opacity: 1, y: 0 }}
@@ -64,7 +59,7 @@ export function Hero() {
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-gold/25 pt-6"
+            className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6"
           >
             <Stat value="$184k" label="Protected this month" />
             <Stat value="47" label="Mistakes prevented" />
@@ -87,7 +82,7 @@ function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
       <dt className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{label}</dt>
-      <dd className="mt-1 font-mono text-lg text-gold">{value}</dd>
+      <dd className="mt-1 font-mono text-lg text-primary">{value}</dd>
     </div>
   );
 }

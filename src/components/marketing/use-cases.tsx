@@ -8,44 +8,38 @@ const cases = [
     team: "Finance",
     example: "A second $11,240 ACH to Apex Logistics is held before it clears.",
     result: "Duplicate payment never leaves the account.",
-    tone: "gold" as const,
   },
   {
     team: "Sales",
     example: "A quote applies 16% off with no exception recorded in HubSpot.",
     result: "Finance is asked before margin is given away.",
-    tone: "protect" as const,
   },
   {
     team: "Contracts",
     example: "Harborline's invoice uses $84/unit against a $102 MSA.",
     result: "The draft is blocked and rewritten to contract rate.",
-    tone: "gold" as const,
   },
   {
     team: "Purchasing",
     example: "PO-2201 to Helios Industrial exceeds the $25,000 approval limit.",
     result: "The order waits for a named approver.",
-    tone: "risk" as const,
   },
   {
     team: "Operations",
     example: "A shipment overage is logged but never billed.",
     result: "Billing is prompted before the window closes.",
-    tone: "protect" as const,
   },
   {
     team: "Security",
     example: "A wire goes to a vendor that is not on the master file.",
     result: "Treasury verifies the beneficiary before release.",
-    tone: "gold" as const,
   },
 ];
 
 export function UseCases() {
   return (
-    <section id="use-cases" className="section-teal mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-gold">Use cases</p>
+    <section id="use-cases" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
+      <p className="text-xs uppercase tracking-[0.2em] text-primary">Use cases</p>
       <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Every team that can lose money quietly.</h2>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((item, index) => (
@@ -57,8 +51,8 @@ export function UseCases() {
             transition={{ delay: index * 0.05 }}
             whileHover={{ y: -6 }}
           >
-            <GlassPanel glow={item.tone} className="h-full p-6">
-              <p className="text-xs uppercase tracking-[0.16em] text-gold">{item.team}</p>
+            <GlassPanel className="h-full p-6">
+              <p className="text-xs uppercase tracking-[0.16em] text-primary">{item.team}</p>
               <p className="mt-3 text-base leading-6">{item.example}</p>
               <p className="mt-4 text-sm text-protect">{item.result}</p>
             </GlassPanel>

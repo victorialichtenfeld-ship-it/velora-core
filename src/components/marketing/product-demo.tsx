@@ -13,13 +13,13 @@ export function ProductDemo() {
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-gold">Product</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-primary">Product</p>
       <h2 className="mt-3 font-serif text-3xl sm:text-4xl">A command center for expensive mistakes.</h2>
       <p className="mt-4 max-w-2xl text-muted-foreground">
         This is the same demo workspace customers walk through. Metrics, alerts, and actions are live against sample Meridian Supply data.
       </p>
 
-      <div className="product-frame gold-glow mt-10 rounded-[28px] p-4 ring-1 ring-ink/20 sm:p-6">
+      <div className="product-frame mt-10 rounded-[28px] p-4 ring-1 ring-white/10 sm:p-6">
         <div className="mb-4 flex items-center justify-between text-[#F4EFE6]/80">
           <p className="text-sm">Meridian Supply · Finance workspace</p>
           <span className="rounded-full bg-[#5EC8B8]/15 px-2.5 py-1 text-[11px] text-[#8EE0D2]">Demo mode</span>

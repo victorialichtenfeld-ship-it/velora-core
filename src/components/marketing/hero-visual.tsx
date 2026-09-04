@@ -35,7 +35,6 @@ export function HeroVisual() {
 
   return (
     <div className="relative mx-auto w-full max-w-[540px]">
-      <div className="absolute -inset-10 -z-10 rounded-[40px] bg-[radial-gradient(circle_at_30%_20%,rgba(232,176,72,0.5),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(56,176,160,0.4),transparent_50%)] blur-2xl animate-glow" />
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}

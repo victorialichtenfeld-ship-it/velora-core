@@ -21,14 +21,14 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gold/25 bg-[color-mix(in_oklch,var(--background)_70%,white)]/82 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />
         </Link>
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="transition-colors hover:text-gold">
+            <a key={link.href} href={link.href} className="transition-colors hover:text-primary">
               {link.label}
             </a>
           ))}
