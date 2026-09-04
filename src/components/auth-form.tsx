@@ -41,7 +41,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             </Button>
           </form>
           <form action={launchDemoWorkspace}>
-            <Button type="submit" variant="outline" className="mt-3 h-11 w-full border-white/15">
+            <Button type="submit" variant="outline" className="mt-3 h-11 w-full">
               Launch demo workspace
             </Button>
           </form>
@@ -86,7 +86,7 @@ function Field({
         name={name}
         type={type}
         defaultValue={defaultValue}
-        className="h-10 w-full rounded-lg border border-white/10 bg-black/30 px-3 text-sm font-normal text-foreground outline-none focus-visible:ring-2 focus-visible:ring-gold/40"
+        className="h-10 w-full rounded-lg border border-ink/10 bg-background px-3 text-sm font-normal text-foreground outline-none focus-visible:ring-2 focus-visible:ring-gold/40"
       />
     </label>
   );

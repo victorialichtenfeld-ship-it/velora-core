@@ -82,7 +82,7 @@ export function RuleBuilder() {
               type="number"
               value={threshold}
               onChange={(event) => setThreshold(Number(event.target.value))}
-              className="h-10 bg-black/30"
+              className="h-10 bg-background"
             />
           </div>
           <SelectRow
@@ -92,7 +92,7 @@ export function RuleBuilder() {
             options={actions}
           />
         </div>
-        <p className="mt-6 rounded-xl bg-black/30 p-4 font-serif text-lg">{preview}</p>
+        <p className="mt-6 rounded-xl bg-ink/5 p-4 font-serif text-lg">{preview}</p>
         <Button className="mt-4 h-11 w-full" onClick={createRule}>
           Add rule
         </Button>
@@ -130,7 +130,7 @@ function SelectRow({
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-10 w-full rounded-lg border border-white/10 bg-black/30 px-3 text-sm"
+        className="h-10 w-full rounded-lg border border-ink/10 bg-background px-3 text-sm"
       >
         {options.map((option) => (
           <option key={option.id} value={option.id}>

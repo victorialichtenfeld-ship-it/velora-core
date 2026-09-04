@@ -13,10 +13,10 @@ export function HeroVisual() {
   useEffect(() => {
     const sequence: { stage: Stage; at: number }[] = [
       { stage: "draft", at: 0 },
-      { stage: "scan", at: 900 },
-      { stage: "detect", at: 2800 },
-      { stage: "alert", at: 3800 },
-      { stage: "blocked", at: 5600 },
+      { stage: "scan", at: 800 },
+      { stage: "detect", at: 2400 },
+      { stage: "alert", at: 3400 },
+      { stage: "blocked", at: 5200 },
     ];
     let timers: number[] = [];
     const run = () => {
@@ -26,7 +26,7 @@ export function HeroVisual() {
       );
     };
     run();
-    const loop = window.setInterval(run, 9000);
+    const loop = window.setInterval(run, 8500);
     return () => {
       timers.forEach(clearTimeout);
       clearInterval(loop);
@@ -35,23 +35,61 @@ export function HeroVisual() {
 
   return (
     <div className="relative mx-auto w-full max-w-[540px]">
-      <div className="absolute -inset-8 -z-10 rounded-[40px] bg-gradient-to-br from-gold/20 via-transparent to-protect/20 blur-2xl animate-glow" />
-      <div className="animate-float glass-strong relative overflow-hidden rounded-[28px] p-5 ring-1 ring-white/10 sm:p-6">
-        <div className="mb-4 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-          <span>Outbound invoice</span>
-          <span className="text-gold">Live monitor</span>
+      <div className="absolute -inset-10 -z-10 rounded-[40px] bg-[radial-gradient(circle_at_30%_20%,rgba(184,149,74,0.35),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(47,130,122,0.28),transparent_50%)] blur-2xl animate-glow" />
+      <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="product-frame relative overflow-hidden rounded-[28px] p-5 ring-1 ring-white/15 sm:p-6"
+      >
+        <div className="pointer-events-none absolute inset-0 opacity-40">
+          <svg className="h-full w-full" viewBox="0 0 500 420">
+            <defs>
+              <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1">
+                <stop stopColor="#E2C58D" stopOpacity="0" />
+                <stop offset="0.5" stopColor="#E2C58D" stopOpacity="0.7" />
+                <stop offset="1" stopColor="#5EC8B8" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M40 40 C 180 90, 220 200, 460 120"
+              fill="none"
+              stroke="url(#beam)"
+              strokeWidth="1.2"
+              strokeDasharray="6 10"
+              className="[animation:dashMove_6s_linear_infinite]"
+            />
+            <path
+              d="M30 300 C 160 240, 280 340, 470 280"
+              fill="none"
+              stroke="url(#beam)"
+              strokeWidth="1.2"
+              strokeDasharray="5 12"
+              className="[animation:dashMove_8s_linear_infinite]"
+            />
+          </svg>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl bg-black/30 p-4 ring-1 ring-white/8">
+        <div className="relative mb-4 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-white/55">
+          <span>Outbound invoice</span>
+          <span className="flex items-center gap-2 text-[#E2C58D]">
+            <span className="relative flex size-2">
+              <span className="absolute inset-0 rounded-full bg-[#5EC8B8] animate-pulse-ring" />
+              <span className="relative size-2 rounded-full bg-[#5EC8B8]" />
+            </span>
+            Live monitor
+          </span>
+        </div>
+
+        <div className="relative overflow-hidden rounded-2xl bg-black/25 p-4 ring-1 ring-white/10">
           {(stage === "scan" || stage === "detect") && (
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-protect/0 via-protect/40 to-protect/0 animate-scan" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-protect/0 via-[#5EC8B8]/50 to-protect/0 animate-scan" />
           )}
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-xs text-muted-foreground">Harborline Retail · INV-10482</p>
-              <p className="mt-1 font-serif text-2xl text-foreground">VL-THERM-440</p>
+              <p className="text-xs text-white/55">Harborline Retail · INV-10482</p>
+              <p className="mt-1 font-serif text-2xl text-white">VL-THERM-440</p>
             </div>
-            <span className="rounded-full bg-white/5 px-2 py-1 text-[10px] uppercase tracking-wider text-muted-foreground">
+            <span className="rounded-full bg-white/8 px-2 py-1 text-[10px] uppercase tracking-wider text-white/60">
               Draft
             </span>
           </div>
@@ -70,15 +108,15 @@ export function HeroVisual() {
           {(stage === "detect" || stage === "alert" || stage === "blocked") && (
             <motion.div
               key="contract"
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-3 rounded-2xl bg-protect/8 p-4 ring-1 ring-protect/25"
+              className="relative mt-3 rounded-2xl bg-[#5EC8B8]/12 p-4 ring-1 ring-[#5EC8B8]/35"
             >
-              <p className="text-[11px] uppercase tracking-[0.16em] text-protect">Velora detects</p>
-              <p className="mt-1 text-sm text-foreground">
-                Contract rate: <span className="font-mono text-protect">$102/unit</span>
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[#8EE0D2]">Velora detects</p>
+              <p className="mt-1 text-sm text-white">
+                Contract rate: <span className="font-mono text-[#8EE0D2]">$102/unit</span>
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">Harborline MSA · Google Drive</p>
+              <p className="mt-1 text-xs text-white/55">Harborline MSA · Google Drive</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -87,15 +125,19 @@ export function HeroVisual() {
           {(stage === "alert" || stage === "blocked") && (
             <motion.div
               key="alert"
-              initial={{ opacity: 0, y: 16, scale: 0.98 }}
+              initial={{ opacity: 0, y: 18, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              className="risk-glow mt-3 rounded-2xl bg-risk/10 p-4"
+              className="relative mt-3 rounded-2xl bg-[#C45A4A]/15 p-4 ring-1 ring-[#C45A4A]/40"
             >
-              <p className="text-[11px] uppercase tracking-[0.16em] text-risk">Potential revenue loss detected</p>
-              <p className="mt-1 font-mono text-2xl text-foreground sm:text-3xl">$14,760</p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                820 units × $18 under contract
-              </p>
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[#F0A39A]">Potential revenue loss detected</p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-1 font-mono text-2xl text-white sm:text-3xl"
+              >
+                $14,760
+              </motion.p>
+              <p className="mt-1 text-xs text-white/55">820 units × $18 under contract</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -104,19 +146,19 @@ export function HeroVisual() {
           {stage === "blocked" && (
             <motion.div
               key="blocked"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="protect-glow mt-3 flex items-center gap-3 rounded-2xl bg-protect/10 px-4 py-3"
+              initial={{ opacity: 0, scale: 0.86, rotate: -2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              className="relative mt-3 flex items-center gap-3 rounded-2xl bg-[#5EC8B8]/14 px-4 py-3 ring-1 ring-[#5EC8B8]/35"
             >
-              <ShieldCheck className="size-5 text-protect" />
+              <ShieldCheck className="size-5 text-[#8EE0D2]" />
               <div>
-                <p className="text-sm font-medium text-protect">Blocked before sending</p>
-                <p className="text-xs text-muted-foreground">Human approval required · Finance notified</p>
+                <p className="text-sm font-medium text-[#8EE0D2]">Blocked before sending</p>
+                <p className="text-xs text-white/55">Human approval required · Finance notified</p>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -131,9 +173,9 @@ function Metric({
   warn?: boolean;
 }) {
   return (
-    <div className="rounded-xl bg-white/4 px-3 py-2 ring-1 ring-white/6">
-      <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
-      <p className={`mt-1 font-mono text-sm ${warn ? "text-risk" : "text-foreground"}`}>{value}</p>
+    <div className="rounded-xl bg-white/6 px-3 py-2 ring-1 ring-white/10">
+      <p className="text-[10px] uppercase tracking-[0.14em] text-white/50">{label}</p>
+      <p className={`mt-1 font-mono text-sm ${warn ? "text-[#F0A39A]" : "text-white"}`}>{value}</p>
     </div>
   );
 }

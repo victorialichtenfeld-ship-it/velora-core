@@ -23,14 +23,14 @@ export default function TransactionsPage() {
         </p>
       </div>
       <GlassPanel className="overflow-hidden">
-        <div className="hidden grid-cols-[1.1fr_0.9fr_0.7fr_0.7fr_0.8fr] gap-3 border-b border-white/8 px-5 py-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground md:grid">
+        <div className="hidden grid-cols-[1.1fr_0.9fr_0.7fr_0.7fr_0.8fr] gap-3 border-b border-ink/8 px-5 py-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground md:grid">
           <span>Party</span>
           <span>Type</span>
           <span>Amount</span>
           <span>Status</span>
           <span>When</span>
         </div>
-        <div className="divide-y divide-white/6">
+        <div className="divide-y divide-ink/8">
           {transactions.map((txn) => (
             <div key={txn.id} className="grid gap-1 px-5 py-4 md:grid-cols-[1.1fr_0.9fr_0.7fr_0.7fr_0.8fr] md:items-center md:gap-3">
               <div>

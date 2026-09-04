@@ -52,7 +52,7 @@ export default function AnalyticsPage() {
         <p className="text-sm font-medium">Impact by team</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {Object.entries(byTeam).map(([team, value]) => (
-            <div key={team} className="rounded-xl bg-black/25 p-4">
+            <div key={team} className="rounded-xl bg-ink/5 p-4">
               <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{team}</p>
               <p className="mt-1 font-mono text-lg">{formatCurrency(value)}</p>
             </div>

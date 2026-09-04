@@ -45,7 +45,7 @@ export default function OverviewPage() {
                 <Link
                   key={alert.id}
                   href={`/dashboard/alerts/${alert.id}`}
-                  className="block rounded-xl bg-black/25 p-3 ring-1 ring-white/8 transition hover:ring-gold/30"
+                  className="block rounded-xl bg-ink/5 p-3 ring-1 ring-ink/8 transition hover:ring-gold/30"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm">{alert.title}</p>
@@ -71,7 +71,7 @@ export default function OverviewPage() {
                         ? "bg-protect"
                         : event.tone === "system"
                           ? "bg-gold"
-                          : "bg-white/30"
+                          : "bg-ink/30"
                   }`}
                 />
                 <div>
@@ -89,7 +89,7 @@ export default function OverviewPage() {
             {integrationsCatalog
               .filter((item) => integrations[item.id] === "connected")
               .map((item) => (
-                <li key={item.id} className="flex items-center justify-between rounded-xl bg-black/20 px-3 py-2 text-sm">
+                <li key={item.id} className="flex items-center justify-between rounded-xl bg-ink/5 px-3 py-2 text-sm">
                   <span>{item.name}</span>
                   <span className="text-xs text-protect">Live · demo</span>
                 </li>

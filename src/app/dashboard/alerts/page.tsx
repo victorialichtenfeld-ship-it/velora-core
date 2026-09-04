@@ -40,7 +40,7 @@ export default function AlertsPage() {
             className={`rounded-full px-3 py-1 text-xs ring-1 ${
               severity === filter.id
                 ? "bg-gold/15 text-foreground ring-gold/40"
-                : "bg-white/4 text-muted-foreground ring-white/10"
+                : "bg-card text-muted-foreground ring-ink/10"
             }`}
           >
             {filter.label}
@@ -88,7 +88,7 @@ function StatusChip({ status }: { status: AlertStatus }) {
             ? "Escalated"
             : "Resolved";
   return (
-    <span className="rounded-full bg-white/6 px-2 py-0.5 text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+    <span className="rounded-full bg-ink/6 px-2 py-0.5 text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
       {label}
     </span>
   );

@@ -44,7 +44,7 @@ export default function SettingsPage() {
         </p>
       </GlassPanel>
       <form action={signOut}>
-        <Button type="submit" variant="outline" className="border-white/15">
+        <Button type="submit" variant="outline">
           Sign out
         </Button>
       </form>
@@ -54,7 +54,7 @@ export default function SettingsPage() {
 
 function Row({ label, defaultChecked = false }: { label: string; defaultChecked?: boolean }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl bg-black/20 px-4 py-3">
+    <div className="flex items-center justify-between gap-4 rounded-xl bg-ink/5 px-4 py-3">
       <p className="text-sm">{label}</p>
       <Switch defaultChecked={defaultChecked} />
     </div>

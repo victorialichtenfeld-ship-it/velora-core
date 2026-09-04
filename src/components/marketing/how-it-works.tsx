@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "motion/react";
+
 const systems = [
   "Gmail",
   "Outlook",
@@ -20,40 +22,43 @@ export function HowItWorks() {
         Connect the tools you already run. Velora learns the rules of your business, then warns or blocks risky actions before money, contracts, or data leave the building.
       </p>
 
-      <div className="mt-12 overflow-hidden rounded-[28px] glass p-6 ring-1 ring-white/10 sm:p-10">
+      <div className="glass mt-12 overflow-hidden rounded-[28px] p-6 ring-1 ring-ink/10 sm:p-10">
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           {systems.map((name, index) => (
-            <div
+            <motion.div
               key={name}
-              className="rounded-full bg-white/5 px-3 py-1.5 text-xs text-muted-foreground ring-1 ring-white/10"
-              style={{ animationDelay: `${index * 120}ms` }}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
+              className="rounded-full bg-card px-3 py-1.5 text-xs text-muted-foreground ring-1 ring-ink/10"
             >
               {name}
-            </div>
+            </motion.div>
           ))}
         </div>
-        <div className="relative mx-auto mt-8 h-24 max-w-xl">
-          <svg viewBox="0 0 640 96" className="h-full w-full">
+        <div className="relative mx-auto mt-8 h-28 max-w-xl">
+          <svg viewBox="0 0 640 112" className="h-full w-full">
             <defs>
               <linearGradient id="flow" x1="0" x2="1">
-                <stop stopColor="#C9B07A" stopOpacity="0.1" />
-                <stop offset="0.5" stopColor="#6EC8B8" />
-                <stop offset="1" stopColor="#C9B07A" stopOpacity="0.1" />
+                <stop stopColor="#9B7A3A" stopOpacity="0.15" />
+                <stop offset="0.5" stopColor="#2F827A" />
+                <stop offset="1" stopColor="#9B7A3A" stopOpacity="0.15" />
               </linearGradient>
             </defs>
             <path
-              d="M20 48 H620"
+              d="M20 56 H620"
               fill="none"
               stroke="url(#flow)"
               strokeWidth="2"
               strokeDasharray="8 10"
-              className="[animation:dataFlow_2.4s_linear_infinite]"
+              className="[animation:dashMove_2.2s_linear_infinite]"
             />
-            <circle cx="320" cy="48" r="18" fill="#10141f" stroke="#C9B07A" />
-            <circle cx="320" cy="48" r="6" fill="#6EC8B8" className="animate-glow" />
+            <circle cx="320" cy="56" r="22" fill="#F7F2E8" stroke="#9B7A3A" strokeWidth="1.4" />
+            <circle cx="320" cy="56" r="7" fill="#2F827A" className="animate-glow" />
           </svg>
         </div>
-        <div className="mt-4 text-center text-sm text-gold">Velora</div>
+        <div className="mt-1 text-center text-sm text-gold">Velora</div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <Step n="01" title="Connect business tools" body="Email, accounting, CRM, payments, and files stream into Velora through adapters — live later, simulated in this prototype." />
@@ -67,10 +72,13 @@ export function HowItWorks() {
 
 function Step({ n, title, body }: { n: string; title: string; body: string }) {
   return (
-    <div className="rounded-2xl bg-black/20 p-5 ring-1 ring-white/8">
+    <motion.div
+      whileHover={{ y: -4 }}
+      className="rounded-2xl bg-card/90 p-5 ring-1 ring-ink/10"
+    >
       <p className="font-mono text-xs text-gold">{n}</p>
       <h3 className="mt-2 text-lg font-medium">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
-    </div>
+    </motion.div>
   );
 }

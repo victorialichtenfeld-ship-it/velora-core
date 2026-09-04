@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import { GlassPanel } from "@/components/glass-panel";
 
 const cases = [
@@ -39,12 +42,21 @@ export function UseCases() {
       <p className="text-xs uppercase tracking-[0.2em] text-gold">Use cases</p>
       <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Every team that can lose money quietly.</h2>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {cases.map((item) => (
-          <GlassPanel key={item.team} className="group p-6 transition duration-300 hover:-translate-y-1 hover:ring-gold/30">
-            <p className="text-xs uppercase tracking-[0.16em] text-gold">{item.team}</p>
-            <p className="mt-3 text-base leading-6">{item.example}</p>
-            <p className="mt-4 text-sm text-protect">{item.result}</p>
-          </GlassPanel>
+        {cases.map((item, index) => (
+          <motion.div
+            key={item.team}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.05 }}
+            whileHover={{ y: -6 }}
+          >
+            <GlassPanel className="h-full p-6 hover:ring-gold/30">
+              <p className="text-xs uppercase tracking-[0.16em] text-gold">{item.team}</p>
+              <p className="mt-3 text-base leading-6">{item.example}</p>
+              <p className="mt-4 text-sm text-protect">{item.result}</p>
+            </GlassPanel>
+          </motion.div>
         ))}
       </div>
     </section>

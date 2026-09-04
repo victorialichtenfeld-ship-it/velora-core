@@ -56,7 +56,7 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition",
                 active
                   ? "bg-gold/12 text-foreground ring-1 ring-gold/25"
-                  : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                  : "text-muted-foreground hover:bg-ink/5 hover:text-foreground"
               )}
             >
               <item.icon className="size-4" />
@@ -65,7 +65,7 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
           );
         })}
       </nav>
-      <div className="border-t border-white/8 p-4">
+      <div className="border-t border-ink/8 p-4">
         <div className="mb-3 flex items-center gap-3">
           <div className="flex size-9 items-center justify-center rounded-full bg-gold/15 text-xs font-semibold text-gold">
             JH

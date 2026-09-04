@@ -159,7 +159,7 @@ export function OnboardingFlow() {
                       <div key={label} className="flex items-center gap-3 text-left text-sm">
                         <span
                           className={`size-2 rounded-full ${
-                            index <= scanIndex ? "bg-protect" : "bg-white/15"
+                            index <= scanIndex ? "bg-protect" : "bg-ink/20"
                           }`}
                         />
                         <span className={index <= scanIndex ? "text-foreground" : "text-muted-foreground"}>
@@ -232,7 +232,7 @@ function Choice({
       type="button"
       onClick={onClick}
       className={`rounded-xl px-4 py-3 text-left text-sm ring-1 transition ${
-        active ? "bg-gold/15 text-foreground ring-gold/40" : "bg-black/20 text-muted-foreground ring-white/10 hover:text-foreground"
+        active ? "bg-gold/15 text-foreground ring-gold/40" : "bg-card text-muted-foreground ring-ink/10 hover:text-foreground"
       }`}
     >
       {children}

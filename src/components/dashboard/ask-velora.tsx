@@ -36,12 +36,12 @@ export function AskVelora({ alert }: { alert: Alert }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
-        render={<Button type="button" variant="outline" className="border-white/15" />}
+        render={<Button type="button" variant="outline" />}
       >
         <Sparkles className="size-4" />
         Ask Velora why this was flagged
       </DialogTrigger>
-      <DialogContent className="max-w-lg bg-[#10141f] sm:max-w-lg">
+      <DialogContent className="max-w-lg bg-card sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>Ask Velora</DialogTitle>
           <DialogDescription>
@@ -51,13 +51,13 @@ export function AskVelora({ alert }: { alert: Alert }) {
         <Textarea
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
-          className="min-h-20 bg-black/30"
+          className="min-h-20 bg-ink/5"
         />
         <Button onClick={() => void ask()} disabled={loading}>
           {loading ? "Reviewing evidence…" : "Explain"}
         </Button>
         {answer ? (
-          <pre className="whitespace-pre-wrap rounded-xl bg-black/30 p-4 font-sans text-sm leading-6 text-muted-foreground">
+          <pre className="whitespace-pre-wrap rounded-xl bg-ink/5 p-4 font-sans text-sm leading-6 text-muted-foreground">
             {answer}
           </pre>
         ) : null}

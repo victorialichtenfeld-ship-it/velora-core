@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { GlassPanel } from "@/components/glass-panel";
 
@@ -44,7 +44,7 @@ const mistakes = [
     id: "suspicious",
     title: "Suspicious transactions",
     line: "A first-time vendor received a $9,875.01 wire.",
-    detail: "Nimbus Facilities is not on the vendor master. No matching purchase order exists.",
+    detail: "Nimbus Facilities is not on the vendor master. No matching PO exists.",
     impact: "$2,875",
   },
   {
@@ -67,6 +67,16 @@ export function ProblemSection() {
   const [active, setActive] = useState(mistakes[0].id);
   const current = mistakes.find((item) => item.id === active) ?? mistakes[0];
 
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActive((id) => {
+        const index = mistakes.findIndex((item) => item.id === id);
+        return mistakes[(index + 1) % mistakes.length].id;
+      });
+    }, 4200);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="product" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
       <p className="text-xs uppercase tracking-[0.2em] text-gold">The cost of a quiet mistake</p>
@@ -84,8 +94,8 @@ export function ProblemSection() {
               onClick={() => setActive(item.id)}
               className={`rounded-xl px-4 py-3 text-left text-sm ring-1 transition ${
                 active === item.id
-                  ? "bg-white/8 text-foreground ring-gold/40"
-                  : "bg-white/3 text-muted-foreground ring-white/8 hover:bg-white/6 hover:text-foreground"
+                  ? "bg-gold/12 text-foreground ring-gold/40"
+                  : "bg-card/80 text-muted-foreground ring-ink/10 hover:bg-card hover:text-foreground"
               }`}
             >
               {item.title}

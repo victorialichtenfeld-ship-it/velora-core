@@ -83,7 +83,7 @@ export default function AlertDetailPage() {
             <div
               key={`${item.label}-${item.value}`}
               className={`rounded-xl px-3 py-3 ring-1 ${
-                item.highlight ? "bg-gold/10 ring-gold/30" : "bg-black/20 ring-white/8"
+                item.highlight ? "bg-gold/10 ring-gold/30" : "bg-ink/5 ring-ink/8"
               }`}
             >
               <dt className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">{item.label}</dt>
@@ -100,10 +100,10 @@ export default function AlertDetailPage() {
           <Button className="h-11" onClick={() => act("resolved")}>
             {alert.recommendedActions[0]?.label ?? "Fix now"}
           </Button>
-          <Button variant="outline" className="h-11 border-white/15" onClick={() => act("approved")}>
+          <Button variant="outline" className="h-11" onClick={() => act("approved")}>
             Approve anyway
           </Button>
-          <Button variant="outline" className="h-11 border-white/15" onClick={() => act("escalated")}>
+          <Button variant="outline" className="h-11" onClick={() => act("escalated")}>
             Escalate
           </Button>
           <Button variant="ghost" className="h-11" onClick={() => act("ignored")}>

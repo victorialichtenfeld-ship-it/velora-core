@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import { Atmosphere } from "@/components/atmosphere";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
@@ -40,9 +41,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`dark ${sans.variable} ${serif.variable} ${mono.variable} h-full`}
+      className={`${sans.variable} ${serif.variable} ${mono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="relative min-h-full flex flex-col font-sans">
+        <Atmosphere />
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>

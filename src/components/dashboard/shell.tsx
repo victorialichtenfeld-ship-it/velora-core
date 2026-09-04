@@ -13,11 +13,11 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   return (
     <DemoProvider>
       <div className="flex min-h-screen">
-        <div className="hidden w-64 shrink-0 border-r border-white/8 lg:block">
+        <div className="hidden w-64 shrink-0 border-r border-ink/8 lg:block">
           <DashboardSidebar />
         </div>
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="flex h-16 items-center justify-between border-b border-white/8 px-4 lg:hidden">
+          <header className="flex h-16 items-center justify-between border-b border-ink/8 px-4 lg:hidden">
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger
                 render={
@@ -26,7 +26,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                   </Button>
                 }
               />
-              <SheetContent side="left" className="w-64 bg-[#0b0e16] p-0">
+              <SheetContent side="left" className="w-64 bg-card p-0">
                 <DashboardSidebar onNavigate={() => setOpen(false)} />
               </SheetContent>
             </Sheet>

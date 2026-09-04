@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { AnimatedNumber } from "@/components/animated-number";
-import { GlassPanel } from "@/components/glass-panel";
 import { SeverityBadge } from "@/components/severity-badge";
 import { detectedAlerts } from "@/lib/risk-engine";
 import { dashboardStats } from "@/lib/data/demo";
@@ -20,10 +19,10 @@ export function ProductDemo() {
         This is the same demo workspace customers walk through. Metrics, alerts, and actions are live against sample Meridian Supply data.
       </p>
 
-      <GlassPanel className="mt-10 p-4 sm:p-6" glow="gold">
-        <div className="mb-4 flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">Meridian Supply · Finance workspace</p>
-          <span className="rounded-full bg-protect/15 px-2.5 py-1 text-[11px] text-protect">Demo mode</span>
+      <div className="product-frame gold-glow mt-10 rounded-[28px] p-4 ring-1 ring-ink/20 sm:p-6">
+        <div className="mb-4 flex items-center justify-between text-[#F4EFE6]/80">
+          <p className="text-sm">Meridian Supply · Finance workspace</p>
+          <span className="rounded-full bg-[#5EC8B8]/15 px-2.5 py-1 text-[11px] text-[#8EE0D2]">Demo mode</span>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Metric label="Money protected" value={dashboardStats.moneyProtected} prefix="$" />
@@ -33,38 +32,38 @@ export function ProductDemo() {
         </div>
         <div className="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Recent alerts</p>
+            <p className="text-xs uppercase tracking-[0.16em] text-white/50">Recent alerts</p>
             {detectedAlerts.slice(0, 4).map((item) => (
               <button
                 key={item.id}
                 onClick={() => setSelected(item.id)}
                 className={`w-full rounded-xl px-3 py-3 text-left ring-1 transition ${
                   selected === item.id
-                    ? "bg-white/8 ring-gold/35"
-                    : "bg-black/20 ring-white/8 hover:bg-white/5"
+                    ? "bg-white/10 ring-[#E2C58D]/40"
+                    : "bg-black/20 ring-white/10 hover:bg-white/5"
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm">{item.title}</p>
+                  <p className="text-sm text-white">{item.title}</p>
                   <SeverityBadge severity={item.severity} />
                 </div>
-                <p className="mt-1 font-mono text-xs text-gold">{formatCurrency(item.dollarImpact)}</p>
+                <p className="mt-1 font-mono text-xs text-[#E2C58D]">{formatCurrency(item.dollarImpact)}</p>
               </button>
             ))}
           </div>
           {alert ? (
-            <div className="rounded-2xl bg-black/30 p-4 ring-1 ring-white/8">
-              <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Suggested action</p>
-              <h3 className="mt-2 text-lg">{alert.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{alert.whyFlagged}</p>
+            <div className="rounded-2xl bg-black/25 p-4 ring-1 ring-white/10">
+              <p className="text-xs uppercase tracking-[0.16em] text-white/50">Suggested action</p>
+              <h3 className="mt-2 text-lg text-white">{alert.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">{alert.whyFlagged}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {alert.recommendedActions.map((action) => (
                   <span
                     key={action.id}
                     className={`rounded-full px-3 py-1 text-xs ring-1 ${
                       action.intent === "primary"
-                        ? "bg-gold/15 text-gold ring-gold/30"
-                        : "bg-white/5 text-muted-foreground ring-white/10"
+                        ? "bg-[#E2C58D]/15 text-[#E2C58D] ring-[#E2C58D]/30"
+                        : "bg-white/5 text-white/60 ring-white/10"
                     }`}
                   >
                     {action.label}
@@ -74,7 +73,7 @@ export function ProductDemo() {
             </div>
           ) : null}
         </div>
-      </GlassPanel>
+      </div>
     </section>
   );
 }
@@ -89,9 +88,9 @@ function Metric({
   prefix?: string;
 }) {
   return (
-    <div className="rounded-2xl bg-black/25 p-4 ring-1 ring-white/8">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
-      <p className="mt-2 text-2xl text-foreground">
+    <div className="rounded-2xl bg-black/25 p-4 ring-1 ring-white/10">
+      <p className="text-[11px] uppercase tracking-[0.14em] text-white/50">{label}</p>
+      <p className="mt-2 text-2xl text-white">
         <AnimatedNumber value={value} prefix={prefix} />
       </p>
     </div>

@@ -21,7 +21,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#07090f]/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-ink/8 bg-[color-mix(in_oklch,var(--background)_78%,white)]/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />
@@ -49,7 +49,7 @@ export function SiteHeader() {
               </Button>
             }
           />
-          <SheetContent className="w-72 bg-[#0b0e16]">
+          <SheetContent className="w-72 bg-card">
             <div className="mt-8 flex flex-col gap-4">
               {links.map((link) => (
                 <a

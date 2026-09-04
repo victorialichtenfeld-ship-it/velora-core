@@ -22,7 +22,7 @@ export function FinalCta() {
             href="/login"
             className={cn(
               buttonVariants({ variant: "outline" }),
-              "h-12 rounded-full border-white/15 bg-white/5 px-6"
+              "h-12 rounded-full border-ink/15 bg-card px-6"
             )}
           >
             Launch demo workspace
