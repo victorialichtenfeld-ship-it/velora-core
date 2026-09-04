@@ -27,7 +27,7 @@ export function HowItWorks() {
           {systems.map((name, index) => (
             <motion.div
               key={name}
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}

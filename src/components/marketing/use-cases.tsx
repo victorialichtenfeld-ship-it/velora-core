@@ -45,7 +45,7 @@ export function UseCases() {
         {cases.map((item, index) => (
           <motion.div
             key={item.team}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
