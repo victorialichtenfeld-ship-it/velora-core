@@ -28,9 +28,9 @@ export default function OverviewPage() {
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat label="Total value protected" value={dashboardStats.moneyProtected} prefix="$" sample />
-        <Stat label="Mistakes prevented" value={dashboardStats.mistakesPrevented} sample />
-        <Stat label="Open impact" value={open.reduce((sum, alert) => sum + alert.dollarImpact, 0)} prefix="$" />
+        <Stat label="Total value protected" value={dashboardStats.moneyProtected} prefix="$" sample tone="protect" />
+        <Stat label="Mistakes prevented" value={dashboardStats.mistakesPrevented} sample tone="protect" />
+        <Stat label="Open impact" value={open.reduce((sum, alert) => sum + alert.dollarImpact, 0)} prefix="$" tone="risk" />
         <Stat label="Connected systems" value={connected} />
       </div>
       <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
@@ -55,7 +55,7 @@ export default function OverviewPage() {
                     <p className="text-sm">{alert.title}</p>
                     <SeverityBadge severity={alert.severity} />
                   </div>
-                  <p className="mt-1 font-mono text-xs tabular text-foreground">{formatCurrency(alert.dollarImpact)}</p>
+                  <p className="mt-1 font-mono text-xs tabular text-risk">{formatCurrency(alert.dollarImpact)}</p>
                 </Link>
               ))}
           </div>
@@ -110,11 +110,13 @@ function Stat({
   value,
   prefix,
   sample,
+  tone,
 }: {
   label: string;
   value: number;
   prefix?: string;
   sample?: boolean;
+  tone?: "protect" | "risk";
 }) {
   return (
     <GlassPanel className="p-5">
@@ -122,7 +124,11 @@ function Stat({
         <p className="text-[11px] text-muted-foreground">{label}</p>
         {sample ? <SampleDataBadge /> : null}
       </div>
-      <p className="mt-2 font-mono text-3xl tabular tracking-tight">
+      <p
+        className={`mt-2 font-mono text-3xl tabular tracking-tight ${
+          tone === "protect" ? "text-protect" : tone === "risk" ? "text-risk" : "text-foreground"
+        }`}
+      >
         <AnimatedNumber value={value} prefix={prefix} />
       </p>
     </GlassPanel>

@@ -52,12 +52,12 @@ export function ProblemSection() {
           ))}
         </div>
         <div className="min-h-[240px] rounded-xl bg-card p-6 ring-1 ring-border sm:p-8">
-          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-risk">Held in the walkthrough</p>
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-protect">Held in the walkthrough</p>
           <h3 className="mt-2 text-2xl font-semibold tracking-tight">{current.line}</h3>
           <p className="mt-4 text-sm leading-6 text-muted-foreground">{current.detail}</p>
           <div className="mt-8">
             <p className="text-[11px] text-muted-foreground">Amount at risk</p>
-            <p className="mt-1 font-mono text-4xl tabular tracking-tight text-foreground">{current.impact}</p>
+            <p className="mt-1 font-mono text-4xl tabular tracking-tight text-risk">{current.impact}</p>
           </div>
         </div>
       </div>

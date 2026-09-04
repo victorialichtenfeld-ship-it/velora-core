@@ -14,11 +14,11 @@ import {
 import { riskByType, riskTrend } from "@/lib/data/demo";
 
 const tooltipStyle = {
-  background: "#151515",
-  border: "1px solid rgba(226,194,120,0.16)",
+  background: "#12141A",
+  border: "1px solid rgba(228,228,231,0.12)",
   borderRadius: 8,
   fontSize: 12,
-  color: "#F7F3EA",
+  color: "#E4E4E7",
 };
 
 export function RiskTrendChart() {
@@ -26,21 +26,16 @@ export function RiskTrendChart() {
     <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={riskTrend}>
-          <defs>
-            <linearGradient id="protected" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#E2C278" stopOpacity={0.35} />
-              <stop offset="100%" stopColor="#E2C278" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid stroke="rgba(244,239,230,0.08)" vertical={false} />
-          <XAxis dataKey="day" stroke="#9C968C" fontSize={12} tickLine={false} axisLine={false} />
-          <YAxis stroke="#9C968C" fontSize={12} tickLine={false} axisLine={false} />
+          <CartesianGrid stroke="rgba(228,228,231,0.08)" vertical={false} />
+          <XAxis dataKey="day" stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} />
+          <YAxis stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} />
           <Tooltip contentStyle={tooltipStyle} />
           <Area
             type="monotone"
             dataKey="protected"
-            stroke="#E2C278"
-            fill="url(#protected)"
+            stroke="#34D399"
+            fill="#34D399"
+            fillOpacity={0.12}
             strokeWidth={2}
           />
         </AreaChart>
@@ -54,19 +49,19 @@ export function RiskTypeChart() {
     <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={riskByType} layout="vertical" margin={{ left: 24 }}>
-          <CartesianGrid stroke="rgba(244,239,230,0.08)" horizontal={false} />
+          <CartesianGrid stroke="rgba(228,228,231,0.08)" horizontal={false} />
           <XAxis type="number" hide />
           <YAxis
             type="category"
             dataKey="type"
-            stroke="#9C968C"
+            stroke="#9CA3AF"
             fontSize={12}
             width={130}
             tickLine={false}
             axisLine={false}
           />
           <Tooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="value" fill="#E2C278" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="value" fill="#3B82F6" radius={[0, 4, 4, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>

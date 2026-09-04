@@ -6,9 +6,9 @@ import { formatCurrency, formatRelativeTime } from "@/lib/format";
 
 const tone: Record<string, string> = {
   Blocked: "text-risk",
-  Held: "text-warn",
-  Warned: "text-gold",
-  "Needs approval": "text-gold",
+  Held: "text-protect",
+  Warned: "text-risk",
+  "Needs approval": "text-primary",
   Cleared: "text-protect",
 };
 

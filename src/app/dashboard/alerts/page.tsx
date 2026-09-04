@@ -65,7 +65,7 @@ export default function AlertsPage() {
                 </div>
                 <div className="text-left sm:text-right">
                   <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">At risk</p>
-                  <p className="font-mono text-xl text-gold">{formatCurrency(alert.dollarImpact)}</p>
+                  <p className="font-mono text-xl text-risk">{formatCurrency(alert.dollarImpact)}</p>
                 </div>
               </div>
             </GlassPanel>

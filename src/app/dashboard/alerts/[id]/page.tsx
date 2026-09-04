@@ -49,9 +49,9 @@ export default function AlertDetailPage() {
             {alert.actor} · {formatRelativeTime(alert.detectedAt)}
           </p>
         </div>
-        <div className="rounded-2xl bg-gold/10 px-4 py-3 ring-1 ring-gold/25">
+        <div className="rounded-2xl bg-risk/10 px-4 py-3 ring-1 ring-risk/25">
           <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Money at risk</p>
-          <p className="font-mono text-2xl text-gold">{formatCurrency(alert.dollarImpact)}</p>
+          <p className="font-mono text-2xl text-risk">{formatCurrency(alert.dollarImpact)}</p>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export default function AlertDetailPage() {
             <div
               key={`${item.label}-${item.value}`}
               className={`rounded-xl px-3 py-3 ring-1 ${
-                item.highlight ? "bg-gold/10 ring-gold/30" : "bg-ink/5 ring-ink/8"
+                item.highlight ? "bg-risk/10 ring-risk/30" : "bg-ink/5 ring-ink/8"
               }`}
             >
               <dt className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">{item.label}</dt>

@@ -75,7 +75,7 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
             <p className="truncate text-xs text-muted-foreground">{demoUser.company} walkthrough</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-[11px] text-sample">
+        <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
           <Shield className="size-3.5" />
           Sample data
         </div>

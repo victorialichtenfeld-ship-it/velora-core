@@ -19,6 +19,7 @@ import { IntegrationsSection } from "@/components/marketing/integrations";
 import { TrustSection } from "@/components/marketing/trust";
 import { Pricing } from "@/components/marketing/pricing";
 import { FinalCta } from "@/components/marketing/final-cta";
+import { Reveal } from "@/components/reveal";
 
 export const dynamic = "force-dynamic";
 
@@ -29,14 +30,30 @@ export default function HomePage() {
       <main>
         <Hero />
         <LiveTicker />
-        <ProblemSection />
-        <ProductDemo />
-        <HowItWorks />
-        <UseCases />
-        <IntegrationsSection />
-        <TrustSection />
-        <Pricing />
-        <FinalCta />
+        <Reveal>
+          <ProblemSection />
+        </Reveal>
+        <Reveal>
+          <ProductDemo />
+        </Reveal>
+        <Reveal>
+          <HowItWorks />
+        </Reveal>
+        <Reveal>
+          <UseCases />
+        </Reveal>
+        <Reveal>
+          <IntegrationsSection />
+        </Reveal>
+        <Reveal>
+          <TrustSection />
+        </Reveal>
+        <Reveal>
+          <Pricing />
+        </Reveal>
+        <Reveal>
+          <FinalCta />
+        </Reveal>
       </main>
       <SiteFooter />
     </div>

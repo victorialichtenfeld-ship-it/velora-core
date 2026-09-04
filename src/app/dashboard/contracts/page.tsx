@@ -17,7 +17,7 @@ export default function ContractsPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         {contractRecords.map((contract) => (
           <GlassPanel key={contract.id} className="p-6">
-            <p className="text-xs uppercase tracking-[0.14em] text-gold">{contract.party}</p>
+            <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{contract.party}</p>
             <h2 className="mt-1 text-lg">{contract.name}</h2>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">{contract.terms}</p>
             <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">

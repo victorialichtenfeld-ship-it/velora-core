@@ -66,7 +66,7 @@ export function ProductDemo() {
                   <p className="text-sm text-foreground">{item.title}</p>
                   <DecisionChip decision={decisions[item.id]} />
                 </div>
-                <p className="mt-1 font-mono text-sm tabular text-foreground">{formatCurrency(item.dollarImpact)}</p>
+                <p className="mt-1 font-mono text-sm tabular text-risk">{formatCurrency(item.dollarImpact)}</p>
               </button>
             ))}
           </div>
@@ -100,7 +100,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md bg-background p-4 ring-1 ring-border">
       <p className="text-[11px] text-muted-foreground">{label}</p>
-      <p className="mt-2 font-mono text-3xl tabular tracking-tight text-gold sm:text-4xl">{value}</p>
+      <p className="mt-2 font-mono text-3xl tabular tracking-tight text-protect sm:text-4xl">{value}</p>
     </div>
   );
 }
