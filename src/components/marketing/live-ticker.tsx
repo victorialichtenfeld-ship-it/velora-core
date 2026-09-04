@@ -12,10 +12,10 @@ const items = [
 export function LiveTicker() {
   const loop = [...items, ...items];
   return (
-    <div className="relative overflow-hidden border-y border-ink/8 bg-card/70 py-3">
+    <div className="relative overflow-hidden border-y border-gold/20 bg-gradient-to-r from-gold/16 via-protect/10 to-gold/16 py-3">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
-      <div className="animate-ticker flex w-max gap-10 whitespace-nowrap px-6 text-[12px] uppercase tracking-[0.16em] text-muted-foreground">
+      <div className="animate-ticker flex w-max gap-10 whitespace-nowrap px-6 text-[12px] uppercase tracking-[0.16em] text-foreground/75">
         {loop.map((item, index) => (
           <span key={`${item}-${index}`} className="flex items-center gap-3">
             <span className="size-1.5 rounded-full bg-protect" />

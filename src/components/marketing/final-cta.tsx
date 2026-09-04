@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 export function FinalCta() {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
-      <div className="glass-strong relative overflow-hidden rounded-[32px] px-6 py-14 text-center ring-1 ring-gold/25 sm:px-16">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-protect/10" />
+      <div className="glass-strong relative overflow-hidden rounded-[32px] px-6 py-14 text-center ring-1 ring-gold/40 sm:px-16">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-gold/25 via-protect/10 to-gold/20" />
         <p className="relative text-xs uppercase tracking-[0.2em] text-gold">Catch it before it costs you</p>
         <h2 className="relative mx-auto mt-4 max-w-2xl font-serif text-3xl sm:text-5xl">
           Would you pay $299–$799 a month to stop the next quiet loss?
@@ -22,7 +22,7 @@ export function FinalCta() {
             href="/login"
             className={cn(
               buttonVariants({ variant: "outline" }),
-              "h-12 rounded-full border-ink/15 bg-card px-6"
+              "h-12 rounded-full px-6"
             )}
           >
             Launch demo workspace

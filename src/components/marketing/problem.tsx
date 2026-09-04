@@ -94,7 +94,7 @@ export function ProblemSection() {
               onClick={() => setActive(item.id)}
               className={`rounded-xl px-4 py-3 text-left text-sm ring-1 transition ${
                 active === item.id
-                  ? "bg-gold/12 text-foreground ring-gold/40"
+                  ? "bg-gold/20 text-foreground ring-gold/50"
                   : "bg-card/80 text-muted-foreground ring-ink/10 hover:bg-card hover:text-foreground"
               }`}
             >
@@ -117,7 +117,7 @@ export function ProblemSection() {
               <div className="mt-8 flex items-end justify-between">
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Amount at risk</p>
-                  <p className="mt-1 font-mono text-3xl text-foreground">{current.impact}</p>
+                  <p className="mt-1 font-mono text-3xl text-gold">{current.impact}</p>
                 </div>
                 <span className="rounded-full bg-risk/15 px-3 py-1 text-xs text-risk">Held by Velora</span>
               </div>

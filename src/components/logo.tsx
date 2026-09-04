@@ -16,8 +16,8 @@ export function Logo({
       >
         <defs>
           <linearGradient id="velora-mark" x1="8" y1="4" x2="28" y2="32" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#E8D6A8" />
-            <stop offset="1" stopColor="#9CB8B3" />
+            <stop stopColor="#E8BE5A" />
+            <stop offset="1" stopColor="#3EB8A8" />
           </linearGradient>
         </defs>
         <path
@@ -35,7 +35,7 @@ export function Logo({
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="18" cy="12.4" r="1.35" fill="#E8D6A8" />
+        <circle cx="18" cy="12.4" r="1.35" fill="#E8BE5A" />
       </svg>
       {wordmark ? (
         <span className="text-[1.05rem] font-semibold tracking-[-0.03em] text-foreground">

@@ -52,7 +52,7 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
+    <section id="pricing" className="section-gold mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
       <p className="text-xs uppercase tracking-[0.2em] text-gold">Pricing</p>
       <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Priced like a control system, not a chatbot seat.</h2>
       <p className="mt-4 max-w-2xl text-muted-foreground">
@@ -66,7 +66,7 @@ export function Pricing() {
             className="flex flex-col p-6"
           >
             <p className="text-sm uppercase tracking-[0.16em] text-gold">{plan.name}</p>
-            <p className="mt-3 font-serif text-4xl">
+            <p className="mt-3 font-serif text-4xl text-gold">
               {plan.price}
               <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>
             </p>

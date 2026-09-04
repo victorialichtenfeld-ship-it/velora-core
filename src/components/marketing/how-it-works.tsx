@@ -22,7 +22,7 @@ export function HowItWorks() {
         Connect the tools you already run. Velora learns the rules of your business, then warns or blocks risky actions before money, contracts, or data leave the building.
       </p>
 
-      <div className="glass mt-12 overflow-hidden rounded-[28px] p-6 ring-1 ring-ink/10 sm:p-10">
+      <div className="glass mt-12 overflow-hidden rounded-[28px] p-6 ring-1 ring-gold/25 sm:p-10">
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           {systems.map((name, index) => (
             <motion.div
@@ -31,7 +31,11 @@ export function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
-              className="rounded-full bg-card px-3 py-1.5 text-xs text-muted-foreground ring-1 ring-ink/10"
+              className={`rounded-full px-3 py-1.5 text-xs ring-1 ${
+                index % 2 === 0
+                  ? "bg-gold/15 text-gold ring-gold/30"
+                  : "bg-protect/12 text-protect ring-protect/30"
+              }`}
             >
               {name}
             </motion.div>
@@ -41,9 +45,9 @@ export function HowItWorks() {
           <svg viewBox="0 0 640 112" className="h-full w-full">
             <defs>
               <linearGradient id="flow" x1="0" x2="1">
-                <stop stopColor="#9B7A3A" stopOpacity="0.15" />
-                <stop offset="0.5" stopColor="#2F827A" />
-                <stop offset="1" stopColor="#9B7A3A" stopOpacity="0.15" />
+                <stop stopColor="#C49230" stopOpacity="0.2" />
+                <stop offset="0.5" stopColor="#2F9E92" />
+                <stop offset="1" stopColor="#C49230" stopOpacity="0.2" />
               </linearGradient>
             </defs>
             <path
@@ -54,8 +58,8 @@ export function HowItWorks() {
               strokeDasharray="8 10"
               className="[animation:dashMove_2.2s_linear_infinite]"
             />
-            <circle cx="320" cy="56" r="22" fill="#F7F2E8" stroke="#9B7A3A" strokeWidth="1.4" />
-            <circle cx="320" cy="56" r="7" fill="#2F827A" className="animate-glow" />
+            <circle cx="320" cy="56" r="22" fill="#FFF6E8" stroke="#C49230" strokeWidth="1.6" />
+            <circle cx="320" cy="56" r="7" fill="#2F9E92" className="animate-glow" />
           </svg>
         </div>
         <div className="mt-1 text-center text-sm text-gold">Velora</div>
