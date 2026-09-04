@@ -39,7 +39,7 @@ const cases = [
 export function UseCases() {
   return (
     <section id="use-cases" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-primary">Use cases</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-protect">Use cases</p>
       <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Every team that can lose money quietly.</h2>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((item, index) => (
@@ -52,7 +52,7 @@ export function UseCases() {
             whileHover={{ y: -6 }}
           >
             <GlassPanel className="h-full p-6">
-              <p className="text-xs uppercase tracking-[0.16em] text-primary">{item.team}</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-protect">{item.team}</p>
               <p className="mt-3 text-base leading-6">{item.example}</p>
               <p className="mt-4 text-sm text-protect">{item.result}</p>
             </GlassPanel>

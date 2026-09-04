@@ -15,7 +15,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-5 text-xs uppercase tracking-[0.2em] text-primary"
+            className="mb-5 text-xs uppercase tracking-[0.22em] text-protect"
           >
             Intelligence before impact
           </motion.p>
@@ -82,7 +82,7 @@ function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
       <dt className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{label}</dt>
-      <dd className="mt-1 font-mono text-lg text-primary">{value}</dd>
+      <dd className="mt-1 font-mono text-lg text-protect">{value}</dd>
     </div>
   );
 }

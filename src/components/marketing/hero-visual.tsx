@@ -44,9 +44,9 @@ export function HeroVisual() {
           <svg className="h-full w-full" viewBox="0 0 500 420">
             <defs>
               <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1">
-                <stop stopColor="#E2C58D" stopOpacity="0" />
-                <stop offset="0.5" stopColor="#E2C58D" stopOpacity="0.7" />
-                <stop offset="1" stopColor="#5EC8B8" stopOpacity="0" />
+                <stop stopColor="#7EC8BC" stopOpacity="0" />
+                <stop offset="0.5" stopColor="#7EC8BC" stopOpacity="0.7" />
+                <stop offset="1" stopColor="#7EC8BC" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path
@@ -70,10 +70,10 @@ export function HeroVisual() {
 
         <div className="relative mb-4 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-white/55">
           <span>Outbound invoice</span>
-          <span className="flex items-center gap-2 text-[#E2C58D]">
+          <span className="flex items-center gap-2 text-[#7EC8BC]">
             <span className="relative flex size-2">
-              <span className="absolute inset-0 rounded-full bg-[#5EC8B8] animate-pulse-ring" />
-              <span className="relative size-2 rounded-full bg-[#5EC8B8]" />
+              <span className="absolute inset-0 rounded-full bg-[#7EC8BC] animate-pulse-ring" />
+              <span className="relative size-2 rounded-full bg-[#7EC8BC]" />
             </span>
             Live monitor
           </span>
@@ -81,7 +81,7 @@ export function HeroVisual() {
 
         <div className="relative overflow-hidden rounded-2xl bg-black/25 p-4 ring-1 ring-white/10">
           {(stage === "scan" || stage === "detect") && (
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-protect/0 via-[#5EC8B8]/50 to-protect/0 animate-scan" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-protect/0 via-[#7EC8BC]/50 to-protect/0 animate-scan" />
           )}
           <div className="flex items-start justify-between gap-3">
             <div>
@@ -109,11 +109,11 @@ export function HeroVisual() {
               key="contract"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="relative mt-3 rounded-2xl bg-[#5EC8B8]/12 p-4 ring-1 ring-[#5EC8B8]/35"
+              className="relative mt-3 rounded-2xl bg-[#7EC8BC]/12 p-4 ring-1 ring-[#7EC8BC]/35"
             >
-              <p className="text-[11px] uppercase tracking-[0.16em] text-[#8EE0D2]">Velora detects</p>
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[#9ED9CF]">Velora detects</p>
               <p className="mt-1 text-sm text-white">
-                Contract rate: <span className="font-mono text-[#8EE0D2]">$102/unit</span>
+                Contract rate: <span className="font-mono text-[#9ED9CF]">$102/unit</span>
               </p>
               <p className="mt-1 text-xs text-white/55">Harborline MSA · Google Drive</p>
             </motion.div>
@@ -147,11 +147,11 @@ export function HeroVisual() {
               key="blocked"
               initial={{ opacity: 0, scale: 0.86, rotate: -2 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              className="relative mt-3 flex items-center gap-3 rounded-2xl bg-[#5EC8B8]/14 px-4 py-3 ring-1 ring-[#5EC8B8]/35"
+              className="relative mt-3 flex items-center gap-3 rounded-2xl bg-[#7EC8BC]/14 px-4 py-3 ring-1 ring-[#7EC8BC]/35"
             >
-              <ShieldCheck className="size-5 text-[#8EE0D2]" />
+              <ShieldCheck className="size-5 text-[#9ED9CF]" />
               <div>
-                <p className="text-sm font-medium text-[#8EE0D2]">Blocked before sending</p>
+                <p className="text-sm font-medium text-[#9ED9CF]">Blocked before sending</p>
                 <p className="text-xs text-white/55">Human approval required · Finance notified</p>
               </div>
             </motion.div>

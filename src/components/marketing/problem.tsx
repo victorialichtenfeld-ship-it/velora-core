@@ -79,7 +79,7 @@ export function ProblemSection() {
 
   return (
     <section id="product" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-primary">The cost of a quiet mistake</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-protect">The cost of a quiet mistake</p>
       <h2 className="mt-3 max-w-2xl font-serif text-3xl text-balance sm:text-4xl">
         Most expensive errors do not look like fraud. They look like Tuesday.
       </h2>
@@ -94,7 +94,7 @@ export function ProblemSection() {
               onClick={() => setActive(item.id)}
               className={`rounded-xl px-4 py-3 text-left text-sm ring-1 transition ${
                 active === item.id
-                  ? "bg-primary/10 text-foreground ring-primary/30"
+                  ? "bg-protect/20 text-foreground ring-protect/40"
                   : "bg-card/80 text-muted-foreground ring-ink/10 hover:bg-card hover:text-foreground"
               }`}
             >
@@ -117,7 +117,7 @@ export function ProblemSection() {
               <div className="mt-8 flex items-end justify-between">
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Amount at risk</p>
-                  <p className="mt-1 font-mono text-3xl text-primary">{current.impact}</p>
+                  <p className="mt-1 font-mono text-3xl text-protect">{current.impact}</p>
                 </div>
                 <span className="rounded-full bg-risk/15 px-3 py-1 text-xs text-risk">Held by Velora</span>
               </div>

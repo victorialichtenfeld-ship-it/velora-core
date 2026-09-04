@@ -53,7 +53,7 @@ const plans = [
 export function Pricing() {
   return (
     <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-primary">Pricing</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-protect">Pricing</p>
       <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Priced like a control system, not a chatbot seat.</h2>
       <p className="mt-4 max-w-2xl text-muted-foreground">
         The hypothesis this prototype exists to test: will a business pay $299–$799 a month to catch expensive mistakes before they happen?
@@ -64,7 +64,7 @@ export function Pricing() {
             key={plan.name}
             className={cn("flex flex-col p-6", plan.highlighted && "ring-primary/40")}
           >
-            <p className="text-sm uppercase tracking-[0.16em] text-primary">{plan.name}</p>
+            <p className="text-sm uppercase tracking-[0.16em] text-protect">{plan.name}</p>
             <p className="mt-3 font-serif text-4xl">
               {plan.price}
               <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>

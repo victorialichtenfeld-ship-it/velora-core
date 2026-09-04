@@ -13,7 +13,7 @@ export function ProductDemo() {
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-primary">Product</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-protect">Product</p>
       <h2 className="mt-3 font-serif text-3xl sm:text-4xl">A command center for expensive mistakes.</h2>
       <p className="mt-4 max-w-2xl text-muted-foreground">
         This is the same demo workspace customers walk through. Metrics, alerts, and actions are live against sample Meridian Supply data.
@@ -22,7 +22,7 @@ export function ProductDemo() {
       <div className="product-frame mt-10 rounded-[28px] p-4 ring-1 ring-white/10 sm:p-6">
         <div className="mb-4 flex items-center justify-between text-[#F4EFE6]/80">
           <p className="text-sm">Meridian Supply · Finance workspace</p>
-          <span className="rounded-full bg-[#5EC8B8]/15 px-2.5 py-1 text-[11px] text-[#8EE0D2]">Demo mode</span>
+          <span className="rounded-full bg-[#7EC8BC]/15 px-2.5 py-1 text-[11px] text-[#9ED9CF]">Demo mode</span>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Metric label="Money protected" value={dashboardStats.moneyProtected} prefix="$" />
@@ -39,7 +39,7 @@ export function ProductDemo() {
                 onClick={() => setSelected(item.id)}
                 className={`w-full rounded-xl px-3 py-3 text-left ring-1 transition ${
                   selected === item.id
-                    ? "bg-white/10 ring-[#E2C58D]/40"
+                    ? "bg-white/10 ring-[#7EC8BC]/40"
                     : "bg-black/20 ring-white/10 hover:bg-white/5"
                 }`}
               >
@@ -47,7 +47,7 @@ export function ProductDemo() {
                   <p className="text-sm text-white">{item.title}</p>
                   <SeverityBadge severity={item.severity} />
                 </div>
-                <p className="mt-1 font-mono text-xs text-[#E2C58D]">{formatCurrency(item.dollarImpact)}</p>
+                <p className="mt-1 font-mono text-xs text-[#7EC8BC]">{formatCurrency(item.dollarImpact)}</p>
               </button>
             ))}
           </div>
@@ -62,7 +62,7 @@ export function ProductDemo() {
                     key={action.id}
                     className={`rounded-full px-3 py-1 text-xs ring-1 ${
                       action.intent === "primary"
-                        ? "bg-[#E2C58D]/15 text-[#E2C58D] ring-[#E2C58D]/30"
+                        ? "bg-[#7EC8BC]/15 text-[#7EC8BC] ring-[#7EC8BC]/30"
                         : "bg-white/5 text-white/60 ring-white/10"
                     }`}
                   >

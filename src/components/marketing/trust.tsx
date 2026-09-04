@@ -32,14 +32,14 @@ const pillars = [
 export function TrustSection() {
   return (
     <section id="trust" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-      <p className="text-xs uppercase tracking-[0.2em] text-primary">Trust</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-protect">Trust</p>
       <h2 className="mt-3 max-w-2xl font-serif text-3xl sm:text-4xl">
         Protective software has to earn the right to sit in the flow of money.
       </h2>
       <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar) => (
           <GlassPanel key={pillar.title} className="p-6">
-            <pillar.icon className="size-5 text-primary" />
+            <pillar.icon className="size-5 text-protect" />
             <h3 className="mt-4 text-lg font-medium">{pillar.title}</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{pillar.body}</p>
           </GlassPanel>
