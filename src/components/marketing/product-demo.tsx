@@ -22,7 +22,7 @@ export function ProductDemo() {
       <div className="product-frame mt-10 rounded-[28px] p-4 ring-1 ring-white/10 sm:p-6">
         <div className="mb-4 flex items-center justify-between text-[#F4EFE6]/80">
           <p className="text-sm">Meridian Supply · Finance workspace</p>
-          <span className="rounded-full bg-[#7EC8BC]/15 px-2.5 py-1 text-[11px] text-[#9ED9CF]">Demo mode</span>
+          <span className="rounded-full bg-[#C4A35A]/15 px-2.5 py-1 text-[11px] text-[#D4BC7A]">Demo mode</span>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Metric label="Money protected" value={dashboardStats.moneyProtected} prefix="$" />
@@ -39,7 +39,7 @@ export function ProductDemo() {
                 onClick={() => setSelected(item.id)}
                 className={`w-full rounded-xl px-3 py-3 text-left ring-1 transition ${
                   selected === item.id
-                    ? "bg-white/10 ring-[#7EC8BC]/40"
+                    ? "bg-white/10 ring-[#C4A35A]/40"
                     : "bg-black/20 ring-white/10 hover:bg-white/5"
                 }`}
               >
@@ -47,7 +47,7 @@ export function ProductDemo() {
                   <p className="text-sm text-white">{item.title}</p>
                   <SeverityBadge severity={item.severity} />
                 </div>
-                <p className="mt-1 font-mono text-xs text-[#7EC8BC]">{formatCurrency(item.dollarImpact)}</p>
+                <p className="mt-1 font-mono text-xs text-[#C4A35A]">{formatCurrency(item.dollarImpact)}</p>
               </button>
             ))}
           </div>
@@ -62,7 +62,7 @@ export function ProductDemo() {
                     key={action.id}
                     className={`rounded-full px-3 py-1 text-xs ring-1 ${
                       action.intent === "primary"
-                        ? "bg-[#7EC8BC]/15 text-[#7EC8BC] ring-[#7EC8BC]/30"
+                        ? "bg-[#C4A35A]/15 text-[#C4A35A] ring-[#C4A35A]/30"
                         : "bg-white/5 text-white/60 ring-white/10"
                     }`}
                   >

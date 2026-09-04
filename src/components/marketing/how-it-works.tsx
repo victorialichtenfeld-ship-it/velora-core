@@ -41,9 +41,9 @@ export function HowItWorks() {
           <svg viewBox="0 0 640 112" className="h-full w-full">
             <defs>
               <linearGradient id="flow" x1="0" x2="1">
-                <stop stopColor="#7EC8BC" stopOpacity="0.2" />
-                <stop offset="0.5" stopColor="#7EC8BC" />
-                <stop offset="1" stopColor="#7EC8BC" stopOpacity="0.2" />
+                <stop stopColor="#C4A35A" stopOpacity="0.2" />
+                <stop offset="0.5" stopColor="#C4A35A" />
+                <stop offset="1" stopColor="#C4A35A" stopOpacity="0.2" />
               </linearGradient>
             </defs>
             <path
@@ -55,7 +55,7 @@ export function HowItWorks() {
               className="[animation:dashMove_2.2s_linear_infinite]"
             />
             <circle cx="320" cy="56" r="22" fill="#ffffff" stroke="#0c0c0c" strokeWidth="1.6" />
-            <circle cx="320" cy="56" r="7" fill="#7EC8BC" />
+            <circle cx="320" cy="56" r="7" fill="#C4A35A" />
           </svg>
         </div>
         <div className="mt-1 text-center text-sm text-protect">Velora</div>
