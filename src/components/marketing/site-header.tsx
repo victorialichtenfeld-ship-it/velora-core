@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { Logo } from "@/components/logo";
@@ -20,34 +20,51 @@ const links = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [clock, setClock] = useState("09:17:04");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.2 });
 
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setClock(
+        new Date().toLocaleTimeString("en-US", {
+          timeZone: "America/New_York",
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      );
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-bronze/25 bg-background/88 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-gold/35 bg-background/92 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />
         </Link>
-        <nav className="hidden items-center gap-7 text-[13px] tracking-[0.04em] text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-7 text-[13px] tracking-[0.08em] uppercase text-gold/70 md:flex">
           {links.map((link) => (
             <a key={link.href} href={link.href} className="transition-colors hover:text-gold">
               {link.label}
             </a>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
-          <a href="#demo" className="text-[13px] tracking-[0.04em] text-gold/80 hover:text-gold">
-            See it work
-          </a>
-          <Link href="/signup" className={cn(buttonVariants(), "h-9 px-3.5 text-[12px] tracking-[0.04em]")}>
-            Start free trial
+        <div className="hidden items-center gap-4 md:flex">
+          <p className="font-figure text-[12px] tabular-nums text-gold">
+            <span className="mr-1.5 inline-block size-1.5 rounded-full bg-gold align-middle animate-flash" />
+            {clock} NY
+          </p>
+          <Link href="/signup" className={cn(buttonVariants(), "h-9 px-3.5 text-[11px] tracking-[0.12em] uppercase")}>
+            Start trial
           </Link>
         </div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
             render={
-              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
+              <Button variant="ghost" size="icon" className="md:hidden text-gold" aria-label="Open menu">
                 <Menu />
               </Button>
             }
@@ -59,22 +76,22 @@ export function SiteHeader() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-base text-muted-foreground hover:text-foreground"
+                  className="text-base text-gold/80 hover:text-gold"
                 >
                   {link.label}
                 </a>
               ))}
               <a href="#demo" onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "outline" }), "mt-2 h-9")}>
-                See it work
+                Open the desk
               </a>
               <Link href="/signup" className={cn(buttonVariants(), "h-9")}>
-                Start free trial
+                Start trial
               </Link>
             </div>
           </SheetContent>
         </Sheet>
       </div>
-      <motion.div style={{ scaleX }} className="h-px origin-left bg-gold/80" />
+      <motion.div style={{ scaleX }} className="h-0.5 origin-left bg-gold" />
     </header>
   );
 }

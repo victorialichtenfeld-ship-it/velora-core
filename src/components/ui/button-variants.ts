@@ -6,9 +6,9 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "btn-shine bg-primary text-primary-foreground shadow-[0_0_28px_rgb(201_168_106_/_0.28)] hover:bg-[#b8955a] hover:-translate-y-px",
+          "btn-shine bg-primary text-primary-foreground shadow-[0_0_36px_rgb(212_175_55_/_0.45)] hover:bg-[#e0c050] hover:-translate-y-px",
         outline:
-          "border-bronze/55 bg-transparent text-foreground hover:bg-bronze/10 hover:-translate-y-px",
+          "border-gold/60 bg-transparent text-gold hover:bg-gold/10 hover:-translate-y-px",
         secondary:
           "border border-bronze/45 bg-secondary text-secondary-foreground hover:bg-bronze/15",
         ghost: "hover:bg-muted hover:text-foreground",

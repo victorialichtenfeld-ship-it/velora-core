@@ -30,7 +30,9 @@ export function HowItWorks() {
         body="Velora does not ask AP to re-key data. It watches the tools they already run and blocks the two mistakes that cost the most."
       />
       <div className="relative mt-12 grid gap-4 md:grid-cols-3">
-        <div className="pointer-events-none absolute top-9 right-10 left-10 hidden h-px bg-bronze/40 md:block" />
+        <div className="pointer-events-none absolute top-9 right-10 left-10 hidden h-px overflow-hidden md:block">
+          <span className="absolute inset-0 gold-hairline animate-gold-breathe" />
+        </div>
         {steps.map((step, index) => (
           <MotionCard key={step.n} delay={index * 0.08} className="relative">
             <p className="font-figure text-sm text-gold">{step.n}</p>

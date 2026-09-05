@@ -61,7 +61,7 @@ export function ProblemSection() {
             ))}
           </div>
         </LayoutGroup>
-        <div className="min-h-[260px] overflow-hidden rounded-lg bg-card p-7 ring-1 ring-gold/20 shadow-[0_16px_40px_rgb(8_8_14_/_0.28)] sm:p-9">
+        <div className="desk-card min-h-[260px] overflow-hidden rounded-sm bg-card p-7 ring-1 ring-gold/30 gold-glow sm:p-9">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}

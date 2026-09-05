@@ -38,7 +38,7 @@ export function ProductDemo() {
         body="This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it."
       />
 
-      <div className="product-frame gold-glow mt-10 rounded-lg p-5 ring-1 ring-gold/22 sm:p-7">
+      <div className="gold-run-border gold-glow desk-card mt-10 rounded-sm p-5 sm:p-7">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-medium">Meridian Supply · AP walkthrough</p>

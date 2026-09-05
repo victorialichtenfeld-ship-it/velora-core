@@ -11,16 +11,16 @@ export function SiteFooter() {
           </p>
         </div>
         <div className="grid grid-cols-2 gap-x-14 gap-y-2 text-[13px] tracking-[0.03em] text-muted-foreground">
-          <a href="#demo" className="hover:text-foreground">
+          <a href="#demo" className="hover:text-gold">
             Product
           </a>
-          <a href="#pricing" className="hover:text-foreground">
+          <a href="#pricing" className="hover:text-gold">
             Pricing
           </a>
-          <a href="/book" className="hover:text-foreground">
+          <a href="/book" className="hover:text-gold">
             Book a call
           </a>
-          <a href="/login" className="hover:text-foreground">
+          <a href="/login" className="hover:text-gold">
             Sign in
           </a>
         </div>
