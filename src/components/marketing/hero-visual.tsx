@@ -81,10 +81,9 @@ export function CashScene() {
       </div>
 
       <div className="mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
-        <motion.div
-          className="h-full bg-foreground"
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        <div
+          className="h-full bg-foreground transition-[width] duration-500 ease-out"
+          style={{ width: `${progress}%` }}
         />
       </div>
 
