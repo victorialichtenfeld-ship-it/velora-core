@@ -10,17 +10,13 @@ export function FinalCta() {
   return (
     <section className="px-4 pb-20 pt-8 sm:px-6">
       <motion.div
-        className="mx-auto w-full max-w-5xl overflow-hidden rounded-[1.6rem] px-8 py-16 text-center text-primary-foreground sm:px-16 sm:py-20"
-        style={{
-          background:
-            "radial-gradient(ellipse at 82% 120%, rgb(212 176 90 / 0.42), transparent 52%), linear-gradient(145deg, #1b2744 0%, #3d5a8a 48%, #2f8a64 100%)",
-        }}
+        className="mx-auto w-full max-w-5xl overflow-hidden rounded-[1.6rem] bg-primary px-8 py-16 text-center text-primary-foreground sm:px-16 sm:py-20"
         initial={reduce ? false : { y: 20 }}
         whileInView={{ y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="text-[13px] font-medium text-primary-foreground/65">Start today</p>
+        <p className="text-[13px] font-medium text-gold">Start today</p>
         <h2 className="font-figure mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
           Hold the next duplicate before it <span className="money-sheen italic">clears</span>.
         </h2>

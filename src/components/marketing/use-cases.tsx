@@ -3,10 +3,10 @@
 import { SectionIntro } from "@/components/marketing/section-intro";
 
 const cases = [
-  { team: "Sales discounts", result: "A 16% quote waits for finance.", amount: "$28,750", tone: "text-dusk" },
-  { team: "Purchase limits", result: "A PO over $25,000 waits for a named approver.", amount: "$31,200", tone: "text-gold" },
-  { team: "Operations billing", result: "A shipment overage is prompted before the window closes.", amount: "$9,840", tone: "text-protect" },
-  { team: "Vendor master", result: "A wire to an unknown payee waits for treasury.", amount: "$18,400", tone: "text-blush" },
+  { team: "Sales discounts", result: "A 16% quote waits for finance.", amount: "$28,750" },
+  { team: "Purchase limits", result: "A PO over $25,000 waits for a named approver.", amount: "$31,200" },
+  { team: "Operations billing", result: "A shipment overage is prompted before the window closes.", amount: "$9,840" },
+  { team: "Vendor master", result: "A wire to an unknown payee waits for treasury.", amount: "$18,400" },
 ];
 
 export function UseCases() {
@@ -19,8 +19,8 @@ export function UseCases() {
       />
       <div className="mt-12 grid gap-4 sm:grid-cols-2">
         {cases.map((item) => (
-          <div key={item.team} className="rounded-2xl border border-gold/20 bg-card/80 px-5 py-8 sm:px-8">
-            <p className={`text-[13px] font-medium ${item.tone}`}>{item.team}</p>
+          <div key={item.team} className="rounded-2xl border border-gold/20 bg-card px-5 py-8 sm:px-8">
+            <p className="text-[13px] font-medium text-muted-foreground">{item.team}</p>
             <p className="font-figure money-sheen mt-3 text-4xl tracking-[-0.04em]">{item.amount}</p>
             <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>
           </div>

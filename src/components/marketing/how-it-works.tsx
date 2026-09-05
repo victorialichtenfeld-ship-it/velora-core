@@ -46,9 +46,7 @@ export function HowItWorks() {
             transition={{ delay: index * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="grid gap-2 sm:grid-cols-[4.5rem_1fr] sm:gap-8"
           >
-            <p className={`font-figure text-3xl ${index === 0 ? "text-dusk" : index === 1 ? "text-gold" : "text-protect"}`}>
-              {step.n}
-            </p>
+            <p className="font-figure text-3xl text-gold">{step.n}</p>
             <div>
               <h3 className="font-figure text-2xl tracking-[-0.03em]">{step.title}</h3>
               <p className="mt-2 max-w-xl text-sm leading-7 text-muted-foreground">{step.body}</p>

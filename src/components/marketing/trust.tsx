@@ -20,7 +20,7 @@ export function TrustSection() {
       <ul className="mt-12 divide-y divide-border border-y border-border">
         {pillars.map((pillar) => (
           <li key={pillar.title} className="grid gap-2 py-5 sm:grid-cols-[14rem_1fr] sm:gap-8">
-            <p className="font-figure text-xl text-dusk">{pillar.title}</p>
+            <p className="font-figure text-xl">{pillar.title}</p>
             <p className="text-sm leading-7 text-muted-foreground">{pillar.body}</p>
           </li>
         ))}

@@ -85,19 +85,19 @@
   --gold: #d4b05a;
   --gold-foreground: #1b2744;
   --bronze: #b0893a;
-  --protect: #2f8a64;
-  --protect-foreground: #f4faf6;
-  --dusk: #4a6fa8;
-  --dusk-foreground: #eef3fa;
-  --blush: #d9896a;
+  --protect: #d4b05a;
+  --protect-foreground: #1b2744;
+  --dusk: #d4b05a;
+  --dusk-foreground: #1b2744;
+  --blush: #d4b05a;
   --risk: #b85c4a;
-  --warn: #c17f3a;
+  --warn: #b0893a;
   --sample: #6a6358;
   --chart-1: #1b2744;
   --chart-2: #d4b05a;
-  --chart-3: #2f8a64;
-  --chart-4: #4a6fa8;
-  --chart-5: #d9896a;
+  --chart-3: #b0893a;
+  --chart-4: #c9a35e;
+  --chart-5: #8a6f32;
   --radius: 0.7rem;
   --sidebar: #fffdf8;
   --sidebar-foreground: #1b2744;
@@ -131,19 +131,19 @@
   --gold: #d4b05a;
   --gold-foreground: #1b2744;
   --bronze: #b0893a;
-  --protect: #2f8a64;
-  --protect-foreground: #f4faf6;
-  --dusk: #4a6fa8;
-  --dusk-foreground: #eef3fa;
-  --blush: #d9896a;
+  --protect: #d4b05a;
+  --protect-foreground: #1b2744;
+  --dusk: #d4b05a;
+  --dusk-foreground: #1b2744;
+  --blush: #d4b05a;
   --risk: #b85c4a;
-  --warn: #c17f3a;
+  --warn: #b0893a;
   --sample: #6a6358;
   --chart-1: #1b2744;
   --chart-2: #d4b05a;
-  --chart-3: #2f8a64;
-  --chart-4: #4a6fa8;
-  --chart-5: #d9896a;
+  --chart-3: #b0893a;
+  --chart-4: #c9a35e;
+  --chart-5: #8a6f32;
   --sidebar: #fffdf8;
   --sidebar-foreground: #1b2744;
   --sidebar-primary: #1b2744;
@@ -348,22 +348,12 @@
       0 28px 64px rgb(212 176 90 / 0.28),
       0 0 0 1px rgb(255 253 248 / 0.9);
   }
-  .glow-dusk {
-    box-shadow:
-      0 1px 1px rgb(27 39 68 / 0.04),
-      0 28px 70px rgb(74 111 168 / 0.28),
-      0 0 0 1px rgb(255 253 248 / 0.9);
-  }
-  .glow-gold {
-    box-shadow:
-      0 1px 1px rgb(27 39 68 / 0.04),
-      0 28px 70px rgb(212 176 90 / 0.42),
-      0 0 0 1px rgb(255 253 248 / 0.9);
-  }
+  .glow-dusk,
+  .glow-gold,
   .glow-protect {
     box-shadow:
       0 1px 1px rgb(27 39 68 / 0.04),
-      0 28px 70px rgb(47 138 100 / 0.32),
+      0 28px 70px rgb(212 176 90 / 0.28),
       0 0 0 1px rgb(255 253 248 / 0.9);
   }
   .ai-field {

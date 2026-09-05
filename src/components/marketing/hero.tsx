@@ -16,19 +16,14 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[8%] top-[-20%] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgb(212_176_90_/_0.42),transparent_68%)]" />
-        <div className="absolute right-[4%] top-[8%] h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgb(47_138_100_/_0.28),transparent_70%)]" />
-        <div className="absolute bottom-[-18%] left-[28%] h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgb(74_111_168_/_0.22),transparent_70%)]" />
-      </div>
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:py-24">
         <div className="order-2 lg:order-1">
           <motion.p
             initial={reduce ? false : { y: 8 }}
             animate={{ y: 0 }}
-            className="mb-5 inline-flex items-center gap-2.5 rounded-full bg-protect/12 px-3 py-1.5 text-[13px] font-medium text-protect"
+            className="mb-5 inline-flex items-center gap-2.5 rounded-full bg-gold/12 px-3 py-1.5 text-[13px] font-medium text-gold"
           >
-            <span className="size-1.5 rounded-full bg-protect" />
+            <span className="size-1.5 rounded-full bg-gold" />
             Live hold · Apex · 15 hours later
           </motion.p>
           <motion.h1
@@ -44,9 +39,7 @@ export function Hero() {
             key={line}
             initial={false}
             animate={{ y: 0 }}
-            className={`mt-5 text-[15px] font-medium ${
-              stage === "held" ? "text-protect" : stage === "match" ? "text-gold" : "text-dusk"
-            }`}
+            className="mt-5 text-[15px] font-medium text-gold"
           >
             {line}
           </motion.p>
@@ -74,7 +67,7 @@ export function Hero() {
                 <ArrowRight className="size-4" />
               </motion.span>
             </Link>
-            <a href="#demo" className="text-[15px] text-dusk underline-offset-4 hover:text-foreground hover:underline">
+            <a href="#demo" className="text-[15px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
               Watch the hold
             </a>
           </motion.div>
@@ -86,7 +79,7 @@ export function Hero() {
               <p className="mt-1 text-[12px] text-muted-foreground">Held this month</p>
             </div>
             <div>
-              <p className="font-figure text-2xl tracking-tight text-protect">
+              <p className="font-figure money-sheen text-2xl tracking-tight">
                 <AnimatedNumber value={47} duration={1100} />
               </p>
               <p className="mt-1 flex items-center gap-2 text-[12px] text-muted-foreground">
