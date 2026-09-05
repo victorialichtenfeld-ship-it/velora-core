@@ -15,10 +15,10 @@ import { riskByType, riskTrend } from "@/lib/data/demo";
 
 const tooltipStyle = {
   background: "#0C0C0C",
-  border: "1px solid rgba(212,175,55,0.4)",
+  border: "1px solid rgba(176,137,58,0.28)",
   borderRadius: 8,
   fontSize: 12,
-  color: "#F3EBD4",
+  color: "#C9C2B4",
 };
 
 export function RiskTrendChart() {
@@ -26,15 +26,15 @@ export function RiskTrendChart() {
     <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={riskTrend}>
-          <CartesianGrid stroke="rgba(212,175,55,0.18)" vertical={false} />
+          <CartesianGrid stroke="rgba(176,137,58,0.12)" vertical={false} />
           <XAxis dataKey="day" stroke="#A39470" fontSize={12} tickLine={false} axisLine={false} />
           <YAxis stroke="#A39470" fontSize={12} tickLine={false} axisLine={false} />
           <Tooltip contentStyle={tooltipStyle} />
           <Area
             type="monotone"
             dataKey="protected"
-            stroke="#D4AF37"
-            fill="#D4AF37"
+            stroke="#B0893A"
+            fill="#B0893A"
             fillOpacity={0.18}
             strokeWidth={1.75}
           />
@@ -49,7 +49,7 @@ export function RiskTypeChart() {
     <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={riskByType} layout="vertical" margin={{ left: 24 }}>
-          <CartesianGrid stroke="rgba(212,175,55,0.18)" horizontal={false} />
+          <CartesianGrid stroke="rgba(176,137,58,0.12)" horizontal={false} />
           <XAxis type="number" hide />
           <YAxis
             type="category"
@@ -61,7 +61,7 @@ export function RiskTypeChart() {
             axisLine={false}
           />
           <Tooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="value" fill="#D4AF37" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="value" fill="#B0893A" radius={[0, 4, 4, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>

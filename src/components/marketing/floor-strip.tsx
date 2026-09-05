@@ -33,9 +33,9 @@ export function FloorStrip() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden border-y border-gold/45 bg-gold text-primary-foreground">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center bg-gold px-3 pr-8 text-[10px] font-medium tracking-[0.2em] uppercase">
-        <span className="mr-2 size-1.5 rounded-full bg-background animate-flash" />
+    <div className="relative overflow-hidden border-y border-gold/20 bg-background text-gold/80">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center bg-background px-3 pr-8 text-[10px] font-medium tracking-[0.2em] uppercase text-gold">
+        <span className="mr-2 size-1.5 rounded-full bg-gold animate-flash" />
         NY {clock}
       </div>
       <div className="animate-ticker-fast flex w-max gap-10 py-2 pr-8 pl-36 text-[12px] font-medium tracking-[0.08em]">

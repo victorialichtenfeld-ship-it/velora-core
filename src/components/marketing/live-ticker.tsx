@@ -27,7 +27,7 @@ export function LiveTicker() {
   const cash = [...amounts, ...amounts];
   const tape = [...ticks, ...ticks, ...ticks, ...ticks];
   return (
-    <div className="group/ticker relative overflow-hidden border-y border-gold/50 bg-background">
+    <div className="group/ticker relative overflow-hidden border-y border-gold/25 bg-background">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
       <p className="absolute top-1.5 left-3 z-20 text-[10px] font-medium uppercase tracking-[0.22em] text-gold">
@@ -40,7 +40,7 @@ export function LiveTicker() {
             aria-hidden={index >= items.length}
             className="flex items-center gap-3"
           >
-            <span className="size-1.5 rounded-full bg-gold shadow-[0_0_10px_rgb(212_175_55_/_1)] animate-flash" />
+            <span className="size-1.5 rounded-full bg-gold/80 animate-flash" />
             <span className="font-figure">{item.time}</span>
             <span className="tracking-[0.08em]">{item.event}</span>
             <span className="text-gold/80">{item.party}</span>
@@ -48,7 +48,7 @@ export function LiveTicker() {
           </span>
         ))}
       </div>
-      <div className="animate-ticker-reverse flex w-max gap-8 border-y border-gold/30 bg-gold/10 py-1.5 pr-6 pl-20 text-[12px] text-gold group-hover/ticker:[animation-play-state:paused]">
+      <div className="animate-ticker-reverse flex w-max gap-8 border-y border-gold/20 bg-gold/5 py-1.5 pr-6 pl-20 text-[12px] text-gold/85 group-hover/ticker:[animation-play-state:paused]">
         {cash.map((amount, index) => (
           <span key={`${amount}-${index}`} aria-hidden={index >= amounts.length} className="font-figure tracking-[0.1em]">
             {amount}

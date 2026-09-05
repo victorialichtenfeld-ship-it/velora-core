@@ -16,7 +16,7 @@ export function FinalCta() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="pointer-events-none animate-gold-sweep absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgb(212_175_55_/_0.16),transparent)]" />
+        <div className="pointer-events-none animate-gold-sweep absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgb(176_137_58_/_0.08),transparent)]" />
         <div className="pointer-events-none absolute inset-x-10 top-0 h-px gold-hairline" />
         <p className="flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[0.24em] text-gold">
           <span className="size-1.5 rounded-full bg-gold animate-flash" />

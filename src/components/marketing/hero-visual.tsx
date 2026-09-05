@@ -71,7 +71,7 @@ export function HeroVisual() {
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
           <p className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.24em] text-gold">
-            <span className="size-1.5 rounded-full bg-gold animate-flash shadow-[0_0_12px_rgb(212_175_55_/_1)]" />
+            <span className="size-1.5 rounded-full bg-gold animate-flash" />
             Velora cash desk
           </p>
           <p className="mt-1 text-sm text-foreground">NY ACH gate · Meridian Supply</p>
@@ -92,7 +92,7 @@ export function HeroVisual() {
         <svg viewBox="0 0 240 46" className="h-12 w-full" aria-hidden="true">
           <polyline
             fill="none"
-            stroke="#D4AF37"
+            stroke="#B0893A"
             strokeWidth="1.7"
             points="0,40 18,38 36,36 54,30 72,32 90,24 108,26 126,16 144,18 162,10 180,12 198,7 216,8 240,4"
             className={reduce ? "" : "animate-spark"}
@@ -107,7 +107,7 @@ export function HeroVisual() {
             y1="8"
             x2="100%"
             y2="8"
-            stroke="#D4AF37"
+            stroke="#B0893A"
             strokeWidth="1.2"
             className={scanning || flagged ? "animate-wire" : ""}
             strokeDasharray="6 6"
@@ -118,7 +118,7 @@ export function HeroVisual() {
             y1="52"
             x2={held ? "62%" : "100%"}
             y2="52"
-            stroke="#D4AF37"
+            stroke="#B0893A"
             strokeWidth="1.5"
             className={scanning || !held ? "animate-wire" : ""}
             strokeDasharray="6 6"
@@ -184,7 +184,7 @@ export function HeroVisual() {
         </motion.p>
         <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-gold/20">
           <motion.div
-            className="h-full bg-gold shadow-[0_0_14px_rgb(212_175_55_/_0.95)]"
+            className="h-full bg-gold shadow-[0_0_8px_rgb(176_137_58_/_0.4)]"
             animate={{ width: held ? "100%" : flagged ? "68%" : scanning ? "38%" : "12%" }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           />
@@ -195,7 +195,7 @@ export function HeroVisual() {
               key="stamp"
               initial={reduce ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="animate-hold-stamp mt-2 inline-block rounded-sm border border-gold bg-gold px-2 py-0.5 text-[11px] font-medium tracking-[0.18em] text-primary-foreground uppercase"
+              className="animate-hold-stamp mt-2 inline-block rounded-sm border border-gold/50 bg-gold/10 px-2 py-0.5 text-[11px] font-medium tracking-[0.18em] text-gold uppercase"
             >
               Cash held
             </motion.p>

@@ -21,7 +21,7 @@ export function Hero() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="mb-5 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.24em] text-gold"
           >
-            <span className="size-1.5 rounded-full bg-gold shadow-[0_0_12px_rgb(212_175_55_/_1)] animate-flash" />
+            <span className="size-1.5 rounded-full bg-gold animate-flash" />
             Cash desk · New York · live holds
           </motion.p>
           <motion.h1

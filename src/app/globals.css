@@ -60,89 +60,89 @@
 
 :root {
   --background: #050505;
-  --foreground: #f3ebd4;
-  --ink: #f3ebd4;
+  --foreground: #c9c2b4;
+  --ink: #c9c2b4;
   --frame: #050505;
   --card: #0c0c0c;
-  --card-foreground: #f3ebd4;
+  --card-foreground: #c9c2b4;
   --popover: #0c0c0c;
-  --popover-foreground: #f3ebd4;
-  --primary: #d4af37;
+  --popover-foreground: #c9c2b4;
+  --primary: #b0893a;
   --primary-foreground: #050505;
   --secondary: #121212;
-  --secondary-foreground: #f3ebd4;
+  --secondary-foreground: #c9c2b4;
   --muted: #121212;
-  --muted-foreground: #a39470;
+  --muted-foreground: #8a8170;
   --accent: #121212;
-  --accent-foreground: #f3ebd4;
-  --destructive: #d4af37;
-  --border: rgb(212 175 55 / 38%);
-  --input: rgb(212 175 55 / 38%);
-  --ring: rgb(212 175 55 / 62%);
-  --gold: #d4af37;
+  --accent-foreground: #c9c2b4;
+  --destructive: #b0893a;
+  --border: rgb(176 137 58 / 22%);
+  --input: rgb(176 137 58 / 22%);
+  --ring: rgb(176 137 58 / 38%);
+  --gold: #b0893a;
   --gold-foreground: #050505;
-  --bronze: #a6852c;
-  --protect: #d4af37;
+  --bronze: #7a6328;
+  --protect: #b0893a;
   --protect-foreground: #050505;
-  --risk: #d4af37;
-  --warn: #d4af37;
-  --sample: #d4af37;
-  --chart-1: #d4af37;
-  --chart-2: #a6852c;
-  --chart-3: #f3d56a;
-  --chart-4: #d4af37;
-  --chart-5: #a6852c;
+  --risk: #b0893a;
+  --warn: #b0893a;
+  --sample: #b0893a;
+  --chart-1: #b0893a;
+  --chart-2: #7a6328;
+  --chart-3: #c4a86a;
+  --chart-4: #b0893a;
+  --chart-5: #7a6328;
   --radius: 0.35rem;
   --sidebar: #050505;
-  --sidebar-foreground: #f3ebd4;
-  --sidebar-primary: #d4af37;
+  --sidebar-foreground: #c9c2b4;
+  --sidebar-primary: #b0893a;
   --sidebar-primary-foreground: #050505;
   --sidebar-accent: #121212;
-  --sidebar-accent-foreground: #f3ebd4;
-  --sidebar-border: rgb(212 175 55 / 32%);
-  --sidebar-ring: rgb(212 175 55 / 56%);
+  --sidebar-accent-foreground: #c9c2b4;
+  --sidebar-border: rgb(176 137 58 / 18%);
+  --sidebar-ring: rgb(176 137 58 / 32%);
 }
 
 .dark {
   --background: #050505;
-  --foreground: #f3ebd4;
+  --foreground: #c9c2b4;
   --card: #0c0c0c;
-  --card-foreground: #f3ebd4;
+  --card-foreground: #c9c2b4;
   --popover: #0c0c0c;
-  --popover-foreground: #f3ebd4;
-  --primary: #d4af37;
+  --popover-foreground: #c9c2b4;
+  --primary: #b0893a;
   --primary-foreground: #050505;
   --secondary: #121212;
-  --secondary-foreground: #f3ebd4;
+  --secondary-foreground: #c9c2b4;
   --muted: #121212;
-  --muted-foreground: #a39470;
+  --muted-foreground: #8a8170;
   --accent: #121212;
-  --accent-foreground: #f3ebd4;
-  --destructive: #d4af37;
-  --border: rgb(212 175 55 / 38%);
-  --input: rgb(212 175 55 / 38%);
-  --ring: rgb(212 175 55 / 62%);
-  --gold: #d4af37;
+  --accent-foreground: #c9c2b4;
+  --destructive: #b0893a;
+  --border: rgb(176 137 58 / 22%);
+  --input: rgb(176 137 58 / 22%);
+  --ring: rgb(176 137 58 / 38%);
+  --gold: #b0893a;
   --gold-foreground: #050505;
-  --bronze: #a6852c;
-  --protect: #d4af37;
+  --bronze: #7a6328;
+  --protect: #b0893a;
   --protect-foreground: #050505;
-  --risk: #d4af37;
-  --warn: #d4af37;
-  --sample: #d4af37;
-  --chart-1: #d4af37;
-  --chart-2: #a6852c;
-  --chart-3: #f3d56a;
-  --chart-4: #d4af37;
-  --chart-5: #a6852c;
+  --risk: #b0893a;
+  --warn: #b0893a;
+  --sample: #b0893a;
+  --chart-1: #b0893a;
+  --chart-2: #7a6328;
+  --chart-3: #c4a86a;
+  --chart-4: #b0893a;
+  --chart-5: #7a6328;
   --sidebar: #050505;
-  --sidebar-foreground: #f3ebd4;
-  --sidebar-primary: #d4af37;
+  --sidebar-foreground: #c9c2b4;
+  --sidebar-primary: #b0893a;
   --sidebar-primary-foreground: #050505;
   --sidebar-accent: #121212;
-  --sidebar-accent-foreground: #f3ebd4;
-  --sidebar-border: rgb(212 175 55 / 32%);
-  --sidebar-ring: rgb(212 175 55 / 56%);
+  --sidebar-accent-foreground: #c9c2b4;
+  --sidebar-border: rgb(176 137 58 / 18%);
+  --sidebar-ring: rgb(176 137 58 / 32%);
 }
 
 @layer base {
@@ -173,22 +173,22 @@
   }
   .product-frame {
     background: #0c0c0c;
-    color: #f3ebd4;
+    color: #c9c2b4;
   }
   .gold-glow {
-    box-shadow: 0 0 0 1px rgb(212 175 55 / 62%), 0 0 64px rgb(212 175 55 / 28%), 0 18px 40px rgb(0 0 0 / 55%);
+    box-shadow: 0 0 0 1px rgb(176 137 58 / 28%), 0 0 24px rgb(176 137 58 / 8%), 0 18px 40px rgb(0 0 0 / 55%);
   }
   .protect-glow,
   .risk-glow {
-    box-shadow: 0 0 0 1px rgb(212 175 55 / 55%), 0 0 40px rgb(212 175 55 / 20%);
+    box-shadow: 0 0 0 1px rgb(176 137 58 / 24%), 0 0 16px rgb(176 137 58 / 6%);
   }
   .gold-run-border {
     border: 1px solid transparent;
     background:
       linear-gradient(#0c0c0c, #0c0c0c) padding-box,
-      linear-gradient(90deg, #a6852c, #d4af37, #f3d56a, #d4af37, #a6852c) border-box;
+      linear-gradient(90deg, #7a6328, #b0893a, #c4a86a, #b0893a, #7a6328) border-box;
     background-size: 100% 100%, 280% 100%;
-    animation: borderRun 2.2s linear infinite;
+    animation: borderRun 3.6s linear infinite;
   }
   .text-balance {
     text-wrap: balance;
@@ -204,27 +204,27 @@
   }
   .lift-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 32px rgb(0 0 0 / 50%), 0 0 0 1px rgb(212 175 55 / 30%);
+    box-shadow: 0 16px 32px rgb(0 0 0 / 50%), 0 0 0 1px rgb(176 137 58 / 30%);
   }
   .gold-hairline {
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
   .text-shimmer,
   .money-sheen {
-    background: linear-gradient(100deg, #a6852c 0%, #d4af37 28%, #f3d56a 50%, #d4af37 72%, #a6852c 100%);
+    background: linear-gradient(100deg, #7a6328 0%, #b0893a 35%, #c4a86a 50%, #b0893a 65%, #7a6328 100%);
     background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmerText 1.8s linear infinite;
+    animation: shimmerText 3.2s linear infinite;
   }
   .scan-beam {
     height: 2px;
-    background: linear-gradient(90deg, transparent, #d4af37, transparent);
-    box-shadow: 0 0 16px 2px rgb(212 175 55 / 45%);
+    background: linear-gradient(90deg, transparent, #b0893a, transparent);
+    box-shadow: 0 0 8px 2px rgb(176 137 58 / 20%);
   }
   .scan-wash {
-    background: linear-gradient(180deg, transparent, rgb(212 175 55 / 18%), transparent);
+    background: linear-gradient(180deg, transparent, rgb(176 137 58 / 10%), transparent);
   }
   .btn-shine {
     position: relative;
@@ -234,17 +234,19 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(110deg, transparent 38%, rgb(243 213 106 / 0.45) 50%, transparent 62%);
+    background: linear-gradient(110deg, transparent 38%, rgb(196 168 106 / 0.2) 50%, transparent 62%);
     transform: translateX(-130%);
     pointer-events: none;
-    animation: shineSweep 2.2s ease-in-out infinite;
+  }
+  .btn-shine:hover::after {
+    animation: shineSweep 0.7s ease;
   }
   .scanlines {
     background: repeating-linear-gradient(
       to bottom,
       transparent 0,
       transparent 2px,
-      rgb(212 175 55 / 0.035) 3px
+      rgb(176 137 58 / 0.035) 3px
     );
   }
   .desk-card {
@@ -256,7 +258,7 @@
     position: absolute;
     width: 14px;
     height: 14px;
-    border-color: #d4af37;
+    border-color: #b0893a;
     border-style: solid;
     pointer-events: none;
   }
@@ -310,25 +312,25 @@
 
 @keyframes mote {
   0% { transform: translate3d(0, 22px, 0); opacity: 0; }
-  22% { opacity: 0.8; }
+  22% { opacity: 0.35; }
   100% { transform: translate3d(12px, -90px, 0); opacity: 0; }
 }
 
 @keyframes goldBreathe {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
 }
 
 @keyframes goldSweep {
   0% { transform: translateX(-75%) rotate(14deg); opacity: 0; }
-  14% { opacity: 0.62; }
-  48% { opacity: 0.18; }
+  14% { opacity: 0.28; }
+  48% { opacity: 0.08; }
   100% { transform: translateX(175%) rotate(14deg); opacity: 0; }
 }
 
 @keyframes dollarRise {
   0% { transform: translate3d(0, 32px, 0) scale(0.6); opacity: 0; }
-  14% { opacity: 0.95; }
+  14% { opacity: 0.45; }
   100% { transform: translate3d(14px, -130px, 0) scale(1.1); opacity: 0; }
 }
 
@@ -339,8 +341,8 @@
 }
 
 @keyframes vaultPulse {
-  0%, 100% { box-shadow: 0 0 0 1px rgb(212 175 55 / 55%), 0 0 32px rgb(212 175 55 / 18%); }
-  50% { box-shadow: 0 0 0 1px rgb(243 213 106 / 90%), 0 0 64px rgb(212 175 55 / 42%); }
+  0%, 100% { box-shadow: 0 0 0 1px rgb(176 137 58 / 28%), 0 0 14px rgb(176 137 58 / 8%); }
+  50% { box-shadow: 0 0 0 1px rgb(176 137 58 / 42%), 0 0 22px rgb(176 137 58 / 14%); }
 }
 
 @keyframes holdStamp {
@@ -386,7 +388,7 @@
 
 @keyframes blotterRow {
   0%, 100% { background-color: transparent; }
-  50% { background-color: rgb(212 175 55 / 0.1); }
+  50% { background-color: rgb(176 137 58 / 0.1); }
 }
 
 .animate-ticker {
@@ -514,7 +516,7 @@
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(212 175 55 / 45%);
+  background: rgb(176 137 58 / 28%);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {
