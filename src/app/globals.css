@@ -609,19 +609,19 @@
 }
 
 .animate-ticker {
-  animation: ticker 6.4s linear infinite;
+  animation: ticker 4.6s linear infinite;
 }
 
 .animate-ticker-fast {
-  animation: ticker 5.2s linear infinite;
+  animation: ticker 3.8s linear infinite;
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 5.2s linear infinite;
+  animation: tickerReverse 3.8s linear infinite;
 }
 
 .animate-well {
-  animation: goldBreathe 4.4s ease-in-out infinite;
+  animation: goldBreathe 3.2s ease-in-out infinite;
 }
 
 .animate-gold-sweep {
@@ -641,11 +641,11 @@
 }
 
 .animate-scan {
-  animation: scanSweep 1.35s ease-in-out infinite;
+  animation: scanSweep 0.9s ease-in-out infinite;
 }
 
 .animate-pulse-ring {
-  animation: pulseRing 0.7s ease-out infinite;
+  animation: pulseRing 0.55s ease-out infinite;
 }
 
 .animate-float {
@@ -705,7 +705,7 @@
 }
 
 .animate-bead {
-  animation: beadDrop 0.85s ease-in-out infinite;
+  animation: beadDrop 0.7s ease-in-out infinite;
 }
 
 .animate-line-grow {
@@ -723,7 +723,7 @@
 }
 
 .animate-rail {
-  animation: railRun 0.7s linear infinite;
+  animation: railRun 0.55s linear infinite;
 }
 
 .animate-node {

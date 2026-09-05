@@ -19,7 +19,10 @@ function Row({ reverse = false }: { reverse?: boolean }) {
           className="flex items-center gap-3"
           aria-hidden={index >= items.length}
         >
-          <span className="rounded-full bg-gold/18 px-2 py-0.5 text-[11px] font-medium text-gold">Held</span>
+          <span className="relative rounded-full bg-gold/18 px-2 py-0.5 text-[11px] font-medium text-gold">
+            <span className="animate-pulse-ring pointer-events-none absolute inset-0 rounded-full bg-gold/40" />
+            Held
+          </span>
           <span className="font-figure text-lg tracking-tight text-gold">{item.amount}</span>
           <span>{item.event}</span>
         </span>

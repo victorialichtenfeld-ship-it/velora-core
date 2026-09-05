@@ -36,7 +36,7 @@ export function ProblemSection() {
     const id = window.setInterval(() => {
       if (Date.now() < pauseUntil.current) return;
       setActive((prev) => (prev === "dup" ? "price" : "dup"));
-    }, 3600);
+    }, 2600);
     return () => window.clearInterval(id);
   }, [reduce]);
 
@@ -116,8 +116,8 @@ function MatchRow({
   return (
     <motion.div
       className={`flex items-end justify-between gap-4 border-b pb-4 ${emphasis ? "border-foreground/20" : "border-border"}`}
-      animate={emphasis && !reduce ? { x: [0, -4, 4, -2, 2, 0] } : { x: 0 }}
-      transition={{ duration: 0.4 }}
+      animate={emphasis && !reduce ? { x: [0, -7, 7, -4, 4, 0] } : { x: 0 }}
+      transition={{ duration: 0.38 }}
     >
       <div>
         <p className="text-[12px] text-muted-foreground">{side.kicker}</p>

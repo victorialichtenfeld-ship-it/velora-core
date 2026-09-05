@@ -18,7 +18,15 @@ export function FinalCta() {
       >
         <p className="text-[13px] font-medium text-gold">Start today</p>
         <h2 className="font-figure mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
-          Hold the next duplicate before it <span className="italic text-gold">clears</span>.
+          Hold the next duplicate before it{" "}
+          <motion.span
+            className="italic text-gold inline-block"
+            animate={reduce ? undefined : { scale: [1, 1.06, 1] }}
+            transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
+          >
+            clears
+          </motion.span>
+          .
         </h2>
         <p className="mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
           Free trial. No bank connection required to walk the sample. Put Velora on the cash rail when AP is ready.

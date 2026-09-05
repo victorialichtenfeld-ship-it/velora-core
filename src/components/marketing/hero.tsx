@@ -20,8 +20,8 @@ export function Hero() {
     <section className="relative overflow-hidden">
       <motion.p
         className="pointer-events-none absolute -left-6 top-6 hidden select-none font-figure text-[9.5rem] leading-none tracking-[-0.07em] text-gold/[0.08] lg:block"
-        animate={reduce ? undefined : { x: [0, 28, 0], y: [0, -18, 0] }}
-        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { x: [0, 36, 0], y: [0, -22, 0] }}
+        transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut" }}
       >
         $11,240
       </motion.p>
@@ -37,7 +37,12 @@ export function Hero() {
           <h1 className="font-figure max-w-xl text-[2.75rem] leading-[1.04] tracking-[-0.038em] text-balance text-foreground sm:text-5xl lg:text-[3.75rem]">
             That second payment was about to{" "}
             <span className="relative inline-block italic">
-              clear
+              <motion.span
+                className="inline-block"
+                animate={reduce ? undefined : stage === "held" ? { color: "var(--gold)" } : { color: "var(--foreground)" }}
+              >
+                clear
+              </motion.span>
               <motion.span
                 className="absolute top-[58%] left-0 h-[2px] origin-left bg-gold"
                 initial={false}
@@ -68,7 +73,7 @@ export function Hero() {
               Start free trial
               <motion.span
                 animate={reduce ? undefined : { x: [0, 6, 0] }}
-                transition={{ duration: 0.55, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 0.42, repeat: Infinity, ease: "easeInOut" }}
                 className="inline-flex"
               >
                 <ArrowRight className="size-4" />
@@ -85,7 +90,7 @@ export function Hero() {
                   key={label}
                   className={index <= active ? "text-gold" : ""}
                   animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.14, 1] }}
-                  transition={{ duration: 0.55, repeat: index === active ? Infinity : 0 }}
+                  transition={{ duration: 0.42, repeat: index === active ? Infinity : 0 }}
                 >
                   {label}
                 </motion.span>

@@ -29,7 +29,7 @@ export function HowItWorks() {
 
   useEffect(() => {
     if (reduce) return;
-    const id = window.setInterval(() => setActive((n) => (n + 1) % steps.length), 1800);
+    const id = window.setInterval(() => setActive((n) => (n + 1) % steps.length), 1200);
     return () => window.clearInterval(id);
   }, [reduce]);
 
@@ -56,7 +56,7 @@ export function HowItWorks() {
             animate={
               reduce
                 ? undefined
-                : { y: active === index ? -4 : 0, borderColor: active === index ? "rgb(126 176 255 / 0.45)" : "rgb(36 48 68)" }
+                : { y: active === index ? -6 : 0, scale: active === index ? 1.015 : 1, borderColor: active === index ? "rgb(147 192 255 / 0.5)" : "rgb(36 48 68)" }
             }
             className={cn(
               "grid gap-2 rounded-2xl border bg-card p-6 sm:grid-cols-[4.5rem_1fr] sm:gap-8 sm:p-7",
