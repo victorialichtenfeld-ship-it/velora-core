@@ -9,7 +9,6 @@
  */
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
-import { FloorStrip } from "@/components/marketing/floor-strip";
 import { Hero } from "@/components/marketing/hero";
 import { LiveTicker } from "@/components/marketing/live-ticker";
 import { ProblemSection } from "@/components/marketing/problem";
@@ -28,7 +27,6 @@ export default function HomePage() {
   return (
     <div className="flex min-h-full flex-col">
       <SiteHeader />
-      <FloorStrip />
       <main>
         <Hero />
         <LiveTicker />

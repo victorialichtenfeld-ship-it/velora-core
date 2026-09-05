@@ -1,48 +1,30 @@
 "use client";
 
-import { MotionCard } from "@/components/motion-card";
 import { SectionIntro } from "@/components/marketing/section-intro";
 
 const cases = [
-  {
-    team: "Sales discounts",
-    example: "A quote applies 16% off with no exception in the CRM.",
-    result: "Finance reviews before margin is given away.",
-  },
-  {
-    team: "Purchase limits",
-    example: "A PO exceeds the $25,000 approval threshold.",
-    result: "The order waits for a named approver.",
-  },
-  {
-    team: "Operations billing",
-    example: "A shipment overage is logged but never invoiced.",
-    result: "Billing is prompted before the window closes.",
-  },
-  {
-    team: "Vendor master",
-    example: "A wire goes to a payee that is not on the approved vendor file.",
-    result: "Treasury confirms the beneficiary before release.",
-  },
+  { team: "Sales discounts", result: "A 16% quote with no CRM exception waits for finance." },
+  { team: "Purchase limits", result: "A PO over $25,000 waits for a named approver." },
+  { team: "Operations billing", result: "A shipment overage is prompted before the window closes." },
+  { team: "Vendor master", result: "A wire to an unknown payee waits for treasury." },
 ];
 
 export function UseCases() {
   return (
-    <section id="also-covers" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="also-covers" className="mx-auto w-full max-w-4xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Also on the roadmap"
-        title="Adjacent checks, not the core product."
-        body="The walkthrough includes these detectors so finance can see the control layer expand. They are not the reason to buy Velora today."
+        title="Adjacent checks. Not why you buy."
+        body="The walkthrough includes these so finance can see the control layer expand. They are not the reason to start a trial today."
       />
-      <div className="mt-12 grid gap-3 sm:grid-cols-2">
-        {cases.map((item, index) => (
-          <MotionCard key={item.team} delay={index * 0.06}>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-gold">{item.team}</p>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.example}</p>
-            <p className="mt-4 text-sm text-foreground">{item.result}</p>
-          </MotionCard>
+      <dl className="mt-12 divide-y divide-gold/15 border-y border-gold/15">
+        {cases.map((item) => (
+          <div key={item.team} className="grid gap-2 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8">
+            <dt className="text-[12px] uppercase tracking-[0.16em] text-gold">{item.team}</dt>
+            <dd className="text-sm leading-7 text-muted-foreground">{item.result}</dd>
+          </div>
         ))}
-      </div>
+      </dl>
     </section>
   );
 }

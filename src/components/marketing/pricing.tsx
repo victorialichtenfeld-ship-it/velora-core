@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button-variants";
-import { MotionCard } from "@/components/motion-card";
 import { SectionIntro } from "@/components/marketing/section-intro";
 import { cn } from "@/lib/utils";
 
@@ -13,13 +12,7 @@ const plans = [
     price: "$299",
     cadence: "/month",
     description: "Duplicate-payment and invoice-pricing checks for one AP team.",
-    features: [
-      "Up to 3 connected systems",
-      "Duplicate payment holds",
-      "Invoice vs contract unit price",
-      "Email alerts",
-      "30-day audit history",
-    ],
+    features: ["Up to 3 systems", "Duplicate holds", "Invoice vs contract", "Email alerts"],
     highlighted: false,
     cta: "Start free trial",
     href: "/signup",
@@ -29,13 +22,7 @@ const plans = [
     price: "$799",
     cadence: "/month",
     description: "Velora in the path of invoices and ACH for growing finance orgs.",
-    features: [
-      "Up to 8 connected systems",
-      "Contract vs invoice matching",
-      "Slack routing to AP",
-      "Evidence on every alert",
-      "Priority onboarding",
-    ],
+    features: ["Up to 8 systems", "Contract matching", "Slack to AP", "Priority onboarding"],
     highlighted: true,
     cta: "Start free trial",
     href: "/signup",
@@ -45,13 +32,7 @@ const plans = [
     price: "Custom",
     cadence: "",
     description: "Multi-entity AP, SSO, and a security review before procurement.",
-    features: [
-      "Unlimited adapters",
-      "SSO and role mapping",
-      "Custom rule packs",
-      "Dedicated success",
-      "Security questionnaire support",
-    ],
+    features: ["Unlimited adapters", "SSO", "Custom rules", "Dedicated success"],
     highlighted: false,
     cta: "Book a call",
     href: "/book",
@@ -60,29 +41,25 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="pricing" className="mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Pricing"
         title="Priced like a control, not a chatbot seat."
-        body="Starter and Growth start a trial workspace. Enterprise is a call with finance and IT — not a self-serve signup."
+        body="Starter and Growth start a trial. Enterprise is a call with finance and IT."
       />
-      <div className="mt-12 grid gap-3 lg:grid-cols-3">
-        {plans.map((plan, index) => (
-          <MotionCard
-            key={plan.name}
-            delay={index * 0.08}
-            className={cn("flex flex-col p-6", plan.highlighted && "gold-glow ring-gold/35")}
-          >
-            <p className="text-sm font-medium">{plan.name}</p>
+      <div className="mt-14 grid gap-10 lg:grid-cols-3">
+        {plans.map((plan) => (
+          <div key={plan.name} className={cn("border-t pt-6", plan.highlighted ? "border-gold" : "border-gold/20")}>
+            <p className="text-[11px] uppercase tracking-[0.16em] text-gold">{plan.name}</p>
             <p className={`mt-3 font-figure text-4xl tracking-tight text-gold ${plan.highlighted ? "money-sheen" : ""}`}>
               {plan.price}
-              <span className="ml-1 font-sans text-base text-gold/60">{plan.cadence}</span>
+              <span className="ml-1 font-sans text-base text-gold/55">{plan.cadence}</span>
             </p>
-            <p className="mt-3 text-sm text-muted-foreground">{plan.description}</p>
-            <ul className="mt-6 flex flex-1 flex-col gap-2 text-sm">
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">{plan.description}</p>
+            <ul className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
               {plan.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-2">
-                  <Check className="mt-0.5 size-4 text-primary" />
+                  <Check className="mt-0.5 size-4 text-gold" />
                   {feature}
                 </li>
               ))}
@@ -96,7 +73,7 @@ export function Pricing() {
             >
               {plan.cta}
             </Link>
-          </MotionCard>
+          </div>
         ))}
       </div>
     </section>

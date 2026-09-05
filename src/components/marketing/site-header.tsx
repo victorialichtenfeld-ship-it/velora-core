@@ -13,8 +13,6 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "#demo", label: "Product" },
   { href: "#how", label: "How it works" },
-  { href: "#also-covers", label: "Also covers" },
-  { href: "#integrations", label: "Integrations" },
   { href: "#pricing", label: "Pricing" },
 ];
 
@@ -40,7 +38,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gold/35 bg-background/92 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-gold/20 bg-background/92 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />
@@ -58,7 +56,7 @@ export function SiteHeader() {
             {clock} NY
           </p>
           <Link href="/signup" className={cn(buttonVariants(), "h-9 px-3.5 text-[11px] tracking-[0.12em] uppercase")}>
-            Start trial
+            Start free trial
           </Link>
         </div>
         <Sheet open={open} onOpenChange={setOpen}>
@@ -82,10 +80,10 @@ export function SiteHeader() {
                 </a>
               ))}
               <a href="#demo" onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "outline" }), "mt-2 h-9")}>
-                Open the desk
+                Watch the hold
               </a>
               <Link href="/signup" className={cn(buttonVariants(), "h-9")}>
-                Start trial
+                Start free trial
               </Link>
             </div>
           </SheetContent>

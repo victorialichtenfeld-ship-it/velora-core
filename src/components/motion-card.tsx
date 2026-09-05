@@ -16,10 +16,7 @@ export function MotionCard({
   const reduce = useReducedMotion();
   return (
     <motion.div
-      className={cn(
-        "desk-card rounded-sm bg-card p-5 ring-1 ring-gold/30 shadow-[0_12px_28px_rgb(0_0_0_/_0.45)]",
-        className
-      )}
+      className={cn("p-5", className)}
       initial={reduce ? false : { y: 18, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}

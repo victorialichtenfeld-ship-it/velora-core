@@ -38,21 +38,16 @@ export function ProductDemo() {
         body="This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it."
       />
 
-      <div className="gold-run-border gold-glow desk-card mt-10 rounded-sm p-5 sm:p-7">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-10 border-t border-gold/20 pt-8">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-medium">Meridian Supply · AP walkthrough</p>
-            <p className="text-xs text-muted-foreground">Jordan Hale · VP of Finance · not live customer data</p>
+            <p className="text-xs text-muted-foreground">Jordan Hale · VP of Finance · sample data</p>
           </div>
           <SampleDataBadge />
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Metric label="Value held this month" value="$184,320" />
-          <Metric label="Payments stopped" value="47" />
-        </div>
-
-        <div className="mt-6 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="mt-2 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-2">
             <p className="text-xs text-muted-foreground">Open alerts</p>
             <LayoutGroup>
@@ -114,15 +109,6 @@ export function ProductDemo() {
         </Button>
       </form>
     </section>
-  );
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-md bg-background p-4 ring-1 ring-border">
-      <p className="text-[11px] text-muted-foreground">{label}</p>
-      <p className="mt-2 font-figure text-[2rem] tracking-[-0.03em] text-gold sm:text-[2.15rem]">{value}</p>
-    </div>
   );
 }
 
