@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { SectionIntro } from "@/components/marketing/section-intro";
 import { cn } from "@/lib/utils";
@@ -40,6 +41,7 @@ const plans = [
 ];
 
 export function Pricing() {
+  const reduce = useReducedMotion();
   return (
     <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
@@ -48,9 +50,14 @@ export function Pricing() {
         body="Starter and Growth start a trial. Enterprise is a call with finance and IT."
       />
       <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
-        {plans.map((plan) => (
-          <div
+        {plans.map((plan, index) => (
+          <motion.div
             key={plan.name}
+            initial={reduce ? false : { y: 16 }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ delay: index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={reduce ? undefined : { y: -5 }}
             className={cn(
               "flex flex-col rounded-2xl border p-7",
               plan.highlighted ? "border-foreground/25 bg-card" : "border-border bg-transparent"
@@ -79,7 +86,7 @@ export function Pricing() {
             >
               {plan.cta}
             </Link>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

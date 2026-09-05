@@ -1,13 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 
 export function FinalCta() {
+  const reduce = useReducedMotion();
   return (
     <section className="px-4 pb-20 pt-8 sm:px-6">
-      <div className="mx-auto w-full max-w-5xl rounded-2xl border border-border bg-card px-8 py-16 text-center sm:px-16 sm:py-20">
+      <motion.div
+        className="mx-auto w-full max-w-5xl rounded-2xl border border-border bg-card px-8 py-16 text-center sm:px-16 sm:py-20"
+        initial={reduce ? false : { y: 18 }}
+        whileInView={{ y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      >
         <p className="text-[13px] font-medium text-muted-foreground">Start today</p>
         <h2 className="font-figure mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
           Hold the next duplicate before it <span className="italic">clears</span>.
@@ -18,7 +26,7 @@ export function FinalCta() {
         <Link href="/signup" className={cn(buttonVariants(), "mt-8 inline-flex h-11 px-6 text-[14px]")}>
           Start free trial
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 }

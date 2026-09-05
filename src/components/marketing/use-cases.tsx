@@ -23,11 +23,12 @@ export function UseCases() {
         {cases.map((item, index) => (
           <motion.div
             key={item.team}
-            className="rounded-2xl border border-border bg-card px-5 py-8 sm:px-8"
+            className="lift-card rounded-2xl border border-border bg-card px-5 py-8 sm:px-8"
             initial={reduce ? false : { y: 18 }}
             whileInView={{ y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: index * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={reduce ? undefined : { y: -5 }}
           >
             <p className="text-[13px] font-medium text-muted-foreground">{item.team}</p>
             <p className="font-figure mt-3 text-4xl tracking-[-0.04em] text-foreground">{item.amount}</p>
