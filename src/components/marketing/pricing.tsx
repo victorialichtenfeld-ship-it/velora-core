@@ -60,14 +60,9 @@ export function Pricing() {
             whileHover={reduce ? undefined : { y: -5 }}
             className={cn(
               "glass flex flex-col rounded-[1.6rem] p-7",
-              plan.highlighted && "border-gold/35 bg-gold/[0.08] gold-glow"
+              plan.highlighted && "border-gold/35 bg-gold/[0.08]"
             )}
           >
-            <motion.div
-              className="flex h-full flex-col"
-              animate={reduce || !plan.highlighted ? undefined : { y: [0, -12, 0] }}
-              transition={{ duration: 1.25, repeat: Infinity, ease: "easeInOut" }}
-            >
             <p className="text-[13px] font-medium text-muted-foreground">{plan.name}</p>
             <p className={`font-figure mt-3 tracking-[-0.04em] text-4xl ${plan.highlighted ? "text-gold" : "text-foreground"}`}>
               {plan.price}
@@ -91,7 +86,6 @@ export function Pricing() {
             >
               {plan.cta}
             </Link>
-            </motion.div>
           </motion.div>
         ))}
       </div>

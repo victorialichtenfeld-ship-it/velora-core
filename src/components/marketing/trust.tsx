@@ -45,13 +45,8 @@ export function TrustSection() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ delay: index * 0.04, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            <motion.div
-              animate={reduce ? undefined : { y: [0, index === 0 ? -8 : -5, 0] }}
-              transition={{ duration: 1.8 + index * 0.2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <p className="text-lg font-semibold tracking-[-0.03em]">{pillar.title}</p>
-              <p className="mt-2 text-sm leading-7 text-muted-foreground">{pillar.body}</p>
-            </motion.div>
+            <p className="text-lg font-semibold tracking-[-0.03em]">{pillar.title}</p>
+            <p className="mt-2 text-sm leading-7 text-muted-foreground">{pillar.body}</p>
           </motion.li>
         ))}
       </ul>

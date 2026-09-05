@@ -66,7 +66,7 @@ export function ProblemSection() {
         const index = cases.findIndex((item) => item.id === prev);
         return cases[(index + 1) % cases.length].id;
       });
-    }, 1600);
+    }, 4000);
     return () => window.clearInterval(id);
   }, [reduce]);
 
@@ -115,9 +115,6 @@ export function ProblemSection() {
             <MatchRow side={current.left} />
             <div className="relative py-4">
               <span className="absolute inset-x-6 top-1/2 h-px bg-border" />
-              {reduce ? null : (
-                <span className="animate-rail absolute top-1/2 left-6 size-1.5 -translate-y-1/2 rounded-full bg-gold" />
-              )}
               <p className="relative text-center text-[12px] font-medium">Company rule</p>
             </div>
             <MatchRow side={current.right} emphasis reduce={reduce} />
@@ -146,7 +143,7 @@ function MatchRow({
   return (
     <motion.div
       className={`flex items-end justify-between gap-4 border-b pb-4 ${emphasis ? "border-foreground/20" : "border-border"}`}
-      animate={emphasis && !reduce ? { x: [0, -7, 7, -4, 4, 0] } : { x: 0 }}
+      animate={emphasis && !reduce ? { x: [0, -3, 3, 0] } : { x: 0 }}
       transition={{ duration: 0.38 }}
     >
       <div>

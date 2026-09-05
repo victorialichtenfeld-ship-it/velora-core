@@ -644,19 +644,19 @@
 }
 
 .animate-ticker {
-  animation: ticker 2.8s linear infinite;
+  animation: ticker 8s linear infinite;
 }
 
 .animate-ticker-fast {
-  animation: ticker 2.1s linear infinite;
+  animation: ticker 8s linear infinite;
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 2.1s linear infinite;
+  animation: tickerReverse 8s linear infinite;
 }
 
 .animate-well {
-  animation: goldBreathe 3.4s ease-in-out infinite;
+  animation: goldBreathe 8s ease-in-out infinite;
 }
 
 .animate-gold-sweep {

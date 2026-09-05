@@ -19,8 +19,8 @@ function StatusChip({ stage, reduce }: { stage: HoldStage; reduce: boolean | nul
     return (
       <span className="inline-flex items-center gap-1.5 rounded-full bg-gold px-2.5 py-1 text-[11px] font-medium text-gold-foreground">
         <motion.span
-          animate={reduce ? undefined : { rotate: [0, -18, 12, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 0.45 }}
+          animate={reduce ? undefined : { scale: [1, 1.08, 1] }}
+          transition={{ duration: 0.35 }}
           className="inline-flex"
         >
           <Lock className="size-3" />
@@ -56,12 +56,11 @@ export function CashScene({
 }) {
   const held = stage === "held";
   const matching = stage === "match";
-  const sending = stage === "send";
   const progress = held ? 100 : matching ? 74 : 28;
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-180, 180], [14, -14]), { stiffness: 220, damping: 14 });
-  const rotateY = useSpring(useTransform(mx, [-180, 180], [-14, 14]), { stiffness: 220, damping: 14 });
+  const rotateX = useSpring(useTransform(my, [-180, 180], [6, -6]), { stiffness: 160, damping: 22 });
+  const rotateY = useSpring(useTransform(mx, [-180, 180], [-6, 6]), { stiffness: 160, damping: 22 });
 
   return (
     <motion.div
@@ -78,52 +77,23 @@ export function CashScene({
         my.set(0);
       }}
     >
-      <div className="hero-glow animate-well pointer-events-none absolute inset-6 -z-10" />
-      {!reduce ? (
-        <>
-          <motion.div
-            className="glass absolute -left-3 top-16 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          >
-            Duplicate ACH · 99.4%
-          </motion.div>
-          <motion.div
-            className="glass absolute -right-2 bottom-28 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.55, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-          >
-            Flagged · $11,240
-          </motion.div>
-        </>
-      ) : null}
+      <div className="hero-glow pointer-events-none absolute inset-8 -z-10" />
       <motion.div
-        animate={reduce ? undefined : { y: [0, -34, 0], rotate: [0, 1.1, 0, -1.1, 0] }}
-        transition={{ duration: 1.45, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -10, 0] }}
+        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="product-panel relative">
           {!reduce ? (
-            <>
-              <span className="animate-rail pointer-events-none absolute top-0 z-20 h-px w-1/3 bg-gold" />
-              <span className="animate-rail pointer-events-none absolute bottom-0 z-20 h-px w-1/3 bg-gold [animation-delay:0.18s]" />
-              <span className="animate-scan pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gold/70" />
-              <span className="animate-scan pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gold/40 [animation-delay:0.3s]" />
-              <span className="pointer-events-none absolute inset-y-0 left-0 z-20 w-px overflow-hidden">
-                <span className="animate-bead absolute left-0 size-1.5 rounded-full bg-gold" />
-              </span>
-              <span className="pointer-events-none absolute inset-y-0 right-0 z-20 w-px overflow-hidden">
-                <span className="animate-bead absolute right-0 size-1.5 rounded-full bg-gold [animation-delay:0.25s]" />
-              </span>
-            </>
+            <span className="animate-rail pointer-events-none absolute top-0 z-20 h-px w-1/4 bg-gold/70" />
           ) : null}
 
           {!reduce && matching ? (
             <motion.div
               key={`flash-${cycle}`}
-              className="pointer-events-none absolute inset-0 z-10 bg-gold/14"
+              className="pointer-events-none absolute inset-0 z-10 bg-gold/8"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 1, 0] }}
-              transition={{ duration: 0.42 }}
+              transition={{ duration: 0.35 }}
             />
           ) : null}
 
@@ -140,16 +110,8 @@ export function CashScene({
             <p className="text-[12px] text-muted-foreground">Apex Logistics</p>
             <motion.p
               className="font-figure mt-1 text-[2.85rem] leading-none tracking-[-0.045em] text-gold sm:text-[3.3rem]"
-              animate={
-                reduce
-                  ? undefined
-                  : matching
-                    ? { scale: [1, 1.07, 1] }
-                    : sending
-                      ? { scale: [1, 1.015, 1] }
-                      : { scale: 1 }
-              }
-              transition={{ duration: sending ? 1.1 : 0.32, repeat: sending ? Infinity : 0 }}
+              animate={reduce ? undefined : matching ? { scale: [1, 1.03, 1] } : { scale: 1 }}
+              transition={{ duration: 0.4 }}
             >
               $11,240
             </motion.p>
@@ -181,7 +143,7 @@ export function CashScene({
                         borderRadius: 12,
                         paddingLeft: 12,
                         paddingRight: 12,
-                        x: reduce ? 0 : [0, -12, 12, -8, 8, -4, 4, 0],
+                        x: reduce ? 0 : [0, -5, 5, 0],
                       }
                     : held
                       ? {
@@ -223,20 +185,9 @@ export function CashScene({
             <div className="relative mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
               <motion.div
                 className="h-full bg-gold"
-                animate={
-                  sending && !reduce
-                    ? { width: ["18%", "34%", "18%"] }
-                    : { width: `${progress}%` }
-                }
-                transition={
-                  sending && !reduce
-                    ? { duration: 0.9, repeat: Infinity, ease: "easeInOut" }
-                    : { duration: 0.28, ease: [0.22, 1, 0.36, 1] }
-                }
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               />
-              {!reduce && !held ? (
-                <span className="animate-rail pointer-events-none absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-gold" />
-              ) : null}
             </div>
 
             <AnimatePresence mode="wait">

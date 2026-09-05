@@ -20,13 +20,7 @@ export function FinalCta() {
         <p className="relative text-[13px] font-medium text-gold">Start a trial</p>
         <h2 className="relative mt-3 text-[2.15rem] font-semibold leading-[1.12] tracking-[-0.04em] sm:text-[2.8rem]">
           Catch the next costly mistake before it{" "}
-          <motion.span
-            className="gradient-text inline-block"
-            animate={reduce ? undefined : { scale: [1, 1.04, 1] }}
-            transition={{ duration: 0.85, repeat: Infinity, ease: "easeInOut" }}
-          >
-            costs you
-          </motion.span>
+          <span className="gradient-text">costs you</span>
           .
         </h2>
         <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">

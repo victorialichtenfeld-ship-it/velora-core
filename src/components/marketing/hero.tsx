@@ -64,13 +64,7 @@ export function Hero() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <Link href="/signup" className={cn(buttonVariants(), "h-12 px-6 text-[14px]")}>
               Start free trial
-              <motion.span
-                animate={reduce ? undefined : { x: [0, 6, 0] }}
-                transition={{ duration: 0.32, repeat: Infinity, ease: "easeInOut" }}
-                className="inline-flex"
-              >
-                <ArrowRight className="size-4" />
-              </motion.span>
+              <ArrowRight className="size-4" />
             </Link>
             <a href="#demo" className="text-[14px] text-gold underline-offset-4 hover:text-foreground hover:underline">
               See a flag, then you decide
@@ -82,8 +76,6 @@ export function Hero() {
                 <motion.span
                   key={label}
                   className={index <= active ? "text-gold" : ""}
-                  animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.14, 1] }}
-                  transition={{ duration: 0.42, repeat: index === active ? Infinity : 0 }}
                 >
                   {label}
                 </motion.span>
