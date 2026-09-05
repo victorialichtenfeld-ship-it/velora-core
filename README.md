@@ -2,16 +2,16 @@
 
 Velora is an **AI safety layer** for finance and ops. It monitors the tools a company already uses — email, accounting, CRM, payments, and files — and **catches costly mistakes before they cost money**. It is not a chatbot. A human always makes the final call. Nothing is auto-executed.
 
-This repository is a customer-ready prototype: a marketing site, a Meridian Supply walkthrough (sample data), a deterministic risk engine, and adapter interfaces for live APIs later.
+This repository is ready to share with finance and ops buyers: a marketing site with early-access capture, a Meridian Supply live demo environment, a deterministic risk engine, and adapter interfaces for live APIs later.
 
 It flags duplicate payments, pricing errors, over-limit discounts, contract mismatches, and unauthorized wires — with evidence and a recommended action.
 
 ## What you can show today
 
 1. Landing — what Velora is, how it works, human approval
-2. **See a flag** — hold or approve a sample alert on the page
-3. Full walkthrough — Meridian Supply dashboard, labeled sample data
-4. **Start free trial** vs **Book a call** — different conversion paths
+2. **Start with demo data** — hold or approve a flag on the page
+3. Full walkthrough — Meridian Supply dashboard, labeled live demo
+4. **Try Velora** / **Talk to us** — early-access form by pricing tier
 
 ## Run locally
 
@@ -22,21 +22,46 @@ npm run dev
 
 Visit [http://localhost:4317](http://localhost:4317).
 
-- **See it work** jumps to the interactive alert on the homepage.
-- **Start free trial** (`/signup`) creates a mocked session and starts onboarding.
-- **Open Meridian walkthrough** skips onboarding and opens the dashboard.
-- **Book a call** (`/book`) is the enterprise path — not the same as signup.
+- **Start with demo data** jumps to the interactive alert on the homepage.
+- **Try Velora** opens a Get early access form (name, email, company, role). Submissions land in `data/leads.jsonl` and, if configured, a Google Sheet.
+- **Talk to us** is the Enterprise path (`/book` or the pricing card).
+- **Sign in** (`/login`) still opens the live demo workspace.
 
 Optional: copy `.env.example` to `.env.local` and add `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`) so “Ask Velora why this was flagged” uses a live model. Without a key, explanations are generated from the alert evidence.
 
-Deploy on Vercel as a standard Next.js app. No database is required for the prototype.
+Deploy on Vercel as a standard Next.js app. Leads persist on disk in this environment. On Vercel, set `GOOGLE_SHEETS_WEBHOOK_URL` so submissions survive deploys.
+
+## Customer validation
+
+Share the public site with controllers, VPs of finance, and ops leads. The homepage now:
+
+- Tracks **Try Velora**, **Start with demo data**, and **Talk to us** clicks, including which pricing tier they came from
+- Tracks scroll depth and whether they reached **Pricing**
+- Collects early-access leads before a full signup
+- Asks a quiet pricing question after they view $299–$799
+
+### Review responses
+
+1. Set `VALIDATION_INBOX_KEY` in `.env.local`
+2. Open `/inbox?key=your-key` (not linked in the public nav)
+3. Download CSVs, or read `data/leads.jsonl`, `data/feedback.jsonl`, `data/events.jsonl`
+
+### Mirror a Google Sheet
+
+1. Create a Sheet with tabs `Leads`, `Feedback`, and `Events`
+2. Paste `scripts/google-sheet-webhook.gs` into Extensions → Apps Script
+3. Deploy as a web app (execute as you, access: anyone)
+4. Set `GOOGLE_SHEETS_WEBHOOK_URL` to that URL
+
+Without the webhook, records still save locally.
 
 ## Product surface
 
 | Area | Route | What it proves |
 | --- | --- | --- |
 | Marketing | `/` | Finance/ops positioning, interactive alert, pricing |
-| Book a call | `/book` | Enterprise conversion path |
+| Inbox | `/inbox` | Leads, CTA rates, pricing feedback (key required) |
+| Talk to us | `/book` | Enterprise early-access capture |
 | Auth | `/login`, `/signup` | Frictionless entry (mocked) |
 | Onboarding | `/onboarding` | Business type, systems, risks, scan |
 | Overview | `/dashboard` | Value protected, trend, high-risk queue |
@@ -125,7 +150,7 @@ Track:
 - Trust to act on an alert
 - Price reaction at $299 and $799
 
-Do **not** build live payment blocking, full accounting sync, or enterprise RBAC until those five answers are clear.
+The site now tracks CTA clicks, scroll depth, and pricing reaction. Review `/inbox` after conversations. Do **not** build live payment blocking, full accounting sync, or enterprise RBAC until those five answers are clear.
 
 ## Stack
 

@@ -40,7 +40,7 @@ export default function SettingsPage() {
         <Row label="Send Slack summaries for critical alerts" defaultChecked />
         <Row label="Allow Velora to auto-fix invoice drafts" />
         <p className="text-xs text-muted-foreground">
-          Auto-fix stays off. Velora recommends; people decide. That is the trust model this prototype is built to test.
+          Auto-fix stays off. Velora recommends; people decide. Live demo environment — connect your own tools in early access.
         </p>
       </GlassPanel>
       <form action={signOut}>

@@ -3,19 +3,33 @@
  * It monitors existing tools and flags mistakes that break company rules
  * before they cost money. A human always makes the final call.
  */
+import nextDynamic from "next/dynamic";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { Hero } from "@/components/marketing/hero";
 import { LiveTicker } from "@/components/marketing/live-ticker";
 import { ProblemSection } from "@/components/marketing/problem";
-import { HowItWorks } from "@/components/marketing/how-it-works";
-import { ProductDemo } from "@/components/marketing/product-demo";
-import { UseCases } from "@/components/marketing/use-cases";
-import { IntegrationsSection } from "@/components/marketing/integrations";
-import { TrustSection } from "@/components/marketing/trust";
 import { Pricing } from "@/components/marketing/pricing";
-import { FinalCta } from "@/components/marketing/final-cta";
 import { Reveal } from "@/components/reveal";
+
+const ProductDemo = nextDynamic(() =>
+  import("@/components/marketing/product-demo").then((mod) => mod.ProductDemo)
+);
+const HowItWorks = nextDynamic(() =>
+  import("@/components/marketing/how-it-works").then((mod) => mod.HowItWorks)
+);
+const UseCases = nextDynamic(() =>
+  import("@/components/marketing/use-cases").then((mod) => mod.UseCases)
+);
+const IntegrationsSection = nextDynamic(() =>
+  import("@/components/marketing/integrations").then((mod) => mod.IntegrationsSection)
+);
+const TrustSection = nextDynamic(() =>
+  import("@/components/marketing/trust").then((mod) => mod.TrustSection)
+);
+const FinalCta = nextDynamic(() =>
+  import("@/components/marketing/final-cta").then((mod) => mod.FinalCta)
+);
 
 export const dynamic = "force-dynamic";
 
@@ -26,28 +40,28 @@ export default function HomePage() {
       <main>
         <Hero />
         <LiveTicker />
-        <Reveal>
+        <Reveal className="below-fold">
           <ProblemSection />
         </Reveal>
-        <Reveal>
+        <Reveal className="below-fold">
           <ProductDemo />
         </Reveal>
-        <Reveal>
+        <Reveal className="below-fold">
           <HowItWorks />
         </Reveal>
-        <Reveal>
+        <Reveal className="below-fold">
           <UseCases />
         </Reveal>
-        <Reveal>
+        <Reveal className="below-fold">
           <IntegrationsSection />
         </Reveal>
-        <Reveal>
+        <Reveal className="below-fold">
           <TrustSection />
         </Reveal>
-        <Reveal>
+        <Reveal className="below-fold">
           <Pricing />
         </Reveal>
-        <Reveal>
+        <Reveal className="below-fold">
           <FinalCta />
         </Reveal>
       </main>

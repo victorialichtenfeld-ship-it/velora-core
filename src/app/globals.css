@@ -194,6 +194,20 @@
     border: 1px solid rgb(255 255 255 / 12%);
     box-shadow: 0 12px 40px rgb(5 6 13 / 0.45);
   }
+  .below-fold {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+  @media (max-width: 640px) {
+    .glass,
+    .glass-strong,
+    .nav-glass,
+    .gold-desk,
+    .product-panel {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  }
   .gradient-text {
     background: linear-gradient(135deg, #ffffff 12%, #c4b8ff 52%, #7c6cff 100%);
     -webkit-background-clip: text;

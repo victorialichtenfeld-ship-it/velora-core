@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/format";
 import { detectedAlerts } from "@/lib/risk-engine";
 import type { Alert, AlertStatus } from "@/lib/types";
+import { useValidation } from "@/components/validation/validation-provider";
 
 const walkthroughIds = new Set(
   detectedAlerts
@@ -30,13 +31,14 @@ export function ProductDemo() {
   const [decisions, setDecisions] = useState<Record<string, Decision>>({});
   const alert = alerts.find((item) => item.id === selected) ?? alerts[0];
   const decision = alert ? decisions[alert.id] : undefined;
+  const { trackCta } = useValidation();
 
   return (
     <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Walk a flag"
         title="See the evidence. Then you decide."
-        body="This is the Meridian Supply walkthrough — sample data, not a live customer. Open a flag, read why it broke a company rule, then hold, approve, or dismiss. Velora does not execute the payment."
+        body="This is the Meridian Supply walkthrough. Live demo environment — connect your own tools in early access. Open a flag, read why it broke a company rule, then hold, approve, or dismiss. Velora does not execute the payment."
       />
 
       <div className="gold-desk relative mt-10 overflow-hidden p-6 sm:p-8">
@@ -102,9 +104,13 @@ export function ProductDemo() {
         </div>
       </div>
 
-      <form action={launchDemoWorkspace} className="mt-5">
+      <form
+        action={launchDemoWorkspace}
+        className="mt-5"
+        onSubmit={() => trackCta({ cta: "start_with_demo_data", location: "product_demo" })}
+      >
         <Button type="submit" variant="outline" className="h-10">
-          Open the Meridian workspace
+          Start with demo data
         </Button>
       </form>
     </section>
@@ -170,7 +176,7 @@ function AlertWorkbench({
             {decision === "approved" && "You released it. That was a named human decision, not an autonomous agent."}
             {decision === "ignored" && "You dismissed the flag. The alert is closed without a hold."}
           </p>
-          <p className="mt-1 text-xs text-muted-foreground">Sample walkthrough only. No live bank or ERP action was taken.</p>
+          <p className="mt-1 text-xs text-muted-foreground">Live demo environment — connect your own tools in early access. No live bank or ERP action was taken.</p>
           <button type="button" onClick={onReset} className={cn(buttonVariants({ variant: "ghost" }), "mt-2 h-8 px-2")}>
             Reset this alert
           </button>

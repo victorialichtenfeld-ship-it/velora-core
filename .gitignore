@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# customer validation records
+/data/*.jsonl
+
 # vercel
 .vercel
 

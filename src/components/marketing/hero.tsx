@@ -1,12 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { CashScene } from "@/components/marketing/hero-visual";
 import { SampleDataBadge } from "@/components/sample-data-badge";
 import { AnimatedNumber } from "@/components/animated-number";
+import { EarlyAccessCta, DemoCta } from "@/components/validation/ctas";
 import { holdCopy, useHoldLoop } from "@/lib/hold-loop";
 import { cn } from "@/lib/utils";
 
@@ -62,8 +62,8 @@ export function Hero() {
             Velora watches the tools you already use — email, accounting, CRM, payments, and files — and flags anything that breaks your rules. It is not a chatbot. A person always makes the final call. Nothing is auto-executed.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Link href="/signup" className={cn(buttonVariants(), "h-12 px-6 text-[14px]")}>
-              Start free trial
+            <EarlyAccessCta cta="try_velora" plan="starter" source="hero" className={cn(buttonVariants(), "h-12 px-6 text-[14px]")}>
+              Try Velora
               <motion.span
                 className="inline-flex"
                 animate={reduce ? undefined : { x: [0, 4, 0] }}
@@ -71,10 +71,10 @@ export function Hero() {
               >
                 <ArrowRight className="size-4" />
               </motion.span>
-            </Link>
-            <a href="#demo" className="text-[14px] text-gold underline-offset-4 hover:text-foreground hover:underline">
-              See a flag, then you decide
-            </a>
+            </EarlyAccessCta>
+            <DemoCta source="hero" className="text-[14px] text-gold underline-offset-4 hover:text-foreground hover:underline">
+              Start with demo data
+            </DemoCta>
           </div>
           <div className="mt-10 max-w-md">
             <div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">

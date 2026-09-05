@@ -1,44 +1,58 @@
 "use client";
 
-import Link from "next/link";
 import { Check } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { SectionIntro } from "@/components/marketing/section-intro";
+import { EarlyAccessCta } from "@/components/validation/ctas";
 import { cn } from "@/lib/utils";
+import type { CtaId, Plan } from "@/lib/validation";
 
 const plans = [
   {
     name: "Starter",
+    plan: "starter" as const,
     price: "$299",
     cadence: "/mo",
     description: "Watch invoices and payments for one finance team. Human approval on every flag.",
     features: ["Up to 3 systems", "Duplicate payments", "Pricing and contracts", "Email alerts"],
     highlighted: false,
-    cta: "Start free trial",
-    href: "/signup",
+    cta: "try_velora" as const,
+    label: "Try Velora",
   },
   {
     name: "Growth",
+    plan: "growth" as const,
     price: "$799",
     cadence: "/mo",
     description: "Velora in the path of invoices, payments, discounts, and POs for growing finance and ops.",
     features: ["Up to 8 systems", "Discounts and wires", "Slack to the owner", "Priority onboarding"],
     highlighted: true,
-    cta: "Start free trial",
-    href: "/signup",
+    cta: "try_velora" as const,
+    label: "Try Velora",
   },
   {
     name: "Enterprise",
+    plan: "enterprise" as const,
     price: "Custom",
     cadence: "",
     description: "Multi-entity controls, SSO, and a security review. Still never auto-executes.",
     features: ["Unlimited adapters", "SSO", "Your rule packs", "Dedicated success"],
     highlighted: false,
-    cta: "Book a call",
-    href: "/book",
+    cta: "talk_to_us" as const,
+    label: "Talk to us",
   },
-];
+] satisfies Array<{
+  name: string;
+  plan: Plan;
+  price: string;
+  cadence: string;
+  description: string;
+  features: string[];
+  highlighted: boolean;
+  cta: Exclude<CtaId, "start_with_demo_data">;
+  label: string;
+}>;
 
 export function Pricing() {
   const reduce = useReducedMotion();
@@ -47,7 +61,7 @@ export function Pricing() {
       <SectionIntro
         eyebrow="Pricing"
         title="A control in the payment path. Not a chatbot seat."
-        body="Starter and Growth start a trial on sample data. A human still decides every flag. Enterprise is a call with finance and IT."
+        body="Starter and Growth are early access at these prices. A human still decides every flag. Enterprise is a conversation with finance and IT."
       />
       <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
         {plans.map((plan, index) => (
@@ -77,15 +91,17 @@ export function Pricing() {
                 </li>
               ))}
             </ul>
-            <Link
-              href={plan.href}
+            <EarlyAccessCta
+              cta={plan.cta}
+              plan={plan.plan}
+              source="pricing"
               className={cn(
                 buttonVariants({ variant: plan.highlighted ? "default" : "outline" }),
                 "mt-8 h-11 px-5 text-[14px]"
               )}
             >
-              {plan.cta}
-            </Link>
+              {plan.label}
+            </EarlyAccessCta>
           </motion.div>
         ))}
       </div>

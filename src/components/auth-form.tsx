@@ -14,13 +14,13 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         </Link>
         <GlassPanel className="p-6 sm:p-8">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            {mode === "signup" ? "Start free trial" : "Sign in"}
+            {mode === "signup" ? "Early access" : "Sign in"}
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight">
-            {mode === "signup" ? "Start a trial of the safety layer." : "Open the Meridian walkthrough."}
+            {mode === "signup" ? "Open the live demo environment." : "Open the Meridian walkthrough."}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Auth is mocked. The workspace is sample flags — duplicate payments, pricing errors, and other rule breaks — not a live customer. A human still decides every action.
+            Live demo environment — connect your own tools in early access. A human still decides every action.
           </p>
           <form action={startWorkspace} className="mt-6 space-y-4">
             {mode === "signup" ? (
@@ -37,12 +37,12 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             />
             <Field label="Password" name="password" type="password" defaultValue="password" />
             <Button type="submit" className="h-11 w-full">
-              {mode === "signup" ? "Start free trial" : "Sign in"}
+              {mode === "signup" ? "Try Velora" : "Sign in"}
             </Button>
           </form>
           <form action={launchDemoWorkspace}>
             <Button type="submit" variant="outline" className="mt-3 h-11 w-full">
-              Open Meridian walkthrough
+              Open live demo
             </Button>
           </form>
           <p className="mt-5 text-center text-sm text-muted-foreground">
@@ -57,7 +57,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
               <>
                 New here?{" "}
                 <Link href="/signup" className="text-primary hover:underline">
-                  Start free trial
+                  Try Velora
                 </Link>
               </>
             )}

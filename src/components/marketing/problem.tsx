@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { AnimatedNumber } from "@/components/animated-number";
 
 const cases = [
@@ -57,9 +57,11 @@ export function ProblemSection() {
   const current = cases.find((item) => item.id === active) ?? cases[0];
   const reduce = useReducedMotion();
   const pauseUntil = useRef(0);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { amount: 0.2 });
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || !inView) return;
     const id = window.setInterval(() => {
       if (Date.now() < pauseUntil.current) return;
       setActive((prev) => {
@@ -68,10 +70,10 @@ export function ProblemSection() {
       });
     }, 4000);
     return () => window.clearInterval(id);
-  }, [reduce]);
+  }, [reduce, inView]);
 
   return (
-    <section id="product" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="product" ref={ref} className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <div>
           <p className="text-[13px] font-medium text-muted-foreground">What it catches</p>

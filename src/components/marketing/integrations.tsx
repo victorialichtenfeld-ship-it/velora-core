@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { integrationsCatalog } from "@/lib/data/demo";
 import { SectionIntro } from "@/components/marketing/section-intro";
 import { cn } from "@/lib/utils";
@@ -11,19 +11,21 @@ export function IntegrationsSection() {
   const comingSoon = integrationsCatalog.filter((item) => item.status !== "connected");
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { amount: 0.2 });
 
   useEffect(() => {
-    if (reduce || liveNow.length === 0) return;
+    if (reduce || liveNow.length === 0 || !inView) return;
     const id = window.setInterval(() => setActive((n) => (n + 1) % liveNow.length), 2800);
     return () => window.clearInterval(id);
-  }, [reduce, liveNow.length]);
+  }, [reduce, liveNow.length, inView]);
 
   return (
-    <section id="integrations" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="integrations" ref={ref} className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Your existing tools"
         title="Email, accounting, CRM, payments, and files."
-        body="Velora monitors the systems finance and ops already run. Connectors here are simulated. The hold path is the same: flag the mistake, wait for a person."
+        body="Velora monitors the systems finance and ops already run. Live demo environment — connect your own tools in early access. The hold path is the same: flag the mistake, wait for a person."
       />
       <p className="mt-10 text-[13px] font-medium text-gold">Live now</p>
       <div className="mt-4 flex flex-wrap gap-2">

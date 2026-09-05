@@ -77,7 +77,7 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
         </div>
         <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
           <Shield className="size-3.5" />
-          Sample data
+          Live demo
         </div>
         <form action={signOut}>
           <Button type="submit" variant="ghost" className="mt-2 w-full justify-start">

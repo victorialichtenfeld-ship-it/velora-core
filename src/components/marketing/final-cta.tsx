@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
+import { EarlyAccessCta } from "@/components/validation/ctas";
 import { cn } from "@/lib/utils";
 
 export function FinalCta() {
@@ -17,7 +17,7 @@ export function FinalCta() {
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="hero-glow pointer-events-none absolute inset-x-16 top-0 h-40" />
-        <p className="relative text-[13px] font-medium text-gold">Start a trial</p>
+        <p className="relative text-[13px] font-medium text-gold">Get early access</p>
         <h2 className="relative mt-3 text-[2.15rem] font-semibold leading-[1.12] tracking-[-0.04em] sm:text-[2.8rem]">
           Catch the next costly mistake before it{" "}
           <motion.span
@@ -30,11 +30,11 @@ export function FinalCta() {
           .
         </h2>
         <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
-          Walk sample flags with evidence. You decide hold, approve, or dismiss. Nothing is auto-executed. No live bank required.
+          Walk flags with evidence. You decide hold, approve, or dismiss. Live demo environment — connect your own tools in early access.
         </p>
-        <Link href="/signup" className={cn(buttonVariants(), "relative mt-8 inline-flex h-12 px-6 text-[14px]")}>
-          Start free trial
-        </Link>
+        <EarlyAccessCta cta="try_velora" source="final_cta" className={cn(buttonVariants(), "relative mt-8 inline-flex h-12 px-6 text-[14px]")}>
+          Try Velora
+        </EarlyAccessCta>
       </motion.div>
     </section>
   );

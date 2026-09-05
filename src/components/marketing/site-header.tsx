@@ -7,6 +7,7 @@ import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { EarlyAccessCta, DemoCta } from "@/components/validation/ctas";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -40,12 +41,12 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-          <Link href="/login" className="rounded-full px-3 py-1.5 text-[13px] text-muted-foreground hover:text-foreground">
-            Sign in
-          </Link>
-          <Link href="/signup" className={cn(buttonVariants(), "h-9 px-4 text-[13px]")}>
-            Start free trial
-          </Link>
+          <DemoCta source="header" className="rounded-full px-3 py-1.5 text-[13px] text-muted-foreground hover:text-foreground">
+            Start with demo data
+          </DemoCta>
+          <EarlyAccessCta cta="try_velora" source="header" className={cn(buttonVariants(), "h-9 px-4 text-[13px]")}>
+            Try Velora
+          </EarlyAccessCta>
         </div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -67,12 +68,16 @@ export function SiteHeader() {
                   {link.label}
                 </a>
               ))}
-              <a href="#demo" onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "outline" }), "mt-2 h-9")}>
-                See a flag, then you decide
-              </a>
-              <Link href="/signup" className={cn(buttonVariants(), "h-9")}>
-                Start free trial
-              </Link>
+              <DemoCta
+                source="header_mobile"
+                className={cn(buttonVariants({ variant: "outline" }), "mt-2 h-9")}
+                onClick={() => setOpen(false)}
+              >
+                Start with demo data
+              </DemoCta>
+              <EarlyAccessCta cta="try_velora" source="header_mobile" className={cn(buttonVariants(), "h-9")} onClick={() => setOpen(false)}>
+                Try Velora
+              </EarlyAccessCta>
             </div>
           </SheetContent>
         </Sheet>

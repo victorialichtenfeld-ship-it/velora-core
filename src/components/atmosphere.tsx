@@ -2,7 +2,7 @@ export function Atmosphere() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
       <div className="animate-well absolute left-1/2 top-[-22%] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(124_108_255_/_0.32),transparent_64%)] blur-3xl" />
-      <div className="animate-well absolute right-[-12%] bottom-[-18%] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgb(124_108_255_/_0.16),transparent_68%)] blur-3xl [animation-delay:1.4s]" />
+      <div className="animate-well absolute right-[-12%] bottom-[-18%] hidden h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgb(124_108_255_/_0.16),transparent_68%)] blur-3xl sm:block [animation-delay:1.4s]" />
     </div>
   );
 }

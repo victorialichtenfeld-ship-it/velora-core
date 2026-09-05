@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { SectionIntro } from "@/components/marketing/section-intro";
 import { cn } from "@/lib/utils";
 
@@ -9,7 +9,7 @@ const steps = [
   {
     n: "01",
     title: "Connects to your tools",
-    body: "Email, accounting, CRM, payments, and file storage. Velora watches invoices, payments, discounts, and purchase orders as they move. You do not re-key data. This walkthrough uses simulated connectors.",
+    body: "Email, accounting, CRM, payments, and file storage. Velora watches invoices, payments, discounts, and purchase orders as they move. You do not re-key data. Live demo environment — connect your own tools in early access.",
   },
   {
     n: "02",
@@ -26,15 +26,17 @@ const steps = [
 export function HowItWorks() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { amount: 0.2 });
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || !inView) return;
     const id = window.setInterval(() => setActive((n) => (n + 1) % steps.length), 2200);
     return () => window.clearInterval(id);
-  }, [reduce]);
+  }, [reduce, inView]);
 
   return (
-    <section id="how" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="how" ref={ref} className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="How it works"
         title="Connect your tools. Learn your rules. Stop the costly ones."

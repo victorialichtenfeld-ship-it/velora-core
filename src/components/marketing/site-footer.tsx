@@ -1,4 +1,7 @@
+"use client";
+
 import { Logo } from "@/components/logo";
+import { EarlyAccessCta } from "@/components/validation/ctas";
 
 export function SiteFooter() {
   return (
@@ -23,16 +26,16 @@ export function SiteFooter() {
           <a href="#pricing" className="hover:text-foreground">
             Pricing
           </a>
-          <a href="/book" className="hover:text-foreground">
-            Book a call
-          </a>
+          <EarlyAccessCta cta="talk_to_us" plan="enterprise" source="footer" className="text-left hover:text-foreground">
+            Talk to us
+          </EarlyAccessCta>
           <a href="/login" className="hover:text-foreground">
             Sign in
           </a>
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl px-4 text-[12px] text-muted-foreground sm:px-6">
-        Sample data from the Meridian Supply walkthrough. No live financial systems are connected unless you add API keys. Nothing is auto-executed.
+        Live demo environment — connect your own tools in early access. Nothing is auto-executed.
       </p>
     </footer>
   );
