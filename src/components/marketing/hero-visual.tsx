@@ -177,9 +177,7 @@ export function CashScene({
               ) : null}
             </div>
 
-            {held ? null : (
-              <p className="mt-4 text-[13px] leading-6 text-muted-foreground">{holdCopy[stage]}</p>
-            )}
+            <p className="mt-4 text-[13px] leading-6 text-muted-foreground">{holdCopy[stage]}</p>
           </div>
 
           <AnimatePresence>

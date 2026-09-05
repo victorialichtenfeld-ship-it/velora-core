@@ -365,7 +365,7 @@
     padding: 1px;
     background: linear-gradient(90deg, transparent 12%, #7eb0ff 50%, transparent 88%);
     background-size: 220% 100%;
-    animation: borderRun 1.4s linear infinite;
+    animation: borderRun 1.0s linear infinite;
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
@@ -679,7 +679,7 @@
 }
 
 .animate-ticker {
-  animation: ticker 8s linear infinite;
+  animation: ticker 5.5s linear infinite;
 }
 
 .animate-ticker-fast {
@@ -687,7 +687,7 @@
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 6.5s linear infinite;
+  animation: tickerReverse 5.5s linear infinite;
 }
 
 .animate-gold-sweep {
