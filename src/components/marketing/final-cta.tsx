@@ -10,7 +10,11 @@ export function FinalCta() {
   return (
     <section className="px-4 pb-20 pt-8 sm:px-6">
       <motion.div
-        className="mx-auto w-full max-w-5xl overflow-hidden rounded-[1.6rem] bg-[linear-gradient(145deg,#1b2744_0%,#2a3d68_52%,#3d5a4a_100%)] px-8 py-16 text-center text-primary-foreground sm:px-16 sm:py-20"
+        className="mx-auto w-full max-w-5xl overflow-hidden rounded-[1.6rem] px-8 py-16 text-center text-primary-foreground sm:px-16 sm:py-20"
+        style={{
+          background:
+            "radial-gradient(ellipse at 82% 120%, rgb(212 176 90 / 0.42), transparent 52%), linear-gradient(145deg, #1b2744 0%, #3d5a8a 48%, #2f8a64 100%)",
+        }}
         initial={reduce ? false : { y: 20 }}
         whileInView={{ y: 0 }}
         viewport={{ once: true, amount: 0.3 }}

@@ -58,7 +58,7 @@ export function ProductDemo() {
                   type="button"
                   onClick={() => setSelected(item.id)}
                   className={`w-full border-l-2 px-4 py-4 text-left transition ${
-                    active ? "border-foreground bg-muted/80" : "border-transparent hover:bg-muted/50"
+                    active ? "border-gold bg-gold/12" : "border-transparent hover:bg-gold/6"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -109,7 +109,7 @@ function DecisionChip({ decision }: { decision?: Decision }) {
     return <span className="text-[11px] text-muted-foreground">Open</span>;
   }
   if (decision === "resolved") {
-    return <span className="text-[11px] font-medium">Held</span>;
+    return <span className="text-[11px] font-medium text-protect">Held</span>;
   }
   if (decision === "approved") {
     return <span className="text-[11px] font-medium text-muted-foreground">Approved</span>;
@@ -134,7 +134,7 @@ function AlertWorkbench({
       <div className="flex items-start justify-between gap-4">
         <p className="text-[12px] text-muted-foreground">Evidence</p>
         {held ? (
-          <span className="inline-flex items-center gap-1.5 text-[12px] text-foreground">
+          <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-protect">
             <Lock className="size-3.5" />
             Locked
           </span>
@@ -157,7 +157,7 @@ function AlertWorkbench({
       </dl>
 
       {decision ? (
-        <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 border-l-2 border-foreground pl-4">
+        <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 border-l-2 border-protect bg-protect/8 py-3 pl-4">
           <p className="text-sm font-medium">
             {decision === "resolved" && "Hold recorded. The second payment does not leave the account."}
             {decision === "approved" && "Override recorded. You released it with a named decision."}

@@ -16,15 +16,15 @@ function StatusChip({ stage }: { stage: HoldStage }) {
   }
   if (stage === "match") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/18 px-2.5 py-1 text-[11px] font-medium text-gold">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/20 px-2.5 py-1 text-[11px] font-medium text-gold">
         <span className="size-1.5 rounded-full bg-gold animate-pulse" />
         Duplicate
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e8eef8] px-2.5 py-1 text-[11px] font-medium text-[#3d5a8a]">
-      <span className="size-1.5 rounded-full bg-[#4c6a9a] animate-pulse" />
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-dusk/12 px-2.5 py-1 text-[11px] font-medium text-dusk">
+      <span className="size-1.5 rounded-full bg-dusk animate-pulse" />
       In flight
     </span>
   );
@@ -42,12 +42,14 @@ export function CashScene({
   const held = stage === "held";
   const matching = stage === "match";
   const progress = held ? 100 : matching ? 74 : 24;
+  const glow = held ? "glow-protect" : matching ? "glow-gold" : "glow-dusk";
+  const plate = held ? "bg-protect/30" : matching ? "bg-gold/40" : "bg-dusk/28";
 
   return (
     <div className="relative mx-auto w-full max-w-[540px]">
-      <div className="absolute inset-4 translate-x-4 translate-y-5 rounded-[1.2rem] bg-gold/20" />
-      <div className={`product-panel relative overflow-hidden ${reduce ? "" : "animate-float"}`}>
-        <div className="flex items-center justify-between border-b border-border bg-muted/45 px-6 py-3">
+      <div className={`absolute inset-4 translate-x-4 translate-y-5 rounded-[1.2rem] transition-colors duration-500 ${plate}`} />
+      <div className={`product-panel relative overflow-hidden ${glow} ${reduce ? "" : "animate-float"}`}>
+        <div className="flex items-center justify-between border-b border-gold/20 bg-[linear-gradient(90deg,rgb(212_176_90_/_0.12),rgb(47_138_100_/_0.08),rgb(74_111_168_/_0.1))] px-6 py-3">
           <p className="text-[12px] font-medium">Velora · Meridian Supply</p>
           <div className="flex items-center gap-2">
             <span className="size-1.5 rounded-full bg-protect" />
@@ -79,7 +81,7 @@ export function CashScene({
 
             <div
               className={`flex items-center justify-between gap-3 py-3.5 ${
-                matching ? "rounded-xl bg-gold/10 px-3 -mx-1" : held ? "rounded-xl bg-protect/10 px-3 -mx-1" : ""
+                matching ? "rounded-xl bg-gold/12 px-3 -mx-1" : held ? "rounded-xl bg-protect/12 px-3 -mx-1" : ""
               }`}
             >
               <div>
@@ -93,7 +95,7 @@ export function CashScene({
           <div className="mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
             <div
               className={`h-full transition-[width,background-color] duration-500 ease-out ${
-                held ? "bg-protect" : matching ? "bg-gold" : "bg-[#4c6a9a]"
+                held ? "bg-protect" : matching ? "bg-gold" : "bg-dusk"
               }`}
               style={{ width: `${progress}%` }}
             />

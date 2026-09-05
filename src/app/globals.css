@@ -44,6 +44,9 @@
   --color-bronze: var(--bronze);
   --color-protect: var(--protect);
   --color-protect-foreground: var(--protect-foreground);
+  --color-dusk: var(--dusk);
+  --color-dusk-foreground: var(--dusk-foreground);
+  --color-blush: var(--blush);
   --color-risk: var(--risk);
   --color-warn: var(--warn);
   --color-sample: var(--sample);
@@ -59,90 +62,96 @@
 }
 
 :root {
-  --background: #f7f1e6;
+  --background: #f8efe3;
   --foreground: #1b2744;
   --ink: #1b2744;
-  --frame: #f7f1e6;
-  --card: #fffcf7;
+  --frame: #f8efe3;
+  --card: #fffdf8;
   --card-foreground: #1b2744;
-  --popover: #fffcf7;
+  --popover: #fffdf8;
   --popover-foreground: #1b2744;
   --primary: #1b2744;
   --primary-foreground: #fbf6ec;
-  --secondary: #efe6d6;
+  --secondary: #f3e6cf;
   --secondary-foreground: #1b2744;
-  --muted: #efe6d6;
+  --muted: #f3e6cf;
   --muted-foreground: #6a6358;
-  --accent: #efe6d6;
+  --accent: #f3e6cf;
   --accent-foreground: #1b2744;
   --destructive: #b85c4a;
-  --border: #e4d9c8;
-  --input: #e4d9c8;
-  --ring: rgb(196 163 90 / 45%);
-  --gold: #c4a35a;
+  --border: #e8d7c0;
+  --input: #e8d7c0;
+  --ring: rgb(212 176 90 / 50%);
+  --gold: #d4b05a;
   --gold-foreground: #1b2744;
-  --bronze: #9a7b3d;
-  --protect: #3d7a5c;
+  --bronze: #b0893a;
+  --protect: #2f8a64;
   --protect-foreground: #f4faf6;
+  --dusk: #4a6fa8;
+  --dusk-foreground: #eef3fa;
+  --blush: #d9896a;
   --risk: #b85c4a;
   --warn: #c17f3a;
   --sample: #6a6358;
   --chart-1: #1b2744;
-  --chart-2: #c4a35a;
-  --chart-3: #3d7a5c;
-  --chart-4: #4c6a9a;
-  --chart-5: #b85c4a;
+  --chart-2: #d4b05a;
+  --chart-3: #2f8a64;
+  --chart-4: #4a6fa8;
+  --chart-5: #d9896a;
   --radius: 0.7rem;
-  --sidebar: #fffcf7;
+  --sidebar: #fffdf8;
   --sidebar-foreground: #1b2744;
   --sidebar-primary: #1b2744;
   --sidebar-primary-foreground: #fbf6ec;
-  --sidebar-accent: #efe6d6;
+  --sidebar-accent: #f3e6cf;
   --sidebar-accent-foreground: #1b2744;
-  --sidebar-border: #e4d9c8;
-  --sidebar-ring: rgb(196 163 90 / 45%);
+  --sidebar-border: #e8d7c0;
+  --sidebar-ring: rgb(212 176 90 / 50%);
 }
 
 .dark {
-  --background: #f7f1e6;
+  --background: #f8efe3;
   --foreground: #1b2744;
-  --card: #fffcf7;
+  --card: #fffdf8;
   --card-foreground: #1b2744;
-  --popover: #fffcf7;
+  --popover: #fffdf8;
   --popover-foreground: #1b2744;
   --primary: #1b2744;
   --primary-foreground: #fbf6ec;
-  --secondary: #efe6d6;
+  --secondary: #f3e6cf;
   --secondary-foreground: #1b2744;
-  --muted: #efe6d6;
+  --muted: #f3e6cf;
   --muted-foreground: #6a6358;
-  --accent: #efe6d6;
+  --accent: #f3e6cf;
   --accent-foreground: #1b2744;
   --destructive: #b85c4a;
-  --border: #e4d9c8;
-  --input: #e4d9c8;
-  --ring: rgb(196 163 90 / 45%);
-  --gold: #c4a35a;
+  --border: #e8d7c0;
+  --input: #e8d7c0;
+  --ring: rgb(212 176 90 / 50%);
+  --gold: #d4b05a;
   --gold-foreground: #1b2744;
-  --bronze: #9a7b3d;
-  --protect: #3d7a5c;
+  --bronze: #b0893a;
+  --protect: #2f8a64;
   --protect-foreground: #f4faf6;
+  --dusk: #4a6fa8;
+  --dusk-foreground: #eef3fa;
+  --blush: #d9896a;
   --risk: #b85c4a;
   --warn: #c17f3a;
   --sample: #6a6358;
   --chart-1: #1b2744;
-  --chart-2: #c4a35a;
-  --chart-3: #3d7a5c;
-  --chart-4: #4c6a9a;
-  --chart-5: #b85c4a;
-  --sidebar: #fffcf7;
+  --chart-2: #d4b05a;
+  --chart-3: #2f8a64;
+  --chart-4: #4a6fa8;
+  --chart-5: #d9896a;
+  --sidebar: #fffdf8;
   --sidebar-foreground: #1b2744;
   --sidebar-primary: #1b2744;
   --sidebar-primary-foreground: #fbf6ec;
-  --sidebar-accent: #efe6d6;
+  --sidebar-accent: #f3e6cf;
   --sidebar-accent-foreground: #1b2744;
-  --sidebar-border: #e4d9c8;
-  --sidebar-ring: rgb(196 163 90 / 45%);
+  --sidebar-border: #e8d7c0;
+  --sidebar-ring: rgb(212 176 90 / 50%);
 }
 
 @layer base {
@@ -164,12 +173,12 @@
     font-variant-numeric: tabular-nums;
   }
   .glass {
-    background: #fffcf7;
-    box-shadow: 0 12px 32px rgb(196 163 90 / 12%);
+    background: #fffdf8;
+    box-shadow: 0 12px 32px rgb(212 176 90 / 18%);
   }
   .glass-strong {
-    background: #fffcf7;
-    box-shadow: 0 16px 40px rgb(196 163 90 / 14%);
+    background: #fffdf8;
+    box-shadow: 0 16px 40px rgb(212 176 90 / 22%);
   }
   .product-frame {
     background: #ffffff;
@@ -208,7 +217,7 @@
   }
   .text-shimmer,
   .money-sheen {
-    background: linear-gradient(100deg, #9a7b3d 0%, #c4a35a 35%, #f0ddb0 50%, #c4a35a 65%, #9a7b3d 100%);
+    background: linear-gradient(100deg, #b0893a 0%, #d4b05a 32%, #fff3c8 50%, #d4b05a 68%, #b0893a 100%);
     background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -323,21 +332,39 @@
       inset 0 1px 0 rgb(196 168 106 / 0.55);
   }
   .gold-desk {
-    border: 1px solid rgb(196 163 90 / 28%);
-    background: #fffcf7;
+    border: 1px solid rgb(212 176 90 / 38%);
+    background: #fffdf8;
     border-radius: 1rem;
     box-shadow:
       0 1px 1px rgb(27 39 68 / 0.04),
-      0 22px 50px rgb(196 163 90 / 0.14);
+      0 22px 50px rgb(212 176 90 / 0.22);
   }
   .product-panel {
-    border: 1px solid rgb(196 163 90 / 32%);
-    background: #fffcf7;
+    border: 1px solid rgb(212 176 90 / 42%);
+    background: #fffdf8;
     border-radius: 1.15rem;
     box-shadow:
       0 1px 1px rgb(27 39 68 / 0.04),
-      0 24px 56px rgb(196 163 90 / 0.18),
-      0 0 0 1px rgb(255 252 247 / 0.8);
+      0 28px 64px rgb(212 176 90 / 0.28),
+      0 0 0 1px rgb(255 253 248 / 0.9);
+  }
+  .glow-dusk {
+    box-shadow:
+      0 1px 1px rgb(27 39 68 / 0.04),
+      0 28px 70px rgb(74 111 168 / 0.28),
+      0 0 0 1px rgb(255 253 248 / 0.9);
+  }
+  .glow-gold {
+    box-shadow:
+      0 1px 1px rgb(27 39 68 / 0.04),
+      0 28px 70px rgb(212 176 90 / 0.42),
+      0 0 0 1px rgb(255 253 248 / 0.9);
+  }
+  .glow-protect {
+    box-shadow:
+      0 1px 1px rgb(27 39 68 / 0.04),
+      0 28px 70px rgb(47 138 100 / 0.32),
+      0 0 0 1px rgb(255 253 248 / 0.9);
   }
   .ai-field {
     border: 1px solid rgb(176 137 58 / 0.32);
@@ -467,8 +494,8 @@
 }
 
 @keyframes goldBreathe {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 0.7; }
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
 
 @keyframes goldSweep {
@@ -800,7 +827,7 @@
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(196 163 90 / 40%);
+  background: rgb(212 176 90 / 50%);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {

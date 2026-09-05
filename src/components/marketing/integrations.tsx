@@ -14,7 +14,7 @@ export function IntegrationsSection() {
         title="Wired to the systems AP already uses."
         body="Live now connectors are simulated here. Coming-soon adapters share the same interface."
       />
-      <p className="mt-10 text-[13px] font-medium text-muted-foreground">Live now</p>
+      <p className="mt-10 text-[13px] font-medium text-protect">Live now</p>
       <p className="font-figure mt-3 text-3xl leading-snug tracking-[-0.03em] sm:text-4xl sm:leading-[1.2]">
         {liveNow.map((item) => item.name).join("  ·  ")}
       </p>

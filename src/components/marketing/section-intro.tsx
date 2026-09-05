@@ -18,7 +18,7 @@ export function SectionIntro({
         initial={reduce ? false : { y: 8 }}
         whileInView={{ y: 0 }}
         viewport={{ once: true, amount: 0.8 }}
-        className="text-[13px] font-medium text-muted-foreground"
+        className="text-[13px] font-medium text-gold"
       >
         {eyebrow}
       </motion.p>

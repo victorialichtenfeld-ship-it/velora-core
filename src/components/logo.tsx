@@ -13,7 +13,7 @@ export function Logo({
         <path
           d="M18 3.5L31 10.2V21.8C31 27.1 25.4 31.6 18 33.5C10.6 31.6 5 27.1 5 21.8V10.2L18 3.5Z"
           fill="currentColor"
-          fillOpacity="0.18"
+          fillOpacity="0.42"
           stroke="currentColor"
           strokeWidth="1.4"
         />

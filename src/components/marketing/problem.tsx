@@ -62,8 +62,8 @@ export function ProblemSection() {
                 }}
                 className={`border-l-2 px-4 py-3 text-left text-sm transition ${
                   active === item.id
-                    ? "border-foreground bg-white text-foreground"
-                    : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+                    ? "border-gold bg-gold/12 text-foreground"
+                    : "border-transparent text-muted-foreground hover:border-gold/40 hover:text-foreground"
                 }`}
               >
                 {item.title}
@@ -92,7 +92,7 @@ export function ProblemSection() {
             <p className="font-figure money-sheen mt-8 text-5xl tracking-[-0.045em] sm:text-6xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
             </p>
-            <p className="mt-3 text-[13px] font-medium">{current.caption}</p>
+            <p className="mt-3 text-[13px] font-medium text-protect">{current.caption}</p>
             <p className="mt-2 max-w-sm text-sm leading-7 text-muted-foreground">{current.detail}</p>
           </motion.div>
         </AnimatePresence>
