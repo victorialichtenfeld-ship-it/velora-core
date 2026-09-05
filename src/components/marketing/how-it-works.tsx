@@ -32,7 +32,11 @@ export function HowItWorks() {
         body="Velora does not ask AP to re-key data. It watches the tools they already run and infers holds in the payment path."
       />
       <ol className="relative mt-14 space-y-12">
-        <span className="absolute top-3 bottom-3 left-[1.15rem] hidden w-px bg-border sm:block" />
+        <span className="absolute top-3 bottom-3 left-[1.15rem] hidden w-px bg-border sm:block">
+          {reduce ? null : (
+            <span className="animate-bead absolute left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-foreground" />
+          )}
+        </span>
         {steps.map((step, index) => (
           <motion.li
             key={step.n}

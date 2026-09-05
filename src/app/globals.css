@@ -208,9 +208,12 @@
   }
   .text-shimmer,
   .money-sheen {
-    color: var(--gold);
-    background: none;
-    animation: none;
+    background: linear-gradient(100deg, #0f1c2e 0%, #7a5c28 38%, #c4a574 50%, #7a5c28 62%, #0f1c2e 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmerText 2.8s linear infinite;
   }
   .scan-beam {
     height: 1px;
@@ -225,7 +228,12 @@
     overflow: hidden;
   }
   .btn-shine::after {
-    content: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / 0.18) 50%, transparent 62%);
+    transform: translateX(-130%);
+    pointer-events: none;
   }
   .btn-shine:hover::after {
     animation: shineSweep 0.7s ease;
@@ -606,7 +614,7 @@
 }
 
 .animate-ticker {
-  animation: ticker 28s linear infinite;
+  animation: ticker 16s linear infinite;
 }
 
 .animate-ticker-fast {
@@ -642,7 +650,7 @@
 }
 
 .animate-float {
-  animation: floatSoft 4.8s ease-in-out infinite;
+  animation: floatSoft 6.4s ease-in-out infinite;
 }
 
 .animate-mote {

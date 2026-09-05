@@ -81,7 +81,13 @@ export function ProblemSection() {
             className="product-panel p-7"
           >
             <MatchRow side={current.left} />
-            <p className="py-4 text-center text-[12px] font-medium text-muted-foreground">Match</p>
+            <div className="relative py-4">
+              <span className="absolute inset-x-6 top-1/2 h-px bg-border" />
+              {reduce ? null : (
+                <span className="animate-rail absolute top-1/2 left-6 size-1.5 -translate-y-1/2 rounded-full bg-foreground" />
+              )}
+              <p className="relative text-center text-[12px] font-medium">Match</p>
+            </div>
             <MatchRow side={current.right} emphasis />
             <p className="font-figure mt-8 text-5xl tracking-[-0.045em] text-foreground sm:text-6xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
