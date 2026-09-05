@@ -17,17 +17,18 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Velora — Stop duplicate payments before they clear",
+    default: "Velora — Catch costly mistakes before they cost you money",
     template: "%s · Velora",
   },
   description:
-    "Velora is a finance and operations control layer for mid-size companies. It holds duplicate vendor payments and invoice pricing mismatches before cash leaves the account.",
+    "Velora is an AI safety layer for finance and ops. It watches the tools you already use and flags duplicate payments, pricing errors, and other rule breaks before they go through. A human always decides. Nothing is auto-executed.",
   keywords: [
+    "AI safety layer",
     "duplicate payments",
     "invoice pricing",
     "accounts payable controls",
     "finance operations",
-    "mid-size finance",
+    "human in the loop",
   ],
 };
 

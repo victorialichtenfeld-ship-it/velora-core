@@ -17,10 +17,10 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             {mode === "signup" ? "Start free trial" : "Sign in"}
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight">
-            {mode === "signup" ? "Start a trial that holds duplicate ACH." : "Open the Meridian AP walkthrough."}
+            {mode === "signup" ? "Start a trial of the safety layer." : "Open the Meridian walkthrough."}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Auth is mocked. Use any details. The workspace is sample AP data: duplicate vendor payments and invoices that miss the contract price — not a live customer.
+            Auth is mocked. The workspace is sample flags — duplicate payments, pricing errors, and other rule breaks — not a live customer. A human still decides every action.
           </p>
           <form action={startWorkspace} className="mt-6 space-y-4">
             {mode === "signup" ? (

@@ -21,9 +21,9 @@ export function IntegrationsSection() {
   return (
     <section id="integrations" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="AP systems"
-        title="Reads the invoices and ACH AP already has."
-        body="QuickBooks, bill email, and the payment rail are simulated here. Coming-soon adapters use the same hold path: duplicate vendor payments and invoice vs contract."
+        eyebrow="Your existing tools"
+        title="Email, accounting, CRM, payments, and files."
+        body="Velora monitors the systems finance and ops already run. Connectors here are simulated. The hold path is the same: flag the mistake, wait for a person."
       />
       <p className="mt-10 text-[13px] font-medium text-gold">Live now</p>
       <div className="mt-4 flex flex-wrap gap-2">

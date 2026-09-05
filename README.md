@@ -1,15 +1,15 @@
 # Velora AI
 
-Velora is a **finance/ops control layer** for mid-size companies. It holds **duplicate vendor payments** and **invoice vs contract pricing mismatches** before cash leaves the account.
+Velora is an **AI safety layer** for finance and ops. It monitors the tools a company already uses — email, accounting, CRM, payments, and files — and **catches costly mistakes before they cost money**. It is not a chatbot. A human always makes the final call. Nothing is auto-executed.
 
-This repository is a customer-ready prototype: a marketing site, a Meridian Supply walkthrough workspace (sample data), a deterministic risk engine, and adapter interfaces for live APIs later.
+This repository is a customer-ready prototype: a marketing site, a Meridian Supply walkthrough (sample data), a deterministic risk engine, and adapter interfaces for live APIs later.
 
-Adjacent detectors (discounts, purchase limits, vendor master) exist in the walkthrough. They are not the marketed product.
+It flags duplicate payments, pricing errors, over-limit discounts, contract mismatches, and unauthorized wires — with evidence and a recommended action.
 
 ## What you can show today
 
-1. Landing — finance/ops buyer understands the two core checks
-2. **See it work** — hold or approve a sample alert on the page
+1. Landing — what Velora is, how it works, human approval
+2. **See a flag** — hold or approve a sample alert on the page
 3. Full walkthrough — Meridian Supply dashboard, labeled sample data
 4. **Start free trial** vs **Book a call** — different conversion paths
 

@@ -14,9 +14,9 @@ export const holdSequence: { stage: HoldStage; at: number }[] = [
 export const holdLoopMs = 1950;
 
 export const holdCopy: Record<HoldStage, string> = {
-  send: "Second ACH to Apex is on the rail",
-  match: "Duplicate vendor payment · 99.4%",
-  held: "Held. Will not reach the bank.",
+  send: "A payment is moving through your tools",
+  match: "This breaks a company rule",
+  held: "Flagged with evidence. A person decides.",
 };
 
 export function useHoldLoop() {

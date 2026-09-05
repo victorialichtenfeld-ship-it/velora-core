@@ -34,9 +34,9 @@ export function ProductDemo() {
   return (
     <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="Walk a duplicate, then a pricing mismatch"
-        title="Hold the Apex ACH. Then hold the Harborline invoice."
-        body="This is the Meridian Supply walkthrough — sample AP data, not a live customer. Open a duplicate vendor payment or an invoice that misses the contract price, then hold, approve, or dismiss it."
+        eyebrow="Walk a flag"
+        title="See the evidence. Then you decide."
+        body="This is the Meridian Supply walkthrough — sample data, not a live customer. Open a flag, read why it broke a company rule, then hold, approve, or dismiss. Velora does not execute the payment."
       />
 
       <div className="gold-desk relative mt-10 overflow-hidden p-6 sm:p-8">
@@ -48,7 +48,7 @@ export function ProductDemo() {
                 <span className="animate-pulse-ring absolute inset-0 rounded-full bg-gold" />
                 <span className="relative size-2 rounded-full bg-gold" />
               </span>
-              Velora AP · Meridian Supply
+              Velora · Meridian Supply
             </p>
             <p className="mt-1 text-sm text-muted-foreground">Jordan Hale · VP of Finance</p>
           </div>
@@ -104,7 +104,7 @@ export function ProductDemo() {
 
       <form action={launchDemoWorkspace} className="mt-5">
         <Button type="submit" variant="outline" className="h-10">
-          Open the Meridian AP workspace
+          Open the Meridian workspace
         </Button>
       </form>
     </section>
@@ -166,9 +166,9 @@ function AlertWorkbench({
       {decision ? (
         <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 rounded-2xl border border-gold/20 bg-gold/8 py-3 pl-4">
           <p className="text-sm font-medium">
-            {decision === "resolved" && "Hold recorded. The second payment does not leave the account."}
-            {decision === "approved" && "Override recorded. You released it with a named decision."}
-            {decision === "ignored" && "Dismiss recorded. The alert is closed without a hold."}
+            {decision === "resolved" && "You held it. Velora did not execute anything. The payment stays paused."}
+            {decision === "approved" && "You released it. That was a named human decision, not an autonomous agent."}
+            {decision === "ignored" && "You dismissed the flag. The alert is closed without a hold."}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">Sample walkthrough only. No live bank or ERP action was taken.</p>
           <button type="button" onClick={onReset} className={cn(buttonVariants({ variant: "ghost" }), "mt-2 h-8 px-2")}>

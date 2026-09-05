@@ -10,8 +10,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#product", label: "What it holds" },
-  { href: "#how", label: "How a hold works" },
+  { href: "#product", label: "What it catches" },
+  { href: "#how", label: "How it works" },
+  { href: "#trust", label: "Human approval" },
   { href: "#pricing", label: "Pricing" },
 ];
 
@@ -64,7 +65,7 @@ export function SiteHeader() {
                 </a>
               ))}
               <a href="#demo" onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "outline" }), "mt-2 h-9")}>
-                See a duplicate held
+                See a flag, then you decide
               </a>
               <Link href="/signup" className={cn(buttonVariants(), "h-9")}>
                 Start free trial

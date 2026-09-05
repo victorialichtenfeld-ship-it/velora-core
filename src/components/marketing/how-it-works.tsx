@@ -8,18 +8,18 @@ import { cn } from "@/lib/utils";
 const steps = [
   {
     n: "01",
-    title: "Read invoices and ACH",
-    body: "Bills from email and QuickBooks, and ACH on the payment rail, stream into Velora. This walkthrough uses simulated adapters, not a live bank.",
+    title: "Connects to your tools",
+    body: "Email, accounting, CRM, payments, and file storage. Velora watches invoices, payments, discounts, and purchase orders as they move. You do not re-key data. This walkthrough uses simulated connectors.",
   },
   {
     n: "02",
-    title: "Match vendor, amount, contract",
-    body: "Same vendor and same amount as a payment that already settled is a duplicate. An invoice unit price that is not the MSA price is a mismatch.",
+    title: "Learns your company rules",
+    body: "Duplicate payments, pricing errors, over-limit discounts, contract mismatches, unauthorized wires — flags are your policies, not a generic AI guess.",
   },
   {
     n: "03",
-    title: "Hold before the bank",
-    body: "The second ACH and the bad invoice stop in AP. A named finance owner holds, approves, or dismisses with an audit trail.",
+    title: "Warns or holds. You decide.",
+    body: "Risky actions pause before they go through. Every flag has evidence and a recommended action. A named person holds, approves, or dismisses. Nothing is auto-executed.",
   },
 ];
 
@@ -36,9 +36,9 @@ export function HowItWorks() {
   return (
     <section id="how" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="How a hold works"
-        title="From the invoice to a hold before ACH clears."
-        body="Velora does not ask AP to re-key data. It watches the tools they already run and holds duplicate vendor payments and invoice-vs-contract mismatches in the payment path."
+        eyebrow="How it works"
+        title="Connect your tools. Learn your rules. Stop the costly ones."
+        body="Velora is a control system sitting in the path of invoices and payments. It is not a chatbot you have to ask questions to, and it is not an agent that spends money on its own."
       />
       <ol className="mt-14 grid gap-4 md:grid-cols-3">
         {steps.map((step, index) => (

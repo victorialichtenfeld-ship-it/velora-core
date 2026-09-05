@@ -1,11 +1,7 @@
 /**
- * Product scope (do not broaden on this page):
- * Velora is a finance/ops control layer for mid-size companies.
- * Primary job: hold duplicate vendor payments and catch invoice vs contract
- * pricing mismatches before cash or invoices go out.
- * Adjacent detectors (discounts, POs, vendor master, ops billing) exist in
- * the demo workspace but are not the marketed product. This is not a sales,
- * security, or legal suite.
+ * Velora is an AI safety layer for finance and ops.
+ * It monitors existing tools and flags mistakes that break company rules
+ * before they cost money. A human always makes the final call.
  */
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";

@@ -7,12 +7,18 @@ export function SiteFooter() {
         <div>
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
-            Velora holds duplicate vendor payments and invoice vs contract pricing mismatches before cash leaves the account.
+            Velora is an AI safety layer for finance and ops. It watches your existing tools and catches costly mistakes before they go through. A human always decides.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-x-14 gap-y-2 text-[14px] text-muted-foreground">
           <a href="#product" className="hover:text-foreground">
-            What it holds
+            What it catches
+          </a>
+          <a href="#how" className="hover:text-foreground">
+            How it works
+          </a>
+          <a href="#trust" className="hover:text-foreground">
+            Human approval
           </a>
           <a href="#pricing" className="hover:text-foreground">
             Pricing
@@ -26,7 +32,7 @@ export function SiteFooter() {
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl px-4 text-[12px] text-muted-foreground sm:px-6">
-        Sample data from the Meridian Supply walkthrough. No live financial systems are connected unless you add API keys.
+        Sample data from the Meridian Supply walkthrough. No live financial systems are connected unless you add API keys. Nothing is auto-executed.
       </p>
     </footer>
   );

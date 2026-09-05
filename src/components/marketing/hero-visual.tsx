@@ -93,7 +93,7 @@ export function CashScene({
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
           >
-            Held duplicate · $11,240
+            Flagged · $11,240
           </motion.div>
         </>
       ) : null}
@@ -263,8 +263,8 @@ export function CashScene({
                 transition={{ type: "spring", stiffness: 520, damping: 20 }}
                 className="relative z-[2] flex items-center justify-between gap-3 border-t border-gold/20 bg-primary px-6 py-3.5 text-primary-foreground"
               >
-                <p className="text-[13px] font-medium">Duplicate ACH held</p>
-                <p className="text-[12px] text-primary-foreground/75">Will not reach the bank</p>
+                <p className="text-[13px] font-medium">Waiting on a person</p>
+                <p className="text-[12px] text-primary-foreground/75">Nothing is auto-executed</p>
               </motion.div>
             ) : null}
           </AnimatePresence>

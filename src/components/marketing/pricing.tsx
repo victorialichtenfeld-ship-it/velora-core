@@ -12,8 +12,8 @@ const plans = [
     name: "Starter",
     price: "$299",
     cadence: "/mo",
-    description: "Duplicate-payment and invoice-pricing checks for one AP team.",
-    features: ["Up to 3 systems", "Duplicate holds", "Invoice vs contract", "Email alerts"],
+    description: "Watch invoices and payments for one finance team. Human approval on every flag.",
+    features: ["Up to 3 systems", "Duplicate payments", "Pricing and contracts", "Email alerts"],
     highlighted: false,
     cta: "Start free trial",
     href: "/signup",
@@ -22,8 +22,8 @@ const plans = [
     name: "Growth",
     price: "$799",
     cadence: "/mo",
-    description: "Velora in the path of invoices and ACH for growing finance orgs.",
-    features: ["Up to 8 systems", "Contract matching", "Slack to AP", "Priority onboarding"],
+    description: "Velora in the path of invoices, payments, discounts, and POs for growing finance and ops.",
+    features: ["Up to 8 systems", "Discounts and wires", "Slack to the owner", "Priority onboarding"],
     highlighted: true,
     cta: "Start free trial",
     href: "/signup",
@@ -32,8 +32,8 @@ const plans = [
     name: "Enterprise",
     price: "Custom",
     cadence: "",
-    description: "Multi-entity AP, SSO, and a security review before procurement.",
-    features: ["Unlimited adapters", "SSO", "Custom rules", "Dedicated success"],
+    description: "Multi-entity controls, SSO, and a security review. Still never auto-executes.",
+    features: ["Unlimited adapters", "SSO", "Your rule packs", "Dedicated success"],
     highlighted: false,
     cta: "Book a call",
     href: "/book",
@@ -45,9 +45,9 @@ export function Pricing() {
   return (
     <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="Pricing for AP holds"
-        title="Pay for duplicate and contract-price controls. Not chatbot seats."
-        body="Starter and Growth start a trial on sample AP data. Enterprise is a call with finance and IT."
+        eyebrow="Pricing"
+        title="A control in the payment path. Not a chatbot seat."
+        body="Starter and Growth start a trial on sample data. A human still decides every flag. Enterprise is a call with finance and IT."
       />
       <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
         {plans.map((plan, index) => (

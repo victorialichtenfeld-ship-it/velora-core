@@ -7,26 +7,53 @@ import { AnimatedNumber } from "@/components/animated-number";
 const cases = [
   {
     id: "dup",
-    title: "Duplicate vendor ACH",
-    detail: "Same vendor. Same amount. Fifteen hours apart. The second instruction never reaches the bank.",
+    title: "Duplicate payments",
+    detail: "Same vendor. Same amount. Fifteen hours apart. The second payment is flagged before it reaches the bank.",
     amount: 11240,
-    caption: "Duplicate held",
+    caption: "Duplicate flagged",
     left: { kicker: "Already paid", name: "ACH-4410", meta: "Apex Logistics" },
     right: { kicker: "Queued again", name: "ACH-4418", meta: "Apex Logistics" },
   },
   {
     id: "price",
-    title: "Invoice vs MSA",
-    detail: "820 Harborline units were about to invoice at $84. The contract is $102. The draft invoice is held.",
+    title: "Pricing errors",
+    detail: "820 Harborline units were about to invoice at $84. The contract is $102. The draft invoice is flagged.",
     amount: 14760,
-    caption: "Pricing gap held",
+    caption: "Pricing error flagged",
     left: { kicker: "Invoice", name: "$84 / unit", meta: "Harborline" },
-    right: { kicker: "MSA", name: "$102 / unit", meta: "Contract rate" },
+    right: { kicker: "Contract", name: "$102 / unit", meta: "Agreed rate" },
+  },
+  {
+    id: "discount",
+    title: "Over-limit discounts",
+    detail: "Sales quoted 16% off. Company policy caps it at 10% without finance. The quote waits for a person.",
+    amount: 28750,
+    caption: "Discount waiting on finance",
+    left: { kicker: "Quote", name: "16% off", meta: "Sales" },
+    right: { kicker: "Policy", name: "10% max", meta: "Finance rule" },
+  },
+  {
+    id: "contract",
+    title: "Contract mismatches",
+    detail: "An invoice ignores the MSA unit price. Velora flags it with the contract line next to the bill.",
+    amount: 14760,
+    caption: "Contract mismatch flagged",
+    left: { kicker: "Bill", name: "Wrong rate", meta: "Invoice file" },
+    right: { kicker: "MSA", name: "Signed price", meta: "File storage" },
+  },
+  {
+    id: "wire",
+    title: "Unauthorized wires",
+    detail: "A wire to a payee not on the vendor master waits for treasury. Velora does not send it.",
+    amount: 18400,
+    caption: "Wire waiting on treasury",
+    left: { kicker: "Wire", name: "Unknown payee", meta: "Nimbus" },
+    right: { kicker: "Master", name: "Not approved", meta: "Vendor list" },
   },
 ];
 
 export function ProblemSection() {
-  const [active, setActive] = useState(cases[1].id);
+  const [active, setActive] = useState(cases[0].id);
   const current = cases.find((item) => item.id === active) ?? cases[0];
   const reduce = useReducedMotion();
   const pauseUntil = useRef(0);
@@ -35,8 +62,11 @@ export function ProblemSection() {
     if (reduce) return;
     const id = window.setInterval(() => {
       if (Date.now() < pauseUntil.current) return;
-      setActive((prev) => (prev === "dup" ? "price" : "dup"));
-    }, 1800);
+      setActive((prev) => {
+        const index = cases.findIndex((item) => item.id === prev);
+        return cases[(index + 1) % cases.length].id;
+      });
+    }, 2200);
     return () => window.clearInterval(id);
   }, [reduce]);
 
@@ -44,12 +74,12 @@ export function ProblemSection() {
     <section id="product" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <div>
-          <p className="text-[13px] font-medium text-muted-foreground">What Velora holds</p>
+          <p className="text-[13px] font-medium text-muted-foreground">What it catches</p>
           <h2 className="mt-3 text-[2.3rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[3.05rem]">
-            Duplicate ACH. Invoice vs contract.
+            Anything that breaks your own rules.
           </h2>
           <p className="mt-5 max-w-md text-[16px] leading-8 text-muted-foreground">
-            The product is two AP checks: a second payment to a vendor already paid, and an invoice unit price that does not match the MSA. That is what you buy.
+            Duplicate payments, pricing errors, over-limit discounts, contract mismatches, unauthorized wires. Each flag includes evidence and a recommended action. A human still decides.
           </p>
           <div className="mt-8 flex flex-col gap-1">
             {cases.map((item) => (
@@ -88,7 +118,7 @@ export function ProblemSection() {
               {reduce ? null : (
                 <span className="animate-rail absolute top-1/2 left-6 size-1.5 -translate-y-1/2 rounded-full bg-gold" />
               )}
-              <p className="relative text-center text-[12px] font-medium">Match</p>
+              <p className="relative text-center text-[12px] font-medium">Company rule</p>
             </div>
             <MatchRow side={current.right} emphasis reduce={reduce} />
             <p className="font-figure mt-8 text-5xl tracking-[-0.045em] text-gold sm:text-6xl">

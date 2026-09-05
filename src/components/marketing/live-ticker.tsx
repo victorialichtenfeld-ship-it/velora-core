@@ -1,10 +1,10 @@
 "use client";
 
 const items = [
-  { event: "Harborline invoice vs MSA", amount: "$14,760" },
-  { event: "Keystone duplicate ACH", amount: "$8,400" },
-  { event: "Helios second vendor wire", amount: "$9,120" },
-  { event: "Apex duplicate $11,240 ACH", amount: "$11,240" },
+  { event: "Duplicate payment", amount: "$11,240" },
+  { event: "Pricing error vs contract", amount: "$14,760" },
+  { event: "Over-limit discount", amount: "$28,750" },
+  { event: "Unauthorized wire", amount: "$18,400" },
 ];
 
 function Row({ reverse = false }: { reverse?: boolean }) {

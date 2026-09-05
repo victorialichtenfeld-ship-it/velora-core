@@ -25,16 +25,16 @@ export function Hero() {
               <span className={reduce ? "hidden" : "animate-pulse-ring absolute inset-0 rounded-full bg-gold"} />
               <span className="relative size-2 rounded-full bg-gold" />
             </span>
-            AP control · Duplicate ACH to Apex
+            AI safety layer for finance and ops
           </p>
-          <h1 className="max-w-xl text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.045em] text-balance text-foreground sm:text-5xl lg:text-[3.65rem]">
-            Hold duplicate vendor payments before they{" "}
+          <h1 className="max-w-xl text-[2.55rem] font-semibold leading-[1.04] tracking-[-0.045em] text-balance text-foreground sm:text-5xl lg:text-[3.45rem]">
+            Catch costly mistakes before they{" "}
             <span className="relative inline-block">
               <motion.span
                 className="gradient-text inline-block"
                 animate={reduce ? undefined : { opacity: stage === "held" ? 1 : 0.82 }}
               >
-                clear
+                cost you money
               </motion.span>
               <motion.span
                 className="absolute top-[58%] left-0 h-[2px] origin-left bg-gold"
@@ -58,8 +58,8 @@ export function Hero() {
               {line}
             </motion.p>
           </AnimatePresence>
-          <p className="mt-4 max-w-md text-[16px] leading-8 text-muted-foreground">
-            Velora is the AP control layer. It holds a second ACH to the same vendor, and invoices that ignore the contracted unit price, before cash leaves the account. Apex already got paid. The same $11,240 hit the rail again.
+          <p className="mt-4 max-w-lg text-[16px] leading-8 text-muted-foreground">
+            Velora watches the tools you already use — email, accounting, CRM, payments, and files — and flags anything that breaks your rules. It is not a chatbot. A person always makes the final call. Nothing is auto-executed.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <Link href="/signup" className={cn(buttonVariants(), "h-12 px-6 text-[14px]")}>
@@ -73,12 +73,12 @@ export function Hero() {
               </motion.span>
             </Link>
             <a href="#demo" className="text-[14px] text-gold underline-offset-4 hover:text-foreground hover:underline">
-              See a duplicate held
+              See a flag, then you decide
             </a>
           </div>
           <div className="mt-10 max-w-md">
             <div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">
-              {(["In flight", "Duplicate", "Held"] as const).map((label, index) => (
+              {(["In flight", "Flagged", "You decide"] as const).map((label, index) => (
                 <motion.span
                   key={label}
                   className={index <= active ? "text-gold" : ""}
@@ -109,7 +109,7 @@ export function Hero() {
               <p className="font-figure text-2xl tracking-tight text-gold">
                 <AnimatedNumber value={184320} prefix="$" duration={1400} />
               </p>
-              <p className="mt-1 text-[12px] text-muted-foreground">Duplicate ACH held</p>
+              <p className="mt-1 text-[12px] text-muted-foreground">Mistakes stopped this month</p>
             </div>
             <div className="glass rounded-2xl px-4 py-4">
               <p className="font-figure text-2xl tracking-tight text-foreground">
@@ -117,7 +117,7 @@ export function Hero() {
               </p>
               <p className="mt-1 flex items-center gap-2 text-[12px] text-muted-foreground">
                 <SampleDataBadge />
-                vendor payments held
+                flags, all human-reviewed
               </p>
             </div>
           </div>

@@ -31,10 +31,10 @@ export default function BookPage() {
           </div>
         ) : (
           <>
-            <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Enterprise AP</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight">Book a call about duplicate holds and contract-price checks.</h1>
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Enterprise</p>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight">Book a call about putting Velora in the path of invoices and payments.</h1>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              For multi-entity AP, SSO, or a security review. To click through a sample duplicate ACH first, use See a duplicate held on the homepage.
+              For multi-entity finance, SSO, or a security review. Velora still never auto-executes. To click a sample flag first, use See a flag on the homepage.
             </p>
             <form
               className="mt-8 space-y-4"
