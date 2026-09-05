@@ -3,17 +3,9 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ONBOARDING_COOKIE, SESSION_COOKIE } from "@/lib/auth-cookies";
+import { sessionCookieOptions } from "@/lib/auth";
 import { demoUser } from "@/lib/data/demo";
 import type { SessionUser } from "@/lib/types";
-
-function cookieOptions() {
-  return {
-    httpOnly: true,
-    sameSite: "lax" as const,
-    path: "/",
-    maxAge: 60 * 60 * 24 * 30,
-  };
-}
 
 const demoOnboarding = {
   businessType: "Wholesale distribution",
@@ -24,8 +16,8 @@ const demoOnboarding = {
 
 export async function launchDemoWorkspace() {
   const store = await cookies();
-  store.set(SESSION_COOKIE, JSON.stringify(demoUser), cookieOptions());
-  store.set(ONBOARDING_COOKIE, JSON.stringify(demoOnboarding), cookieOptions());
+  store.set(SESSION_COOKIE, JSON.stringify(demoUser), sessionCookieOptions());
+  store.set(ONBOARDING_COOKIE, JSON.stringify(demoOnboarding), sessionCookieOptions());
   redirect("/dashboard");
 }
 
@@ -37,7 +29,7 @@ export async function startWorkspace(formData: FormData) {
     email: String(formData.get("email") || demoUser.email),
     company: String(formData.get("company") || demoUser.company),
   };
-  store.set(SESSION_COOKIE, JSON.stringify(user), cookieOptions());
+  store.set(SESSION_COOKIE, JSON.stringify(user), sessionCookieOptions());
   redirect("/onboarding");
 }
 
@@ -55,9 +47,14 @@ export async function completeOnboarding(formData: FormData) {
         .filter(Boolean),
       completed: true,
     }),
-    cookieOptions()
+    sessionCookieOptions()
   );
   redirect("/dashboard");
+}
+
+export async function signInPaidWorkspace(user: SessionUser) {
+  const { writePaidSession } = await import("@/lib/auth");
+  await writePaidSession(user);
 }
 
 export async function signOut() {

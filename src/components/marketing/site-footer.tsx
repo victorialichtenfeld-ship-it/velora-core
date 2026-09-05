@@ -32,6 +32,12 @@ export function SiteFooter() {
           <a href="/login" className="hover:text-foreground">
             Sign in
           </a>
+          <a href="/legal/terms" className="hover:text-foreground">
+            Terms
+          </a>
+          <a href="/legal/privacy" className="hover:text-foreground">
+            Privacy
+          </a>
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl px-4 text-[12px] text-muted-foreground sm:px-6">

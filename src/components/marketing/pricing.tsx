@@ -18,7 +18,7 @@ const plans = [
     features: ["Up to 3 systems", "Duplicate payments", "Pricing and contracts", "Email alerts"],
     highlighted: false,
     cta: "try_velora" as const,
-    label: "Try Velora",
+    label: "Subscribe · $299/mo",
   },
   {
     name: "Growth",
@@ -29,7 +29,7 @@ const plans = [
     features: ["Up to 8 systems", "Discounts and wires", "Slack to the owner", "Priority onboarding"],
     highlighted: true,
     cta: "try_velora" as const,
-    label: "Try Velora",
+    label: "Subscribe · $799/mo",
   },
   {
     name: "Enterprise",
@@ -61,7 +61,7 @@ export function Pricing() {
       <SectionIntro
         eyebrow="Pricing"
         title="A control in the payment path. Not a chatbot seat."
-        body="Starter and Growth are early access at these prices. A human still decides every flag. Enterprise is a conversation with finance and IT."
+        body="Starter is $299/mo. Growth is $799/mo, billed monthly through Stripe. Cancel any time. Enterprise is a conversation with finance and IT."
       />
       <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
         {plans.map((plan, index) => (

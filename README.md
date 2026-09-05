@@ -2,7 +2,7 @@
 
 Velora is an **AI safety layer** for finance and ops. It monitors the tools a company already uses — email, accounting, CRM, payments, and files — and **catches costly mistakes before they cost money**. It is not a chatbot. A human always makes the final call. Nothing is auto-executed.
 
-This repository is ready to share with finance and ops buyers: a marketing site with early-access capture, a Meridian Supply live demo environment, a deterministic risk engine, and adapter interfaces for live APIs later.
+This repository is ready to share with finance and ops buyers: a marketing site with paid checkout, early-access capture, a Meridian Supply live demo environment, a deterministic risk engine, and adapter interfaces for live APIs later.
 
 It flags duplicate payments, pricing errors, over-limit discounts, contract mismatches, and unauthorized wires — with evidence and a recommended action.
 
@@ -11,7 +11,8 @@ It flags duplicate payments, pricing errors, over-limit discounts, contract mism
 1. Landing — what Velora is, how it works, human approval
 2. **Start with demo data** — hold or approve a flag on the page
 3. Full walkthrough — Meridian Supply dashboard, labeled live demo
-4. **Try Velora** / **Talk to us** — early-access form by pricing tier
+4. **Try Velora** / **Subscribe** — company details, then Stripe Checkout for $299 or $799 per month
+5. **Talk to us** — Enterprise path (`/book` or the pricing card), no card charge
 
 ## Run locally
 
@@ -23,13 +24,15 @@ npm run dev
 Visit [http://localhost:4317](http://localhost:4317).
 
 - **Start with demo data** jumps to the interactive alert on the homepage.
-- **Try Velora** opens a Get early access form (name, email, company, role). Submissions land in `data/leads.jsonl` and, if configured, a Google Sheet.
+- **Try Velora** / **Subscribe · $299/mo** / **Subscribe · $799/mo** open a company form, then Stripe Checkout. Without Stripe keys, this local environment can complete an offline checkout when `ALLOW_OFFLINE_CHECKOUT=true`.
 - **Talk to us** is the Enterprise path (`/book` or the pricing card).
 - **Sign in** (`/login`) still opens the live demo workspace.
 
 Optional: copy `.env.example` to `.env.local` and add `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`) so “Ask Velora why this was flagged” uses a live model. Without a key, explanations are generated from the alert evidence.
 
-Deploy on Vercel as a standard Next.js app. Leads persist on disk in this environment. On Vercel, set `GOOGLE_SHEETS_WEBHOOK_URL` so submissions survive deploys.
+**Go live (domain + real cards):** follow [GO-LIVE.md](./GO-LIVE.md). Deploy to Vercel for a public URL, connect Stripe, then optionally attach a custom domain such as `usevelora.com`.
+
+Deploy on Vercel as a standard Next.js app. Leads and orders persist on disk in this environment. On Vercel, set `GOOGLE_SHEETS_WEBHOOK_URL` so submissions survive deploys, and set Stripe keys so Checkout can charge.
 
 ## Customer validation
 
@@ -44,11 +47,11 @@ Share the public site with controllers, VPs of finance, and ops leads. The homep
 
 1. Set `VALIDATION_INBOX_KEY` in `.env.local`
 2. Open `/inbox?key=your-key` (not linked in the public nav)
-3. Download CSVs, or read `data/leads.jsonl`, `data/feedback.jsonl`, `data/events.jsonl`
+3. Download CSVs, or read `data/leads.jsonl`, `data/feedback.jsonl`, `data/events.jsonl`, `data/orders.jsonl`
 
 ### Mirror a Google Sheet
 
-1. Create a Sheet with tabs `Leads`, `Feedback`, and `Events`
+1. Create a Sheet with tabs `Leads`, `Feedback`, `Events`, and `Orders`
 2. Paste `scripts/google-sheet-webhook.gs` into Extensions → Apps Script
 3. Deploy as a web app (execute as you, access: anyone)
 4. Set `GOOGLE_SHEETS_WEBHOOK_URL` to that URL
@@ -60,7 +63,9 @@ Without the webhook, records still save locally.
 | Area | Route | What it proves |
 | --- | --- | --- |
 | Marketing | `/` | Finance/ops positioning, interactive alert, pricing |
-| Inbox | `/inbox` | Leads, CTA rates, pricing feedback (key required) |
+| Inbox | `/inbox` | Leads, orders, CTA rates, pricing feedback (key required) |
+| Billing | `/billing/*` | Stripe Checkout return, cancel, offline pay (local only) |
+| Legal | `/legal/terms`, `/legal/privacy` | Subscription terms and privacy |
 | Talk to us | `/book` | Enterprise early-access capture |
 | Auth | `/login`, `/signup` | Frictionless entry (mocked) |
 | Onboarding | `/onboarding` | Business type, systems, risks, scan |
@@ -71,7 +76,7 @@ Without the webhook, records still save locally.
 | Rules | `/dashboard/rules` | Visual builder, deterministic policy |
 | Integrations | `/dashboard/integrations` | Simulated connectors |
 | Analytics | `/dashboard/analytics` | Which mistake type is most valuable |
-| Settings | `/dashboard/settings` | Human-approval posture |
+| Settings | `/dashboard/settings` | Profile, billing, human-approval posture |
 
 Velora is **not** a chatbot. Chat is a secondary “Ask Velora” control on each alert.
 
@@ -86,7 +91,9 @@ src/
     data/               Meridian Supply sample records
     ai.ts               LLM adapter (OpenAI / Anthropic / deterministic)
     integrations.ts     Connector adapters (simulated)
-    auth.ts             Cookie session for the prototype
+    billing.ts           Stripe Checkout, prices, webhook helpers
+    plans.ts             Starter $299 / Growth $799 (client-safe)
+    auth.ts              Cookie session for demo and paid workspaces
     auth-adapters.ts    Swap-in point for Clerk / Auth0 / Supabase
     supabase.ts         Optional Postgres client
 ```
@@ -115,20 +122,19 @@ Do not couple the UI to a single vendor. Each row below should land behind the e
 | LLM explanations | OpenAI `gpt-4.1-mini` or Anthropic Claude Sonnet | Cheap, strong at structured evidence summaries |
 | Auth | Clerk if you want speed; Supabase Auth if you want auth + Postgres together | Prototype has no SSO requirement yet |
 | Database | Supabase Postgres | Alerts, rules, audit log, workspace settings |
-| Payments | Stripe Billing (later) | $299 / $799 / custom — not in this MVP |
+| Payments | Stripe Billing | $299 Starter / $799 Growth — Checkout is in this repo |
 | Email | Gmail API + Microsoft Graph | Outbound invoices, misdirected attachments |
 | Accounting | QuickBooks Online, then Xero | Bills, invoices, vendors, payments |
 | CRM | Salesforce, then HubSpot | Quotes, discounts, contracted SKUs |
 | Messaging | Slack, then Graph / Teams | Approval cards |
 | Files | Google Drive + Graph | Contract PDFs and rate cards |
 
-Implementation order after validation:
+Implementation order after paid users exist:
 
 1. Supabase schema for alerts, rules, audit events
 2. Real auth (Clerk or Supabase)
 3. One live connector (QuickBooks **or** Gmail) — not ten
-4. Stripe Checkout for Starter / Growth
-5. Slack approval buttons
+4. Slack approval buttons
 
 ## Validating with real customers
 
@@ -150,7 +156,7 @@ Track:
 - Trust to act on an alert
 - Price reaction at $299 and $799
 
-The site now tracks CTA clicks, scroll depth, and pricing reaction. Review `/inbox` after conversations. Do **not** build live payment blocking, full accounting sync, or enterprise RBAC until those five answers are clear.
+The site now tracks CTA clicks, scroll depth, and pricing reaction, and can charge Starter/Growth through Stripe. Review `/inbox` after conversations. Do **not** build live payment blocking, full accounting sync, or enterprise RBAC until those five answers are clear.
 
 ## Stack
 

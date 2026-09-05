@@ -143,6 +143,10 @@ export type SessionUser = {
   businessType?: string;
   systems?: string[];
   risks?: string[];
+  plan?: string;
+  paid?: boolean;
+  stripeCustomerId?: string;
+  stripeSubscriptionId?: string;
 };
 
 export type OnboardingState = {

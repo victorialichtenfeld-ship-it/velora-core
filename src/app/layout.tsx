@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ValidationShell } from "@/components/validation/validation-shell";
 import "./globals.css";
 
+import { siteUrl } from "@/lib/site";
+
 const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -19,6 +21,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl()),
   title: {
     default: "Velora — Catch costly mistakes before they cost you money",
     template: "%s · Velora",

@@ -1,7 +1,7 @@
 /**
  * Google Apps Script web app for Velora validation.
  *
- * 1. Create a Google Sheet with tabs named Leads, Feedback, Events.
+ * 1. Create a Google Sheet with tabs named Leads, Feedback, Events, Orders.
  * 2. Extensions → Apps Script, paste this file.
  * 3. Deploy → New deployment → Web app
  *    Execute as: Me
@@ -12,7 +12,8 @@ function doPost(e) {
   const body = JSON.parse(e.postData.contents || "{}");
   const kind = String(body.kind || "events");
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const tabName = kind === "leads" ? "Leads" : kind === "feedback" ? "Feedback" : "Events";
+  const tabName =
+    kind === "leads" ? "Leads" : kind === "feedback" ? "Feedback" : kind === "orders" ? "Orders" : "Events";
   const sheet = ss.getSheetByName(tabName) || ss.insertSheet(tabName);
 
   const skip = { kind: true };

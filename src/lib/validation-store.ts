@@ -1,7 +1,7 @@
 import { mkdir, readFile, appendFile } from "node:fs/promises";
 import path from "node:path";
 
-export type StoredKind = "leads" | "feedback" | "events";
+export type StoredKind = "leads" | "feedback" | "events" | "orders";
 
 const dataDir = path.join(process.cwd(), "data");
 

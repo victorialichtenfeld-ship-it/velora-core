@@ -5,8 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 type InboxPayload = {
   ok: boolean;
   sheetConfigured: boolean;
+  stripeConfigured?: boolean;
   counts: {
     leads: number;
+    orders: number;
+    paid: number;
     feedback: number;
     events: number;
     pageViews: number;
@@ -15,6 +18,7 @@ type InboxPayload = {
     ctaByPlan: Record<string, Record<string, number>>;
   };
   leads: Array<Record<string, string>>;
+  orders?: Array<Record<string, string>>;
   feedback: Array<Record<string, string>>;
 };
 
@@ -63,7 +67,7 @@ export default function InboxPage() {
       <p className="text-[13px] font-medium text-gold">Customer validation</p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">Inbox</h1>
       <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
-        Leads, pricing reactions, and CTA clicks. Not linked from the public site. Set <code>VALIDATION_INBOX_KEY</code> to open this.
+        Leads, paid orders, pricing reactions, and CTA clicks. Not linked from the public site. Set <code>VALIDATION_INBOX_KEY</code> to open this.
       </p>
 
       <form
@@ -89,12 +93,13 @@ export default function InboxPage() {
       {data ? (
         <div className="mt-10 space-y-10">
           <p className="text-[13px] text-muted-foreground">
-            {data.sheetConfigured ? "Also forwarding to the Google Sheet webhook." : "Saving locally in data/*.jsonl. Add GOOGLE_SHEETS_WEBHOOK_URL to mirror a sheet."}
+            {data.sheetConfigured ? "Also forwarding to the Google Sheet webhook. " : "Saving locally in data/*.jsonl. Add GOOGLE_SHEETS_WEBHOOK_URL to mirror a sheet. "}
+            Stripe: {data.stripeConfigured ? "connected" : "offline checkout only on this deployment"}
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <Stat label="Leads" value={data.counts.leads} />
+            <Stat label="Paid orders" value={data.counts.paid} />
             <Stat label="Reached pricing" value={data.counts.reachedPricing} />
-            <Stat label="Page views" value={data.counts.pageViews} />
             <Stat label="Pricing feedback" value={data.counts.feedback} />
           </div>
 
@@ -140,6 +145,33 @@ export default function InboxPage() {
               {priceMix.map(([id, count]) => (
                 <li key={id}>
                   {id.replaceAll("_", " ")}: {count}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold">Orders</h2>
+              <a className="text-[13px] text-gold hover:underline" href={`/api/inbox?key=${encodeURIComponent(key)}&format=csv&kind=orders`}>
+                Download CSV
+              </a>
+            </div>
+            <ul className="mt-3 space-y-3">
+              {(data.orders ?? []).length === 0 ? <li className="text-sm text-muted-foreground">No orders yet.</li> : null}
+              {(data.orders ?? []).map((order) => (
+                <li key={`${order.id}-${order.at}-${order.status}`} className="glass rounded-2xl p-4 text-sm">
+                  <p className="font-medium">
+                    {order.plan || "plan"} · {order.status}
+                    {order.provider ? ` · ${order.provider}` : ""}
+                  </p>
+                  <p className="mt-1 text-muted-foreground">
+                    {order.name} · {order.email} · {order.company}
+                  </p>
+                  <p className="mt-1 text-[12px] text-muted-foreground">
+                    {order.amount ? `$${(Number(order.amount) / 100).toFixed(0)}/mo · ` : ""}
+                    {order.at}
+                  </p>
                 </li>
               ))}
             </ul>

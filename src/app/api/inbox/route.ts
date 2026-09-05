@@ -14,10 +14,11 @@ export async function GET(request: Request) {
     return NextResponse.json({ ok: false, error: "Inbox key required." }, { status: 401 });
   }
 
-  const [leads, feedback, events] = await Promise.all([
+  const [leads, feedback, events, orders] = await Promise.all([
     readRecords("leads"),
     readRecords("feedback"),
     readRecords("events"),
+    readRecords("orders"),
   ]);
 
   const ctaClicks = events.filter((row) => row.event === "cta_click");
@@ -32,8 +33,11 @@ export async function GET(request: Request) {
   const payload = {
     ok: true,
     sheetConfigured: Boolean(process.env.GOOGLE_SHEETS_WEBHOOK_URL),
+    stripeConfigured: Boolean(process.env.STRIPE_SECRET_KEY),
     counts: {
       leads: leads.length,
+      orders: orders.length,
+      paid: orders.filter((row) => row.status === "paid").length,
       feedback: feedback.length,
       events: events.length,
       pageViews: events.filter((row) => row.event === "page_view").length,
@@ -47,14 +51,16 @@ export async function GET(request: Request) {
       ctaByPlan: byPlan,
     },
     leads: leads.slice().reverse(),
+    orders: orders.slice().reverse(),
     feedback: feedback.slice().reverse(),
     recentEvents: events.slice(-80).reverse(),
   };
 
   const format = url.searchParams.get("format");
   const kind = url.searchParams.get("kind");
-  if (format === "csv" && (kind === "leads" || kind === "feedback" || kind === "events")) {
-    const rows = kind === "leads" ? leads : kind === "feedback" ? feedback : events;
+  if (format === "csv" && (kind === "leads" || kind === "feedback" || kind === "events" || kind === "orders")) {
+    const rows =
+      kind === "leads" ? leads : kind === "feedback" ? feedback : kind === "orders" ? orders : events;
     const keys = Array.from(new Set(rows.flatMap((row) => Object.keys(row))));
     const lines = [
       keys.join(","),

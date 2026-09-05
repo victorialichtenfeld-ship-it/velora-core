@@ -11,13 +11,12 @@ import {
   Link2,
   LogOut,
   Settings,
-  Shield,
   SlidersHorizontal,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { demoUser } from "@/lib/data/demo";
+import { WorkspaceIdentity } from "@/components/dashboard/workspace-identity";
 import { signOut } from "@/app/auth-actions";
 
 const items = [
@@ -66,19 +65,7 @@ export function DashboardSidebar({ onNavigate }: { onNavigate?: () => void }) {
         })}
       </nav>
       <div className="border-t border-ink/8 p-4">
-        <div className="mb-3 flex items-center gap-3">
-          <div className="flex size-9 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-primary">
-            JH
-          </div>
-          <div className="min-w-0">
-            <p className="truncate text-sm">{demoUser.name}</p>
-            <p className="truncate text-xs text-muted-foreground">{demoUser.company} walkthrough</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
-          <Shield className="size-3.5" />
-          Live demo
-        </div>
+        <WorkspaceIdentity />
         <form action={signOut}>
           <Button type="submit" variant="ghost" className="mt-2 w-full justify-start">
             <LogOut />
