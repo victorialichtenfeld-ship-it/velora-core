@@ -1,35 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { CashScene } from "@/components/marketing/hero-visual";
 import { SampleDataBadge } from "@/components/sample-data-badge";
 import { AnimatedNumber } from "@/components/animated-number";
-import { holdCopy, holdLoopMs, holdSequence, type HoldStage } from "@/lib/hold-loop";
+import { holdCopy, useHoldLoop } from "@/lib/hold-loop";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
-  const reduce = useReducedMotion();
-  const [stage, setStage] = useState<HoldStage>("send");
-  const line = reduce ? holdCopy.held : holdCopy[stage];
-
-  useEffect(() => {
-    if (reduce) return;
-    let timers: number[] = [];
-    const run = () => {
-      timers.forEach(clearTimeout);
-      timers = holdSequence.map(({ stage: next, at }) => window.setTimeout(() => setStage(next), at));
-    };
-    run();
-    const loop = window.setInterval(run, holdLoopMs);
-    return () => {
-      timers.forEach(clearTimeout);
-      clearInterval(loop);
-    };
-  }, [reduce]);
+  const { stage, cycle, reduce } = useHoldLoop();
+  const line = holdCopy[stage];
 
   return (
     <section className="relative overflow-hidden">
@@ -107,7 +90,7 @@ export function Hero() {
           </div>
         </div>
         <div className="order-1 lg:order-2">
-          <CashScene />
+          <CashScene stage={stage} cycle={cycle} reduce={reduce} />
         </div>
       </div>
     </section>

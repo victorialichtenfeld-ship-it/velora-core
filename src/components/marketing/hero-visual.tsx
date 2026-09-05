@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Lock } from "lucide-react";
 import { SampleDataBadge } from "@/components/sample-data-badge";
-import { holdCopy, holdLoopMs, holdSequence, type HoldStage } from "@/lib/hold-loop";
+import { holdCopy, type HoldStage } from "@/lib/hold-loop";
 
 function StatusChip({ stage }: { stage: HoldStage }) {
   if (stage === "held") {
@@ -31,32 +30,18 @@ function StatusChip({ stage }: { stage: HoldStage }) {
   );
 }
 
-export function CashScene() {
-  const [stage, setStage] = useState<HoldStage>("send");
-  const [cycle, setCycle] = useState(0);
-  const reduce = useReducedMotion();
-  const view = reduce ? "held" : stage;
-  const held = view === "held";
-  const matching = view === "match";
+export function CashScene({
+  stage,
+  cycle,
+  reduce,
+}: {
+  stage: HoldStage;
+  cycle: number;
+  reduce: boolean | null;
+}) {
+  const held = stage === "held";
+  const matching = stage === "match";
   const progress = held ? 100 : matching ? 74 : 24;
-
-  useEffect(() => {
-    if (reduce) return;
-    let timers: number[] = [];
-    const run = () => {
-      timers.forEach(clearTimeout);
-      timers = holdSequence.map(({ stage: next, at }) => window.setTimeout(() => setStage(next), at));
-    };
-    run();
-    const loop = window.setInterval(() => {
-      setCycle((n) => n + 1);
-      run();
-    }, holdLoopMs);
-    return () => {
-      timers.forEach(clearTimeout);
-      clearInterval(loop);
-    };
-  }, [reduce]);
 
   return (
     <div className="relative mx-auto w-full max-w-[540px]">
@@ -92,23 +77,17 @@ export function CashScene() {
               </span>
             ) : null}
 
-            <AnimatePresence mode="wait">
-            <motion.div
-                key={`row-${cycle}`}
-                initial={reduce ? false : { y: 10 }}
-                animate={{ y: 0 }}
-                transition={{ type: "spring", stiffness: 120, damping: 18 }}
-                className={`flex items-center justify-between gap-3 py-3.5 ${
-                  matching || held ? "rounded-xl bg-muted/80 px-3 -mx-1" : ""
-                }`}
-              >
-                <div>
-                  <p className="text-[13px] font-medium">ACH-4418</p>
-                  <p className="mt-0.5 text-[12px] text-muted-foreground">15 hours later · same amount</p>
-                </div>
-                <StatusChip stage={view} />
-              </motion.div>
-            </AnimatePresence>
+            <div
+              className={`flex items-center justify-between gap-3 py-3.5 ${
+                matching || held ? "rounded-xl bg-muted/80 px-3 -mx-1" : ""
+              }`}
+            >
+              <div>
+                <p className="text-[13px] font-medium">ACH-4418</p>
+                <p className="mt-0.5 text-[12px] text-muted-foreground">15 hours later · same amount</p>
+              </div>
+              <StatusChip stage={stage} />
+            </div>
           </div>
 
           <div className="mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
@@ -118,28 +97,18 @@ export function CashScene() {
             />
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={view}
-              initial={reduce ? false : { y: 8, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={reduce ? undefined : { y: -6, opacity: 0 }}
-              transition={{ duration: 0.28 }}
-              className="mt-4 text-[13px] leading-6 text-muted-foreground"
-            >
-              {holdCopy[view]}
-            </motion.p>
-          </AnimatePresence>
+          {held ? null : (
+            <p className="mt-4 text-[13px] leading-6 text-muted-foreground">{holdCopy[stage]}</p>
+          )}
         </div>
 
         <AnimatePresence>
           {held ? (
             <motion.div
               key={`banner-${cycle}`}
-              initial={reduce ? false : { y: 24, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={reduce ? undefined : { y: 12, opacity: 0 }}
-              className="flex items-center justify-between gap-3 border-t border-border bg-foreground px-6 py-3.5 text-primary-foreground"
+              initial={reduce ? false : { y: 16 }}
+              animate={{ y: 0 }}
+              className="flex items-center justify-between gap-3 bg-foreground px-6 py-3.5 text-primary-foreground"
             >
               <p className="text-[13px] font-medium">Held before the bank</p>
               <p className="text-[12px] text-primary-foreground/70">Will not leave the account</p>
@@ -149,8 +118,4 @@ export function CashScene() {
       </div>
     </div>
   );
-}
-
-export function HeroVisual() {
-  return <CashScene />;
 }
