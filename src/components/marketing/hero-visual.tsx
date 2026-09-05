@@ -6,20 +6,23 @@ import { Lock } from "lucide-react";
 
 type Stage = "send" | "scan" | "match" | "held";
 
+const ticks = Array.from({ length: 48 }, (_, i) => i);
+
 export function CashScene() {
   const [stage, setStage] = useState<Stage>("send");
   const reduce = useReducedMotion();
   const view = reduce ? "held" : stage;
   const held = view === "held";
   const scanning = view === "scan" || view === "match";
+  const orbit = held ? 198 : view === "match" ? 150 : scanning ? 95 : 28;
 
   useEffect(() => {
     if (reduce) return;
     const sequence: { stage: Stage; at: number }[] = [
       { stage: "send", at: 0 },
-      { stage: "scan", at: 900 },
-      { stage: "match", at: 2200 },
-      { stage: "held", at: 3400 },
+      { stage: "scan", at: 800 },
+      { stage: "match", at: 2100 },
+      { stage: "held", at: 3300 },
     ];
     let timers: number[] = [];
     const run = () => {
@@ -27,87 +30,96 @@ export function CashScene() {
       timers = sequence.map(({ stage: next, at }) => window.setTimeout(() => setStage(next), at));
     };
     run();
-    const loop = window.setInterval(run, 6200);
+    const loop = window.setInterval(run, 6400);
     return () => {
       timers.forEach(clearTimeout);
       clearInterval(loop);
     };
   }, [reduce]);
 
-  const x = held ? "62%" : view === "match" ? "54%" : scanning ? "38%" : "8%";
-
   return (
-    <div className="relative mx-auto mt-10 mb-8 w-full max-w-5xl px-4 sm:px-6">
-      <p className="mb-6 text-center text-[11px] uppercase tracking-[0.22em] text-gold/70">
-        {held
-          ? "Locked before the bank"
-          : view === "match"
-            ? "Same vendor · same dollars · 15 hrs"
-            : scanning
-              ? "Matching paid history"
-              : "ACH-4418 leaving the account"}
-      </p>
+    <div className="relative mx-auto aspect-square w-full max-w-[440px]">
+      <div className="absolute inset-[-12%] rounded-full bg-[radial-gradient(circle,rgb(176_137_58_/_0.16),transparent_62%)] animate-gold-breathe" />
 
-      <div className="relative h-28 sm:h-32">
-        <svg className="absolute top-1/2 right-8 left-8 h-2 -translate-y-1/2 overflow-visible" aria-hidden="true">
-          <line
-            x1="0"
-            y1="4"
-            x2="100%"
-            y2="4"
-            stroke="#B0893A"
-            strokeWidth="1.2"
-            strokeDasharray="8 8"
-            className={scanning || !held ? "animate-wire" : ""}
-            opacity="0.55"
-          />
-        </svg>
+      <div className="absolute inset-0 rounded-full border border-gold/25" />
+      <div className="absolute inset-[18px] rounded-full border border-dashed border-gold/35 animate-spin-slow" />
+      <div className="absolute inset-[52px] rounded-full border border-gold/15" />
 
-        {scanning ? <div className="pointer-events-none absolute inset-x-8 top-0 h-full scan-wash animate-scan" /> : null}
+      <svg viewBox="0 0 200 200" className="absolute inset-0 animate-spin-rev" aria-hidden="true">
+        {ticks.map((i) => {
+          const a = (i / 48) * Math.PI * 2 - Math.PI / 2;
+          const major = i % 6 === 0;
+          const inner = major ? 84 : 90;
+          const outer = 96;
+          return (
+            <line
+              key={i}
+              x1={100 + Math.cos(a) * inner}
+              y1={100 + Math.sin(a) * inner}
+              x2={100 + Math.cos(a) * outer}
+              y2={100 + Math.sin(a) * outer}
+              stroke="#B0893A"
+              strokeWidth={major ? 1.5 : 0.6}
+              opacity={major ? 0.75 : 0.28}
+            />
+          );
+        })}
+      </svg>
 
+      <svg viewBox="0 0 200 200" className="absolute inset-[36px]" aria-hidden="true">
+        <circle
+          cx="100"
+          cy="100"
+          r="78"
+          fill="none"
+          stroke="#B0893A"
+          strokeWidth="1.2"
+          opacity="0.45"
+          className={reduce ? "" : "animate-ring-draw"}
+        />
+      </svg>
+
+      {scanning ? (
+        <div className="pointer-events-none absolute inset-[40px] overflow-hidden rounded-full">
+          <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-16" />
+        </div>
+      ) : null}
+
+      {!held ? (
         <motion.div
-          animate={{ left: x }}
-          transition={{ type: "spring", stiffness: 90, damping: 18 }}
-          className="absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+          className="absolute inset-0"
+          animate={{ rotate: orbit }}
+          transition={{ type: "spring", stiffness: 60, damping: 16 }}
         >
-          <p className={`font-figure text-2xl tracking-[-0.04em] sm:text-3xl ${held ? "money-sheen" : "text-gold"}`}>
-            $11,240
-          </p>
-          <p className="mt-1 text-center text-[10px] uppercase tracking-[0.18em] text-gold/70">
-            {held ? "Held" : view === "match" ? "Duplicate" : scanning ? "Scanning" : "Queued"}
-          </p>
+          <div className="absolute top-[6%] left-1/2 -translate-x-1/2 text-center">
+            <p className="font-figure text-sm text-gold sm:text-base">ACH-4418</p>
+            <p className="text-[9px] uppercase tracking-[0.16em] text-gold/70">
+              {view === "match" ? "Duplicate" : scanning ? "Scan" : "Queued"}
+            </p>
+          </div>
         </motion.div>
+      ) : null}
 
+      <div className="absolute inset-[28%] flex flex-col items-center justify-center text-center">
         <AnimatePresence>
           {held ? (
             <motion.div
               key="lock"
-              initial={reduce ? false : { scale: 0.4, opacity: 0 }}
+              initial={reduce ? false : { scale: 0.6, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="absolute top-1/2 right-6 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-gold text-primary-foreground"
+              className="relative mb-3 flex size-12 items-center justify-center rounded-full bg-gold text-primary-foreground"
             >
-              <span className="absolute inset-0 rounded-full bg-gold animate-pulse-ring" />
+              <span className="absolute size-12 rounded-full bg-gold animate-pulse-ring" />
               <Lock className="relative size-5" />
             </motion.div>
           ) : null}
         </AnimatePresence>
-      </div>
-
-      <div className="mt-2 text-center">
-        <AnimatePresence mode="wait">
-          {held ? (
-            <motion.p
-              key="stamp"
-              initial={reduce ? false : { opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="animate-hold-stamp inline-block text-[12px] font-medium tracking-[0.22em] text-gold uppercase"
-            >
-              Cash held
-            </motion.p>
-          ) : (
-            <p className="text-[12px] tracking-[0.08em] text-muted-foreground">Apex Logistics · ACH-4418</p>
-          )}
-        </AnimatePresence>
+        <p className="font-figure money-sheen text-[2.6rem] leading-none tracking-[-0.05em] sm:text-[3.15rem]">
+          $11,240
+        </p>
+        <p className="mt-3 text-[10px] uppercase tracking-[0.22em] text-gold/75">
+          {held ? "Locked before the bank" : "Apex Logistics"}
+        </p>
       </div>
     </div>
   );

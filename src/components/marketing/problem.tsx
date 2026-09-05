@@ -60,7 +60,7 @@ export function ProblemSection() {
         >
           <h3 className="font-figure text-2xl leading-snug tracking-[-0.02em] sm:text-3xl">{current.line}</h3>
           <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">{current.detail}</p>
-          <p className="money-sheen mt-8 font-figure text-6xl tracking-[-0.04em]">{current.impact}</p>
+          <p className="money-sheen mt-8 font-figure text-7xl tracking-[-0.05em] sm:text-8xl">{current.impact}</p>
         </motion.div>
       </AnimatePresence>
     </section>

@@ -8,8 +8,10 @@ import { cn } from "@/lib/utils";
 export function FinalCta() {
   const reduce = useReducedMotion();
   return (
-    <section className="mx-auto w-full max-w-3xl px-4 pb-24 text-center sm:px-6">
+    <section className="relative overflow-hidden px-4 pb-24 text-center sm:px-6">
+      <div className="pointer-events-none absolute top-1/2 left-1/2 size-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/15 animate-spin-slow" />
       <motion.div
+        className="relative mx-auto w-full max-w-3xl"
         initial={reduce ? false : { y: 14 }}
         whileInView={{ y: 0 }}
         viewport={{ once: true, amount: 0.3 }}

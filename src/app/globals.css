@@ -386,9 +386,17 @@
   50% { opacity: 0.35; transform: scale(0.78); }
 }
 
-@keyframes blotterRow {
-  0%, 100% { background-color: transparent; }
-  50% { background-color: rgb(176 137 58 / 0.1); }
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinRev {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes ringDraw {
+  0% { stroke-dashoffset: 490; }
+  100% { stroke-dashoffset: 0; }
 }
 
 .animate-ticker {
@@ -466,12 +474,21 @@
   animation: flashLive 1.1s ease-in-out infinite;
 }
 
-.animate-blotter {
-  animation: blotterRow 1.8s ease-in-out infinite;
-}
-
 .animate-status {
   animation: statusPulse 1.4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 28s linear infinite;
+}
+
+.animate-spin-rev {
+  animation: spinRev 42s linear infinite;
+}
+
+.animate-ring-draw {
+  stroke-dasharray: 980;
+  animation: ringDraw 5s ease-in-out infinite alternate;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -495,6 +512,9 @@
   .animate-flash,
   .animate-blotter,
   .animate-status,
+  .animate-spin-slow,
+  .animate-spin-rev,
+  .animate-ring-draw,
   .gold-run-border,
   .text-shimmer,
   .money-sheen,
