@@ -1,4 +1,7 @@
+"use client";
+
 import { integrationsCatalog } from "@/lib/data/demo";
+import { MotionCard } from "@/components/motion-card";
 
 export function IntegrationsSection() {
   const liveNow = integrationsCatalog.filter((item) => item.status === "connected");
@@ -13,7 +16,7 @@ export function IntegrationsSection() {
       </p>
 
       <Group title="Live now" items={liveNow} />
-      <Group title="Coming soon" items={comingSoon} />
+      <Group title="Coming soon" items={comingSoon} startDelay={0.12} />
     </section>
   );
 }
@@ -21,18 +24,22 @@ export function IntegrationsSection() {
 function Group({
   title,
   items,
+  startDelay = 0,
 }: {
   title: string;
   items: { id: string; name: string; category: string }[];
+  startDelay?: number;
 }) {
   return (
     <div className="mt-8">
       <p className="text-sm font-medium text-foreground">{title}</p>
       <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-        {items.map((item) => (
-          <li key={item.id} className="rounded-md bg-card px-4 py-3 ring-1 ring-border">
-            <p className="text-sm font-medium">{item.name}</p>
-            <p className="mt-0.5 text-xs text-muted-foreground">{item.category}</p>
+        {items.map((item, index) => (
+          <li key={item.id}>
+            <MotionCard delay={startDelay + index * 0.04} className="rounded-md p-0 px-4 py-3">
+              <p className="text-sm font-medium">{item.name}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">{item.category}</p>
+            </MotionCard>
           </li>
         ))}
       </ul>

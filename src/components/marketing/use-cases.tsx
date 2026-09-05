@@ -1,3 +1,7 @@
+"use client";
+
+import { MotionCard } from "@/components/motion-card";
+
 const cases = [
   {
     team: "Sales discounts",
@@ -30,12 +34,12 @@ export function UseCases() {
         The walkthrough includes these detectors so finance can see the control layer expand. They are not the reason to buy Velora today.
       </p>
       <div className="mt-8 grid gap-3 sm:grid-cols-2">
-        {cases.map((item) => (
-          <div key={item.team} className="rounded-xl bg-card p-5 ring-1 ring-border">
+        {cases.map((item, index) => (
+          <MotionCard key={item.team} delay={index * 0.06}>
             <p className="text-sm font-medium">{item.team}</p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.example}</p>
             <p className="mt-3 text-sm text-foreground">{item.result}</p>
-          </div>
+          </MotionCard>
         ))}
       </div>
     </section>

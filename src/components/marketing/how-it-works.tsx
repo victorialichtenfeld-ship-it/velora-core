@@ -1,3 +1,7 @@
+"use client";
+
+import { MotionCard } from "@/components/motion-card";
+
 const steps = [
   {
     n: "01",
@@ -24,13 +28,14 @@ export function HowItWorks() {
       <p className="mt-4 max-w-2xl text-muted-foreground">
         Velora does not ask AP to re-key data. It watches the tools they already run and blocks the two mistakes that cost the most.
       </p>
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
-        {steps.map((step) => (
-          <div key={step.n} className="rounded-xl bg-card p-5 ring-1 ring-border">
-            <p className="font-mono text-xs text-muted-foreground">{step.n}</p>
+      <div className="relative mt-10 grid gap-4 md:grid-cols-3">
+        <div className="pointer-events-none absolute top-8 right-8 left-8 hidden h-px bg-[linear-gradient(90deg,transparent,var(--gold),transparent)] opacity-40 md:block" />
+        {steps.map((step, index) => (
+          <MotionCard key={step.n} delay={index * 0.08} className="relative">
+            <p className="font-mono text-xs text-primary">{step.n}</p>
             <h3 className="mt-2 text-lg font-medium">{step.title}</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{step.body}</p>
-          </div>
+          </MotionCard>
         ))}
       </div>
     </section>

@@ -1,13 +1,14 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-colors outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-[color,background-color,border-color,transform,box-shadow] duration-200 outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default:
+          "btn-shine bg-primary text-primary-foreground shadow-[0_0_24px_rgb(226_194_120_/_0.22)] hover:bg-primary/90 hover:-translate-y-px",
         outline:
-          "border-gold/40 bg-transparent text-foreground hover:bg-gold/10",
+          "border-gold/40 bg-transparent text-foreground hover:bg-gold/10 hover:-translate-y-px",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-muted",
         ghost: "hover:bg-muted hover:text-foreground",

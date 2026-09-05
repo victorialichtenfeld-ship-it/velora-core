@@ -1,4 +1,7 @@
+"use client";
+
 import { FileKey2, LockKeyhole, ShieldCheck, UserRoundCheck, ScrollText } from "lucide-react";
+import { MotionCard } from "@/components/motion-card";
 
 const pillars = [
   {
@@ -36,12 +39,12 @@ export function TrustSection() {
         Controls only belong in the payment path if they are boring and auditable.
       </h2>
       <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-        {pillars.map((pillar) => (
-          <div key={pillar.title} className="rounded-xl bg-card p-5 ring-1 ring-border">
-            <pillar.icon className="size-4 text-muted-foreground" />
+        {pillars.map((pillar, index) => (
+          <MotionCard key={pillar.title} delay={index * 0.06}>
+            <pillar.icon className="size-4 text-primary" />
             <h3 className="mt-3 text-base font-medium">{pillar.title}</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{pillar.body}</p>
-          </div>
+          </MotionCard>
         ))}
       </div>
     </section>

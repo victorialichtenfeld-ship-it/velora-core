@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { launchDemoWorkspace } from "@/app/auth-actions";
 import { SampleDataBadge } from "@/components/sample-data-badge";
 import { Button } from "@/components/ui/button";
@@ -36,7 +37,7 @@ export function ProductDemo() {
         This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it.
       </p>
 
-      <div className="product-frame mt-8 rounded-xl p-4 ring-1 ring-border sm:p-6">
+      <div className="product-frame gold-glow mt-8 rounded-xl p-4 ring-1 ring-border sm:p-6">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-medium">Meridian Supply · AP walkthrough</p>
@@ -53,15 +54,23 @@ export function ProductDemo() {
         <div className="mt-6 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="space-y-2">
             <p className="text-xs text-muted-foreground">Open alerts</p>
+            <LayoutGroup>
             {alerts.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setSelected(item.id)}
-                className={`w-full rounded-md px-3 py-3 text-left ring-1 transition ${
+                className={`relative w-full overflow-hidden rounded-md px-3 py-3 text-left ring-1 transition ${
                   selected === item.id ? "bg-secondary ring-primary/40" : "bg-background ring-border hover:bg-muted"
                 }`}
               >
+                {selected === item.id ? (
+                  <motion.span
+                    layoutId="demo-active"
+                    className="absolute inset-y-0 left-0 w-0.5 bg-primary"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                ) : null}
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-sm text-foreground">{item.title}</p>
                   <DecisionChip decision={decisions[item.id]} />
@@ -69,20 +78,31 @@ export function ProductDemo() {
                 <p className="mt-1 font-mono text-sm tabular text-risk">{formatCurrency(item.dollarImpact)}</p>
               </button>
             ))}
+            </LayoutGroup>
           </div>
           {alert ? (
-            <AlertWorkbench
-              alert={alert}
-              decision={decision}
-              onDecide={(next) => setDecisions((current) => ({ ...current, [alert.id]: next }))}
-              onReset={() =>
-                setDecisions((current) => {
-                  const next = { ...current };
-                  delete next[alert.id];
-                  return next;
-                })
-              }
-            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={alert.id}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.28 }}
+              >
+                <AlertWorkbench
+                  alert={alert}
+                  decision={decision}
+                  onDecide={(next) => setDecisions((current) => ({ ...current, [alert.id]: next }))}
+                  onReset={() =>
+                    setDecisions((current) => {
+                      const next = { ...current };
+                      delete next[alert.id];
+                      return next;
+                    })
+                  }
+                />
+              </motion.div>
+            </AnimatePresence>
           ) : null}
         </div>
       </div>
@@ -150,7 +170,13 @@ function AlertWorkbench({
       </dl>
 
       {decision ? (
-        <div className="mt-4 rounded-md bg-secondary p-3 ring-1 ring-border">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`mt-4 rounded-md p-3 ring-1 ${
+            decision === "resolved" ? "bg-protect/10 ring-primary/30" : "bg-secondary ring-border"
+          }`}
+        >
           <p className="text-sm font-medium">
             {decision === "resolved" && "Decision recorded: hold. The second payment does not leave the account."}
             {decision === "approved" && "Decision recorded: approve. You overrode the hold with a named decision."}
@@ -160,7 +186,7 @@ function AlertWorkbench({
           <button type="button" onClick={onReset} className={cn(buttonVariants({ variant: "ghost" }), "mt-2 h-8 px-2")}>
             Reset this alert
           </button>
-        </div>
+        </motion.div>
       ) : (
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
           <Button type="button" className="h-10" onClick={() => onDecide("resolved")}>

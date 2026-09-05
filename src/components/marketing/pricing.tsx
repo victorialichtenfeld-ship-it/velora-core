@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button-variants";
+import { MotionCard } from "@/components/motion-card";
 import { cn } from "@/lib/utils";
 
 const plans = [
@@ -63,13 +66,11 @@ export function Pricing() {
         Starter and Growth start a trial workspace. Enterprise is a call with finance and IT — not a self-serve signup.
       </p>
       <div className="mt-8 grid gap-3 lg:grid-cols-3">
-        {plans.map((plan) => (
-          <div
+        {plans.map((plan, index) => (
+          <MotionCard
             key={plan.name}
-            className={cn(
-              "flex flex-col rounded-xl bg-card p-6 ring-1 ring-border",
-              plan.highlighted && "ring-primary/50"
-            )}
+            delay={index * 0.08}
+            className={cn("flex flex-col p-6", plan.highlighted && "gold-glow ring-primary/50")}
           >
             <p className="text-sm font-medium">{plan.name}</p>
             <p className="mt-3 font-mono text-4xl tabular tracking-tight">
@@ -94,7 +95,7 @@ export function Pricing() {
             >
               {plan.cta}
             </Link>
-          </div>
+          </MotionCard>
         ))}
       </div>
     </section>

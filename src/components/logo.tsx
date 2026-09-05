@@ -25,7 +25,7 @@ export function Logo({
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="18" cy="12.4" r="1.35" fill="#E2C278" />
+        <circle cx="18" cy="12.4" r="1.35" fill="#E2C278" className="animate-gold-breathe" />
       </svg>
       {wordmark ? (
         <span className="text-[1.02rem] font-semibold tracking-[-0.03em] text-foreground">
