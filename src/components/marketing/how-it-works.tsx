@@ -34,7 +34,7 @@ export function HowItWorks() {
       <ol className="relative mt-14 space-y-12">
         <span className="absolute top-3 bottom-3 left-[1.15rem] hidden w-px bg-gold/20 sm:block">
           {reduce ? null : (
-            <span className="animate-bead absolute left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-gold shadow-[0_0_10px_rgb(176_137_58)]" />
+            <span className="animate-bead absolute left-1/2 size-2 -translate-x-1/2 rounded-full bg-gold shadow-[0_0_14px_rgb(176_137_58)]" />
           )}
         </span>
         {steps.map((step, index) => (
@@ -46,7 +46,7 @@ export function HowItWorks() {
             transition={{ delay: index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="grid gap-2 sm:grid-cols-[4.5rem_1fr] sm:gap-8"
           >
-            <p className="font-figure text-3xl text-gold">{step.n}</p>
+            <p className="font-figure animate-node text-3xl text-gold">{step.n}</p>
             <div>
               <h3 className="font-figure text-2xl tracking-[-0.03em]">{step.title}</h3>
               <p className="mt-2 max-w-xl text-sm leading-7 text-muted-foreground">{step.body}</p>

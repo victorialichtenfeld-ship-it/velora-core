@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Lock } from "lucide-react";
 import { SectionIntro } from "@/components/marketing/section-intro";
@@ -48,7 +48,10 @@ export function ProductDemo() {
             <p className="text-[11px] uppercase tracking-[0.22em] text-gold">Velora control · Meridian Supply</p>
             <p className="mt-1 text-sm text-muted-foreground">Jordan Hale · VP of Finance</p>
           </div>
-          <SampleDataBadge />
+          <div className="flex items-center gap-4">
+            <LiveLatency />
+            <SampleDataBadge />
+          </div>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
@@ -104,6 +107,20 @@ export function ProductDemo() {
         </Button>
       </form>
     </section>
+  );
+}
+
+function LiveLatency() {
+  const [ms, setMs] = useState(16);
+  useEffect(() => {
+    const id = window.setInterval(() => setMs(11 + Math.floor(Math.random() * 12)), 280);
+    return () => window.clearInterval(id);
+  }, []);
+  return (
+    <p className="font-mono text-[10px] tracking-[0.14em] text-gold/55">
+      <span className="mr-1.5 inline-block size-1.5 rounded-full bg-gold align-middle animate-flash" />
+      infer {ms}ms
+    </p>
   );
 }
 

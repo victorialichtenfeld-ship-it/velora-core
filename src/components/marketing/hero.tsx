@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { CashScene } from "@/components/marketing/hero-visual";
 import { SampleDataBadge } from "@/components/sample-data-badge";
+import { AnimatedNumber } from "@/components/animated-number";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
@@ -62,8 +63,12 @@ export function Hero() {
           </motion.div>
           <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-gold/20 pt-5 text-[12px] tracking-[0.04em] text-gold/75">
             <SampleDataBadge />
-            <p className="font-figure text-lg text-gold">$184,320 held this month</p>
-            <p>47 payments stopped</p>
+            <p className="font-figure text-lg text-gold">
+              <AnimatedNumber value={184320} prefix="$" duration={1400} /> held this month
+            </p>
+            <p>
+              <AnimatedNumber value={47} duration={1100} /> payments stopped
+            </p>
           </div>
         </div>
         <div className="order-1 lg:order-2">

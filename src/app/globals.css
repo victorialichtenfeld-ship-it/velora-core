@@ -216,7 +216,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmerText 2.2s linear infinite;
+    animation: shimmerText 1.15s linear infinite;
   }
   .scan-beam {
     height: 2px;
@@ -336,6 +336,7 @@
       inset 0 1px 0 rgb(196 168 106 / 0.18);
   }
   .gold-chip {
+    position: relative;
     min-width: 7.2rem;
     border-radius: 2px;
     border: 1px solid rgb(176 137 58 / 0.55);
@@ -344,6 +345,17 @@
     box-shadow:
       0 0 28px rgb(176 137 58 / 0.38),
       0 10px 24px rgb(0 0 0 / 0.55);
+  }
+  .gold-chip::after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    width: 78px;
+    height: 2px;
+    margin-top: -1px;
+    background: linear-gradient(90deg, transparent, rgb(196 168 106 / 0.9));
+    box-shadow: 0 0 12px rgb(176 137 58 / 0.55);
   }
   .ai-field {
     border: 1px solid rgb(176 137 58 / 0.32);
@@ -361,7 +373,7 @@
     background-size: 36px 36px;
     transform: perspective(560px) rotateX(58deg);
     transform-origin: center top;
-    animation: gridPan 16s linear infinite;
+    animation: gridPan 5.4s linear infinite;
     mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.75), transparent 88%);
   }
   .ai-scan {
@@ -369,14 +381,45 @@
     inset: 0 auto 0 0;
     width: 18%;
     background: linear-gradient(90deg, transparent, rgb(176 137 58 / 0.22), transparent);
-    animation: scanPlane 1.25s linear infinite;
+    animation: scanPlane 0.7s linear infinite;
   }
   .ai-scan-y {
     position: absolute;
     inset: 0 0 auto 0;
     height: 18%;
     background: linear-gradient(180deg, transparent, rgb(176 137 58 / 0.16), transparent);
-    animation: scanPlaneY 1.8s ease-in-out infinite;
+    animation: scanPlaneY 0.95s ease-in-out infinite;
+  }
+  .ai-radar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 140%;
+    height: 140%;
+    translate: -50% -50%;
+    border-radius: 9999px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0 76%,
+      rgb(176 137 58 / 0.05) 82%,
+      rgb(176 137 58 / 0.32) 92%,
+      transparent 100%
+    );
+    animation: spinSlow 2.35s linear infinite;
+    mask-image: radial-gradient(circle, transparent 14%, black 30%, black 56%, transparent 70%);
+    pointer-events: none;
+  }
+  .ai-radar-held {
+    animation-duration: 9s;
+    opacity: 0.35;
+  }
+  .ai-scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgb(176 137 58 / 0.05) 4px
+    );
   }
   .ai-corner {
     position: absolute;
@@ -412,6 +455,17 @@
 @keyframes shimmerText {
   0% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@keyframes waveShift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes tokenFall {
+  0% { transform: translateY(-12px); opacity: 0; }
+  10% { opacity: 0.55; }
+  100% { transform: translateY(340px); opacity: 0; }
 }
 
 @keyframes shineSweep {
@@ -570,7 +624,7 @@
 }
 
 .animate-ticker {
-  animation: ticker 5.8s linear infinite;
+  animation: ticker 3.4s linear infinite;
 }
 
 .animate-ticker-fast {
@@ -582,7 +636,7 @@
 }
 
 .animate-gold-sweep {
-  animation: goldSweep 4.8s ease-in-out infinite;
+  animation: goldSweep 3.2s ease-in-out infinite;
 }
 
 .animate-dollar {
@@ -610,11 +664,11 @@
 }
 
 .animate-mote {
-  animation: mote 6s ease-in-out infinite;
+  animation: mote 3.8s ease-in-out infinite;
 }
 
 .animate-gold-breathe {
-  animation: goldBreathe 2.6s ease-in-out infinite;
+  animation: goldBreathe 1.8s ease-in-out infinite;
 }
 
 .animate-hold-stamp {
@@ -622,8 +676,8 @@
 }
 
 .animate-wire {
-  stroke-dasharray: 6 10;
-  animation: wireFlow 0.42s linear infinite;
+  stroke-dasharray: 5 8;
+  animation: wireFlow 0.22s linear infinite;
 }
 
 .animate-border-run {
@@ -632,12 +686,12 @@
 }
 
 .animate-grid {
-  animation: gridPan 18s linear infinite;
+  animation: gridPan 8s linear infinite;
 }
 
 .animate-spark {
   stroke-dasharray: 420;
-  animation: sparkDraw 3.2s ease-in-out infinite;
+  animation: sparkDraw 1.15s ease-in-out infinite;
 }
 
 .animate-flash {
@@ -662,7 +716,7 @@
 }
 
 .animate-bead {
-  animation: beadDrop 4.6s ease-in-out infinite;
+  animation: beadDrop 2.8s ease-in-out infinite;
 }
 
 .animate-line-grow {
@@ -676,11 +730,11 @@
 }
 
 .animate-gold-wash {
-  animation: goldWash 2.8s ease-in-out infinite;
+  animation: goldWash 1.6s ease-in-out infinite;
 }
 
 .animate-rail {
-  animation: railRun 4.2s linear infinite;
+  animation: railRun 2.2s linear infinite;
 }
 
 .animate-node {
@@ -694,7 +748,15 @@
 .animate-core-ping {
   transform-box: fill-box;
   transform-origin: center;
-  animation: corePing 1.8s ease-out infinite;
+  animation: corePing 1.15s ease-out infinite;
+}
+
+.animate-wave {
+  animation: waveShift 0.7s linear infinite;
+}
+
+.animate-token-fall {
+  animation: tokenFall 2.8s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -729,9 +791,12 @@
   .animate-node,
   .animate-data-fall,
   .animate-core-ping,
+  .animate-wave,
+  .animate-token-fall,
   .ai-floor,
   .ai-scan,
   .ai-scan-y,
+  .ai-radar,
   .gold-run-border,
   .text-shimmer,
   .money-sheen,

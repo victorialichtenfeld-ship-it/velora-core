@@ -92,6 +92,9 @@ export function ProblemSection() {
               <span className="absolute inset-x-8 top-1/2 h-px overflow-hidden">
                 <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
               </span>
+              {reduce ? null : (
+                <span className="animate-rail absolute top-1/2 left-8 size-1.5 -translate-y-1/2 rounded-full bg-gold shadow-[0_0_10px_rgb(176_137_58)]" />
+              )}
               <p className="relative text-center text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
                 Model match
               </p>

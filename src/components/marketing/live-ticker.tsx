@@ -11,6 +11,9 @@ export function LiveTicker() {
   const loop = [...items, ...items];
   return (
     <div className="relative overflow-hidden border-y border-gold/40 bg-gold/[0.07]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden">
+        <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
+      </div>
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
       <div className="animate-ticker flex w-max gap-16 whitespace-nowrap py-5 text-[13px] text-gold/80">
