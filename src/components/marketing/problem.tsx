@@ -87,9 +87,15 @@ export function ProblemSection() {
               <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-16" />
             </div>
             <MatchRow side={current.left} />
-            <p className="py-5 text-center text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
-              Match
-            </p>
+            <div className="relative py-5">
+              <span className="absolute inset-x-8 top-1/2 h-px bg-gold/25" />
+              <span className="absolute inset-x-8 top-1/2 h-px overflow-hidden">
+                <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
+              </span>
+              <p className="relative text-center text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
+                Model match
+              </p>
+            </div>
             <MatchRow side={current.right} emphasis />
             <p className="money-sheen mt-10 font-figure text-6xl tracking-[-0.05em] sm:text-7xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />

@@ -45,7 +45,7 @@ export function ProductDemo() {
         </div>
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.22em] text-gold">Hold desk · Meridian Supply</p>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-gold">Velora control · Meridian Supply</p>
             <p className="mt-1 text-sm text-muted-foreground">Jordan Hale · VP of Finance</p>
           </div>
           <SampleDataBadge />

@@ -22,7 +22,7 @@ export function Hero() {
             className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.32em] text-gold"
           >
             <span className="size-1.5 rounded-full bg-gold animate-flash" />
-            Live hold · ACH-4418 · 15 hours later
+            Live model · ACH-4418 · 15 hours later
           </motion.p>
           <motion.h1
             initial={reduce ? false : { y: 12 }}
@@ -38,7 +38,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="mt-6 max-w-md text-[16px] leading-8 text-muted-foreground"
           >
-            Apex already got paid. The same $11,240 hit the rail again. Velora sealed it in the vault before the bank. Start a trial and put this hold on your AP.
+            Apex already got paid. The same $11,240 hit the rail again. Velora inferred the duplicate in flight and held it before the bank. Start a trial and put this hold on your AP.
           </motion.p>
           <motion.div
             initial={reduce ? false : { y: 10 }}

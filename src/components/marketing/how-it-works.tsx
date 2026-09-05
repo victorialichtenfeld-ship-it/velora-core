@@ -6,17 +6,17 @@ import { SectionIntro } from "@/components/marketing/section-intro";
 const steps = [
   {
     n: "01",
-    title: "Connect AP",
-    body: "Email, QuickBooks, and payment rails stream bills and ACH in. This walkthrough uses simulated adapters.",
+    title: "Ingest the rail",
+    body: "Email, QuickBooks, and payment rails stream bills and ACH into Velora. This walkthrough uses simulated adapters.",
   },
   {
     n: "02",
-    title: "Match policy",
-    body: "Vendor masters, paid invoices, and contract unit prices. Duplicate amount + vendor, or invoice price ≠ contract, gets flagged.",
+    title: "Infer the match",
+    body: "The model compares vendor, amount, and contract unit price. Duplicate ACH or invoice ≠ MSA gets flagged in flight.",
   },
   {
     n: "03",
-    title: "Hold cash",
+    title: "Hold the cash",
     body: "Risky payments stop before they leave. A named finance owner holds, approves, or dismisses with an audit trail.",
   },
 ];
@@ -29,7 +29,7 @@ export function HowItWorks() {
       <SectionIntro
         eyebrow="How it works"
         title="A hold in the payment path."
-        body="Velora does not ask AP to re-key data. It watches the tools they already run."
+        body="Velora does not ask AP to re-key data. It watches the tools they already run and infers holds in the payment path."
       />
       <ol className="relative mt-14 space-y-12">
         <span className="absolute top-3 bottom-3 left-[1.15rem] hidden w-px bg-gold/20 sm:block">
