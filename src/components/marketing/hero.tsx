@@ -30,7 +30,7 @@ export function Hero() {
             className="font-figure max-w-xl text-[2.7rem] leading-[1.12] tracking-[-0.025em] text-balance text-foreground sm:text-5xl lg:text-[3.45rem]"
           >
             Stop the{" "}
-            <span className="text-gold">second payment</span>{" "}
+            <span className="money-sheen">second payment</span>{" "}
             before it clears.
           </motion.h1>
           <motion.p
@@ -49,7 +49,13 @@ export function Hero() {
           >
             <a href="#demo" className={cn(buttonVariants(), "h-12 px-6 text-[13px] tracking-[0.02em]")}>
               See it work
-              <ArrowRight className="size-4" />
+              <motion.span
+                animate={reduce ? undefined : { x: [0, 5, 0] }}
+                transition={{ duration: 1.15, repeat: Infinity, ease: "easeInOut" }}
+                className="inline-flex"
+              >
+                <ArrowRight className="size-4" />
+              </motion.span>
             </a>
             <a href="#how" className={cn(buttonVariants({ variant: "outline" }), "h-12 px-6 text-[13px] tracking-[0.02em]")}>
               How it works
@@ -63,8 +69,8 @@ export function Hero() {
               </p>
             </div>
             <dl className="grid max-w-lg grid-cols-3 gap-6">
-              <Stat value={184320} prefix="$" label="Held this month" gold delay={0.2} />
-              <Stat value={47} label="Payments stopped" gold delay={0.3} />
+              <Stat value={184320} prefix="$" label="Held this month" gold delay={0.15} />
+              <Stat value={47} label="Payments stopped" gold delay={0.28} />
               <Stat value={2} label="Core checks" delay={0.4} />
             </dl>
           </div>
@@ -96,8 +102,8 @@ function Stat({
       transition={{ duration: 0.5, delay }}
     >
       <dt className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{label}</dt>
-      <dd className={`mt-2 font-figure text-[1.7rem] tracking-[-0.03em] sm:text-[1.85rem] ${gold ? "text-gold" : "text-foreground"}`}>
-        <AnimatedNumber value={value} prefix={prefix} />
+      <dd className={`mt-2 font-figure text-[1.85rem] tracking-[-0.03em] sm:text-[2rem] ${gold ? "text-gold" : "text-foreground"}`}>
+        <AnimatedNumber value={value} prefix={prefix} duration={1600} />
       </dd>
     </motion.div>
   );

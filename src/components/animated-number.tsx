@@ -18,7 +18,7 @@ export function AnimatedNumber({
   className?: string;
   format?: (n: number) => string;
 }) {
-  const [display, setDisplay] = useState(value);
+  const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     const start = performance.now();

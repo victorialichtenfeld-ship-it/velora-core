@@ -190,8 +190,22 @@
   .gold-hairline {
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-  .text-shimmer {
-    color: var(--gold);
+  .text-shimmer,
+  .money-sheen {
+    background: linear-gradient(100deg, #8b6f47 0%, #c9a86a 35%, #ede8df 50%, #c9a86a 65%, #8b6f47 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmerText 3.8s linear infinite;
+  }
+  .scan-beam {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c9a86a, transparent);
+    box-shadow: 0 0 14px 2px rgb(201 168 106 / 35%);
+  }
+  .scan-wash {
+    background: linear-gradient(180deg, transparent, rgb(201 168 106 / 14%), transparent);
   }
   .btn-shine {
     position: relative;
@@ -201,20 +215,12 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(110deg, transparent 42%, rgb(237 232 223 / 0.14) 50%, transparent 58%);
+    background: linear-gradient(110deg, transparent 38%, rgb(237 232 223 / 0.28) 50%, transparent 62%);
     transform: translateX(-130%);
     pointer-events: none;
   }
   .btn-shine:hover::after {
-    animation: shineSweep 0.85s ease;
-  }
-  .scan-beam {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #c9a86a, transparent);
-    box-shadow: 0 0 10px 1px rgb(201 168 106 / 22%);
-  }
-  .scan-wash {
-    background: linear-gradient(180deg, transparent, rgb(201 168 106 / 8%), transparent);
+    animation: shineSweep 0.7s ease;
   }
 }
 
@@ -251,17 +257,33 @@
 
 @keyframes floatSoft {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes mote {
-  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.12; }
-  50% { transform: translate3d(14px, -28px, 0); opacity: 0.4; }
+  0% { transform: translate3d(0, 18px, 0); opacity: 0; }
+  25% { opacity: 0.55; }
+  100% { transform: translate3d(10px, -70px, 0); opacity: 0; }
 }
 
 @keyframes goldBreathe {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 0.85; }
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes holdStamp {
+  0% { transform: scale(1.4) rotate(-8deg); opacity: 0; }
+  55% { transform: scale(0.96) rotate(-2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-3deg); opacity: 1; }
+}
+
+@keyframes wireFlow {
+  to { stroke-dashoffset: -120; }
+}
+
+@keyframes tickerReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 @keyframes borderRun {
@@ -275,27 +297,40 @@
 }
 
 .animate-ticker {
-  animation: ticker 28s linear infinite;
+  animation: ticker 16s linear infinite;
+}
+
+.animate-ticker-reverse {
+  animation: tickerReverse 22s linear infinite;
 }
 
 .animate-scan {
-  animation: scanSweep 2.2s ease-in-out infinite;
+  animation: scanSweep 1.6s ease-in-out infinite;
 }
 
 .animate-pulse-ring {
-  animation: pulseRing 2s ease-out infinite;
+  animation: pulseRing 1.6s ease-out infinite;
 }
 
 .animate-float {
-  animation: floatSoft 7s ease-in-out infinite;
+  animation: floatSoft 5.5s ease-in-out infinite;
 }
 
 .animate-mote {
-  animation: mote 9s ease-in-out infinite;
+  animation: mote 7s ease-in-out infinite;
 }
 
 .animate-gold-breathe {
-  animation: goldBreathe 6s ease-in-out infinite;
+  animation: goldBreathe 4s ease-in-out infinite;
+}
+
+.animate-hold-stamp {
+  animation: holdStamp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-wire {
+  stroke-dasharray: 8 8;
+  animation: wireFlow 0.8s linear infinite;
 }
 
 .animate-border-run {
@@ -305,20 +340,25 @@
 
 @media (prefers-reduced-motion: reduce) {
   .animate-ticker,
+  .animate-ticker-reverse,
   .animate-scan,
   .animate-pulse-ring,
   .animate-float,
   .animate-mote,
   .animate-gold-breathe,
   .animate-border-run,
+  .animate-hold-stamp,
+  .animate-wire,
   .text-shimmer,
+  .money-sheen,
   .btn-shine::after {
     animation: none !important;
   }
   .lift-card:hover {
     transform: none;
   }
-  .text-shimmer {
+  .text-shimmer,
+  .money-sheen {
     color: var(--gold);
     background: none;
   }

@@ -18,7 +18,7 @@ export function FinalCta() {
       >
         <div className="pointer-events-none absolute inset-x-10 top-0 h-px gold-hairline" />
         <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-gold">Next step</p>
-        <h2 className="font-figure mx-auto mt-4 max-w-xl text-[2.15rem] leading-[1.15] tracking-[-0.02em] sm:text-[2.6rem]">
+        <h2 className="font-figure money-sheen mx-auto mt-4 max-w-xl text-[2.15rem] leading-[1.15] tracking-[-0.02em] sm:text-[2.6rem]">
           Hold the next duplicate before it clears.
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-[15px] leading-7 text-muted-foreground">
