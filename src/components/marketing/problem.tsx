@@ -78,8 +78,18 @@ export function ProblemSection() {
             initial={reduce ? false : { y: 12 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="product-panel p-7"
+            className="product-panel relative p-7"
           >
+            {reduce ? null : (
+              <motion.div
+                key={`wash-${current.id}`}
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(108deg,transparent_28%,rgb(126_176_255_/_0.16)_50%,transparent_72%)]"
+                initial={{ x: "-55%" }}
+                animate={{ x: "120%" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              />
+            )}
+            <div className="relative">
             <MatchRow side={current.left} />
             <div className="relative py-4">
               <span className="absolute inset-x-6 top-1/2 h-px bg-border" />
@@ -93,7 +103,8 @@ export function ProblemSection() {
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
             </p>
             <p className="mt-3 text-[13px] font-medium text-gold">{current.caption}</p>
-            <p className="mt-2 max-w-sm text-sm leading-7 text-muted-foreground">{current.detail}</p>
+            <p className="relative mt-2 max-w-sm text-sm leading-7 text-muted-foreground">{current.detail}</p>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>

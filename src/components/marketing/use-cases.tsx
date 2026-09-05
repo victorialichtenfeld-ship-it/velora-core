@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import { SectionIntro } from "@/components/marketing/section-intro";
 
 const cases = [
@@ -10,6 +11,7 @@ const cases = [
 ];
 
 export function UseCases() {
+  const reduce = useReducedMotion();
   return (
     <section id="also-covers" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
@@ -18,12 +20,20 @@ export function UseCases() {
         body="The walkthrough includes these so finance can see the control layer expand. They are not the reason to start a trial today."
       />
       <div className="mt-12 grid gap-4 sm:grid-cols-2">
-        {cases.map((item) => (
-          <div key={item.team} className="rounded-2xl border border-gold/20 bg-card px-5 py-8 sm:px-8">
-            <p className="text-[13px] font-medium text-muted-foreground">{item.team}</p>
-            <p className="font-figure money-sheen mt-3 text-4xl tracking-[-0.04em]">{item.amount}</p>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>
-          </div>
+        {cases.map((item, index) => (
+          <motion.div
+            key={item.team}
+            className="product-panel lift-card px-5 py-8 sm:px-8"
+            initial={reduce ? false : { y: 18 }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ delay: index * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={reduce ? undefined : { y: -6 }}
+          >
+            <p className="relative z-[2] text-[13px] font-medium text-gold">{item.team}</p>
+            <p className="font-figure money-sheen relative z-[2] mt-3 text-4xl tracking-[-0.04em]">{item.amount}</p>
+            <p className="relative z-[2] mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>
+          </motion.div>
         ))}
       </div>
     </section>

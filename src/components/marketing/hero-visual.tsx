@@ -61,7 +61,7 @@ export function CashScene({
           />
         ) : null}
 
-        <div className="relative flex items-center justify-between border-b border-gold/20 bg-gold/[0.08] px-6 py-3">
+        <div className="flex items-center justify-between border-b border-gold/20 bg-gold/[0.08] px-6 py-3">
           <p className="text-[12px] font-medium">Velora · Meridian Supply</p>
           <div className="flex items-center gap-2">
             <span className="relative flex size-2">

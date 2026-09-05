@@ -73,6 +73,9 @@ export function SiteHeader() {
         </Sheet>
       </div>
       <motion.div style={{ scaleX }} className="h-0.5 origin-left bg-gold" />
+      <div className="h-px overflow-hidden">
+        <div className="gold-hairline h-px w-full animate-gold-wash" />
+      </div>
     </header>
   );
 }

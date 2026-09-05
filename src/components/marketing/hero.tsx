@@ -16,6 +16,9 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden">
+      <p className="pointer-events-none absolute -left-4 top-10 hidden select-none font-figure text-[8.5rem] leading-none tracking-[-0.06em] text-gold/10 lg:block">
+        $11,240
+      </p>
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:py-24">
         <div className="order-2 lg:order-1">
           <motion.p
@@ -85,6 +88,25 @@ export function Hero() {
               Watch the hold
             </a>
           </motion.div>
+          <div className="mt-10 max-w-md">
+            <div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">
+              {(["In flight", "Match", "Held"] as const).map((label, index) => {
+                const active = stage === "send" ? 0 : stage === "match" ? 1 : 2;
+                return (
+                  <span key={label} className={index <= active ? "text-gold" : ""}>
+                    {label}
+                  </span>
+                );
+              })}
+            </div>
+            <div className="mt-2 h-[3px] overflow-hidden rounded-full bg-muted">
+              <motion.div
+                className="h-full progress-sheen"
+                animate={{ width: stage === "held" ? "100%" : stage === "match" ? "66%" : "33%" }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </div>
           <div className="mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-gold/25 pt-6">
             <div>
               <p className="font-figure money-sheen text-2xl tracking-tight">

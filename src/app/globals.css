@@ -333,6 +333,8 @@
       inset 0 1px 0 rgb(196 168 106 / 0.55);
   }
   .gold-desk {
+    position: relative;
+    overflow: hidden;
     border: 1px solid rgb(126 176 255 / 22%);
     background: #10151e;
     border-radius: 1rem;
@@ -341,6 +343,8 @@
       0 22px 50px rgb(61 124 240 / 0.16);
   }
   .product-panel {
+    position: relative;
+    overflow: hidden;
     border: 1px solid rgb(126 176 255 / 28%);
     background: #10151e;
     border-radius: 1.15rem;
@@ -348,6 +352,16 @@
       0 1px 1px rgb(0 0 0 / 0.45),
       0 32px 80px rgb(61 124 240 / 0.28),
       0 0 0 1px rgb(16 21 30 / 0.8);
+  }
+  .product-panel::after,
+  .gold-desk::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 38%, rgb(126 176 255 / 0.12) 50%, transparent 62%);
+    animation: goldWash 2.6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
   }
   .glow-dusk,
   .glow-gold,
@@ -820,7 +834,9 @@
   .gold-run-border,
   .text-shimmer,
   .money-sheen,
-  .btn-shine::after {
+  .btn-shine::after,
+  .product-panel::after,
+  .gold-desk::after {
     animation: none !important;
   }
   .lift-card:hover {

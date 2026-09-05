@@ -15,7 +15,7 @@ export function IntegrationsSection() {
         body="Live now connectors are simulated here. Coming-soon adapters share the same interface."
       />
       <p className="mt-10 text-[13px] font-medium text-gold">Live now</p>
-      <p className="font-figure mt-3 text-3xl leading-snug tracking-[-0.03em] sm:text-4xl sm:leading-[1.2]">
+      <p className="font-figure money-sheen mt-3 text-3xl leading-snug tracking-[-0.03em] sm:text-4xl sm:leading-[1.2]">
         {liveNow.map((item) => item.name).join("  ·  ")}
       </p>
       <p className="mt-8 text-[13px] font-medium text-muted-foreground">Coming soon</p>

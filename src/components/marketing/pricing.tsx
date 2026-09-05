@@ -52,9 +52,9 @@ export function Pricing() {
           <div
             key={plan.name}
             className={cn(
-              "flex flex-col rounded-2xl border p-7",
+              "flex flex-col rounded-2xl border p-7 lift-card",
               plan.highlighted
-                ? "border-gold/35 bg-card shadow-[0_18px_40px_rgb(61_124_240_/_0.28)]"
+                ? "product-panel animate-card-glow border-gold/35"
                 : "border-border bg-transparent"
             )}
           >

@@ -17,7 +17,10 @@ export function FinalCta() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         {reduce ? null : (
-          <div className="animate-gold-breathe pointer-events-none absolute inset-x-10 top-[-40%] h-56 rounded-full bg-[radial-gradient(circle,rgb(61_124_240_/_0.35),transparent_70%)]" />
+          <>
+            <div className="animate-gold-breathe pointer-events-none absolute inset-x-10 top-[-40%] h-56 rounded-full bg-[radial-gradient(circle,rgb(61_124_240_/_0.45),transparent_70%)]" />
+            <div className="animate-gold-sweep pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgb(126_176_255_/_0.12),transparent)]" />
+          </>
         )}
         <p className="relative text-[13px] font-medium text-gold">Start today</p>
         <h2 className="font-figure relative mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
