@@ -216,7 +216,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmerText 3.2s linear infinite;
+    animation: shimmerText 2.2s linear infinite;
   }
   .scan-beam {
     height: 2px;
@@ -367,9 +367,16 @@
   .ai-scan {
     position: absolute;
     inset: 0 auto 0 0;
-    width: 22%;
-    background: linear-gradient(90deg, transparent, rgb(176 137 58 / 0.16), transparent);
-    animation: scanPlane 1.5s ease-in-out infinite;
+    width: 18%;
+    background: linear-gradient(90deg, transparent, rgb(176 137 58 / 0.22), transparent);
+    animation: scanPlane 1.25s linear infinite;
+  }
+  .ai-scan-y {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 18%;
+    background: linear-gradient(180deg, transparent, rgb(176 137 58 / 0.16), transparent);
+    animation: scanPlaneY 1.8s ease-in-out infinite;
   }
   .ai-corner {
     position: absolute;
@@ -539,6 +546,22 @@
   50% { opacity: 1; }
 }
 
+@keyframes scanPlaneY {
+  0% { transform: translateY(-40%); opacity: 0; }
+  16% { opacity: 0.7; }
+  100% { transform: translateY(420%); opacity: 0; }
+}
+
+@keyframes dataFall {
+  0%, 100% { opacity: 0.15; transform: translateY(0); }
+  50% { opacity: 0.7; transform: translateY(-3px); }
+}
+
+@keyframes corePing {
+  0% { transform: scale(0.7); opacity: 0.5; }
+  100% { transform: scale(1.85); opacity: 0; }
+}
+
 @keyframes railRun {
   0% { left: 0%; opacity: 0; }
   12% { opacity: 1; }
@@ -547,7 +570,7 @@
 }
 
 .animate-ticker {
-  animation: ticker 7s linear infinite;
+  animation: ticker 5.8s linear infinite;
 }
 
 .animate-ticker-fast {
@@ -599,8 +622,8 @@
 }
 
 .animate-wire {
-  stroke-dasharray: 8 8;
-  animation: wireFlow 0.55s linear infinite;
+  stroke-dasharray: 6 10;
+  animation: wireFlow 0.42s linear infinite;
 }
 
 .animate-border-run {
@@ -664,6 +687,16 @@
   animation: nodeGlow 1.7s ease-in-out infinite;
 }
 
+.animate-data-fall {
+  animation: dataFall 1.4s ease-in-out infinite;
+}
+
+.animate-core-ping {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: corePing 1.8s ease-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-ticker,
   .animate-ticker-fast,
@@ -694,8 +727,11 @@
   .animate-gold-wash,
   .animate-rail,
   .animate-node,
+  .animate-data-fall,
+  .animate-core-ping,
   .ai-floor,
   .ai-scan,
+  .ai-scan-y,
   .gold-run-border,
   .text-shimmer,
   .money-sheen,
