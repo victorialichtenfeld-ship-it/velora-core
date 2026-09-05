@@ -64,7 +64,13 @@ export function Hero() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <Link href="/signup" className={cn(buttonVariants(), "h-12 px-6 text-[14px]")}>
               Start free trial
-              <ArrowRight className="size-4" />
+              <motion.span
+                className="inline-flex"
+                animate={reduce ? undefined : { x: [0, 4, 0] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ArrowRight className="size-4" />
+              </motion.span>
             </Link>
             <a href="#demo" className="text-[14px] text-gold underline-offset-4 hover:text-foreground hover:underline">
               See a flag, then you decide

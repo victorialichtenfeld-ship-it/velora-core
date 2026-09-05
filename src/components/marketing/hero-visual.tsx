@@ -59,8 +59,8 @@ export function CashScene({
   const progress = held ? 100 : matching ? 74 : 28;
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-180, 180], [6, -6]), { stiffness: 160, damping: 22 });
-  const rotateY = useSpring(useTransform(mx, [-180, 180], [-6, 6]), { stiffness: 160, damping: 22 });
+  const rotateX = useSpring(useTransform(my, [-180, 180], [8, -8]), { stiffness: 170, damping: 20 });
+  const rotateY = useSpring(useTransform(mx, [-180, 180], [-8, 8]), { stiffness: 170, damping: 20 });
 
   return (
     <motion.div
@@ -78,13 +78,22 @@ export function CashScene({
       }}
     >
       <div className="hero-glow pointer-events-none absolute inset-8 -z-10" />
+      {!reduce ? (
+        <motion.div
+          className="glass absolute -right-1 top-20 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          Duplicate ACH · 99.4%
+        </motion.div>
+      ) : null}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -10, 0] }}
-        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -16, 0] }}
+        transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="product-panel relative">
           {!reduce ? (
-            <span className="animate-rail pointer-events-none absolute top-0 z-20 h-px w-1/4 bg-gold/70" />
+            <span className="animate-rail-slow pointer-events-none absolute top-0 z-20 h-px w-1/3 bg-gold/70" />
           ) : null}
 
           {!reduce && matching ? (

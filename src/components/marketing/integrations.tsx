@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { integrationsCatalog } from "@/lib/data/demo";
 import { SectionIntro } from "@/components/marketing/section-intro";
 import { cn } from "@/lib/utils";
@@ -28,15 +28,17 @@ export function IntegrationsSection() {
       <p className="mt-10 text-[13px] font-medium text-gold">Live now</p>
       <div className="mt-4 flex flex-wrap gap-2">
         {liveNow.map((item, index) => (
-          <span
+          <motion.span
             key={item.name}
             className={cn(
               "glass rounded-full px-4 py-2 text-sm",
               index === active ? "border-gold/40 text-gold" : "text-muted-foreground"
             )}
+            animate={reduce ? undefined : { scale: index === active ? 1.04 : 1 }}
+            transition={{ duration: 0.28 }}
           >
             {item.name}
-          </span>
+          </motion.span>
         ))}
       </div>
       <p className="mt-8 text-[13px] font-medium text-muted-foreground">Coming soon</p>

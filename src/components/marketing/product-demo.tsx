@@ -40,6 +40,7 @@ export function ProductDemo() {
       />
 
       <div className="gold-desk relative mt-10 overflow-hidden p-6 sm:p-8">
+        <span className="animate-rail-slow pointer-events-none absolute top-0 left-0 h-px w-1/3 bg-gold/70" />
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className="inline-flex items-center gap-2 text-[13px] font-medium">

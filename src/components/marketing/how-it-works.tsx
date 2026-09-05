@@ -29,7 +29,7 @@ export function HowItWorks() {
 
   useEffect(() => {
     if (reduce) return;
-    const id = window.setInterval(() => setActive((n) => (n + 1) % steps.length), 2800);
+    const id = window.setInterval(() => setActive((n) => (n + 1) % steps.length), 2200);
     return () => window.clearInterval(id);
   }, [reduce]);
 
@@ -48,6 +48,7 @@ export function HowItWorks() {
             whileInView={{ y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ delay: index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            animate={reduce ? undefined : { y: active === index ? -6 : 0 }}
             className={cn(
               "glass rounded-[1.5rem] p-6 sm:p-7",
               active === index && "border-gold/40 bg-gold/[0.08]"
