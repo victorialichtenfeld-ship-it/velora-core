@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { roles } from "@/lib/validation";
+import { roles, type LeadPayload } from "@/lib/validation";
 import { useValidation } from "@/components/validation/validation-provider";
 import { track } from "@/lib/analytics-client";
 import { startCheckout } from "@/lib/start-checkout";
@@ -105,7 +105,7 @@ export function EarlyAccessDialog() {
               setPending(true);
               setError("");
               const form = new FormData(event.currentTarget);
-              const payload = {
+              const payload: LeadPayload = {
                 name: String(form.get("name") || ""),
                 email: String(form.get("email") || ""),
                 company: String(form.get("company") || ""),
