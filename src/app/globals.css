@@ -325,6 +325,16 @@
       0 0 8px rgb(176 137 58 / 0.4),
       inset 0 1px 0 rgb(196 168 106 / 0.55);
   }
+  .gold-desk {
+    border: 1px solid rgb(176 137 58 / 0.38);
+    background:
+      radial-gradient(ellipse at 80% 0%, rgb(176 137 58 / 0.12), transparent 52%),
+      #0c0c0c;
+    box-shadow:
+      0 0 80px rgb(176 137 58 / 0.14),
+      0 24px 60px rgb(0 0 0 / 0.55),
+      inset 0 1px 0 rgb(196 168 106 / 0.18);
+  }
   .gold-chip {
     min-width: 7.2rem;
     border-radius: 2px;
@@ -484,6 +494,13 @@
   100% { transform: translateX(220%); }
 }
 
+@keyframes railRun {
+  0% { left: 0%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
 .animate-ticker {
   animation: ticker 7s linear infinite;
 }
@@ -594,6 +611,10 @@
   animation: goldWash 2.8s ease-in-out infinite;
 }
 
+.animate-rail {
+  animation: railRun 4.2s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-ticker,
   .animate-ticker-fast,
@@ -622,6 +643,7 @@
   .animate-line-grow,
   .animate-hairline,
   .animate-gold-wash,
+  .animate-rail,
   .gold-run-border,
   .text-shimmer,
   .money-sheen,

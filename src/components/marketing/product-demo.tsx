@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, LayoutGroup, motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { Lock } from "lucide-react";
 import { SectionIntro } from "@/components/marketing/section-intro";
 import { launchDemoWorkspace } from "@/app/auth-actions";
 import { SampleDataBadge } from "@/components/sample-data-badge";
@@ -31,65 +32,58 @@ export function ProductDemo() {
   const decision = alert ? decisions[alert.id] : undefined;
 
   return (
-    <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
       <SectionIntro
         eyebrow="Interactive walkthrough"
         title="Walk an alert from evidence to decision."
         body="This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it."
       />
 
-      <div className="relative mt-10 overflow-hidden border-t border-gold/20 pt-8">
+      <div className="gold-desk relative mt-10 overflow-hidden p-5 sm:p-7">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden">
           <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
         </div>
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="text-sm font-medium">Meridian Supply · AP walkthrough</p>
-            <p className="text-xs text-muted-foreground">Jordan Hale · VP of Finance · sample data</p>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-gold">Hold desk · Meridian Supply</p>
+            <p className="mt-1 text-sm text-muted-foreground">Jordan Hale · VP of Finance</p>
           </div>
           <SampleDataBadge />
         </div>
 
-        <div className="mt-2 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-2">
-            <p className="text-xs text-muted-foreground">Open alerts</p>
-            <LayoutGroup>
-            {alerts.map((item, index) => (
-              <motion.button
-                key={item.id}
-                type="button"
-                initial={{ y: 12 }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                onClick={() => setSelected(item.id)}
-                className={`relative w-full overflow-hidden rounded-md px-3 py-3 text-left ring-1 transition ${
-                  selected === item.id ? "bg-secondary ring-primary/40" : "bg-background ring-border hover:bg-muted"
-                }`}
-              >
-                {selected === item.id ? (
-                  <motion.span
-                    layoutId="demo-active"
-                    className="absolute inset-y-0 left-0 w-0.5 bg-primary"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  />
-                ) : null}
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm text-foreground">{item.title}</p>
-                  <DecisionChip decision={decisions[item.id]} />
-                </div>
-                <p className="mt-1 font-figure text-sm tabular text-gold">{formatCurrency(item.dollarImpact)}</p>
-              </motion.button>
-            ))}
-            </LayoutGroup>
+        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+          <div className="space-y-3">
+            {alerts.map((item) => {
+              const active = selected === item.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setSelected(item.id)}
+                  className={`w-full border-l-2 px-4 py-4 text-left transition ${
+                    active ? "border-gold bg-gold/10" : "border-gold/20 hover:border-gold/50 hover:bg-gold/5"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-[11px] uppercase tracking-[0.16em] text-gold/70">
+                      {decisions[item.id] ? "Closed" : "Open"}
+                    </p>
+                    <DecisionChip decision={decisions[item.id]} />
+                  </div>
+                  <p className="font-figure mt-2 text-[2rem] leading-none tracking-[-0.04em] text-gold">
+                    {formatCurrency(item.dollarImpact)}
+                  </p>
+                  <p className="mt-2 text-sm text-foreground">{item.title}</p>
+                </button>
+              );
+            })}
           </div>
           {alert ? (
             <AnimatePresence mode="wait">
               <motion.div
                 key={alert.id}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
+                initial={{ y: 12 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.28 }}
               >
                 <AlertWorkbench
@@ -110,7 +104,7 @@ export function ProductDemo() {
         </div>
       </div>
 
-      <form action={launchDemoWorkspace} className="mt-4">
+      <form action={launchDemoWorkspace} className="mt-5">
         <Button type="submit" variant="outline" className="h-10">
           Open the full walkthrough workspace
         </Button>
@@ -124,7 +118,7 @@ function DecisionChip({ decision }: { decision?: Decision }) {
     return (
       <span className="inline-flex items-center gap-1.5 text-[11px] text-gold">
         <span className="size-1.5 rounded-full bg-gold animate-flash" />
-        Open
+        Live
       </span>
     );
   }
@@ -148,44 +142,41 @@ function AlertWorkbench({
   onDecide: (decision: Decision) => void;
   onReset: () => void;
 }) {
+  const held = decision === "resolved";
   return (
-    <div className="relative overflow-hidden rounded-md bg-background p-4 ring-1 ring-border">
+    <div className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-16" />
+        <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-20" />
       </div>
-      <p className="text-xs text-muted-foreground">Evidence</p>
-      <h3 className="mt-1 text-lg font-medium">{alert.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">{alert.whyFlagged}</p>
-      <dl className="mt-4 grid gap-2 sm:grid-cols-2">
-        {alert.evidence.map((item, index) => (
-          <motion.div
-            key={`${item.label}-${item.value}`}
-            initial={{ y: 10 }}
-            animate={{ y: 0 }}
-            transition={{ delay: index * 0.05 }}
-            className={`rounded-md px-3 py-2 ring-1 ${
-              item.highlight ? "bg-risk/10 ring-risk/30" : "ring-border"
-            }`}
-          >
-            <dt className="text-[11px] text-muted-foreground">{item.label}</dt>
-            <dd className="mt-0.5 font-mono text-sm tabular">{item.value}</dd>
-            <p className="text-[11px] text-muted-foreground">{item.source}</p>
-          </motion.div>
+      <div className="flex items-start justify-between gap-4">
+        <p className="text-[11px] uppercase tracking-[0.2em] text-gold/70">Evidence</p>
+        {held ? (
+          <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.16em] text-gold">
+            <Lock className="size-3.5" />
+            Locked
+          </span>
+        ) : null}
+      </div>
+      <p className="font-figure money-sheen mt-3 text-6xl leading-none tracking-[-0.05em] sm:text-7xl">
+        {formatCurrency(alert.dollarImpact)}
+      </p>
+      <h3 className="mt-4 text-xl font-medium">{alert.title}</h3>
+      <p className="mt-2 max-w-lg text-sm leading-7 text-muted-foreground">{alert.whyFlagged}</p>
+      <dl className="mt-6 divide-y divide-gold/15 border-y border-gold/15">
+        {alert.evidence.map((item) => (
+          <div key={`${item.label}-${item.value}`} className="flex items-baseline justify-between gap-4 py-2.5">
+            <dt className="text-[11px] uppercase tracking-[0.14em] text-gold/65">{item.label}</dt>
+            <dd className={`font-figure text-base ${item.highlight ? "text-gold" : "text-foreground"}`}>{item.value}</dd>
+          </div>
         ))}
       </dl>
 
       {decision ? (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={`mt-4 rounded-md p-3 ring-1 ${
-            decision === "resolved" ? "bg-protect/10 ring-primary/30" : "bg-secondary ring-border"
-          }`}
-        >
-          <p className="text-sm font-medium">
-            {decision === "resolved" && "Decision recorded: hold. The second payment does not leave the account."}
-            {decision === "approved" && "Decision recorded: approve. You overrode the hold with a named decision."}
-            {decision === "ignored" && "Decision recorded: dismiss. The alert is closed without a hold."}
+        <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 border-l-2 border-gold pl-4">
+          <p className="text-sm font-medium text-gold">
+            {decision === "resolved" && "Hold recorded. The second payment does not leave the account."}
+            {decision === "approved" && "Override recorded. You released it with a named decision."}
+            {decision === "ignored" && "Dismiss recorded. The alert is closed without a hold."}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">Sample walkthrough only. No live bank or ERP action was taken.</p>
           <button type="button" onClick={onReset} className={cn(buttonVariants({ variant: "ghost" }), "mt-2 h-8 px-2")}>
@@ -193,14 +184,14 @@ function AlertWorkbench({
           </button>
         </motion.div>
       ) : (
-        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-          <Button type="button" className="h-10" onClick={() => onDecide("resolved")}>
+        <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+          <Button type="button" className="h-12 px-6 text-[13px] tracking-[0.08em] uppercase" onClick={() => onDecide("resolved")}>
             {alert.recommendedActions[0]?.label ?? "Hold payment"}
           </Button>
-          <Button type="button" variant="outline" className="h-10" onClick={() => onDecide("approved")}>
+          <Button type="button" variant="outline" className="h-12" onClick={() => onDecide("approved")}>
             Approve anyway
           </Button>
-          <Button type="button" variant="ghost" className="h-10" onClick={() => onDecide("ignored")}>
+          <Button type="button" variant="ghost" className="h-12" onClick={() => onDecide("ignored")}>
             Dismiss
           </Button>
         </div>
