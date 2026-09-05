@@ -36,13 +36,23 @@ export function Hero() {
             className="font-figure max-w-xl text-[2.75rem] leading-[1.04] tracking-[-0.038em] text-balance text-foreground sm:text-5xl lg:text-[3.75rem]"
           >
             That second payment was about to{" "}
-            <span className="money-sheen italic">clear</span>.
+            <span className="relative inline-block money-sheen italic">
+              clear
+              <motion.span
+                className="absolute top-[58%] left-0 h-[2px] origin-left bg-gold"
+                initial={false}
+                animate={{ scaleX: stage === "held" ? 1 : 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                style={{ width: "100%" }}
+              />
+            </span>
+            .
           </motion.h1>
           <motion.p
             key={line}
-            initial={reduce ? false : { y: 10 }}
+            initial={reduce ? false : { y: 12 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 text-[15px] font-medium text-gold"
           >
             {line}

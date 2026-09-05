@@ -222,7 +222,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmerText 1.8s linear infinite;
+    animation: shimmerText 1.15s linear infinite;
   }
   .scan-beam {
     height: 1px;
@@ -240,12 +240,13 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / 0.18) 50%, transparent 62%);
+    background: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / 0.22) 50%, transparent 62%);
     transform: translateX(-130%);
     pointer-events: none;
+    animation: shineSweep 2.1s ease-in-out infinite;
   }
   .btn-shine:hover::after {
-    animation: shineSweep 0.7s ease;
+    animation-duration: 0.7s;
   }
   .scanlines {
     background: repeating-linear-gradient(
@@ -649,7 +650,7 @@
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 8s linear infinite;
+  animation: tickerReverse 10s linear infinite;
 }
 
 .animate-gold-sweep {

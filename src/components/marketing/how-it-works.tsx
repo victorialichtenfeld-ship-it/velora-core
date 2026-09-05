@@ -45,6 +45,7 @@ export function HowItWorks() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ delay: index * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="grid gap-2 sm:grid-cols-[4.5rem_1fr] sm:gap-8"
+            whileHover={reduce ? undefined : { x: 4 }}
           >
             <p className="font-figure text-3xl text-gold">{step.n}</p>
             <div>
