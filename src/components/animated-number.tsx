@@ -19,7 +19,8 @@ export function AnimatedNumber({
   format?: (n: number) => string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(0);
+  const started = useRef(false);
+  const [display, setDisplay] = useState(value);
   const [play, setPlay] = useState(false);
 
   useEffect(() => {
@@ -36,8 +37,16 @@ export function AnimatedNumber({
   }, []);
 
   useEffect(() => {
-    if (!play) return;
+    if (!play) {
+      setDisplay(value);
+      return;
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(value);
+      return;
+    }
+    if (!started.current) {
+      started.current = true;
       setDisplay(value);
       return;
     }
