@@ -58,21 +58,16 @@ export function Pricing() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             whileHover={reduce ? undefined : { y: -5 }}
-            animate={
-              reduce || !plan.highlighted
-                ? undefined
-                : { y: [0, -6, 0] }
-            }
-            transition={
-              plan.highlighted && !reduce
-                ? { y: { duration: 2.4, repeat: Infinity, ease: "easeInOut" }, delay: index * 0.08, duration: 0.45 }
-                : { delay: index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }
-            }
             className={cn(
               "flex flex-col rounded-2xl border p-7",
               plan.highlighted ? "border-gold/40 bg-gold/[0.06]" : "border-border bg-transparent"
             )}
           >
+            <motion.div
+              className="flex h-full flex-col"
+              animate={reduce || !plan.highlighted ? undefined : { y: [0, -6, 0] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            >
             <p className="text-[13px] font-medium text-muted-foreground">{plan.name}</p>
             <p className={`font-figure mt-3 tracking-[-0.04em] text-4xl ${plan.highlighted ? "text-gold" : "text-foreground"}`}>
               {plan.price}
