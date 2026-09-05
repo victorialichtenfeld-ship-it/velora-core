@@ -2,18 +2,19 @@
 
 import { integrationsCatalog } from "@/lib/data/demo";
 import { MotionCard } from "@/components/motion-card";
+import { SectionIntro } from "@/components/marketing/section-intro";
 
 export function IntegrationsSection() {
   const liveNow = integrationsCatalog.filter((item) => item.status === "connected");
   const comingSoon = integrationsCatalog.filter((item) => item.status !== "connected");
 
   return (
-    <section id="integrations" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-      <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Integrations</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Wired to the systems AP already uses.</h2>
-      <p className="mt-4 max-w-2xl text-muted-foreground">
-        Live now connectors are simulated in this walkthrough. Coming soon adapters share the same interface and can be swapped in without rewriting the product.
-      </p>
+    <section id="integrations" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionIntro
+        eyebrow="Integrations"
+        title="Wired to the systems AP already uses."
+        body="Live now connectors are simulated in this walkthrough. Coming soon adapters share the same interface and can be swapped in without rewriting the product."
+      />
 
       <Group title="Live now" items={liveNow} />
       <Group title="Coming soon" items={comingSoon} startDelay={0.12} />
@@ -32,7 +33,7 @@ function Group({
 }) {
   return (
     <div className="mt-8">
-      <p className="text-sm font-medium text-foreground">{title}</p>
+      <p className="text-[11px] uppercase tracking-[0.16em] text-gold">{title}</p>
       <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
         {items.map((item, index) => (
           <li key={item.id}>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
+import { SectionIntro } from "@/components/marketing/section-intro";
 
 const cases = [
   {
@@ -28,15 +29,13 @@ export function ProblemSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="product" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-      <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">What Velora checks first</p>
-      <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-        Two AP mistakes that quietly move six figures.
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted-foreground">
-        Finance teams at mid-size companies lose the most money on repeat vendor payments and invoices that ignore the contracted unit price. Velora is built around those two checks. Everything else is secondary.
-      </p>
-      <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+    <section id="product" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionIntro
+        eyebrow="What Velora checks first"
+        title="Two AP mistakes that quietly move six figures."
+        body="Finance teams at mid-size companies lose the most money on repeat vendor payments and invoices that ignore the contracted unit price. Velora is built around those two checks. Everything else is secondary."
+      />
+      <div className="mt-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <LayoutGroup>
           <div className="grid gap-2">
             {cases.map((item) => (
@@ -44,16 +43,16 @@ export function ProblemSection() {
                 key={item.id}
                 type="button"
                 onClick={() => setActive(item.id)}
-                className={`relative overflow-hidden rounded-md px-4 py-3 text-left text-sm ring-1 transition ${
+                className={`relative overflow-hidden rounded-md px-4 py-4 text-left text-sm tracking-[0.01em] ring-1 transition ${
                   active === item.id
-                    ? "bg-secondary text-foreground ring-primary/40"
-                    : "bg-card text-muted-foreground ring-border hover:text-foreground"
+                    ? "bg-secondary text-foreground ring-gold/35"
+                    : "bg-card text-muted-foreground ring-bronze/25 hover:text-foreground"
                 }`}
               >
                 {active === item.id ? (
                   <motion.span
                     layoutId="problem-active"
-                    className="absolute inset-y-0 left-0 w-0.5 bg-primary"
+                    className="absolute inset-y-0 left-0 w-px bg-gold"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 ) : null}
@@ -62,21 +61,21 @@ export function ProblemSection() {
             ))}
           </div>
         </LayoutGroup>
-        <div className="min-h-[240px] overflow-hidden rounded-xl bg-card p-6 ring-1 ring-border sm:p-8">
+        <div className="min-h-[260px] overflow-hidden rounded-lg bg-card p-7 ring-1 ring-gold/20 shadow-[0_16px_40px_rgb(8_8_14_/_0.28)] sm:p-9">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
-              initial={reduce ? false : { opacity: 0, y: 12 }}
+              initial={reduce ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduce ? undefined : { opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-protect">Held in the walkthrough</p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-tight">{current.line}</h3>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">{current.detail}</p>
-              <div className="mt-8">
-                <p className="text-[11px] text-muted-foreground">Amount at risk</p>
-                <p className="mt-1 font-figure text-4xl tracking-tight text-risk">{current.impact}</p>
+              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-protect">Held in the walkthrough</p>
+              <h3 className="mt-3 font-figure text-2xl leading-snug tracking-[-0.02em] sm:text-[1.85rem]">{current.line}</h3>
+              <p className="mt-4 text-sm leading-7 text-muted-foreground">{current.detail}</p>
+              <div className="mt-10">
+                <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">Amount at risk</p>
+                <p className="mt-2 font-figure text-5xl tracking-[-0.03em] text-risk">{current.impact}</p>
               </div>
             </motion.div>
           </AnimatePresence>

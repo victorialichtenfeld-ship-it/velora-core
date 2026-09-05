@@ -20,7 +20,7 @@ export function MotionCard({
       initial={reduce ? false : { y: 18, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      whileHover={reduce ? undefined : { y: -5, transition: { duration: 0.28 } }}
+      whileHover={reduce ? undefined : { y: -2, transition: { duration: 0.28 } }}
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}

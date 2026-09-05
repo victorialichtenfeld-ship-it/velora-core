@@ -2,6 +2,7 @@
 
 import { FileKey2, LockKeyhole, ShieldCheck, UserRoundCheck, ScrollText } from "lucide-react";
 import { MotionCard } from "@/components/motion-card";
+import { SectionIntro } from "@/components/marketing/section-intro";
 
 const pillars = [
   {
@@ -33,12 +34,12 @@ const pillars = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-      <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Trust</p>
-      <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-        Controls only belong in the payment path if they are boring and auditable.
-      </h2>
-      <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+    <section id="trust" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionIntro
+        eyebrow="Trust"
+        title="Controls only belong in the payment path if they are boring and auditable."
+      />
+      <div className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar, index) => (
           <MotionCard key={pillar.title} delay={index * 0.06}>
             <pillar.icon className="size-4 text-primary" />

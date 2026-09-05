@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { MotionCard } from "@/components/motion-card";
+import { SectionIntro } from "@/components/marketing/section-intro";
 import { cn } from "@/lib/utils";
 
 const plans = [
@@ -59,13 +60,13 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-      <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Pricing</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Priced like a control, not a chatbot seat.</h2>
-      <p className="mt-4 max-w-2xl text-muted-foreground">
-        Starter and Growth start a trial workspace. Enterprise is a call with finance and IT — not a self-serve signup.
-      </p>
-      <div className="mt-8 grid gap-3 lg:grid-cols-3">
+    <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionIntro
+        eyebrow="Pricing"
+        title="Priced like a control, not a chatbot seat."
+        body="Starter and Growth start a trial workspace. Enterprise is a call with finance and IT — not a self-serve signup."
+      />
+      <div className="mt-12 grid gap-3 lg:grid-cols-3">
         {plans.map((plan, index) => (
           <MotionCard
             key={plan.name}

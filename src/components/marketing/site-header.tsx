@@ -24,27 +24,23 @@ export function SiteHeader() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.2 });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-bronze/30 bg-background/82 backdrop-blur-md">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-bronze/25 bg-background/88 backdrop-blur-md">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />
         </Link>
-        <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-7 text-[13px] tracking-[0.04em] text-muted-foreground md:flex">
           {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative transition-colors hover:text-foreground after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-            >
+            <a key={link.href} href={link.href} className="transition-colors hover:text-foreground">
               {link.label}
             </a>
           ))}
         </nav>
-        <div className="hidden items-center gap-2 md:flex">
-          <a href="#demo" className={cn(buttonVariants({ variant: "ghost" }))}>
+        <div className="hidden items-center gap-3 md:flex">
+          <a href="#demo" className="text-[13px] tracking-[0.04em] text-muted-foreground hover:text-foreground">
             See it work
           </a>
-          <Link href="/signup" className={cn(buttonVariants(), "h-8 px-3")}>
+          <Link href="/signup" className={cn(buttonVariants(), "h-9 px-3.5 text-[12px] tracking-[0.04em]")}>
             Start free trial
           </Link>
         </div>
@@ -78,10 +74,7 @@ export function SiteHeader() {
           </SheetContent>
         </Sheet>
       </div>
-      <motion.div
-        style={{ scaleX }}
-        className="h-px origin-left bg-primary"
-      />
+      <motion.div style={{ scaleX }} className="h-px origin-left bg-gold/80" />
     </header>
   );
 }

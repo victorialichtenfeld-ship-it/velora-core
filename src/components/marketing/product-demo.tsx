@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
+import { SectionIntro } from "@/components/marketing/section-intro";
 import { launchDemoWorkspace } from "@/app/auth-actions";
 import { SampleDataBadge } from "@/components/sample-data-badge";
 import { Button } from "@/components/ui/button";
@@ -30,14 +31,14 @@ export function ProductDemo() {
   const decision = alert ? decisions[alert.id] : undefined;
 
   return (
-    <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
-      <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Interactive walkthrough</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Walk an alert from evidence to decision.</h2>
-      <p className="mt-4 max-w-2xl text-muted-foreground">
-        This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it.
-      </p>
+    <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <SectionIntro
+        eyebrow="Interactive walkthrough"
+        title="Walk an alert from evidence to decision."
+        body="This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it."
+      />
 
-      <div className="product-frame gold-glow mt-8 rounded-xl p-4 ring-1 ring-gold/25 sm:p-6">
+      <div className="product-frame gold-glow mt-10 rounded-lg p-5 ring-1 ring-gold/22 sm:p-7">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-medium">Meridian Supply · AP walkthrough</p>
@@ -120,7 +121,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md bg-background p-4 ring-1 ring-border">
       <p className="text-[11px] text-muted-foreground">{label}</p>
-      <p className="mt-2 font-figure text-3xl tracking-tight text-gold sm:text-4xl">{value}</p>
+      <p className="mt-2 font-figure text-[2rem] tracking-[-0.03em] text-gold sm:text-[2.15rem]">{value}</p>
     </div>
   );
 }

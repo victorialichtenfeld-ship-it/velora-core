@@ -4,30 +4,41 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { SampleDataBadge } from "@/components/sample-data-badge";
 
-const stages = ["draft", "scan", "detect", "alert", "held"] as const;
-type Stage = (typeof stages)[number];
+type Stage = "draft" | "scan" | "detect" | "alert" | "held";
 
-const statusCopy: Record<Stage, string> = {
-  draft: "Payable draft in the queue",
-  scan: "Matching vendor, amount, and window",
-  detect: "Same vendor · same $11,240 · 15 hours",
-  alert: "Duplicate flagged before release",
-  held: "Held before it left the account",
-};
+function statusFor(stage: Stage) {
+  if (stage === "held") return { label: "Held", className: "text-protect" };
+  if (stage === "detect" || stage === "alert") return { label: "Duplicate", className: "text-risk" };
+  if (stage === "scan") return { label: "Scanning", className: "text-gold" };
+  return { label: "Queued", className: "text-muted-foreground" };
+}
 
 export function HeroVisual() {
   const [stage, setStage] = useState<Stage>("draft");
+  const [clock, setClock] = useState("09:17:04");
   const reduce = useReducedMotion();
   const viewStage = reduce ? "held" : stage;
+  const second = statusFor(viewStage);
+  const flagged = viewStage === "detect" || viewStage === "alert" || viewStage === "held";
+  const scanning = viewStage === "scan" || viewStage === "detect";
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setClock(
+        new Date().toLocaleTimeString("en-GB", { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" })
+      );
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (reduce) return;
     const sequence: { stage: Stage; at: number }[] = [
       { stage: "draft", at: 0 },
-      { stage: "scan", at: 700 },
-      { stage: "detect", at: 2200 },
-      { stage: "alert", at: 3400 },
-      { stage: "held", at: 5000 },
+      { stage: "scan", at: 800 },
+      { stage: "detect", at: 2400 },
+      { stage: "alert", at: 3600 },
+      { stage: "held", at: 5200 },
     ];
     let timers: number[] = [];
     const run = () => {
@@ -35,145 +46,118 @@ export function HeroVisual() {
       timers = sequence.map(({ stage: next, at }) => window.setTimeout(() => setStage(next), at));
     };
     run();
-    const loop = window.setInterval(run, 7800);
+    const loop = window.setInterval(run, 8000);
     return () => {
       timers.forEach(clearTimeout);
       clearInterval(loop);
     };
   }, [reduce]);
 
-  const flagged = viewStage === "detect" || viewStage === "alert" || viewStage === "held";
-  const scanning = viewStage === "scan" || viewStage === "detect";
-
   return (
-    <motion.a
+    <a
       href="#demo"
-      className={`product-frame gold-glow relative mx-auto block w-full max-w-[540px] rounded-xl p-4 ring-1 ring-gold/25 sm:p-5 ${
-        reduce ? "" : "animate-float"
-      }`}
-      whileHover={reduce ? undefined : { y: -2 }}
-      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+      className="product-frame gold-glow relative mx-auto block w-full max-w-[540px] rounded-lg p-5 ring-1 ring-gold/22 sm:p-6"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px gold-hairline" />
-      <div className="relative mb-4 flex items-center justify-between gap-3">
+      <div className="pointer-events-none absolute inset-x-6 top-0 h-px gold-hairline" />
+      <div className="mb-5 flex items-start justify-between gap-3">
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-            Accounts payable
-          </p>
-          <p className="mt-1 text-sm text-foreground">Meridian Supply walkthrough</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-gold">AP ledger</p>
+          <p className="mt-1 text-sm text-foreground">Meridian Supply</p>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="relative flex size-2">
-            <span className="absolute inset-0 rounded-full bg-primary animate-pulse-ring" />
-            <span className="relative size-2 rounded-full bg-primary" />
-          </span>
-          <SampleDataBadge />
+        <div className="text-right">
+          <p className="font-figure text-[13px] tabular-nums text-muted-foreground">{clock}</p>
+          <div className="mt-1.5 flex justify-end">
+            <SampleDataBadge />
+          </div>
         </div>
       </div>
 
-      <div className="relative mb-3 flex gap-1">
-        {stages.map((item) => (
-          <span
-            key={item}
-            className={`h-0.5 flex-1 rounded-full transition-colors duration-500 ${
-              stages.indexOf(item) <= stages.indexOf(viewStage) ? "bg-primary" : "bg-border"
-            }`}
-          />
-        ))}
-      </div>
-
-      <div
-        className={`relative overflow-hidden rounded-lg bg-background p-4 ring-1 transition-shadow duration-500 ${
-          viewStage === "held" ? "ring-primary/50 protect-glow" : flagged ? "ring-risk/40" : "ring-border"
-        }`}
-      >
+      <LedgerRow
+        id="ACH-4410"
+        meta="Apex Logistics · yesterday 18:02"
+        amount="$11,240"
+        status="Cleared"
+        statusClass="text-muted-foreground"
+      />
+      <div className="relative mt-2">
         {scanning ? (
           <>
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 scan-wash animate-scan" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 scan-wash animate-scan" />
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 scan-beam animate-scan" />
           </>
         ) : null}
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-xs text-muted-foreground">Apex Logistics · ACH-4418</p>
-            <p className="mt-1 text-lg font-medium">Duplicate vendor payment</p>
-          </div>
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={viewStage === "held" ? "held" : flagged ? "dup" : "scan"}
-              initial={reduce ? false : { scale: 0.86, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className={`rounded-md px-2 py-1 text-[11px] font-medium ${
-                viewStage === "held"
-                  ? "bg-protect/15 text-protect"
-                  : flagged
-                    ? "bg-risk/15 text-risk"
-                    : "bg-muted text-muted-foreground"
-              }`}
-            >
-              {viewStage === "held" ? "Held" : flagged ? "Duplicate" : "Scanning"}
-            </motion.span>
-          </AnimatePresence>
-        </div>
-        <dl className="mt-4 grid grid-cols-3 gap-2 text-sm">
-          <Metric label="First ACH" value="$11,240" />
-          <Metric label="Second ACH" value="$11,240" warn={flagged} pulse={viewStage === "detect" || viewStage === "alert"} />
-          <Metric label="Window" value="15 hrs" />
-        </dl>
-        <p className="mt-3 text-[11px] text-muted-foreground">{statusCopy[viewStage]}</p>
+        <LedgerRow
+          id="ACH-4418"
+          meta="Apex Logistics · today 09:17"
+          amount="$11,240"
+          status={second.label}
+          statusClass={second.className}
+          warn={flagged && viewStage !== "held"}
+          held={viewStage === "held"}
+        />
       </div>
 
       <AnimatePresence>
         {flagged ? (
           <motion.div
             key="match"
-            initial={reduce ? false : { opacity: 0, y: 10, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="mt-3 overflow-hidden rounded-lg bg-background p-4 ring-1 ring-border"
+            initial={reduce ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="mt-4 border-t border-bronze/30 pt-4"
           >
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Match</p>
-            <p className="mt-1 text-sm">Same vendor, same amount, already cleared as ACH-4410.</p>
-            <motion.p
-              key={viewStage}
-              initial={reduce ? false : { opacity: 0.5, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`mt-3 font-figure text-2xl ${
-                viewStage === "held" ? "text-protect" : "text-risk"
-              }`}
-            >
+            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">Match</p>
+            <p className="mt-1.5 text-sm leading-6 text-muted-foreground">
+              Same vendor, same amount, 15 hours after ACH-4410 cleared.
+            </p>
+            <p className={`mt-3 font-figure text-[1.85rem] tracking-[-0.03em] ${viewStage === "held" ? "text-protect" : "text-risk"}`}>
               $11,240
-            </motion.p>
-            <p className="mt-1 text-xs text-muted-foreground">{statusCopy[viewStage]}</p>
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {viewStage === "held" ? "Held before it left the account." : "Would have left the account today."}
+            </p>
           </motion.div>
-        ) : null}
+        ) : (
+          <p className="mt-4 text-xs text-muted-foreground">Watching the second ACH against paid history.</p>
+        )}
       </AnimatePresence>
 
-      <p className="mt-3 text-xs text-primary">Walk this alert from evidence to decision →</p>
-    </motion.a>
+      <p className="mt-5 text-[11px] tracking-[0.06em] text-gold">Open the full evidence trail →</p>
+    </a>
   );
 }
 
-function Metric({
-  label,
-  value,
+function LedgerRow({
+  id,
+  meta,
+  amount,
+  status,
+  statusClass,
   warn,
-  pulse,
+  held,
 }: {
-  label: string;
-  value: string;
+  id: string;
+  meta: string;
+  amount: string;
+  status: string;
+  statusClass: string;
   warn?: boolean;
-  pulse?: boolean;
+  held?: boolean;
 }) {
   return (
     <div
-      className={`rounded-md bg-card px-2.5 py-2 ring-1 transition-colors duration-500 ${
-        warn ? "ring-risk/40 bg-risk/10" : "ring-border"
-      } ${pulse ? "animate-gold-breathe" : ""}`}
+      className={`flex items-center justify-between gap-4 rounded-md px-3.5 py-3 ring-1 ${
+        held ? "bg-protect/8 ring-protect/30" : warn ? "bg-risk/8 ring-risk/30" : "bg-background/70 ring-bronze/25"
+      }`}
     >
-      <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{label}</p>
-      <p className={`mt-1 font-figure text-sm ${warn ? "text-risk" : "text-foreground"}`}>{value}</p>
+      <div>
+        <p className="font-figure text-[15px] tracking-[-0.02em]">{id}</p>
+        <p className="mt-0.5 text-[11px] text-muted-foreground">{meta}</p>
+      </div>
+      <div className="text-right">
+        <p className={`font-figure text-[15px] ${warn ? "text-risk" : "text-foreground"}`}>{amount}</p>
+        <p className={`mt-0.5 text-[11px] tracking-[0.06em] ${statusClass}`}>{status}</p>
+      </div>
     </div>
   );
 }
