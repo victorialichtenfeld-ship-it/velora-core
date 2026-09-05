@@ -54,7 +54,7 @@ export function Pricing() {
             className={cn(
               "flex flex-col rounded-2xl border p-7",
               plan.highlighted
-                ? "border-gold/35 bg-card shadow-[0_18px_40px_rgb(196_163_90_/_0.18)]"
+                ? "border-gold/35 bg-card shadow-[0_18px_40px_rgb(31_78_154_/_0.14)]"
                 : "border-border bg-transparent"
             )}
           >

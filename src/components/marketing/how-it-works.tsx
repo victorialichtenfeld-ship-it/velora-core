@@ -34,7 +34,7 @@ export function HowItWorks() {
       <ol className="relative mt-14 space-y-12">
         <span className="absolute top-3 bottom-3 left-[1.15rem] hidden w-px bg-border sm:block">
           {reduce ? null : (
-            <span className="animate-bead absolute left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-gold shadow-[0_0_10px_rgb(196_163_90)]" />
+            <span className="animate-bead absolute left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-gold shadow-[0_0_10px_rgb(31_78_154)]" />
           )}
         </span>
         {steps.map((step, index) => (

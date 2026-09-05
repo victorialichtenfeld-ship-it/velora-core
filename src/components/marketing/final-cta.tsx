@@ -16,9 +16,9 @@ export function FinalCta() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="text-[13px] font-medium text-gold">Start today</p>
+        <p className="text-[13px] font-medium text-primary-foreground/70">Start today</p>
         <h2 className="font-figure mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
-          Hold the next duplicate before it <span className="money-sheen italic">clears</span>.
+          Hold the next duplicate before it <span className="italic">clears</span>.
         </h2>
         <p className="mx-auto mt-4 max-w-md text-[15px] leading-7 text-primary-foreground/70">
           Free trial. No bank connection required to walk the sample. Put Velora on the cash rail when AP is ready.
