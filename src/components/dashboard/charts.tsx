@@ -14,11 +14,11 @@ import {
 import { riskByType, riskTrend } from "@/lib/data/demo";
 
 const tooltipStyle = {
-  background: "#12141A",
-  border: "1px solid rgba(228,228,231,0.12)",
+  background: "#151515",
+  border: "1px solid rgba(226,194,120,0.16)",
   borderRadius: 8,
   fontSize: 12,
-  color: "#E4E4E7",
+  color: "#F7F3EA",
 };
 
 export function RiskTrendChart() {
@@ -27,14 +27,14 @@ export function RiskTrendChart() {
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={riskTrend}>
           <CartesianGrid stroke="rgba(228,228,231,0.08)" vertical={false} />
-          <XAxis dataKey="day" stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} />
-          <YAxis stroke="#9CA3AF" fontSize={12} tickLine={false} axisLine={false} />
+          <XAxis dataKey="day" stroke="#9C968C" fontSize={12} tickLine={false} axisLine={false} />
+          <YAxis stroke="#9C968C" fontSize={12} tickLine={false} axisLine={false} />
           <Tooltip contentStyle={tooltipStyle} />
           <Area
             type="monotone"
             dataKey="protected"
-            stroke="#34D399"
-            fill="#34D399"
+            stroke="#E2C278"
+            fill="#E2C278"
             fillOpacity={0.12}
             strokeWidth={2}
           />
@@ -54,14 +54,14 @@ export function RiskTypeChart() {
           <YAxis
             type="category"
             dataKey="type"
-            stroke="#9CA3AF"
+            stroke="#9C968C"
             fontSize={12}
             width={130}
             tickLine={false}
             axisLine={false}
           />
           <Tooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="value" fill="#3B82F6" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="value" fill="#E2C278" radius={[0, 4, 4, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
