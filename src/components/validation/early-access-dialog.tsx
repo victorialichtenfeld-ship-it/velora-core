@@ -133,6 +133,25 @@ export function EarlyAccessDialog() {
                 role: payload.role,
               });
               track({ event: "lead_submit", cta: lead.cta, plan: payload.plan, location: lead.source });
+              if (wantsPay) {
+                setPaying(true);
+                try {
+                  await startCheckout({
+                    plan: lead.plan === "growth" ? "growth" : "starter",
+                    name: payload.name,
+                    email: payload.email,
+                    company: payload.company,
+                    role: payload.role,
+                    source: lead.source || "dialog",
+                  });
+                  return;
+                } catch (cause) {
+                  setPaying(false);
+                  setError(cause instanceof Error ? cause.message : "Could not start checkout.");
+                  setDone(true);
+                  return;
+                }
+              }
               setDone(true);
             }}
           >
@@ -180,8 +199,16 @@ export function EarlyAccessDialog() {
               <input name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             </div>
             {error ? <p className="mt-3 text-sm text-destructive">{error}</p> : null}
-            <Button type="submit" className="mt-5 h-11 w-full" disabled={pending}>
-              {pending ? "Saving…" : lead?.cta === "talk_to_us" ? "Talk to us" : "Continue"}
+            <Button type="submit" className="mt-5 h-11 w-full" disabled={pending || paying}>
+              {pending || paying
+                ? paying
+                  ? "Opening checkout…"
+                  : "Saving…"
+                : lead?.cta === "talk_to_us"
+                  ? "Talk to us"
+                  : stripeReady
+                    ? `Continue to pay ${paidPlans[paidPlan].label}`
+                    : "Continue to payment"}
             </Button>
             <p className="mt-3 text-[12px] leading-5 text-muted-foreground">
               Live demo environment — connect your own tools in early access. Nothing is auto-executed.
