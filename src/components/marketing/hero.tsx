@@ -54,8 +54,8 @@ export function Hero() {
           </motion.h1>
           <motion.p
             key={line}
-            initial={reduce ? false : { y: 8, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={false}
+            animate={{ y: 0 }}
             className="mt-5 text-[15px] font-medium text-foreground"
           >
             {line}

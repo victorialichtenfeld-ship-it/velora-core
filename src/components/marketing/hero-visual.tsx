@@ -93,10 +93,10 @@ export function CashScene() {
             ) : null}
 
             <AnimatePresence mode="wait">
-              <motion.div
+            <motion.div
                 key={`row-${cycle}`}
-                initial={reduce ? false : { y: 18, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                initial={reduce ? false : { y: 10 }}
+                animate={{ y: 0 }}
                 transition={{ type: "spring", stiffness: 120, damping: 18 }}
                 className={`flex items-center justify-between gap-3 py-3.5 ${
                   matching || held ? "rounded-xl bg-muted/80 px-3 -mx-1" : ""
