@@ -53,11 +53,13 @@ export function Pricing() {
             key={plan.name}
             className={cn(
               "flex flex-col rounded-2xl border p-7",
-              plan.highlighted ? "border-foreground/15 bg-white shadow-[0_18px_40px_rgb(15_28_46_/_0.07)]" : "border-border bg-transparent"
+              plan.highlighted
+                ? "border-gold/35 bg-card shadow-[0_18px_40px_rgb(196_163_90_/_0.18)]"
+                : "border-border bg-transparent"
             )}
           >
             <p className="text-[13px] font-medium text-muted-foreground">{plan.name}</p>
-            <p className="font-figure mt-3 tracking-[-0.04em] text-foreground text-4xl">
+            <p className={`font-figure mt-3 tracking-[-0.04em] text-4xl ${plan.highlighted ? "money-sheen" : "text-foreground"}`}>
               {plan.price}
               <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>
             </p>

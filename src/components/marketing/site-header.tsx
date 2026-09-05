@@ -72,7 +72,7 @@ export function SiteHeader() {
           </SheetContent>
         </Sheet>
       </div>
-      <motion.div style={{ scaleX }} className="h-0.5 origin-left bg-foreground" />
+      <motion.div style={{ scaleX }} className="h-0.5 origin-left bg-gold" />
     </header>
   );
 }

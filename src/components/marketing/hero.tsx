@@ -39,7 +39,9 @@ export function Hero() {
             key={line}
             initial={false}
             animate={{ y: 0 }}
-            className="mt-5 text-[15px] font-medium text-foreground"
+            className={`mt-5 text-[15px] font-medium ${
+              stage === "held" ? "text-protect" : stage === "match" ? "text-gold" : "text-[#3d5a8a]"
+            }`}
           >
             {line}
           </motion.p>
@@ -73,7 +75,7 @@ export function Hero() {
           </motion.div>
           <div className="mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-border pt-6">
             <div>
-              <p className="font-figure text-2xl tracking-tight text-foreground">
+              <p className="font-figure money-sheen text-2xl tracking-tight">
                 <AnimatedNumber value={184320} prefix="$" duration={1400} />
               </p>
               <p className="mt-1 text-[12px] text-muted-foreground">Held this month</p>

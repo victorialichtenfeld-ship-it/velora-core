@@ -140,7 +140,7 @@ function AlertWorkbench({
           </span>
         ) : null}
       </div>
-      <p className="font-figure mt-3 text-5xl leading-none tracking-[-0.04em] sm:text-6xl">
+      <p className="font-figure money-sheen mt-3 text-5xl leading-none tracking-[-0.04em] sm:text-6xl">
         {formatCurrency(alert.dollarImpact)}
       </p>
       <h3 className="mt-4 text-xl font-medium">{alert.title}</h3>
@@ -149,7 +149,7 @@ function AlertWorkbench({
         {alert.evidence.map((item) => (
           <div key={`${item.label}-${item.value}`} className="flex items-baseline justify-between gap-4 py-2.5">
             <dt className="text-[12px] text-muted-foreground">{item.label}</dt>
-            <dd className={`font-figure text-base ${item.highlight ? "text-foreground" : "text-muted-foreground"}`}>
+            <dd className={`font-figure text-base ${item.highlight ? "text-gold" : "text-muted-foreground"}`}>
               {item.value}
             </dd>
           </div>

@@ -16,15 +16,15 @@ function StatusChip({ stage }: { stage: HoldStage }) {
   }
   if (stage === "match") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/12 px-2.5 py-1 text-[11px] font-medium text-gold">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/18 px-2.5 py-1 text-[11px] font-medium text-gold">
         <span className="size-1.5 rounded-full bg-gold animate-pulse" />
         Duplicate
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-foreground">
-      <span className="size-1.5 rounded-full bg-foreground/70 animate-pulse" />
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e8eef8] px-2.5 py-1 text-[11px] font-medium text-[#3d5a8a]">
+      <span className="size-1.5 rounded-full bg-[#4c6a9a] animate-pulse" />
       In flight
     </span>
   );
@@ -45,7 +45,7 @@ export function CashScene({
 
   return (
     <div className="relative mx-auto w-full max-w-[540px]">
-      <div className="absolute inset-4 translate-x-4 translate-y-5 rounded-[1.2rem] bg-foreground/10" />
+      <div className="absolute inset-4 translate-x-4 translate-y-5 rounded-[1.2rem] bg-gold/20" />
       <div className={`product-panel relative overflow-hidden ${reduce ? "" : "animate-float"}`}>
         <div className="flex items-center justify-between border-b border-border bg-muted/45 px-6 py-3">
           <p className="text-[12px] font-medium">Velora · Meridian Supply</p>
@@ -79,7 +79,7 @@ export function CashScene({
 
             <div
               className={`flex items-center justify-between gap-3 py-3.5 ${
-                matching || held ? "rounded-xl bg-muted/80 px-3 -mx-1" : ""
+                matching ? "rounded-xl bg-gold/10 px-3 -mx-1" : held ? "rounded-xl bg-protect/10 px-3 -mx-1" : ""
               }`}
             >
               <div>
@@ -92,7 +92,9 @@ export function CashScene({
 
           <div className="mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full bg-foreground transition-[width] duration-500 ease-out"
+              className={`h-full transition-[width,background-color] duration-500 ease-out ${
+                held ? "bg-protect" : matching ? "bg-gold" : "bg-[#4c6a9a]"
+              }`}
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -108,10 +110,10 @@ export function CashScene({
               key={`banner-${cycle}`}
               initial={reduce ? false : { y: 16 }}
               animate={{ y: 0 }}
-              className="flex items-center justify-between gap-3 bg-foreground px-6 py-3.5 text-primary-foreground"
+              className="flex items-center justify-between gap-3 bg-protect px-6 py-3.5 text-protect-foreground"
             >
               <p className="text-[13px] font-medium">Held before the bank</p>
-              <p className="text-[12px] text-primary-foreground/70">Will not leave the account</p>
+              <p className="text-[12px] text-protect-foreground/75">Will not leave the account</p>
             </motion.div>
           ) : null}
         </AnimatePresence>

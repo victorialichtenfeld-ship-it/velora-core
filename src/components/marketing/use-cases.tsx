@@ -21,7 +21,7 @@ export function UseCases() {
         {cases.map((item) => (
           <div key={item.team} className="bg-background px-5 py-8 sm:px-8">
             <p className="text-[13px] font-medium text-muted-foreground">{item.team}</p>
-            <p className="font-figure mt-3 text-4xl tracking-[-0.04em]">{item.amount}</p>
+            <p className="font-figure money-sheen mt-3 text-4xl tracking-[-0.04em]">{item.amount}</p>
             <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>
           </div>
         ))}

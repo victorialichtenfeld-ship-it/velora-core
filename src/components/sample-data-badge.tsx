@@ -4,7 +4,7 @@ export function SampleDataBadge({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground",
+        "inline-flex items-center rounded-full bg-gold/15 px-2 py-0.5 text-[11px] font-medium text-gold",
         className
       )}
     >
