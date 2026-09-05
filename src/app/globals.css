@@ -192,9 +192,12 @@
     box-shadow: 0 0 0 1px var(--border);
   }
   .gold-run-border {
-    border: 1px solid var(--border);
-    background: #ffffff;
-    animation: none;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#10151e, #10151e) padding-box,
+      linear-gradient(90deg, transparent, #7eb0ff, transparent, #3d7cf0) border-box;
+    background-size: auto, 240% 100%;
+    animation: borderRun 1.5s linear infinite;
   }
   .text-balance {
     text-wrap: balance;
@@ -222,7 +225,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmerText 1.15s linear infinite;
+    animation: shimmerText 0.85s linear infinite;
   }
   .scan-beam {
     height: 1px;
@@ -243,7 +246,7 @@
     background: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / 0.22) 50%, transparent 62%);
     transform: translateX(-130%);
     pointer-events: none;
-    animation: shineSweep 2.1s ease-in-out infinite;
+    animation: shineSweep 1.35s ease-in-out infinite;
   }
   .btn-shine:hover::after {
     animation-duration: 0.7s;
@@ -353,13 +356,33 @@
       0 32px 80px rgb(61 124 240 / 0.28),
       0 0 0 1px rgb(16 21 30 / 0.8);
   }
+  .product-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, transparent 12%, #7eb0ff 50%, transparent 88%);
+    background-size: 220% 100%;
+    animation: borderRun 1.4s linear infinite;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
   .product-panel::after,
   .gold-desk::after {
     content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(110deg, transparent 38%, rgb(126 176 255 / 0.12) 50%, transparent 62%);
-    animation: goldWash 2.6s ease-in-out infinite;
+    animation: goldWash 1.35s ease-in-out infinite;
     pointer-events: none;
     z-index: 1;
   }
@@ -374,7 +397,7 @@
   .progress-sheen {
     background: linear-gradient(90deg, #3d7cf0, #b7d4ff, #3d7cf0);
     background-size: 200% 100%;
-    animation: barSheen 1.4s linear infinite;
+    animation: barSheen 0.9s linear infinite;
   }
   .animate-card-glow {
     animation: cardGlow 2.2s ease-in-out infinite;
@@ -656,7 +679,7 @@
 }
 
 .animate-ticker {
-  animation: ticker 12s linear infinite;
+  animation: ticker 8s linear infinite;
 }
 
 .animate-ticker-fast {
@@ -664,11 +687,11 @@
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 10s linear infinite;
+  animation: tickerReverse 6.5s linear infinite;
 }
 
 .animate-gold-sweep {
-  animation: goldSweep 3.2s ease-in-out infinite;
+  animation: goldSweep 2.1s ease-in-out infinite;
 }
 
 .animate-dollar {
@@ -688,19 +711,19 @@
 }
 
 .animate-pulse-ring {
-  animation: pulseRing 1.35s ease-out infinite;
+  animation: pulseRing 0.85s ease-out infinite;
 }
 
 .animate-float {
-  animation: floatSoft 4.8s ease-in-out infinite;
+  animation: floatSoft 3.2s ease-in-out infinite;
 }
 
 .animate-mote {
-  animation: mote 3.8s ease-in-out infinite;
+  animation: mote 2.2s ease-in-out infinite;
 }
 
 .animate-gold-breathe {
-  animation: goldBreathe 1.8s ease-in-out infinite;
+  animation: goldBreathe 1.15s ease-in-out infinite;
 }
 
 .animate-hold-stamp {
@@ -748,7 +771,7 @@
 }
 
 .animate-bead {
-  animation: beadDrop 1.8s ease-in-out infinite;
+  animation: beadDrop 1.15s ease-in-out infinite;
 }
 
 .animate-line-grow {
@@ -766,7 +789,7 @@
 }
 
 .animate-rail {
-  animation: railRun 1.4s linear infinite;
+  animation: railRun 0.9s linear infinite;
 }
 
 .animate-node {
@@ -836,6 +859,7 @@
   .money-sheen,
   .btn-shine::after,
   .product-panel::after,
+  .product-panel::before,
   .gold-desk::after {
     animation: none !important;
   }

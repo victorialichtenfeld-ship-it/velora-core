@@ -16,9 +16,13 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <p className="pointer-events-none absolute -left-4 top-10 hidden select-none font-figure text-[8.5rem] leading-none tracking-[-0.06em] text-gold/10 lg:block">
+      <motion.p
+        className="pointer-events-none absolute -left-4 top-10 hidden select-none font-figure text-[8.5rem] leading-none tracking-[-0.06em] text-gold/10 lg:block"
+        animate={reduce ? undefined : { x: [0, 18, 0], y: [0, -12, 0] }}
+        transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
+      >
         $11,240
-      </p>
+      </motion.p>
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:py-24">
         <div className="order-2 lg:order-1">
           <motion.p
@@ -78,7 +82,7 @@ export function Hero() {
               Start free trial
               <motion.span
                 animate={reduce ? undefined : { x: [0, 5, 0] }}
-                transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 0.65, repeat: Infinity, ease: "easeInOut" }}
                 className="inline-flex"
               >
                 <ArrowRight className="size-4" />
@@ -93,9 +97,14 @@ export function Hero() {
               {(["In flight", "Match", "Held"] as const).map((label, index) => {
                 const active = stage === "send" ? 0 : stage === "match" ? 1 : 2;
                 return (
-                  <span key={label} className={index <= active ? "text-gold" : ""}>
+                  <motion.span
+                    key={label}
+                    className={index <= active ? "text-gold" : ""}
+                    animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.12, 1] }}
+                    transition={{ duration: 0.7, repeat: index === active ? Infinity : 0 }}
+                  >
                     {label}
-                  </span>
+                  </motion.span>
                 );
               })}
             </div>

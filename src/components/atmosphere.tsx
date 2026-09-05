@@ -12,7 +12,9 @@ export function Atmosphere() {
       <span className="animate-mote absolute top-[52%] left-[64%] size-1 rounded-full bg-gold/70 [animation-delay:0.4s]" />
       <span className="animate-mote absolute top-[66%] left-[22%] size-1 rounded-full bg-gold/40 [animation-delay:2.1s]" />
       <span className="animate-mote absolute top-[14%] left-[48%] size-1 rounded-full bg-gold/60 [animation-delay:1.2s]" />
-      <span className="animate-mote absolute top-[74%] left-[58%] size-1.5 rounded-full bg-gold/35 [animation-delay:2.8s]" />
+      <span className="animate-mote absolute top-[8%] left-[70%] size-1 rounded-full bg-gold/65 [animation-delay:0.2s]" />
+      <span className="animate-mote absolute top-[36%] left-[8%] size-1 rounded-full bg-gold/50 [animation-delay:1.9s]" />
+      <span className="animate-mote absolute top-[82%] left-[36%] size-1 rounded-full bg-gold/45 [animation-delay:3.1s]" />
     </div>
   );
 }

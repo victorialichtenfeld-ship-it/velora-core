@@ -7,11 +7,11 @@ export type HoldStage = "send" | "match" | "held";
 
 export const holdSequence: { stage: HoldStage; at: number }[] = [
   { stage: "send", at: 0 },
-  { stage: "match", at: 1100 },
-  { stage: "held", at: 2600 },
+  { stage: "match", at: 800 },
+  { stage: "held", at: 1900 },
 ];
 
-export const holdLoopMs = 6200;
+export const holdLoopMs = 4600;
 
 export const holdCopy: Record<HoldStage, string> = {
   send: "On the rail to the bank",
@@ -29,6 +29,7 @@ export function useHoldLoop() {
     let timers: number[] = [];
     const run = () => {
       timers.forEach(clearTimeout);
+      setStage("send");
       timers = holdSequence.map(({ stage: next, at }) => window.setTimeout(() => setStage(next), at));
     };
     run();
