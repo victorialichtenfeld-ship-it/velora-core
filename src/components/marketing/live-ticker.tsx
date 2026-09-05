@@ -48,7 +48,7 @@ export function LiveTicker() {
       <div className="animate-ticker-reverse flex w-max gap-8 border-t border-gold/25 bg-gold/8 py-1.5 pr-6 pl-24 text-[12px] text-gold group-hover/ticker:[animation-play-state:paused]">
         {cash.map((amount, index) => (
           <span key={`${amount}-${index}`} aria-hidden={index >= amounts.length} className="font-figure tracking-[0.06em]">
-            $ {amount}
+            {amount}
           </span>
         ))}
       </div>
