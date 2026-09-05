@@ -23,7 +23,10 @@ export function Hero() {
             animate={{ y: 0 }}
             className="mb-5 inline-flex items-center gap-2.5 rounded-full bg-gold/12 px-3 py-1.5 text-[13px] font-medium text-gold"
           >
-            <span className="size-1.5 rounded-full bg-gold" />
+            <span className="relative flex size-2">
+              <span className={reduce ? "hidden" : "animate-pulse-ring absolute inset-0 rounded-full bg-gold"} />
+              <span className="relative size-2 rounded-full bg-gold" />
+            </span>
             Live hold · Apex · 15 hours later
           </motion.p>
           <motion.h1
@@ -37,8 +40,9 @@ export function Hero() {
           </motion.h1>
           <motion.p
             key={line}
-            initial={false}
+            initial={reduce ? false : { y: 10 }}
             animate={{ y: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 text-[15px] font-medium text-gold"
           >
             {line}
@@ -60,14 +64,14 @@ export function Hero() {
             <Link href="/signup" className={cn(buttonVariants(), "btn-shine h-12 px-7 text-[15px]")}>
               Start free trial
               <motion.span
-                animate={reduce ? undefined : { x: [0, 4, 0] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                animate={reduce ? undefined : { x: [0, 5, 0] }}
+                transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut" }}
                 className="inline-flex"
               >
                 <ArrowRight className="size-4" />
               </motion.span>
             </Link>
-            <a href="#demo" className="text-[15px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
+            <a href="#demo" className="text-[15px] text-gold underline-offset-4 hover:text-foreground hover:underline">
               Watch the hold
             </a>
           </motion.div>

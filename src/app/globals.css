@@ -62,96 +62,96 @@
 }
 
 :root {
-  --background: #f4f5f7;
-  --foreground: #12141a;
-  --ink: #12141a;
-  --frame: #f4f5f7;
-  --card: #ffffff;
-  --card-foreground: #12141a;
-  --popover: #ffffff;
-  --popover-foreground: #12141a;
-  --primary: #1f4e9a;
+  --background: #07090e;
+  --foreground: #e8edf5;
+  --ink: #e8edf5;
+  --frame: #07090e;
+  --card: #10151e;
+  --card-foreground: #e8edf5;
+  --popover: #10151e;
+  --popover-foreground: #e8edf5;
+  --primary: #3d7cf0;
   --primary-foreground: #ffffff;
-  --secondary: #e8edf5;
-  --secondary-foreground: #12141a;
-  --muted: #e8edf5;
-  --muted-foreground: #5c6573;
-  --accent: #e8edf5;
-  --accent-foreground: #12141a;
-  --destructive: #b85c4a;
-  --border: #dde2ea;
-  --input: #dde2ea;
-  --ring: rgb(31 78 154 / 40%);
-  --gold: #1f4e9a;
-  --gold-foreground: #ffffff;
-  --bronze: #163a78;
-  --protect: #1f4e9a;
-  --protect-foreground: #ffffff;
-  --dusk: #1f4e9a;
-  --dusk-foreground: #ffffff;
-  --blush: #1f4e9a;
-  --risk: #b85c4a;
-  --warn: #1f4e9a;
-  --sample: #5c6573;
-  --chart-1: #12141a;
-  --chart-2: #1f4e9a;
-  --chart-3: #163a78;
-  --chart-4: #4d7ec4;
-  --chart-5: #8aa6d4;
+  --secondary: #161c28;
+  --secondary-foreground: #e8edf5;
+  --muted: #161c28;
+  --muted-foreground: #8b95a8;
+  --accent: #161c28;
+  --accent-foreground: #e8edf5;
+  --destructive: #c56b5c;
+  --border: #243044;
+  --input: #243044;
+  --ring: rgb(125 176 255 / 45%);
+  --gold: #7eb0ff;
+  --gold-foreground: #07090e;
+  --bronze: #3d7cf0;
+  --protect: #7eb0ff;
+  --protect-foreground: #07090e;
+  --dusk: #7eb0ff;
+  --dusk-foreground: #07090e;
+  --blush: #7eb0ff;
+  --risk: #c56b5c;
+  --warn: #7eb0ff;
+  --sample: #8b95a8;
+  --chart-1: #e8edf5;
+  --chart-2: #7eb0ff;
+  --chart-3: #3d7cf0;
+  --chart-4: #4d8ef5;
+  --chart-5: #243044;
   --radius: 0.7rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #12141a;
-  --sidebar-primary: #1f4e9a;
+  --sidebar: #10151e;
+  --sidebar-foreground: #e8edf5;
+  --sidebar-primary: #3d7cf0;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e8edf5;
-  --sidebar-accent-foreground: #12141a;
-  --sidebar-border: #dde2ea;
-  --sidebar-ring: rgb(31 78 154 / 40%);
+  --sidebar-accent: #161c28;
+  --sidebar-accent-foreground: #e8edf5;
+  --sidebar-border: #243044;
+  --sidebar-ring: rgb(125 176 255 / 45%);
 }
 
 .dark {
-  --background: #f4f5f7;
-  --foreground: #12141a;
-  --card: #ffffff;
-  --card-foreground: #12141a;
-  --popover: #ffffff;
-  --popover-foreground: #12141a;
-  --primary: #1f4e9a;
+  --background: #07090e;
+  --foreground: #e8edf5;
+  --card: #10151e;
+  --card-foreground: #e8edf5;
+  --popover: #10151e;
+  --popover-foreground: #e8edf5;
+  --primary: #3d7cf0;
   --primary-foreground: #ffffff;
-  --secondary: #e8edf5;
-  --secondary-foreground: #12141a;
-  --muted: #e8edf5;
-  --muted-foreground: #5c6573;
-  --accent: #e8edf5;
-  --accent-foreground: #12141a;
-  --destructive: #b85c4a;
-  --border: #dde2ea;
-  --input: #dde2ea;
-  --ring: rgb(31 78 154 / 40%);
-  --gold: #1f4e9a;
-  --gold-foreground: #ffffff;
-  --bronze: #163a78;
-  --protect: #1f4e9a;
-  --protect-foreground: #ffffff;
-  --dusk: #1f4e9a;
-  --dusk-foreground: #ffffff;
-  --blush: #1f4e9a;
-  --risk: #b85c4a;
-  --warn: #1f4e9a;
-  --sample: #5c6573;
-  --chart-1: #12141a;
-  --chart-2: #1f4e9a;
-  --chart-3: #163a78;
-  --chart-4: #4d7ec4;
-  --chart-5: #8aa6d4;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #12141a;
-  --sidebar-primary: #1f4e9a;
+  --secondary: #161c28;
+  --secondary-foreground: #e8edf5;
+  --muted: #161c28;
+  --muted-foreground: #8b95a8;
+  --accent: #161c28;
+  --accent-foreground: #e8edf5;
+  --destructive: #c56b5c;
+  --border: #243044;
+  --input: #243044;
+  --ring: rgb(125 176 255 / 45%);
+  --gold: #7eb0ff;
+  --gold-foreground: #07090e;
+  --bronze: #3d7cf0;
+  --protect: #7eb0ff;
+  --protect-foreground: #07090e;
+  --dusk: #7eb0ff;
+  --dusk-foreground: #07090e;
+  --blush: #7eb0ff;
+  --risk: #c56b5c;
+  --warn: #7eb0ff;
+  --sample: #8b95a8;
+  --chart-1: #e8edf5;
+  --chart-2: #7eb0ff;
+  --chart-3: #3d7cf0;
+  --chart-4: #4d8ef5;
+  --chart-5: #243044;
+  --sidebar: #10151e;
+  --sidebar-foreground: #e8edf5;
+  --sidebar-primary: #3d7cf0;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e8edf5;
-  --sidebar-accent-foreground: #12141a;
-  --sidebar-border: #dde2ea;
-  --sidebar-ring: rgb(31 78 154 / 40%);
+  --sidebar-accent: #161c28;
+  --sidebar-accent-foreground: #e8edf5;
+  --sidebar-border: #243044;
+  --sidebar-ring: rgb(125 176 255 / 45%);
 }
 
 @layer base {
@@ -173,12 +173,12 @@
     font-variant-numeric: tabular-nums;
   }
   .glass {
-    background: #ffffff;
-    box-shadow: 0 12px 32px rgb(31 78 154 / 10%);
+    background: #10151e;
+    box-shadow: 0 12px 32px rgb(61 124 240 / 16%);
   }
   .glass-strong {
-    background: #ffffff;
-    box-shadow: 0 16px 40px rgb(31 78 154 / 12%);
+    background: #10151e;
+    box-shadow: 0 16px 40px rgb(61 124 240 / 20%);
   }
   .product-frame {
     background: #ffffff;
@@ -217,12 +217,12 @@
   }
   .text-shimmer,
   .money-sheen {
-    background: linear-gradient(100deg, #163a78 0%, #1f4e9a 38%, #6b94d4 50%, #1f4e9a 62%, #163a78 100%);
+    background: linear-gradient(100deg, #3d7cf0 0%, #7eb0ff 38%, #d6e6ff 50%, #7eb0ff 62%, #3d7cf0 100%);
     background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmerText 2.4s linear infinite;
+    animation: shimmerText 1.8s linear infinite;
   }
   .scan-beam {
     height: 1px;
@@ -332,29 +332,37 @@
       inset 0 1px 0 rgb(196 168 106 / 0.55);
   }
   .gold-desk {
-    border: 1px solid rgb(31 78 154 / 18%);
-    background: #ffffff;
+    border: 1px solid rgb(126 176 255 / 22%);
+    background: #10151e;
     border-radius: 1rem;
     box-shadow:
-      0 1px 1px rgb(18 20 26 / 0.04),
-      0 22px 50px rgb(31 78 154 / 0.10);
+      0 1px 1px rgb(0 0 0 / 0.4),
+      0 22px 50px rgb(61 124 240 / 0.16);
   }
   .product-panel {
-    border: 1px solid rgb(31 78 154 / 20%);
-    background: #ffffff;
+    border: 1px solid rgb(126 176 255 / 28%);
+    background: #10151e;
     border-radius: 1.15rem;
     box-shadow:
-      0 1px 1px rgb(18 20 26 / 0.04),
-      0 28px 64px rgb(31 78 154 / 0.12),
-      0 0 0 1px rgb(255 255 255 / 0.9);
+      0 1px 1px rgb(0 0 0 / 0.45),
+      0 32px 80px rgb(61 124 240 / 0.28),
+      0 0 0 1px rgb(16 21 30 / 0.8);
   }
   .glow-dusk,
   .glow-gold,
   .glow-protect {
     box-shadow:
-      0 1px 1px rgb(18 20 26 / 0.04),
-      0 28px 70px rgb(31 78 154 / 0.14),
-      0 0 0 1px rgb(255 255 255 / 0.9);
+      0 1px 1px rgb(0 0 0 / 0.4),
+      0 32px 90px rgb(61 124 240 / 0.36),
+      0 0 0 1px rgb(16 21 30 / 0.8);
+  }
+  .progress-sheen {
+    background: linear-gradient(90deg, #3d7cf0, #b7d4ff, #3d7cf0);
+    background-size: 200% 100%;
+    animation: barSheen 1.4s linear infinite;
+  }
+  .animate-card-glow {
+    animation: cardGlow 2.2s ease-in-out infinite;
   }
   .ai-field {
     border: 1px solid rgb(176 137 58 / 0.32);
@@ -474,7 +482,7 @@
 
 @keyframes floatSoft {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-18px); }
 }
 
 @keyframes mote {
@@ -484,8 +492,18 @@
 }
 
 @keyframes goldBreathe {
-  0%, 100% { opacity: 0.55; }
+  0%, 100% { opacity: 0.45; }
   50% { opacity: 1; }
+}
+
+@keyframes barSheen {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes cardGlow {
+  0%, 100% { box-shadow: 0 28px 70px rgb(61 124 240 / 0.22), 0 0 0 1px rgb(126 176 255 / 0.18); }
+  50% { box-shadow: 0 36px 96px rgb(61 124 240 / 0.48), 0 0 0 1px rgb(126 176 255 / 0.4); }
 }
 
 @keyframes goldSweep {
@@ -623,7 +641,7 @@
 }
 
 .animate-ticker {
-  animation: ticker 16s linear infinite;
+  animation: ticker 12s linear infinite;
 }
 
 .animate-ticker-fast {
@@ -659,7 +677,7 @@
 }
 
 .animate-float {
-  animation: floatSoft 6.4s ease-in-out infinite;
+  animation: floatSoft 4.8s ease-in-out infinite;
 }
 
 .animate-mote {
@@ -715,7 +733,7 @@
 }
 
 .animate-bead {
-  animation: beadDrop 2.8s ease-in-out infinite;
+  animation: beadDrop 1.8s ease-in-out infinite;
 }
 
 .animate-line-grow {
@@ -733,7 +751,7 @@
 }
 
 .animate-rail {
-  animation: railRun 2.2s linear infinite;
+  animation: railRun 1.4s linear infinite;
 }
 
 .animate-node {
@@ -787,6 +805,8 @@
   .animate-hairline,
   .animate-gold-wash,
   .animate-rail,
+  .animate-card-glow,
+  .progress-sheen,
   .animate-node,
   .animate-data-fall,
   .animate-core-ping,
@@ -817,7 +837,7 @@
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(31 78 154 / 35%);
+  background: rgb(126 176 255 / 40%);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {

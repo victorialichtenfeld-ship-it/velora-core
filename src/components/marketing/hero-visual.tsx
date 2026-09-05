@@ -45,12 +45,19 @@ export function CashScene({
 
   return (
     <div className="relative mx-auto w-full max-w-[540px]">
-      <div className="absolute inset-4 translate-x-4 translate-y-5 rounded-[1.2rem] bg-gold/20" />
-      <div className={`product-panel relative overflow-hidden ${reduce ? "" : "animate-float"}`}>
-        <div className="flex items-center justify-between border-b border-gold/20 bg-gold/[0.06] px-6 py-3">
+      <div className={`absolute inset-2 rounded-[1.4rem] bg-gold/20 blur-2xl ${reduce ? "" : "animate-gold-breathe"}`} />
+      <div
+        className={`product-panel relative overflow-hidden ${reduce ? "" : "animate-float"} ${
+          held || matching ? "animate-card-glow" : ""
+        }`}
+      >
+        <div className="flex items-center justify-between border-b border-gold/20 bg-gold/[0.08] px-6 py-3">
           <p className="text-[12px] font-medium">Velora · Meridian Supply</p>
           <div className="flex items-center gap-2">
-            <span className="size-1.5 rounded-full bg-gold" />
+            <span className="relative flex size-2">
+              <span className={reduce ? "hidden" : "animate-pulse-ring absolute inset-0 rounded-full bg-gold"} />
+              <span className="relative size-2 rounded-full bg-gold" />
+            </span>
             <span className="text-[11px] text-muted-foreground">Live review</span>
             <SampleDataBadge />
           </div>
@@ -86,12 +93,27 @@ export function CashScene({
                 <p className="text-[13px] font-medium">ACH-4418</p>
                 <p className="mt-0.5 text-[12px] text-muted-foreground">15 hours later · same amount</p>
               </div>
-              <StatusChip stage={stage} />
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={stage}
+                  initial={reduce ? false : { y: 6, scale: 0.92 }}
+                  animate={{ y: 0, scale: 1 }}
+                  className="inline-flex"
+                >
+                  <StatusChip stage={stage} />
+                </motion.span>
+              </AnimatePresence>
             </div>
           </div>
 
-          <div className="mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
-            <div className="h-full bg-gold transition-[width] duration-500 ease-out" style={{ width: `${progress}%` }} />
+          <div className="relative mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
+            <div
+              className={`h-full ${reduce ? "bg-gold" : "progress-sheen"}`}
+              style={{ width: `${progress}%` }}
+            />
+            {!reduce && !held ? (
+              <span className="animate-rail pointer-events-none absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-gold shadow-[0_0_10px_rgb(126_176_255)]" />
+            ) : null}
           </div>
 
           {held ? null : (
@@ -103,8 +125,9 @@ export function CashScene({
           {held ? (
             <motion.div
               key={`banner-${cycle}`}
-              initial={reduce ? false : { y: 16 }}
+              initial={reduce ? false : { y: 28 }}
               animate={{ y: 0 }}
+              transition={{ type: "spring", stiffness: 320, damping: 24 }}
               className="flex items-center justify-between gap-3 bg-primary px-6 py-3.5 text-primary-foreground"
             >
               <p className="text-[13px] font-medium">Held before the bank</p>
