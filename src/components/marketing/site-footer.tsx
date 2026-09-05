@@ -2,10 +2,7 @@ import { Logo } from "@/components/logo";
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-bronze/25 py-12">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden">
-        <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
-      </div>
+    <footer className="border-t border-border py-12">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 sm:flex-row sm:items-start sm:justify-between sm:px-6">
         <div>
           <Logo />
@@ -13,22 +10,22 @@ export function SiteFooter() {
             A finance/ops control layer for mid-size companies. Duplicate payments and invoice pricing mismatches are held before cash leaves.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-x-14 gap-y-2 text-[13px] tracking-[0.03em] text-muted-foreground">
-          <a href="#demo" className="hover:text-gold">
+        <div className="grid grid-cols-2 gap-x-14 gap-y-2 text-[14px] text-muted-foreground">
+          <a href="#demo" className="hover:text-foreground">
             Product
           </a>
-          <a href="#pricing" className="hover:text-gold">
+          <a href="#pricing" className="hover:text-foreground">
             Pricing
           </a>
-          <a href="/book" className="hover:text-gold">
+          <a href="/book" className="hover:text-foreground">
             Book a call
           </a>
-          <a href="/login" className="hover:text-gold">
+          <a href="/login" className="hover:text-foreground">
             Sign in
           </a>
         </div>
       </div>
-      <p className="mx-auto mt-10 max-w-6xl px-4 text-[11px] tracking-[0.04em] text-muted-foreground sm:px-6">
+      <p className="mx-auto mt-10 max-w-6xl px-4 text-[12px] text-muted-foreground sm:px-6">
         Sample data from the Meridian Supply walkthrough. No live financial systems are connected unless you add API keys.
       </p>
     </footer>

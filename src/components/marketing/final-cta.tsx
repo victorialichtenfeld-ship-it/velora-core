@@ -11,22 +11,19 @@ export function FinalCta() {
     <section className="px-4 pb-28 pt-8 text-center sm:px-6">
       <motion.div
         className="mx-auto w-full max-w-3xl"
-        initial={reduce ? false : { y: 18 }}
+        initial={reduce ? false : { y: 16 }}
         whileInView={{ y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[0.24em] text-gold">
-          <span className="size-1.5 rounded-full bg-gold animate-flash" />
-          Start today
-        </p>
-        <h2 className="font-figure mt-4 text-[2.4rem] leading-[1.1] tracking-[-0.03em] sm:text-[3.15rem]">
-          Hold the next duplicate before it <span className="money-sheen">clears</span>.
+        <p className="text-[13px] font-medium text-muted-foreground">Start today</p>
+        <h2 className="font-figure mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
+          Hold the next duplicate before it clears.
         </h2>
         <p className="mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
           Free trial. No bank connection required to walk the sample. Put Velora on the cash rail when AP is ready.
         </p>
-        <Link href="/signup" className={cn(buttonVariants(), "mt-9 inline-flex h-12 px-8 text-[13px] tracking-[0.08em] uppercase")}>
+        <Link href="/signup" className={cn(buttonVariants(), "mt-8 inline-flex h-11 px-6 text-[14px]")}>
           Start free trial
         </Link>
       </motion.div>

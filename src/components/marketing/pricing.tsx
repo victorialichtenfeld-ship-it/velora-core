@@ -41,36 +41,31 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Pricing"
         title="Priced like a control, not a chatbot seat."
         body="Starter and Growth start a trial. Enterprise is a call with finance and IT."
       />
-      <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-end">
+      <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
         {plans.map((plan) => (
           <div
             key={plan.name}
             className={cn(
-              "relative px-1 pt-8",
-              plan.highlighted ? "gold-desk px-6 pb-8" : "border-t border-gold/20"
+              "flex flex-col rounded-2xl border p-7",
+              plan.highlighted ? "border-foreground/15 bg-white shadow-[0_18px_40px_rgb(15_28_46_/_0.07)]" : "border-border bg-transparent"
             )}
           >
-            {plan.highlighted ? (
-              <span className="absolute inset-x-0 top-0 h-px overflow-hidden">
-                <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
-              </span>
-            ) : null}
-            <p className="text-[11px] uppercase tracking-[0.2em] text-gold">{plan.name}</p>
-            <p className={`mt-3 font-figure tracking-[-0.04em] text-gold ${plan.highlighted ? "money-sheen text-6xl" : "text-4xl"}`}>
+            <p className="text-[13px] font-medium text-muted-foreground">{plan.name}</p>
+            <p className="font-figure mt-3 tracking-[-0.04em] text-foreground text-4xl">
               {plan.price}
-              <span className="ml-1 font-sans text-base text-gold/55">{plan.cadence}</span>
+              <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>
             </p>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">{plan.description}</p>
             <ul className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
               {plan.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-2">
-                  <Check className="mt-0.5 size-4 text-gold" />
+                  <Check className="mt-0.5 size-4 text-foreground" />
                   {feature}
                 </li>
               ))}
@@ -79,7 +74,7 @@ export function Pricing() {
               href={plan.href}
               className={cn(
                 buttonVariants({ variant: plan.highlighted ? "default" : "outline" }),
-                "mt-8 h-12 px-5 text-[13px] tracking-[0.08em] uppercase"
+                "mt-8 h-11 px-5 text-[14px]"
               )}
             >
               {plan.cta}

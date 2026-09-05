@@ -36,25 +36,22 @@ export function ProblemSection() {
     const id = window.setInterval(() => {
       if (Date.now() < pauseUntil.current) return;
       setActive((prev) => (prev === "dup" ? "price" : "dup"));
-    }, 5600);
+    }, 6200);
     return () => window.clearInterval(id);
   }, [reduce]);
 
   return (
-    <section id="product" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-      <div className="grid items-center gap-12 lg:grid-cols-2">
+    <section id="product" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <div className="grid items-center gap-14 lg:grid-cols-2">
         <div>
-          <p className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.28em] text-gold">
-            <span className="size-1.5 rounded-full bg-gold animate-flash" />
-            What it catches
-          </p>
-          <h2 className="font-figure mt-4 text-[2.6rem] leading-[1.02] tracking-[-0.04em] sm:text-[3.4rem]">
-            Two mistakes. Quiet <span className="money-sheen">six figures</span>.
+          <p className="text-[13px] font-medium text-muted-foreground">What it catches</p>
+          <h2 className="font-figure mt-3 text-[2.4rem] leading-[1.08] tracking-[-0.035em] sm:text-[3.15rem]">
+            Two mistakes. Quiet six figures.
           </h2>
           <p className="mt-5 max-w-md text-[16px] leading-8 text-muted-foreground">
             Duplicate vendor payments and invoices that ignore the contracted unit price. That is the product.
           </p>
-          <div className="mt-8 flex flex-col gap-2">
+          <div className="mt-8 flex flex-col gap-1">
             {cases.map((item) => (
               <button
                 key={item.id}
@@ -65,8 +62,8 @@ export function ProblemSection() {
                 }}
                 className={`border-l-2 px-4 py-3 text-left text-sm transition ${
                   active === item.id
-                    ? "border-gold bg-gold/8 text-gold"
-                    : "border-gold/20 text-muted-foreground hover:border-gold/50 hover:text-foreground"
+                    ? "border-foreground bg-white text-foreground"
+                    : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
                 }`}
               >
                 {item.title}
@@ -78,33 +75,19 @@ export function ProblemSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
-            initial={reduce ? false : { y: 16 }}
+            initial={reduce ? false : { y: 12 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="product-panel p-7"
           >
-            <div className="pointer-events-none absolute inset-x-0 top-1/3 h-16 overflow-hidden">
-              <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-16" />
-            </div>
             <MatchRow side={current.left} />
-            <div className="relative py-5">
-              <span className="absolute inset-x-8 top-1/2 h-px bg-gold/25" />
-              <span className="absolute inset-x-8 top-1/2 h-px overflow-hidden">
-                <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
-              </span>
-              {reduce ? null : (
-                <span className="animate-rail absolute top-1/2 left-8 size-1.5 -translate-y-1/2 rounded-full bg-gold shadow-[0_0_10px_rgb(176_137_58)]" />
-              )}
-              <p className="relative text-center text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
-                Model match
-              </p>
-            </div>
+            <p className="py-4 text-center text-[12px] font-medium text-muted-foreground">Match</p>
             <MatchRow side={current.right} emphasis />
-            <p className="money-sheen mt-10 font-figure text-6xl tracking-[-0.05em] sm:text-7xl">
+            <p className="font-figure mt-8 text-5xl tracking-[-0.045em] text-foreground sm:text-6xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
             </p>
-            <p className="mt-3 text-[11px] uppercase tracking-[0.22em] text-gold/75">{current.caption}</p>
-            <p className="mt-3 max-w-sm text-sm leading-7 text-muted-foreground">{current.detail}</p>
+            <p className="mt-3 text-[13px] font-medium">{current.caption}</p>
+            <p className="mt-2 max-w-sm text-sm leading-7 text-muted-foreground">{current.detail}</p>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -120,10 +103,10 @@ function MatchRow({
   emphasis?: boolean;
 }) {
   return (
-    <div className={`flex items-end justify-between gap-4 border-b pb-4 ${emphasis ? "border-gold/45" : "border-gold/20"}`}>
+    <div className={`flex items-end justify-between gap-4 border-b pb-4 ${emphasis ? "border-foreground/20" : "border-border"}`}>
       <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-gold/65">{side.kicker}</p>
-        <p className="font-figure mt-1 text-2xl tracking-[-0.03em] sm:text-3xl">{side.name}</p>
+        <p className="text-[12px] text-muted-foreground">{side.kicker}</p>
+        <p className="font-figure mt-1 text-2xl tracking-[-0.03em] sm:text-[1.85rem]">{side.name}</p>
         <p className="mt-1 text-sm text-muted-foreground">{side.meta}</p>
       </div>
     </div>

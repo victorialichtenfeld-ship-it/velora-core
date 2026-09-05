@@ -12,15 +12,15 @@ const pillars = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="mx-auto w-full max-w-4xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="trust" className="mx-auto w-full max-w-4xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Trust"
         title="A hold only belongs in the payment path if it is boring and auditable."
       />
-      <ul className="mt-12 divide-y divide-gold/15 border-y border-gold/15">
+      <ul className="mt-12 divide-y divide-border border-y border-border">
         {pillars.map((pillar) => (
           <li key={pillar.title} className="grid gap-2 py-5 sm:grid-cols-[14rem_1fr] sm:gap-8">
-            <p className="font-figure text-xl text-gold">{pillar.title}</p>
+            <p className="font-figure text-xl">{pillar.title}</p>
             <p className="text-sm leading-7 text-muted-foreground">{pillar.body}</p>
           </li>
         ))}

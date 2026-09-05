@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Lock } from "lucide-react";
 import { SectionIntro } from "@/components/marketing/section-intro";
@@ -32,30 +32,24 @@ export function ProductDemo() {
   const decision = alert ? decisions[alert.id] : undefined;
 
   return (
-    <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Interactive walkthrough"
         title="Walk an alert from evidence to decision."
         body="This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it."
       />
 
-      <div className="gold-desk relative mt-10 overflow-hidden p-5 sm:p-7">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden">
-          <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
-        </div>
+      <div className="gold-desk mt-10 p-6 sm:p-8">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.22em] text-gold">Velora control · Meridian Supply</p>
+            <p className="text-[13px] font-medium">Velora control · Meridian Supply</p>
             <p className="mt-1 text-sm text-muted-foreground">Jordan Hale · VP of Finance</p>
           </div>
-          <div className="flex items-center gap-4">
-            <LiveLatency />
-            <SampleDataBadge />
-          </div>
+          <SampleDataBadge />
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
-          <div className="space-y-3">
+          <div className="space-y-1">
             {alerts.map((item) => {
               const active = selected === item.id;
               return (
@@ -64,7 +58,7 @@ export function ProductDemo() {
                   type="button"
                   onClick={() => setSelected(item.id)}
                   className={`w-full border-l-2 px-4 py-4 text-left transition ${
-                    active ? "border-gold bg-gold/10" : "border-gold/20 hover:border-gold/50 hover:bg-gold/5"
+                    active ? "border-foreground bg-muted/80" : "border-transparent hover:bg-muted/50"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -79,9 +73,9 @@ export function ProductDemo() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={alert.id}
-                initial={{ y: 12 }}
+                initial={{ y: 10 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.28 }}
+                transition={{ duration: 0.25 }}
               >
                 <AlertWorkbench
                   alert={alert}
@@ -110,31 +104,12 @@ export function ProductDemo() {
   );
 }
 
-function LiveLatency() {
-  const [ms, setMs] = useState(16);
-  useEffect(() => {
-    const id = window.setInterval(() => setMs(11 + Math.floor(Math.random() * 12)), 280);
-    return () => window.clearInterval(id);
-  }, []);
-  return (
-    <p className="font-mono text-[10px] tracking-[0.14em] text-gold/55">
-      <span className="mr-1.5 inline-block size-1.5 rounded-full bg-gold align-middle animate-flash" />
-      infer {ms}ms
-    </p>
-  );
-}
-
 function DecisionChip({ decision }: { decision?: Decision }) {
   if (!decision) {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[11px] text-gold">
-        <span className="size-1.5 rounded-full bg-gold animate-flash" />
-        Live
-      </span>
-    );
+    return <span className="text-[11px] text-muted-foreground">Open</span>;
   }
   if (decision === "resolved") {
-    return <span className="text-[11px] font-medium text-gold">Held</span>;
+    return <span className="text-[11px] font-medium">Held</span>;
   }
   if (decision === "approved") {
     return <span className="text-[11px] font-medium text-muted-foreground">Approved</span>;
@@ -155,36 +130,35 @@ function AlertWorkbench({
 }) {
   const held = decision === "resolved";
   return (
-    <div className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-20" />
-      </div>
+    <div>
       <div className="flex items-start justify-between gap-4">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-gold/70">Evidence</p>
+        <p className="text-[12px] text-muted-foreground">Evidence</p>
         {held ? (
-          <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.16em] text-gold">
+          <span className="inline-flex items-center gap-1.5 text-[12px] text-foreground">
             <Lock className="size-3.5" />
             Locked
           </span>
         ) : null}
       </div>
-      <p className="font-figure money-sheen mt-3 text-6xl leading-none tracking-[-0.05em] sm:text-7xl">
+      <p className="font-figure mt-3 text-5xl leading-none tracking-[-0.04em] sm:text-6xl">
         {formatCurrency(alert.dollarImpact)}
       </p>
       <h3 className="mt-4 text-xl font-medium">{alert.title}</h3>
       <p className="mt-2 max-w-lg text-sm leading-7 text-muted-foreground">{alert.whyFlagged}</p>
-      <dl className="mt-6 divide-y divide-gold/15 border-y border-gold/15">
+      <dl className="mt-6 divide-y divide-border border-y border-border">
         {alert.evidence.map((item) => (
           <div key={`${item.label}-${item.value}`} className="flex items-baseline justify-between gap-4 py-2.5">
-            <dt className="text-[11px] uppercase tracking-[0.14em] text-gold/65">{item.label}</dt>
-            <dd className={`font-figure text-base ${item.highlight ? "text-gold" : "text-foreground"}`}>{item.value}</dd>
+            <dt className="text-[12px] text-muted-foreground">{item.label}</dt>
+            <dd className={`font-figure text-base ${item.highlight ? "text-foreground" : "text-muted-foreground"}`}>
+              {item.value}
+            </dd>
           </div>
         ))}
       </dl>
 
       {decision ? (
-        <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 border-l-2 border-gold pl-4">
-          <p className="text-sm font-medium text-gold">
+        <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 border-l-2 border-foreground pl-4">
+          <p className="text-sm font-medium">
             {decision === "resolved" && "Hold recorded. The second payment does not leave the account."}
             {decision === "approved" && "Override recorded. You released it with a named decision."}
             {decision === "ignored" && "Dismiss recorded. The alert is closed without a hold."}
@@ -196,13 +170,13 @@ function AlertWorkbench({
         </motion.div>
       ) : (
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-          <Button type="button" className="h-12 px-6 text-[13px] tracking-[0.08em] uppercase" onClick={() => onDecide("resolved")}>
+          <Button type="button" className="h-11 px-5 text-[14px]" onClick={() => onDecide("resolved")}>
             {alert.recommendedActions[0]?.label ?? "Hold payment"}
           </Button>
-          <Button type="button" variant="outline" className="h-12" onClick={() => onDecide("approved")}>
+          <Button type="button" variant="outline" className="h-11" onClick={() => onDecide("approved")}>
             Approve anyway
           </Button>
-          <Button type="button" variant="ghost" className="h-12" onClick={() => onDecide("ignored")}>
+          <Button type="button" variant="ghost" className="h-11" onClick={() => onDecide("ignored")}>
             Dismiss
           </Button>
         </div>

@@ -8,21 +8,18 @@ export function IntegrationsSection() {
   const comingSoon = integrationsCatalog.filter((item) => item.status !== "connected");
 
   return (
-    <section id="integrations" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="integrations" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Integrations"
         title="Wired to the systems AP already uses."
         body="Live now connectors are simulated here. Coming-soon adapters share the same interface."
       />
-      <p className="mt-10 flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-gold">
-        <span className="size-1.5 rounded-full bg-gold animate-flash" />
-        Live now
-      </p>
-      <p className="font-figure mt-4 text-3xl leading-snug tracking-[-0.03em] text-gold sm:text-5xl sm:leading-[1.15]">
+      <p className="mt-10 text-[13px] font-medium text-muted-foreground">Live now</p>
+      <p className="font-figure mt-3 text-3xl leading-snug tracking-[-0.03em] sm:text-4xl sm:leading-[1.2]">
         {liveNow.map((item) => item.name).join("  ·  ")}
       </p>
-      <p className="mt-8 text-[11px] uppercase tracking-[0.2em] text-gold/70">Coming soon</p>
-      <p className="mt-3 font-figure text-xl leading-9 text-gold/55 sm:text-2xl">
+      <p className="mt-8 text-[13px] font-medium text-muted-foreground">Coming soon</p>
+      <p className="mt-2 font-figure text-xl leading-9 text-muted-foreground sm:text-2xl">
         {comingSoon.map((item) => item.name).join("  ·  ")}
       </p>
     </section>

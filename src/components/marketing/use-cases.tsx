@@ -11,17 +11,17 @@ const cases = [
 
 export function UseCases() {
   return (
-    <section id="also-covers" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="also-covers" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Also on the roadmap"
         title="Adjacent checks. Not why you buy."
         body="The walkthrough includes these so finance can see the control layer expand. They are not the reason to start a trial today."
       />
-      <div className="mt-12 grid gap-px bg-gold/20 sm:grid-cols-2">
+      <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
         {cases.map((item) => (
-          <div key={item.team} className="bg-background px-5 py-7 sm:px-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-gold">{item.team}</p>
-            <p className="font-figure money-sheen mt-3 text-4xl tracking-[-0.04em]">{item.amount}</p>
+          <div key={item.team} className="bg-background px-5 py-8 sm:px-8">
+            <p className="text-[13px] font-medium text-muted-foreground">{item.team}</p>
+            <p className="font-figure mt-3 text-4xl tracking-[-0.04em]">{item.amount}</p>
             <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>
           </div>
         ))}
