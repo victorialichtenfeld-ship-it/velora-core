@@ -19,7 +19,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <motion.p
-        className="pointer-events-none absolute -left-6 top-6 hidden select-none font-figure text-[9.5rem] leading-none tracking-[-0.07em] text-foreground/[0.05] lg:block"
+        className="pointer-events-none absolute -left-6 top-6 hidden select-none font-figure text-[9.5rem] leading-none tracking-[-0.07em] text-gold/[0.08] lg:block"
         animate={reduce ? undefined : { x: [0, 28, 0], y: [0, -18, 0] }}
         transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
       >
@@ -27,7 +27,7 @@ export function Hero() {
       </motion.p>
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:py-24">
         <div className="order-2 lg:order-1">
-          <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-border px-3 py-1.5 text-[13px] text-muted-foreground">
+          <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-gold/25 bg-gold/10 px-3 py-1.5 text-[13px] text-gold">
             <span className="relative flex size-2">
               <span className={reduce ? "hidden" : "animate-pulse-ring absolute inset-0 rounded-full bg-gold"} />
               <span className="relative size-2 rounded-full bg-gold" />
@@ -55,7 +55,7 @@ export function Hero() {
               animate={{ y: 0 }}
               exit={reduce ? undefined : { y: -12 }}
               transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-5 text-[15px] font-medium text-foreground"
+              className="mt-5 text-[15px] font-medium text-gold"
             >
               {line}
             </motion.p>
@@ -74,7 +74,7 @@ export function Hero() {
                 <ArrowRight className="size-4" />
               </motion.span>
             </Link>
-            <a href="#demo" className="text-[14px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
+            <a href="#demo" className="text-[14px] text-gold underline-offset-4 hover:text-foreground hover:underline">
               Watch the hold
             </a>
           </div>
@@ -83,7 +83,7 @@ export function Hero() {
               {(["In flight", "Match", "Held"] as const).map((label, index) => (
                 <motion.span
                   key={label}
-                  className={index <= active ? "text-foreground" : ""}
+                  className={index <= active ? "text-gold" : ""}
                   animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.14, 1] }}
                   transition={{ duration: 0.55, repeat: index === active ? Infinity : 0 }}
                 >
@@ -93,7 +93,7 @@ export function Hero() {
             </div>
             <div className="relative mt-2 h-[3px] overflow-hidden rounded-full bg-muted">
               <motion.div
-                className="h-full bg-foreground"
+                className="h-full bg-gold"
                 animate={{ width: fill }}
                 transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               />
@@ -108,7 +108,7 @@ export function Hero() {
           </div>
           <div className="mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-border pt-6">
             <div>
-              <p className="font-figure text-2xl tracking-tight text-foreground">
+              <p className="font-figure text-2xl tracking-tight text-gold">
                 <AnimatedNumber value={184320} prefix="$" duration={1400} />
               </p>
               <p className="mt-1 text-[12px] text-muted-foreground">Held this month</p>

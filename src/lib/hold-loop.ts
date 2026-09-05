@@ -7,11 +7,11 @@ export type HoldStage = "send" | "match" | "held";
 
 export const holdSequence: { stage: HoldStage; at: number }[] = [
   { stage: "send", at: 0 },
-  { stage: "match", at: 480 },
-  { stage: "held", at: 1180 },
+  { stage: "match", at: 420 },
+  { stage: "held", at: 1050 },
 ];
 
-export const holdLoopMs = 3200;
+export const holdLoopMs = 2900;
 
 export const holdCopy: Record<HoldStage, string> = {
   send: "On the rail to the bank",

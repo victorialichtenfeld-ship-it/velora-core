@@ -78,7 +78,7 @@ export function CashScene({
             <span className="animate-rail pointer-events-none absolute top-0 z-20 h-px w-1/3 bg-gold" />
           ) : null}
 
-          <div className="flex items-center justify-between border-b border-border px-6 py-3">
+          <div className="flex items-center justify-between border-b border-gold/15 bg-gold/[0.06] px-6 py-3">
             <p className="text-[12px] font-medium">Velora · Meridian Supply</p>
             <div className="flex items-center gap-2">
               <LiveDot reduce={reduce} />
@@ -90,7 +90,7 @@ export function CashScene({
           <div className="p-6 sm:p-7">
             <p className="text-[12px] text-muted-foreground">Apex Logistics</p>
             <motion.p
-              className="font-figure mt-1 text-[2.85rem] leading-none tracking-[-0.045em] text-foreground sm:text-[3.3rem]"
+              className="font-figure mt-1 text-[2.85rem] leading-none tracking-[-0.045em] text-gold sm:text-[3.3rem]"
               animate={reduce ? undefined : matching ? { scale: [1, 1.06, 1] } : { scale: 1 }}
               transition={{ duration: 0.35 }}
             >
@@ -120,7 +120,7 @@ export function CashScene({
                 animate={
                   matching
                     ? {
-                        backgroundColor: "rgb(22 28 40)",
+                        backgroundColor: "rgb(77 138 245 / 0.16)",
                         borderRadius: 12,
                         paddingLeft: 12,
                         paddingRight: 12,
@@ -128,7 +128,7 @@ export function CashScene({
                       }
                     : held
                       ? {
-                          backgroundColor: "rgb(22 28 40)",
+                          backgroundColor: "rgb(77 138 245 / 0.16)",
                           borderRadius: 12,
                           paddingLeft: 12,
                           paddingRight: 12,
@@ -181,7 +181,7 @@ export function CashScene({
                 animate={{ y: 0 }}
                 exit={reduce ? undefined : { y: -8 }}
                 transition={{ duration: 0.16 }}
-                className="mt-4 text-[13px] leading-6 text-muted-foreground"
+              className="mt-4 text-[13px] leading-6 text-gold/80"
               >
                 {holdCopy[stage]}
               </motion.p>
@@ -196,10 +196,10 @@ export function CashScene({
                 animate={{ y: 0 }}
                 exit={reduce ? undefined : { y: 40 }}
                 transition={{ type: "spring", stiffness: 460, damping: 22 }}
-                className="flex items-center justify-between gap-3 border-t border-border bg-muted px-6 py-3.5"
+                className="flex items-center justify-between gap-3 border-t border-gold/20 bg-primary px-6 py-3.5 text-primary-foreground"
               >
                 <p className="text-[13px] font-medium">Held before the bank</p>
-                <p className="text-[12px] text-muted-foreground">Will not leave the account</p>
+                <p className="text-[12px] text-primary-foreground/75">Will not leave the account</p>
               </motion.div>
             ) : null}
           </AnimatePresence>

@@ -60,11 +60,11 @@ export function Pricing() {
             whileHover={reduce ? undefined : { y: -5 }}
             className={cn(
               "flex flex-col rounded-2xl border p-7",
-              plan.highlighted ? "border-foreground/25 bg-card" : "border-border bg-transparent"
+              plan.highlighted ? "border-gold/40 bg-gold/[0.06]" : "border-border bg-transparent"
             )}
           >
             <p className="text-[13px] font-medium text-muted-foreground">{plan.name}</p>
-            <p className="font-figure mt-3 tracking-[-0.04em] text-4xl text-foreground">
+            <p className={`font-figure mt-3 tracking-[-0.04em] text-4xl ${plan.highlighted ? "text-gold" : "text-foreground"}`}>
               {plan.price}
               <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>
             </p>

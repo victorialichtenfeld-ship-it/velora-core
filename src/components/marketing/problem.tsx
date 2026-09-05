@@ -91,7 +91,7 @@ export function ProblemSection() {
               <p className="relative text-center text-[12px] font-medium">Match</p>
             </div>
             <MatchRow side={current.right} emphasis reduce={reduce} />
-            <p className="font-figure mt-8 text-5xl tracking-[-0.045em] text-foreground sm:text-6xl">
+            <p className="font-figure mt-8 text-5xl tracking-[-0.045em] text-gold sm:text-6xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
             </p>
             <p className="mt-3 text-[13px] font-medium text-gold">{current.caption}</p>

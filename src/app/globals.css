@@ -70,7 +70,7 @@
   --card-foreground: #e8edf5;
   --popover: #10151e;
   --popover-foreground: #e8edf5;
-  --primary: #3d7cf0;
+  --primary: #4d8af5;
   --primary-foreground: #ffffff;
   --secondary: #161c28;
   --secondary-foreground: #e8edf5;
@@ -82,26 +82,26 @@
   --border: #243044;
   --input: #243044;
   --ring: rgb(125 176 255 / 45%);
-  --gold: #7eb0ff;
+  --gold: #93c0ff;
   --gold-foreground: #07090e;
   --bronze: #3d7cf0;
-  --protect: #7eb0ff;
+  --protect: #93c0ff;
   --protect-foreground: #07090e;
-  --dusk: #7eb0ff;
+  --dusk: #93c0ff;
   --dusk-foreground: #07090e;
-  --blush: #7eb0ff;
+  --blush: #93c0ff;
   --risk: #c56b5c;
-  --warn: #7eb0ff;
+  --warn: #93c0ff;
   --sample: #8b95a8;
   --chart-1: #e8edf5;
-  --chart-2: #7eb0ff;
+  --chart-2: #93c0ff;
   --chart-3: #3d7cf0;
   --chart-4: #4d8ef5;
   --chart-5: #243044;
   --radius: 0.7rem;
   --sidebar: #10151e;
   --sidebar-foreground: #e8edf5;
-  --sidebar-primary: #3d7cf0;
+  --sidebar-primary: #4d8af5;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #161c28;
   --sidebar-accent-foreground: #e8edf5;
@@ -116,7 +116,7 @@
   --card-foreground: #e8edf5;
   --popover: #10151e;
   --popover-foreground: #e8edf5;
-  --primary: #3d7cf0;
+  --primary: #4d8af5;
   --primary-foreground: #ffffff;
   --secondary: #161c28;
   --secondary-foreground: #e8edf5;
@@ -128,25 +128,25 @@
   --border: #243044;
   --input: #243044;
   --ring: rgb(125 176 255 / 45%);
-  --gold: #7eb0ff;
+  --gold: #93c0ff;
   --gold-foreground: #07090e;
   --bronze: #3d7cf0;
-  --protect: #7eb0ff;
+  --protect: #93c0ff;
   --protect-foreground: #07090e;
-  --dusk: #7eb0ff;
+  --dusk: #93c0ff;
   --dusk-foreground: #07090e;
-  --blush: #7eb0ff;
+  --blush: #93c0ff;
   --risk: #c56b5c;
-  --warn: #7eb0ff;
+  --warn: #93c0ff;
   --sample: #8b95a8;
   --chart-1: #e8edf5;
-  --chart-2: #7eb0ff;
+  --chart-2: #93c0ff;
   --chart-3: #3d7cf0;
   --chart-4: #4d8ef5;
   --chart-5: #243044;
   --sidebar: #10151e;
   --sidebar-foreground: #e8edf5;
-  --sidebar-primary: #3d7cf0;
+  --sidebar-primary: #4d8af5;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #161c28;
   --sidebar-accent-foreground: #e8edf5;
@@ -310,14 +310,14 @@
   .gold-desk {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1px solid rgb(147 192 255 / 22%);
     background: #10151e;
     border-radius: 1rem;
   }
   .product-panel {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1px solid rgb(147 192 255 / 28%);
     background: #10151e;
     border-radius: 1rem;
   }
@@ -609,15 +609,19 @@
 }
 
 .animate-ticker {
-  animation: ticker 8s linear infinite;
+  animation: ticker 6.4s linear infinite;
 }
 
 .animate-ticker-fast {
-  animation: ticker 6.5s linear infinite;
+  animation: ticker 5.2s linear infinite;
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 6.5s linear infinite;
+  animation: tickerReverse 5.2s linear infinite;
+}
+
+.animate-well {
+  animation: goldBreathe 4.4s ease-in-out infinite;
 }
 
 .animate-gold-sweep {
@@ -748,6 +752,7 @@
   .animate-ticker,
   .animate-ticker-fast,
   .animate-ticker-reverse,
+  .animate-well,
   .animate-scan,
   .animate-pulse-ring,
   .animate-float,
