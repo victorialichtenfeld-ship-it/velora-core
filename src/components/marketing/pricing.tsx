@@ -91,6 +91,7 @@ export function Pricing() {
             >
               {plan.cta}
             </Link>
+            </motion.div>
           </motion.div>
         ))}
       </div>
