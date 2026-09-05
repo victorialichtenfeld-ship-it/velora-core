@@ -79,15 +79,22 @@ export function CashScene({
       }}
     >
       <motion.div
-        animate={reduce ? undefined : { y: [0, -26, 0], rotate: [0, 0.7, 0, -0.7, 0] }}
-        transition={{ duration: 2.05, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -34, 0], rotate: [0, 1.2, 0, -1.2, 0] }}
+        transition={{ duration: 1.55, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="product-panel relative">
           {!reduce ? (
             <>
               <span className="animate-rail pointer-events-none absolute top-0 z-20 h-px w-1/3 bg-gold" />
-              <span className="animate-rail pointer-events-none absolute bottom-0 z-20 h-px w-1/3 bg-gold [animation-delay:0.28s]" />
+              <span className="animate-rail pointer-events-none absolute bottom-0 z-20 h-px w-1/3 bg-gold [animation-delay:0.18s]" />
               <span className="animate-scan pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gold/70" />
+              <span className="animate-scan pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gold/40 [animation-delay:0.3s]" />
+              <span className="pointer-events-none absolute inset-y-0 left-0 z-20 w-px overflow-hidden">
+                <span className="animate-bead absolute left-0 size-1.5 rounded-full bg-gold" />
+              </span>
+              <span className="pointer-events-none absolute inset-y-0 right-0 z-20 w-px overflow-hidden">
+                <span className="animate-bead absolute right-0 size-1.5 rounded-full bg-gold [animation-delay:0.25s]" />
+              </span>
             </>
           ) : null}
 
@@ -155,7 +162,7 @@ export function CashScene({
                         borderRadius: 12,
                         paddingLeft: 12,
                         paddingRight: 12,
-                        x: reduce ? 0 : [0, -10, 10, -6, 6, -3, 3, 0],
+                        x: reduce ? 0 : [0, -12, 12, -8, 8, -4, 4, 0],
                       }
                     : held
                       ? {

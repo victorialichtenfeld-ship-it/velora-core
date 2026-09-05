@@ -30,7 +30,7 @@ export function UseCases() {
             transition={{ delay: index * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             whileHover={reduce ? undefined : { y: -5 }}
           >
-            <motion.div animate={reduce ? undefined : { y: [0, -7, 0] }} transition={{ duration: 2.6 + index * 0.35, repeat: Infinity, ease: "easeInOut" }}>
+            <motion.div animate={reduce ? undefined : { y: [0, -10, 0] }} transition={{ duration: 1.7 + index * 0.2, repeat: Infinity, ease: "easeInOut" }}>
             <p className="text-[13px] font-medium text-gold">{item.team}</p>
             <p className="font-figure mt-3 text-4xl tracking-[-0.04em] text-gold">{item.amount}</p>
             <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>

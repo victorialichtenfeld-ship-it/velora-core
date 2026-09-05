@@ -72,7 +72,10 @@ export function SiteHeader() {
           </SheetContent>
         </Sheet>
       </div>
-      <motion.div style={{ scaleX }} className="h-px origin-left bg-foreground/70" />
+      <motion.div style={{ scaleX }} className="h-px origin-left bg-gold" />
+      <div className="relative h-px overflow-hidden">
+        <span className="animate-rail absolute top-0 h-px w-1/4 bg-gold" />
+      </div>
     </header>
   );
 }

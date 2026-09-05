@@ -20,8 +20,8 @@ export function Hero() {
     <section className="relative overflow-hidden">
       <motion.p
         className="pointer-events-none absolute -left-6 top-6 hidden select-none font-figure text-[9.5rem] leading-none tracking-[-0.07em] text-gold/[0.08] lg:block"
-        animate={reduce ? undefined : { x: [0, 36, 0], y: [0, -22, 0] }}
-        transition={{ duration: 3.1, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { x: [0, 48, 0], y: [0, -28, 0] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
       >
         $11,240
       </motion.p>
@@ -73,7 +73,7 @@ export function Hero() {
               Start free trial
               <motion.span
                 animate={reduce ? undefined : { x: [0, 6, 0] }}
-                transition={{ duration: 0.42, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 0.32, repeat: Infinity, ease: "easeInOut" }}
                 className="inline-flex"
               >
                 <ArrowRight className="size-4" />

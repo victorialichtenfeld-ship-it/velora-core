@@ -65,8 +65,8 @@ export function Pricing() {
           >
             <motion.div
               className="flex h-full flex-col"
-              animate={reduce || !plan.highlighted ? undefined : { y: [0, -6, 0] }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+              animate={reduce || !plan.highlighted ? undefined : { y: [0, -10, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
             >
             <p className="text-[13px] font-medium text-muted-foreground">{plan.name}</p>
             <p className={`font-figure mt-3 tracking-[-0.04em] text-4xl ${plan.highlighted ? "text-gold" : "text-foreground"}`}>

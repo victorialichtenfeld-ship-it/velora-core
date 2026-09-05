@@ -29,7 +29,7 @@ export function HowItWorks() {
 
   useEffect(() => {
     if (reduce) return;
-    const id = window.setInterval(() => setActive((n) => (n + 1) % steps.length), 1200);
+    const id = window.setInterval(() => setActive((n) => (n + 1) % steps.length), 850);
     return () => window.clearInterval(id);
   }, [reduce]);
 

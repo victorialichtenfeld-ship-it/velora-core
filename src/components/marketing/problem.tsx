@@ -36,7 +36,7 @@ export function ProblemSection() {
     const id = window.setInterval(() => {
       if (Date.now() < pauseUntil.current) return;
       setActive((prev) => (prev === "dup" ? "price" : "dup"));
-    }, 2600);
+    }, 1800);
     return () => window.clearInterval(id);
   }, [reduce]);
 

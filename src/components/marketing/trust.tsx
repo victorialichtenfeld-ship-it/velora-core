@@ -24,10 +24,10 @@ export function TrustSection() {
           <motion.li
             key={pillar.title}
             className="grid gap-2 py-5 sm:grid-cols-[14rem_1fr] sm:gap-8"
-            initial={reduce ? false : { x: -12 }}
+            initial={reduce ? false : { x: -18 }}
             whileInView={{ x: 0 }}
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ delay: index * 0.07, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: index * 0.04, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="font-figure text-xl">{pillar.title}</p>
             <p className="text-sm leading-7 text-muted-foreground">{pillar.body}</p>
