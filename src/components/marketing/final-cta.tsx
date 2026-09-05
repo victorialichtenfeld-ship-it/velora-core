@@ -17,9 +17,9 @@ export function FinalCta() {
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="hero-glow pointer-events-none absolute inset-x-16 top-0 h-40" />
-        <p className="relative text-[13px] font-medium text-gold">Start today</p>
+        <p className="relative text-[13px] font-medium text-gold">Start an AP trial</p>
         <h2 className="relative mt-3 text-[2.15rem] font-semibold leading-[1.12] tracking-[-0.04em] sm:text-[2.8rem]">
-          Hold the next duplicate before it{" "}
+          Hold the next duplicate vendor payment before it{" "}
           <motion.span
             className="gradient-text inline-block"
             animate={reduce ? undefined : { scale: [1, 1.04, 1] }}
@@ -30,7 +30,7 @@ export function FinalCta() {
           .
         </h2>
         <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
-          Free trial. No bank connection required to walk the sample. Put Velora on the cash rail when AP is ready.
+          Walk sample duplicates and invoice-vs-MSA mismatches. No bank connection required. Put Velora on live ACH when AP is ready.
         </p>
         <Link href="/signup" className={cn(buttonVariants(), "relative mt-8 inline-flex h-12 px-6 text-[14px]")}>
           Start free trial

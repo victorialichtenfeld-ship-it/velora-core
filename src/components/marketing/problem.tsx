@@ -7,7 +7,7 @@ import { AnimatedNumber } from "@/components/animated-number";
 const cases = [
   {
     id: "dup",
-    title: "Duplicate ACH",
+    title: "Duplicate vendor ACH",
     detail: "Same vendor. Same amount. Fifteen hours apart. The second instruction never reaches the bank.",
     amount: 11240,
     caption: "Duplicate held",
@@ -16,8 +16,8 @@ const cases = [
   },
   {
     id: "price",
-    title: "Under contract",
-    detail: "820 units were about to leave at $84. The MSA is $102. The draft invoice is stopped.",
+    title: "Invoice vs MSA",
+    detail: "820 Harborline units were about to invoice at $84. The contract is $102. The draft invoice is held.",
     amount: 14760,
     caption: "Pricing gap held",
     left: { kicker: "Invoice", name: "$84 / unit", meta: "Harborline" },
@@ -44,12 +44,12 @@ export function ProblemSection() {
     <section id="product" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <div>
-          <p className="text-[13px] font-medium text-muted-foreground">What it catches</p>
+          <p className="text-[13px] font-medium text-muted-foreground">What Velora holds</p>
           <h2 className="mt-3 text-[2.3rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[3.05rem]">
-            Two mistakes. Quiet six figures.
+            Duplicate ACH. Invoice vs contract.
           </h2>
           <p className="mt-5 max-w-md text-[16px] leading-8 text-muted-foreground">
-            Duplicate vendor payments and invoices that ignore the contracted unit price. That is the product.
+            The product is two AP checks: a second payment to a vendor already paid, and an invoice unit price that does not match the MSA. That is what you buy.
           </p>
           <div className="mt-8 flex flex-col gap-1">
             {cases.map((item) => (

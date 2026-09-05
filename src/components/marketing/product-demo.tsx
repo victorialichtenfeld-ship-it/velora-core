@@ -34,9 +34,9 @@ export function ProductDemo() {
   return (
     <section id="demo" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="Interactive walkthrough"
-        title="Walk an alert from evidence to decision."
-        body="This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it."
+        eyebrow="Walk a duplicate, then a pricing mismatch"
+        title="Hold the Apex ACH. Then hold the Harborline invoice."
+        body="This is the Meridian Supply walkthrough — sample AP data, not a live customer. Open a duplicate vendor payment or an invoice that misses the contract price, then hold, approve, or dismiss it."
       />
 
       <div className="gold-desk relative mt-10 overflow-hidden p-6 sm:p-8">
@@ -48,7 +48,7 @@ export function ProductDemo() {
                 <span className="animate-pulse-ring absolute inset-0 rounded-full bg-gold" />
                 <span className="relative size-2 rounded-full bg-gold" />
               </span>
-              Velora control · Meridian Supply
+              Velora AP · Meridian Supply
             </p>
             <p className="mt-1 text-sm text-muted-foreground">Jordan Hale · VP of Finance</p>
           </div>
@@ -104,7 +104,7 @@ export function ProductDemo() {
 
       <form action={launchDemoWorkspace} className="mt-5">
         <Button type="submit" variant="outline" className="h-10">
-          Open the full walkthrough workspace
+          Open the Meridian AP workspace
         </Button>
       </form>
     </section>

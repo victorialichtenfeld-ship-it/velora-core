@@ -16,8 +16,8 @@ export function TrustSection() {
   return (
     <section id="trust" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="Trust"
-        title="A hold only belongs in the payment path if it is boring and auditable."
+        eyebrow="Why a hold is allowed in AP"
+        title="A duplicate ACH only stops if a named owner can explain it."
       />
       <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar, index) => (

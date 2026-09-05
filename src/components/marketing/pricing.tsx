@@ -45,9 +45,9 @@ export function Pricing() {
   return (
     <section id="pricing" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="Pricing"
-        title="Priced like a control, not a chatbot seat."
-        body="Starter and Growth start a trial. Enterprise is a call with finance and IT."
+        eyebrow="Pricing for AP holds"
+        title="Pay for duplicate and contract-price controls. Not chatbot seats."
+        body="Starter and Growth start a trial on sample AP data. Enterprise is a call with finance and IT."
       />
       <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
         {plans.map((plan, index) => (

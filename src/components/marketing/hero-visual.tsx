@@ -33,7 +33,7 @@ function StatusChip({ stage, reduce }: { stage: HoldStage; reduce: boolean | nul
     return (
       <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[11px] font-medium text-gold">
         <span className="size-1.5 rounded-full bg-gold animate-status" />
-        Duplicate · 99.4%
+        Duplicate ACH · 99.4%
       </span>
     );
   }
@@ -86,14 +86,14 @@ export function CashScene({
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
           >
-            99.4% duplicate
+            Duplicate ACH · 99.4%
           </motion.div>
           <motion.div
             className="glass absolute -right-2 bottom-28 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
           >
-            Held · $11,240
+            Held duplicate · $11,240
           </motion.div>
         </>
       ) : null}
@@ -131,7 +131,7 @@ export function CashScene({
             <p className="text-[12px] font-medium">Velora · Meridian Supply</p>
             <div className="flex items-center gap-2">
               <LiveDot reduce={reduce} />
-              <span className="text-[11px] text-muted-foreground">Live review</span>
+              <span className="text-[11px] text-muted-foreground">Payment review</span>
               <SampleDataBadge />
             </div>
           </div>
@@ -263,8 +263,8 @@ export function CashScene({
                 transition={{ type: "spring", stiffness: 520, damping: 20 }}
                 className="relative z-[2] flex items-center justify-between gap-3 border-t border-gold/20 bg-primary px-6 py-3.5 text-primary-foreground"
               >
-                <p className="text-[13px] font-medium">Held before the bank</p>
-                <p className="text-[12px] text-primary-foreground/75">Will not leave the account</p>
+                <p className="text-[13px] font-medium">Duplicate ACH held</p>
+                <p className="text-[12px] text-primary-foreground/75">Will not reach the bank</p>
               </motion.div>
             ) : null}
           </AnimatePresence>

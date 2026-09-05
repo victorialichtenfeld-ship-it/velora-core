@@ -16,9 +16,9 @@ export function UseCases() {
   return (
     <section id="also-covers" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
-        eyebrow="Also on the roadmap"
-        title="Adjacent checks. Not why you buy."
-        body="The walkthrough includes these so finance can see the control layer expand. They are not the reason to start a trial today."
+        eyebrow="Not what you buy today"
+        title="Other AP checks can wait. Duplicates and contract price cannot."
+        body="The walkthrough also shows discounts, POs, vendor master, and ops billing so finance can see the layer expand. You start a trial for duplicate vendor payments and invoice vs MSA."
       />
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cases.map((item, index) => (

@@ -7,12 +7,12 @@ export function SiteFooter() {
         <div>
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
-            A finance/ops control layer for mid-size companies. Duplicate payments and invoice pricing mismatches are held before cash leaves.
+            Velora holds duplicate vendor payments and invoice vs contract pricing mismatches before cash leaves the account.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-x-14 gap-y-2 text-[14px] text-muted-foreground">
-          <a href="#demo" className="hover:text-foreground">
-            Product
+          <a href="#product" className="hover:text-foreground">
+            What it holds
           </a>
           <a href="#pricing" className="hover:text-foreground">
             Pricing

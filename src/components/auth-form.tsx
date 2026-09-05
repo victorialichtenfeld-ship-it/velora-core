@@ -17,10 +17,10 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             {mode === "signup" ? "Start free trial" : "Sign in"}
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight">
-            {mode === "signup" ? "Open a trial workspace." : "Enter the Meridian walkthrough."}
+            {mode === "signup" ? "Start a trial that holds duplicate ACH." : "Open the Meridian AP walkthrough."}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Auth is mocked. Use any details to start a trial, or open the prepared Meridian Supply walkthrough — sample data, not a live customer.
+            Auth is mocked. Use any details. The workspace is sample AP data: duplicate vendor payments and invoices that miss the contract price — not a live customer.
           </p>
           <form action={startWorkspace} className="mt-6 space-y-4">
             {mode === "signup" ? (
