@@ -65,15 +65,9 @@ export function ProductDemo() {
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <p className="text-[11px] uppercase tracking-[0.16em] text-gold/70">
-                      {decisions[item.id] ? "Closed" : "Open"}
-                    </p>
+                    <p className="text-sm text-foreground">{item.title}</p>
                     <DecisionChip decision={decisions[item.id]} />
                   </div>
-                  <p className="font-figure mt-2 text-[2rem] leading-none tracking-[-0.04em] text-gold">
-                    {formatCurrency(item.dollarImpact)}
-                  </p>
-                  <p className="mt-2 text-sm text-foreground">{item.title}</p>
                 </button>
               );
             })}

@@ -12,20 +12,19 @@ const pillars = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="trust" className="mx-auto w-full max-w-4xl px-4 py-16 sm:px-6 sm:py-20">
       <SectionIntro
         eyebrow="Trust"
         title="A hold only belongs in the payment path if it is boring and auditable."
       />
-      <div className="mt-12 flex gap-8 overflow-x-auto pb-2">
+      <ul className="mt-12 divide-y divide-gold/15 border-y border-gold/15">
         {pillars.map((pillar) => (
-          <div key={pillar.title} className="min-w-[13rem] shrink-0">
-            <div className="mb-4 size-16 rounded-full border border-gold/40 bg-[radial-gradient(circle,rgb(176_137_58_/_0.18),transparent_70%)] animate-gold-breathe" />
+          <li key={pillar.title} className="grid gap-2 py-5 sm:grid-cols-[14rem_1fr] sm:gap-8">
             <p className="font-figure text-xl text-gold">{pillar.title}</p>
-            <p className="mt-2 text-sm leading-7 text-muted-foreground">{pillar.body}</p>
-          </div>
+            <p className="text-sm leading-7 text-muted-foreground">{pillar.body}</p>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

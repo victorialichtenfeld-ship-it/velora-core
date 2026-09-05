@@ -2,33 +2,26 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { GoldSeal } from "@/components/marketing/gold-seal";
 import { AnimatedNumber } from "@/components/animated-number";
 
 const cases = [
   {
     id: "dup",
     title: "Duplicate ACH",
-    line: "Apex billed twice in 15 hours.",
-    detail: "ACH-4418 matched ACH-4410. Same vendor. Same $11,240. Held before the bank.",
+    detail: "Same vendor. Same amount. Fifteen hours apart. The second instruction never reaches the bank.",
     amount: 11240,
-    caption: "Locked duplicate",
-    chips: [
-      { id: "4410", label: "ACH-4410", state: "Paid" },
-      { id: "4418", label: "ACH-4418", state: "Held" },
-    ],
+    caption: "Duplicate held",
+    left: { kicker: "Already paid", name: "ACH-4410", meta: "Apex Logistics" },
+    right: { kicker: "Queued again", name: "ACH-4418", meta: "Apex Logistics" },
   },
   {
     id: "price",
     title: "Under contract",
-    line: "Harborline billed $84 instead of $102.",
-    detail: "820 units were about to leave at the wrong rate. $14,760 stopped on the draft invoice.",
+    detail: "820 units were about to leave at $84. The MSA is $102. The draft invoice is stopped.",
     amount: 14760,
     caption: "Pricing gap held",
-    chips: [
-      { id: "inv", label: "$84 / unit", state: "Invoice" },
-      { id: "msa", label: "$102 / unit", state: "MSA" },
-    ],
+    left: { kicker: "Invoice", name: "$84 / unit", meta: "Harborline" },
+    right: { kicker: "MSA", name: "$102 / unit", meta: "Contract rate" },
   },
 ];
 
@@ -48,9 +41,8 @@ export function ProblemSection() {
   }, [reduce]);
 
   return (
-    <section id="product" className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-      <div className="pointer-events-none absolute top-1/2 right-0 size-[28rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(176_137_58_/_0.12),transparent_68%)]" />
-      <div className="grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+    <section id="product" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
           <p className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.28em] text-gold">
             <span className="size-1.5 rounded-full bg-gold animate-flash" />
@@ -71,52 +63,60 @@ export function ProblemSection() {
                   pauseUntil.current = Date.now() + 8000;
                   setActive(item.id);
                 }}
-                className={`flex items-center justify-between border-l-2 px-4 py-3 text-left transition ${
+                className={`border-l-2 px-4 py-3 text-left text-sm transition ${
                   active === item.id
                     ? "border-gold bg-gold/8 text-gold"
                     : "border-gold/20 text-muted-foreground hover:border-gold/50 hover:text-foreground"
                 }`}
               >
-                <span className="text-sm tracking-[0.02em]">{item.title}</span>
-                <span className="font-figure text-lg">
-                  ${item.amount.toLocaleString("en-US")}
-                </span>
+                {item.title}
               </button>
             ))}
           </div>
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={current.id}
-              initial={reduce ? false : { y: 10 }}
-              animate={{ y: 0 }}
-              className="mt-6 max-w-md text-sm leading-7 text-gold/80"
-            >
-              {current.detail}
-            </motion.p>
-          </AnimatePresence>
         </div>
-        <div className="relative">
-          <GoldSeal caption={current.caption}>
-            <p className="font-figure money-sheen text-[2.5rem] leading-none tracking-[-0.06em] sm:text-[3.2rem]">
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current.id}
+            initial={reduce ? false : { y: 16 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+          >
+            <div className="pointer-events-none absolute inset-x-0 top-1/3 h-16 overflow-hidden">
+              <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-16" />
+            </div>
+            <MatchRow side={current.left} />
+            <p className="py-5 text-center text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
+              Match
+            </p>
+            <MatchRow side={current.right} emphasis />
+            <p className="money-sheen mt-10 font-figure text-6xl tracking-[-0.05em] sm:text-7xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
             </p>
-          </GoldSeal>
-          <div className="pointer-events-none absolute inset-x-0 top-[8%] flex justify-between px-2 sm:px-6">
-            {current.chips.map((chip, index) => (
-              <motion.div
-                key={`${current.id}-${chip.id}`}
-                initial={reduce ? false : { y: index === 0 ? -8 : 8 }}
-                animate={reduce ? undefined : { y: index === 0 ? [-6, 6, -6] : [8, -4, 8] }}
-                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-                className="gold-chip"
-              >
-                <p className="font-figure text-sm text-gold">{chip.label}</p>
-                <p className="mt-1 text-[8px] uppercase tracking-[0.18em] text-gold/70">{chip.state}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+            <p className="mt-3 text-[11px] uppercase tracking-[0.22em] text-gold/75">{current.caption}</p>
+            <p className="mt-3 max-w-sm text-sm leading-7 text-muted-foreground">{current.detail}</p>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
+  );
+}
+
+function MatchRow({
+  side,
+  emphasis = false,
+}: {
+  side: { kicker: string; name: string; meta: string };
+  emphasis?: boolean;
+}) {
+  return (
+    <div className={`flex items-end justify-between gap-4 border-b pb-4 ${emphasis ? "border-gold/45" : "border-gold/20"}`}>
+      <div>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-gold/65">{side.kicker}</p>
+        <p className="font-figure mt-1 text-2xl tracking-[-0.03em] sm:text-3xl">{side.name}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{side.meta}</p>
+      </div>
+    </div>
   );
 }
