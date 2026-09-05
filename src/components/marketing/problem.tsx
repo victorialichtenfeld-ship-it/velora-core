@@ -26,7 +26,7 @@ const cases = [
 ];
 
 export function ProblemSection() {
-  const [active, setActive] = useState(cases[0].id);
+  const [active, setActive] = useState(cases[1].id);
   const current = cases.find((item) => item.id === active) ?? cases[0];
   const reduce = useReducedMotion();
   const pauseUntil = useRef(0);

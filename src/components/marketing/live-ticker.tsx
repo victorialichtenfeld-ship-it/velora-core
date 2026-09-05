@@ -1,10 +1,10 @@
 "use client";
 
 const items = [
-  { event: "Apex duplicate held", amount: "$11,240" },
   { event: "Harborline under MSA", amount: "$14,760" },
   { event: "Keystone second bill", amount: "$8,400" },
   { event: "Helios repeat wire", amount: "$9,120" },
+  { event: "Nimbus first-time payee", amount: "$18,400" },
 ];
 
 export function LiveTicker() {
