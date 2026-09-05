@@ -55,12 +55,9 @@ const thoughts = [
 ];
 
 const rain = [
-  { x: "4%", d: "0s", t: "ACH-4418" },
-  { x: "11%", d: "0.7s", t: "0xB089" },
-  { x: "18%", d: "1.4s", t: "DUP" },
-  { x: "86%", d: "0.3s", t: "MSA" },
-  { x: "93%", d: "1.1s", t: "HOLD" },
-  { x: "79%", d: "1.8s", t: "4410" },
+  { x: "3%", d: "0s", t: "ACH-4418" },
+  { x: "8%", d: "0.85s", t: "0xB089" },
+  { x: "13%", d: "1.6s", t: "DUP" },
 ];
 
 const motes = [
@@ -225,8 +222,8 @@ export function CashScene() {
         : rain.map((drop) => (
             <span
               key={`${drop.t}-${drop.x}`}
-              className="animate-token-fall absolute top-0 font-mono text-[8px] tracking-[0.12em] text-gold/35"
-              style={{ left: drop.x, animationDelay: drop.d }}
+              className="animate-token-fall absolute font-mono text-[8px] tracking-[0.12em] text-gold/35"
+              style={{ left: drop.x, top: "16%", animationDelay: drop.d }}
             >
               {drop.t}
             </span>
