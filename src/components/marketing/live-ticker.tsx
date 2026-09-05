@@ -16,8 +16,8 @@ export function LiveTicker() {
       <div className="animate-ticker flex w-max gap-14 whitespace-nowrap py-4 text-[13px] text-gold/80">
         {loop.map((item, index) => (
           <span key={`${item.event}-${index}`} className="flex items-center gap-3.5" aria-hidden={index >= items.length}>
-            <span className="inline-block size-1.5 rounded-full bg-gold/80" />
-            <span className="font-figure text-lg tracking-tight text-gold">{item.amount}</span>
+            <span className="inline-block size-1.5 rounded-full bg-gold animate-flash" />
+            <span className="font-figure money-sheen text-lg tracking-tight">{item.amount}</span>
             <span>{item.event}</span>
           </span>
         ))}

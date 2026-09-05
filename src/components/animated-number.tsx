@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export function AnimatedNumber({
@@ -18,9 +18,29 @@ export function AnimatedNumber({
   className?: string;
   format?: (n: number) => string;
 }) {
+  const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(0);
+  const [play, setPlay] = useState(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setPlay(true);
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!play) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(value);
+      return;
+    }
     const start = performance.now();
     let frame = 0;
     const tick = (now: number) => {
@@ -31,10 +51,10 @@ export function AnimatedNumber({
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [value, duration]);
+  }, [value, duration, play]);
 
   return (
-    <span className={cn("tabular-nums", className)}>
+    <span ref={ref} className={cn("tabular-nums", className)}>
       {prefix}
       {format(display)}
       {suffix}

@@ -2,7 +2,10 @@ import { Logo } from "@/components/logo";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-bronze/25 py-12">
+    <footer className="relative overflow-hidden border-t border-bronze/25 py-12">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden">
+        <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
+      </div>
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 sm:flex-row sm:items-start sm:justify-between sm:px-6">
         <div>
           <Logo />

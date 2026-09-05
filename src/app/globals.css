@@ -462,6 +462,28 @@
   100% { stroke-dashoffset: 0; }
 }
 
+@keyframes beadDrop {
+  0% { top: 0%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes lineGrow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes hairlineDraw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes goldWash {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+
 .animate-ticker {
   animation: ticker 7s linear infinite;
 }
@@ -554,6 +576,24 @@
   animation: ringDraw 5s ease-in-out infinite alternate;
 }
 
+.animate-bead {
+  animation: beadDrop 4.6s ease-in-out infinite;
+}
+
+.animate-line-grow {
+  transform-origin: top;
+  animation: lineGrow 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-hairline {
+  transform-origin: left;
+  animation: hairlineDraw 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-gold-wash {
+  animation: goldWash 2.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-ticker,
   .animate-ticker-fast,
@@ -578,6 +618,10 @@
   .animate-spin-slow,
   .animate-spin-rev,
   .animate-ring-draw,
+  .animate-bead,
+  .animate-line-grow,
+  .animate-hairline,
+  .animate-gold-wash,
   .gold-run-border,
   .text-shimmer,
   .money-sheen,

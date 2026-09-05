@@ -38,7 +38,10 @@ export function ProductDemo() {
         body="This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it."
       />
 
-      <div className="mt-10 border-t border-gold/20 pt-8">
+      <div className="relative mt-10 overflow-hidden border-t border-gold/20 pt-8">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px overflow-hidden">
+          <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
+        </div>
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-medium">Meridian Supply · AP walkthrough</p>
@@ -51,10 +54,14 @@ export function ProductDemo() {
           <div className="space-y-2">
             <p className="text-xs text-muted-foreground">Open alerts</p>
             <LayoutGroup>
-            {alerts.map((item) => (
-              <button
+            {alerts.map((item, index) => (
+              <motion.button
                 key={item.id}
                 type="button"
+                initial={{ y: 12 }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
                 onClick={() => setSelected(item.id)}
                 className={`relative w-full overflow-hidden rounded-md px-3 py-3 text-left ring-1 transition ${
                   selected === item.id ? "bg-secondary ring-primary/40" : "bg-background ring-border hover:bg-muted"
@@ -72,7 +79,7 @@ export function ProductDemo() {
                   <DecisionChip decision={decisions[item.id]} />
                 </div>
                 <p className="mt-1 font-figure text-sm tabular text-gold">{formatCurrency(item.dollarImpact)}</p>
-              </button>
+              </motion.button>
             ))}
             </LayoutGroup>
           </div>
@@ -114,7 +121,12 @@ export function ProductDemo() {
 
 function DecisionChip({ decision }: { decision?: Decision }) {
   if (!decision) {
-    return <span className="text-[11px] text-muted-foreground">Open</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-[11px] text-gold">
+        <span className="size-1.5 rounded-full bg-gold animate-flash" />
+        Open
+      </span>
+    );
   }
   if (decision === "resolved") {
     return <span className="text-[11px] font-medium text-gold">Held</span>;
@@ -137,14 +149,20 @@ function AlertWorkbench({
   onReset: () => void;
 }) {
   return (
-    <div className="rounded-md bg-background p-4 ring-1 ring-border">
+    <div className="relative overflow-hidden rounded-md bg-background p-4 ring-1 ring-border">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="scan-wash animate-scan absolute inset-x-0 top-0 h-16" />
+      </div>
       <p className="text-xs text-muted-foreground">Evidence</p>
       <h3 className="mt-1 text-lg font-medium">{alert.title}</h3>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{alert.whyFlagged}</p>
       <dl className="mt-4 grid gap-2 sm:grid-cols-2">
-        {alert.evidence.map((item) => (
-          <div
+        {alert.evidence.map((item, index) => (
+          <motion.div
             key={`${item.label}-${item.value}`}
+            initial={{ y: 10 }}
+            animate={{ y: 0 }}
+            transition={{ delay: index * 0.05 }}
             className={`rounded-md px-3 py-2 ring-1 ${
               item.highlight ? "bg-risk/10 ring-risk/30" : "ring-border"
             }`}
@@ -152,7 +170,7 @@ function AlertWorkbench({
             <dt className="text-[11px] text-muted-foreground">{item.label}</dt>
             <dd className="mt-0.5 font-mono text-sm tabular">{item.value}</dd>
             <p className="text-[11px] text-muted-foreground">{item.source}</p>
-          </div>
+          </motion.div>
         ))}
       </dl>
 

@@ -1,6 +1,8 @@
 "use client";
 
+import { motion } from "motion/react";
 import { SectionIntro } from "@/components/marketing/section-intro";
+import { Stagger, StaggerItem } from "@/components/reveal";
 
 const pillars = [
   { title: "Human approval", body: "Velora recommends. A named finance owner decides." },
@@ -17,14 +19,23 @@ export function TrustSection() {
         eyebrow="Trust"
         title="A hold only belongs in the payment path if it is boring and auditable."
       />
-      <ul className="mt-12 space-y-6">
+      <Stagger className="mt-12 space-y-6">
         {pillars.map((pillar) => (
-          <li key={pillar.title}>
-            <p className="text-sm font-medium text-gold">{pillar.title}</p>
-            <p className="mt-1 text-sm leading-7 text-muted-foreground">{pillar.body}</p>
-          </li>
+          <StaggerItem key={pillar.title}>
+            <div className="relative pl-4">
+              <motion.span
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute top-1 left-0 h-8 w-px origin-top bg-gold/70"
+              />
+              <p className="text-sm font-medium text-gold">{pillar.title}</p>
+              <p className="mt-1 text-sm leading-7 text-muted-foreground">{pillar.body}</p>
+            </div>
+          </StaggerItem>
         ))}
-      </ul>
+      </Stagger>
     </section>
   );
 }

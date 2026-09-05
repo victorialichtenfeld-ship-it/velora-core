@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { SectionIntro } from "@/components/marketing/section-intro";
+import { Stagger, StaggerItem } from "@/components/reveal";
 import { cn } from "@/lib/utils";
 
 const plans = [
@@ -40,6 +42,8 @@ const plans = [
 ];
 
 export function Pricing() {
+  const reduce = useReducedMotion();
+
   return (
     <section id="pricing" className="mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
@@ -47,35 +51,49 @@ export function Pricing() {
         title="Priced like a control, not a chatbot seat."
         body="Starter and Growth start a trial. Enterprise is a call with finance and IT."
       />
-      <div className="mt-14 grid gap-10 lg:grid-cols-3">
+      <Stagger className="mt-14 grid gap-10 lg:grid-cols-3">
         {plans.map((plan) => (
-          <div key={plan.name} className={cn("border-t pt-6", plan.highlighted ? "border-gold" : "border-gold/20")}>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-gold">{plan.name}</p>
-            <p className={`mt-3 font-figure text-4xl tracking-tight text-gold ${plan.highlighted ? "money-sheen" : ""}`}>
-              {plan.price}
-              <span className="ml-1 font-sans text-base text-gold/55">{plan.cadence}</span>
-            </p>
-            <p className="mt-3 text-sm leading-6 text-muted-foreground">{plan.description}</p>
-            <ul className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
-              {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2">
-                  <Check className="mt-0.5 size-4 text-gold" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <Link
-              href={plan.href}
-              className={cn(
-                buttonVariants({ variant: plan.highlighted ? "default" : "outline" }),
-                "mt-8 h-11"
-              )}
-            >
-              {plan.cta}
-            </Link>
-          </div>
+          <StaggerItem key={plan.name}>
+            <div className={cn("relative border-t pt-6", plan.highlighted ? "border-gold" : "border-gold/20")}>
+              {plan.highlighted ? (
+                <span className="absolute inset-x-0 top-0 h-px overflow-hidden">
+                  <span className="absolute inset-y-0 w-1/3 bg-gold animate-gold-wash" />
+                </span>
+              ) : null}
+              <p className="text-[11px] uppercase tracking-[0.16em] text-gold">{plan.name}</p>
+              <p className={`mt-3 font-figure text-4xl tracking-tight text-gold ${plan.highlighted ? "money-sheen" : ""}`}>
+                {plan.price}
+                <span className="ml-1 font-sans text-base text-gold/55">{plan.cadence}</span>
+              </p>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">{plan.description}</p>
+              <ul className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
+                {plan.features.map((feature, index) => (
+                  <motion.li
+                    key={feature}
+                    initial={reduce ? false : { y: 8 }}
+                    whileInView={{ y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.08 + index * 0.06 }}
+                    className="flex items-start gap-2"
+                  >
+                    <Check className="mt-0.5 size-4 text-gold" />
+                    {feature}
+                  </motion.li>
+                ))}
+              </ul>
+              <Link
+                href={plan.href}
+                className={cn(
+                  buttonVariants({ variant: plan.highlighted ? "default" : "outline" }),
+                  "mt-8 h-11"
+                )}
+              >
+                {plan.cta}
+              </Link>
+            </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }
