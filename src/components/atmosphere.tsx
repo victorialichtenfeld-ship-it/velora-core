@@ -1,42 +1,26 @@
 "use client";
 
-const motes = [
-  { top: "12%", left: "8%", size: 3, delay: "0s" },
-  { top: "22%", left: "78%", size: 2, delay: "1.4s" },
-  { top: "48%", left: "18%", size: 2, delay: "2.8s" },
-  { top: "62%", left: "88%", size: 3, delay: "0.6s" },
-  { top: "78%", left: "42%", size: 2, delay: "3.2s" },
-  { top: "34%", left: "54%", size: 1.5, delay: "4s" },
-];
-
 export function Atmosphere() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
-      <div className="animate-gold-breathe absolute inset-x-0 top-[-18%] h-[52%] bg-[radial-gradient(ellipse_at_50%_0%,rgb(226_194_120_/_0.16),transparent_62%)]" />
+      <div className="absolute inset-x-0 top-[-20%] h-[48%] bg-[radial-gradient(ellipse_at_50%_0%,rgb(201_168_106_/_0.055),transparent_58%)]" />
       <div
-        className="absolute inset-0 opacity-[0.22]"
+        className="absolute inset-0 opacity-[0.12]"
         style={{
           backgroundImage:
-            "linear-gradient(rgb(226 194 120 / 0.07) 1px, transparent 1px), linear-gradient(90deg, rgb(226 194 120 / 0.07) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse at 50% 20%, black 20%, transparent 75%)",
+            "linear-gradient(rgb(139 111 71 / 0.22) 1px, transparent 1px), linear-gradient(90deg, rgb(139 111 71 / 0.22) 1px, transparent 1px)",
+          backgroundSize: "88px 88px",
+          maskImage: "radial-gradient(ellipse at 50% 18%, black 18%, transparent 72%)",
         }}
       />
-      {motes.map((mote) => (
-        <span
-          key={`${mote.top}-${mote.left}`}
-          className="animate-mote absolute rounded-full bg-primary"
-          style={{
-            top: mote.top,
-            left: mote.left,
-            width: mote.size,
-            height: mote.size,
-            animationDelay: mote.delay,
-            boxShadow: "0 0 10px rgb(226 194 120 / 0.7)",
-          }}
-        />
-      ))}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgb(12_12_12_/_0.72)_100%)]" />
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "radial-gradient(rgb(237 232 223 / 0.55) 0.6px, transparent 0.6px)",
+          backgroundSize: "3px 3px",
+        }}
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_52%,rgb(20_20_26_/_0.72)_100%)]" />
     </div>
   );
 }

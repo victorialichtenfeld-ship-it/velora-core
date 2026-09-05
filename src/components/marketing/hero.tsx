@@ -32,7 +32,7 @@ export function Hero() {
           >
             Stop the{" "}
             <span className="relative inline-block">
-              <span className="text-shimmer">second payment</span>
+              <span className="text-gold">second payment</span>
               <motion.span
                 className="absolute -bottom-1 left-0 h-px bg-primary"
                 initial={reduce ? { width: "100%" } : { width: 0 }}
@@ -110,13 +110,13 @@ function Stat({
     >
       <dt className="text-[11px] text-muted-foreground">{label}</dt>
       <dd
-        className={`mt-1 font-mono text-2xl tabular tracking-tight sm:text-[1.65rem] ${
-          tone === "protect" ? "text-protect" : "text-foreground"
+        className={`mt-1 font-figure text-2xl tracking-tight sm:text-[1.65rem] ${
+          tone === "protect" ? "text-gold" : "text-foreground"
         }`}
       >
         <AnimatedNumber value={value} prefix={prefix} />
       </dd>
-      <span className="mt-2 block h-px w-8 bg-primary/50" />
+      <span className="mt-2 block h-px w-8 bg-bronze/60" />
     </motion.div>
   );
 }

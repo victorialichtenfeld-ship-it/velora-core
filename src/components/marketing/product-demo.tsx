@@ -37,7 +37,7 @@ export function ProductDemo() {
         This is the Meridian Supply walkthrough — a prepared finance workspace, not a live customer. Open an alert, read the match, then hold, approve, or dismiss it.
       </p>
 
-      <div className="product-frame gold-glow mt-8 rounded-xl p-4 ring-1 ring-border sm:p-6">
+      <div className="product-frame gold-glow mt-8 rounded-xl p-4 ring-1 ring-gold/25 sm:p-6">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-medium">Meridian Supply · AP walkthrough</p>
@@ -120,7 +120,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md bg-background p-4 ring-1 ring-border">
       <p className="text-[11px] text-muted-foreground">{label}</p>
-      <p className="mt-2 font-mono text-3xl tabular tracking-tight text-protect sm:text-4xl">{value}</p>
+      <p className="mt-2 font-figure text-3xl tracking-tight text-gold sm:text-4xl">{value}</p>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export function AnimatedNumber({
   }, [value, duration]);
 
   return (
-    <span className={cn("font-mono tabular-nums", className)}>
+    <span className={cn("tabular-nums", className)}>
       {prefix}
       {format(display)}
       {suffix}

@@ -48,13 +48,13 @@ export function HeroVisual() {
   return (
     <motion.a
       href="#demo"
-      className={`product-frame gold-glow relative mx-auto block w-full max-w-[540px] rounded-xl p-4 ring-1 ring-border sm:p-5 ${
+      className={`product-frame gold-glow relative mx-auto block w-full max-w-[540px] rounded-xl p-4 ring-1 ring-gold/25 sm:p-5 ${
         reduce ? "" : "animate-float"
       }`}
       whileHover={reduce ? undefined : { y: -2 }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
     >
-      <div className="pointer-events-none absolute -inset-px rounded-xl bg-[linear-gradient(120deg,transparent,rgb(226_194_120_/_0.18),transparent)] opacity-40" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px gold-hairline" />
       <div className="relative mb-4 flex items-center justify-between gap-3">
         <div>
           <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
@@ -139,7 +139,7 @@ export function HeroVisual() {
               key={viewStage}
               initial={reduce ? false : { opacity: 0.5, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`mt-3 font-mono text-2xl tabular ${
+              className={`mt-3 font-figure text-2xl ${
                 viewStage === "held" ? "text-protect" : "text-risk"
               }`}
             >
@@ -173,7 +173,7 @@ function Metric({
       } ${pulse ? "animate-gold-breathe" : ""}`}
     >
       <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{label}</p>
-      <p className={`mt-1 font-mono text-sm tabular ${warn ? "text-risk" : "text-foreground"}`}>{value}</p>
+      <p className={`mt-1 font-figure text-sm ${warn ? "text-risk" : "text-foreground"}`}>{value}</p>
     </div>
   );
 }

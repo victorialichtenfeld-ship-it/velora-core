@@ -25,15 +25,15 @@ export default function AnalyticsPage() {
       <div className="grid gap-3 sm:grid-cols-3">
         <GlassPanel className="p-5">
           <p className="text-xs text-muted-foreground">Protected this month</p>
-          <p className="mt-2 font-mono text-2xl">{formatCurrency(dashboardStats.moneyProtected)}</p>
+          <p className="mt-2 font-figure text-2xl text-gold">{formatCurrency(dashboardStats.moneyProtected)}</p>
         </GlassPanel>
         <GlassPanel className="p-5">
           <p className="text-xs text-muted-foreground">Open alerts</p>
-          <p className="mt-2 font-mono text-2xl">{alerts.filter((alert) => alert.status === "open").length}</p>
+          <p className="mt-2 font-figure text-2xl">{alerts.filter((alert) => alert.status === "open").length}</p>
         </GlassPanel>
         <GlassPanel className="p-5">
           <p className="text-xs text-muted-foreground">Avg. catch</p>
-          <p className="mt-2 font-mono text-2xl">
+          <p className="mt-2 font-figure text-2xl">
             {formatCurrency(Math.round(alerts.reduce((sum, alert) => sum + alert.dollarImpact, 0) / alerts.length))}
           </p>
         </GlassPanel>

@@ -10,14 +10,14 @@ export function FinalCta() {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 pb-20 sm:px-6">
       <motion.div
-        className="gold-glow relative overflow-hidden rounded-xl bg-card px-6 py-12 text-center ring-1 ring-primary/25 sm:px-16"
+        className="gold-glow relative overflow-hidden rounded-xl bg-card px-6 py-12 text-center ring-1 ring-gold/25 sm:px-16"
         initial={reduce ? false : { y: 16, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px gold-hairline" />
-        <div className="animate-gold-breathe pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgb(226_194_120_/_0.12),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgb(201_168_106_/_0.05),transparent_62%)]" />
         <div className="relative">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-primary">Next step</p>
           <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">

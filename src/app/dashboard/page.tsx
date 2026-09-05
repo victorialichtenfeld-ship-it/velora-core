@@ -125,8 +125,8 @@ function Stat({
         {sample ? <SampleDataBadge /> : null}
       </div>
       <p
-        className={`mt-2 font-mono text-3xl tabular tracking-tight ${
-          tone === "protect" ? "text-protect" : tone === "risk" ? "text-risk" : "text-foreground"
+        className={`mt-2 font-figure text-3xl tracking-tight ${
+          tone === "protect" ? "text-gold" : tone === "risk" ? "text-risk" : "text-foreground"
         }`}
       >
         <AnimatedNumber value={value} prefix={prefix} />

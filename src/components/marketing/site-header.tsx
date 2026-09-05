@@ -24,7 +24,7 @@ export function SiteHeader() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.2 });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-bronze/30 bg-background/82 backdrop-blur-md">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />

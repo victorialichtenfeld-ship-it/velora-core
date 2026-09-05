@@ -25,7 +25,7 @@ export function LiveTicker() {
             aria-hidden={index >= items.length}
             className="flex items-center gap-3"
           >
-            <span className="size-1.5 rounded-full bg-primary shadow-[0_0_8px_rgb(226_194_120_/_0.8)]" />
+            <span className="size-1.5 rounded-full bg-gold" />
             {item}
           </span>
         ))}

@@ -76,7 +76,7 @@ export function ProblemSection() {
               <p className="mt-4 text-sm leading-6 text-muted-foreground">{current.detail}</p>
               <div className="mt-8">
                 <p className="text-[11px] text-muted-foreground">Amount at risk</p>
-                <p className="mt-1 font-mono text-4xl tabular tracking-tight text-risk">{current.impact}</p>
+                <p className="mt-1 font-figure text-4xl tracking-tight text-risk">{current.impact}</p>
               </div>
             </motion.div>
           </AnimatePresence>

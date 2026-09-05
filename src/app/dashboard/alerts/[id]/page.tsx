@@ -51,7 +51,7 @@ export default function AlertDetailPage() {
         </div>
         <div className="rounded-2xl bg-risk/10 px-4 py-3 ring-1 ring-risk/25">
           <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Money at risk</p>
-          <p className="font-mono text-2xl text-risk">{formatCurrency(alert.dollarImpact)}</p>
+          <p className="font-figure text-2xl text-risk">{formatCurrency(alert.dollarImpact)}</p>
         </div>
       </div>
 

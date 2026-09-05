@@ -70,10 +70,10 @@ export function Pricing() {
           <MotionCard
             key={plan.name}
             delay={index * 0.08}
-            className={cn("flex flex-col p-6", plan.highlighted && "gold-glow ring-primary/50")}
+            className={cn("flex flex-col p-6", plan.highlighted && "gold-glow ring-gold/35")}
           >
             <p className="text-sm font-medium">{plan.name}</p>
-            <p className="mt-3 font-mono text-4xl tabular tracking-tight">
+            <p className="mt-3 font-figure text-4xl tracking-tight">
               {plan.price}
               <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>
             </p>
