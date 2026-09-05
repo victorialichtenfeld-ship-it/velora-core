@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu } from "lucide-react";
-import { motion, useScroll, useSpring } from "motion/react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
@@ -18,11 +17,9 @@ const links = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.2 });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center">
           <Logo />
@@ -71,10 +68,6 @@ export function SiteHeader() {
             </div>
           </SheetContent>
         </Sheet>
-      </div>
-      <motion.div style={{ scaleX }} className="h-0.5 origin-left bg-gold" />
-      <div className="h-px overflow-hidden">
-        <div className="gold-hairline h-px w-full animate-gold-wash" />
       </div>
     </header>
   );

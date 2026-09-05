@@ -1,41 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 
 export function FinalCta() {
-  const reduce = useReducedMotion();
   return (
     <section className="px-4 pb-20 pt-8 sm:px-6">
-      <motion.div
-        className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-[1.6rem] border border-gold/25 bg-[#0c121c] px-8 py-16 text-center sm:px-16 sm:py-20"
-        initial={reduce ? false : { y: 20 }}
-        whileInView={{ y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {reduce ? null : (
-          <>
-            <div className="animate-gold-breathe pointer-events-none absolute inset-x-10 top-[-40%] h-56 rounded-full bg-[radial-gradient(circle,rgb(61_124_240_/_0.45),transparent_70%)]" />
-            <div className="animate-gold-sweep pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgb(126_176_255_/_0.12),transparent)]" />
-          </>
-        )}
-        <p className="relative text-[13px] font-medium text-gold">Start today</p>
-        <h2 className="font-figure relative mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
-          Hold the next duplicate before it <span className="money-sheen italic">clears</span>.
+      <div className="mx-auto w-full max-w-5xl rounded-2xl border border-border bg-card px-8 py-16 text-center sm:px-16 sm:py-20">
+        <p className="text-[13px] font-medium text-muted-foreground">Start today</p>
+        <h2 className="font-figure mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
+          Hold the next duplicate before it <span className="italic">clears</span>.
         </h2>
-        <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
+        <p className="mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
           Free trial. No bank connection required to walk the sample. Put Velora on the cash rail when AP is ready.
         </p>
-        <Link
-          href="/signup"
-          className={cn(buttonVariants(), "btn-shine relative mt-8 inline-flex h-12 px-7 text-[15px]")}
-        >
+        <Link href="/signup" className={cn(buttonVariants(), "mt-8 inline-flex h-11 px-6 text-[14px]")}>
           Start free trial
         </Link>
-      </motion.div>
+      </div>
     </section>
   );
 }

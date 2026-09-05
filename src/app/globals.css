@@ -174,30 +174,22 @@
   }
   .glass {
     background: #10151e;
-    box-shadow: 0 12px 32px rgb(61 124 240 / 16%);
   }
   .glass-strong {
     background: #10151e;
-    box-shadow: 0 16px 40px rgb(61 124 240 / 20%);
   }
   .product-frame {
     background: #ffffff;
     color: #0f1c2e;
   }
-  .gold-glow {
-    box-shadow: 0 1px 2px rgb(15 28 46 / 6%), 0 12px 32px rgb(15 28 46 / 6%);
-  }
+  .gold-glow,
   .protect-glow,
   .risk-glow {
-    box-shadow: 0 0 0 1px var(--border);
+    box-shadow: none;
   }
   .gold-run-border {
-    border: 1px solid transparent;
-    background:
-      linear-gradient(#10151e, #10151e) padding-box,
-      linear-gradient(90deg, transparent, #7eb0ff, transparent, #3d7cf0) border-box;
-    background-size: auto, 240% 100%;
-    animation: borderRun 1.5s linear infinite;
+    border: 1px solid var(--border);
+    background: #10151e;
   }
   .text-balance {
     text-wrap: balance;
@@ -206,50 +198,29 @@
     font-variant-numeric: tabular-nums;
   }
   .lift-card {
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.4s ease,
-      background-color 0.4s ease;
+    transition: background-color 0.2s ease;
   }
   .lift-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 32px rgb(15 28 46 / 8%), 0 0 0 1px var(--border);
+    background-color: #141a24;
   }
   .gold-hairline {
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: var(--border);
   }
   .text-shimmer,
   .money-sheen {
-    background: linear-gradient(100deg, #3d7cf0 0%, #7eb0ff 38%, #d6e6ff 50%, #7eb0ff 62%, #3d7cf0 100%);
-    background-size: 220% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmerText 0.85s linear infinite;
+    color: var(--gold);
+    background: none;
   }
   .scan-beam {
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    background: var(--border);
     box-shadow: none;
   }
   .scan-wash {
-    background: linear-gradient(180deg, transparent, rgb(15 28 46 / 4%), transparent);
+    background: transparent;
   }
   .btn-shine {
     position: relative;
-    overflow: hidden;
-  }
-  .btn-shine::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 38%, rgb(255 255 255 / 0.22) 50%, transparent 62%);
-    transform: translateX(-130%);
-    pointer-events: none;
-    animation: shineSweep 1.35s ease-in-out infinite;
-  }
-  .btn-shine:hover::after {
-    animation-duration: 0.7s;
   }
   .scanlines {
     background: repeating-linear-gradient(
@@ -338,69 +309,27 @@
   .gold-desk {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgb(126 176 255 / 22%);
+    border: 1px solid var(--border);
     background: #10151e;
     border-radius: 1rem;
-    box-shadow:
-      0 1px 1px rgb(0 0 0 / 0.4),
-      0 22px 50px rgb(61 124 240 / 0.16);
   }
   .product-panel {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgb(126 176 255 / 28%);
+    border: 1px solid var(--border);
     background: #10151e;
-    border-radius: 1.15rem;
-    box-shadow:
-      0 1px 1px rgb(0 0 0 / 0.45),
-      0 32px 80px rgb(61 124 240 / 0.28),
-      0 0 0 1px rgb(16 21 30 / 0.8);
-  }
-  .product-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(90deg, transparent 12%, #7eb0ff 50%, transparent 88%);
-    background-size: 220% 100%;
-    animation: borderRun 1.0s linear infinite;
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-  .product-panel::after,
-  .gold-desk::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 38%, rgb(126 176 255 / 0.12) 50%, transparent 62%);
-    animation: goldWash 1.35s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 1;
+    border-radius: 1rem;
   }
   .glow-dusk,
   .glow-gold,
   .glow-protect {
-    box-shadow:
-      0 1px 1px rgb(0 0 0 / 0.4),
-      0 32px 90px rgb(61 124 240 / 0.36),
-      0 0 0 1px rgb(16 21 30 / 0.8);
+    box-shadow: none;
   }
   .progress-sheen {
-    background: linear-gradient(90deg, #3d7cf0, #b7d4ff, #3d7cf0);
-    background-size: 200% 100%;
-    animation: barSheen 0.9s linear infinite;
+    background: var(--gold);
   }
   .animate-card-glow {
-    animation: cardGlow 2.2s ease-in-out infinite;
+    animation: none;
   }
   .ai-field {
     border: 1px solid rgb(176 137 58 / 0.32);
@@ -679,15 +608,15 @@
 }
 
 .animate-ticker {
-  animation: ticker 5.5s linear infinite;
+  animation: ticker 32s linear infinite;
 }
 
 .animate-ticker-fast {
-  animation: ticker 5.5s linear infinite;
+  animation: ticker 32s linear infinite;
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 5.5s linear infinite;
+  animation: tickerReverse 32s linear infinite;
 }
 
 .animate-gold-sweep {
@@ -866,11 +795,6 @@
   .lift-card:hover {
     transform: none;
   }
-  .text-shimmer,
-  .money-sheen {
-    color: var(--gold);
-    background: none;
-  }
 }
 
 ::-webkit-scrollbar {
@@ -878,7 +802,7 @@
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(126 176 255 / 40%);
+  background: #2a3448;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {

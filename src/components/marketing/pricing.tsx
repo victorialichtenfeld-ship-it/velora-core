@@ -52,14 +52,12 @@ export function Pricing() {
           <div
             key={plan.name}
             className={cn(
-              "flex flex-col rounded-2xl border p-7 lift-card",
-              plan.highlighted
-                ? "product-panel animate-card-glow border-gold/35"
-                : "border-border bg-transparent"
+              "flex flex-col rounded-2xl border p-7",
+              plan.highlighted ? "border-foreground/25 bg-card" : "border-border bg-transparent"
             )}
           >
             <p className="text-[13px] font-medium text-muted-foreground">{plan.name}</p>
-            <p className={`font-figure mt-3 tracking-[-0.04em] text-4xl ${plan.highlighted ? "money-sheen" : "text-foreground"}`}>
+            <p className="font-figure mt-3 tracking-[-0.04em] text-4xl text-foreground">
               {plan.price}
               <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>
             </p>

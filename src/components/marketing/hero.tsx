@@ -16,115 +16,72 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <motion.p
-        className="pointer-events-none absolute -left-4 top-10 hidden select-none font-figure text-[8.5rem] leading-none tracking-[-0.06em] text-gold/10 lg:block"
-        animate={reduce ? undefined : { x: [0, 18, 0], y: [0, -12, 0] }}
-        transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
-      >
+      <p className="pointer-events-none absolute -left-4 top-10 hidden select-none font-figure text-[8.5rem] leading-none tracking-[-0.06em] text-foreground/[0.04] lg:block">
         $11,240
-      </motion.p>
+      </p>
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:py-24">
         <div className="order-2 lg:order-1">
-          <motion.p
-            initial={reduce ? false : { y: 8 }}
-            animate={{ y: 0 }}
-            className="mb-5 inline-flex items-center gap-2.5 rounded-full bg-gold/12 px-3 py-1.5 text-[13px] font-medium text-gold"
-          >
-            <span className="relative flex size-2">
-              <span className={reduce ? "hidden" : "animate-pulse-ring absolute inset-0 rounded-full bg-gold"} />
-              <span className="relative size-2 rounded-full bg-gold" />
-            </span>
+          <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-border px-3 py-1.5 text-[13px] text-muted-foreground">
+            <span className="size-1.5 rounded-full bg-gold" />
             Live hold · Apex · 15 hours later
-          </motion.p>
-          <motion.h1
-            initial={reduce ? false : { y: 14 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="font-figure max-w-xl text-[2.75rem] leading-[1.04] tracking-[-0.038em] text-balance text-foreground sm:text-5xl lg:text-[3.75rem]"
-          >
+          </p>
+          <h1 className="font-figure max-w-xl text-[2.75rem] leading-[1.04] tracking-[-0.038em] text-balance text-foreground sm:text-5xl lg:text-[3.75rem]">
             That second payment was about to{" "}
-            <span className="relative inline-block money-sheen italic">
+            <span className="relative inline-block italic">
               clear
               <motion.span
-                className="absolute top-[58%] left-0 h-[2px] origin-left bg-gold"
+                className="absolute top-[58%] left-0 h-px origin-left bg-foreground"
                 initial={false}
                 animate={{ scaleX: stage === "held" ? 1 : 0 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 style={{ width: "100%" }}
               />
             </span>
             .
-          </motion.h1>
-          <motion.p
-            key={line}
-            initial={reduce ? false : { y: 12 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 text-[15px] font-medium text-gold"
-          >
+          </h1>
+          <p key={line} className="mt-5 text-[15px] font-medium text-foreground">
             {line}
-          </motion.p>
-          <motion.p
-            initial={reduce ? false : { y: 10 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08 }}
-            className="mt-4 max-w-md text-[16px] leading-8 text-muted-foreground"
-          >
+          </p>
+          <p className="mt-4 max-w-md text-[16px] leading-8 text-muted-foreground">
             Apex already got paid. The same $11,240 hit the rail again. Velora caught the duplicate in flight and held it before the bank.
-          </motion.p>
-          <motion.div
-            initial={reduce ? false : { y: 10 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6, delay: 0.14 }}
-            className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"
-          >
-            <Link href="/signup" className={cn(buttonVariants(), "btn-shine h-12 px-7 text-[15px]")}>
+          </p>
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <Link href="/signup" className={cn(buttonVariants(), "h-11 px-6 text-[14px]")}>
               Start free trial
-              <motion.span
-                animate={reduce ? undefined : { x: [0, 5, 0] }}
-                transition={{ duration: 0.65, repeat: Infinity, ease: "easeInOut" }}
-                className="inline-flex"
-              >
-                <ArrowRight className="size-4" />
-              </motion.span>
+              <ArrowRight className="size-4" />
             </Link>
-            <a href="#demo" className="text-[15px] text-gold underline-offset-4 hover:text-foreground hover:underline">
+            <a href="#demo" className="text-[14px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
               Watch the hold
             </a>
-          </motion.div>
+          </div>
           <div className="mt-10 max-w-md">
             <div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">
               {(["In flight", "Match", "Held"] as const).map((label, index) => {
                 const active = stage === "send" ? 0 : stage === "match" ? 1 : 2;
                 return (
-                  <motion.span
-                    key={label}
-                    className={index <= active ? "text-gold" : ""}
-                    animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.12, 1] }}
-                    transition={{ duration: 0.7, repeat: index === active ? Infinity : 0 }}
-                  >
+                  <span key={label} className={index <= active ? "text-foreground" : ""}>
                     {label}
-                  </motion.span>
+                  </span>
                 );
               })}
             </div>
-            <div className="mt-2 h-[3px] overflow-hidden rounded-full bg-muted">
+            <div className="mt-2 h-px overflow-hidden bg-border">
               <motion.div
-                className="h-full progress-sheen"
+                className="h-full bg-foreground"
                 animate={{ width: stage === "held" ? "100%" : stage === "match" ? "66%" : "33%" }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               />
             </div>
           </div>
-          <div className="mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-gold/25 pt-6">
+          <div className="mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-border pt-6">
             <div>
-              <p className="font-figure money-sheen text-2xl tracking-tight">
+              <p className="font-figure text-2xl tracking-tight text-foreground">
                 <AnimatedNumber value={184320} prefix="$" duration={1400} />
               </p>
               <p className="mt-1 text-[12px] text-muted-foreground">Held this month</p>
             </div>
             <div>
-              <p className="font-figure money-sheen text-2xl tracking-tight">
+              <p className="font-figure text-2xl tracking-tight text-foreground">
                 <AnimatedNumber value={47} duration={1100} />
               </p>
               <p className="mt-1 flex items-center gap-2 text-[12px] text-muted-foreground">

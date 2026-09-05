@@ -67,7 +67,7 @@ export default function OverviewPage() {
           <ol className="mt-4 space-y-4">
             {activityTimeline.map((event) => (
               <li key={event.id} className="flex gap-3">
-                <span className="mt-1 size-2 rounded-full bg-gold shadow-[0_0_8px_rgb(201_168_106_/_0.8)]" />
+                <span className="mt-1 size-2 rounded-full bg-gold" />
                 <div>
                   <p className="text-sm">{event.title}</p>
                   <p className="text-xs text-muted-foreground">{event.detail}</p>

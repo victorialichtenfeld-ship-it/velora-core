@@ -9,7 +9,7 @@ export function Logo({
 }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <svg viewBox="0 0 36 36" className="size-7 shrink-0 animate-gold-breathe text-gold" aria-hidden="true">
+      <svg viewBox="0 0 36 36" className="size-7 shrink-0 text-gold" aria-hidden="true">
         <path
           d="M18 3.5L31 10.2V21.8C31 27.1 25.4 31.6 18 33.5C10.6 31.6 5 27.1 5 21.8V10.2L18 3.5Z"
           fill="currentColor"

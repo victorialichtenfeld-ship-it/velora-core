@@ -140,7 +140,7 @@ function AlertWorkbench({
           </span>
         ) : null}
       </div>
-      <p className="font-figure money-sheen mt-3 text-5xl leading-none tracking-[-0.04em] sm:text-6xl">
+      <p className="font-figure mt-3 text-5xl leading-none tracking-[-0.04em] text-foreground sm:text-6xl">
         {formatCurrency(alert.dollarImpact)}
       </p>
       <h3 className="mt-4 text-xl font-medium">{alert.title}</h3>

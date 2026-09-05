@@ -78,28 +78,16 @@ export function ProblemSection() {
             initial={reduce ? false : { y: 12 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="product-panel relative p-7"
+            className="relative rounded-2xl border border-border bg-card p-7"
           >
-            {reduce ? null : (
-              <motion.div
-                key={`wash-${current.id}`}
-                className="pointer-events-none absolute inset-0 bg-[linear-gradient(108deg,transparent_28%,rgb(126_176_255_/_0.16)_50%,transparent_72%)]"
-                initial={{ x: "-55%" }}
-                animate={{ x: "120%" }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              />
-            )}
             <div className="relative">
             <MatchRow side={current.left} />
             <div className="relative py-4">
               <span className="absolute inset-x-6 top-1/2 h-px bg-border" />
-              {reduce ? null : (
-                <span className="animate-rail absolute top-1/2 left-6 size-1.5 -translate-y-1/2 rounded-full bg-gold" />
-              )}
               <p className="relative text-center text-[12px] font-medium">Match</p>
             </div>
             <MatchRow side={current.right} emphasis />
-            <p className="font-figure money-sheen mt-8 text-5xl tracking-[-0.045em] sm:text-6xl">
+            <p className="font-figure mt-8 text-5xl tracking-[-0.045em] text-foreground sm:text-6xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
             </p>
             <p className="mt-3 text-[13px] font-medium text-gold">{current.caption}</p>
