@@ -10,6 +10,7 @@ export function SectionIntro({
   return (
     <div className="max-w-2xl">
       <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-gold">{eyebrow}</p>
+      <span className="mt-3 block h-px w-10 bg-gold/70" />
       <h2 className="mt-3 font-figure text-[2.05rem] leading-[1.12] tracking-[-0.03em] text-foreground sm:text-[2.55rem]">
         {title}
       </h2>

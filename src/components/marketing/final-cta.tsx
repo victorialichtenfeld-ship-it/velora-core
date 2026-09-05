@@ -8,8 +8,11 @@ import { cn } from "@/lib/utils";
 export function FinalCta() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative overflow-hidden px-4 pb-24 text-center sm:px-6">
-      <div className="pointer-events-none absolute top-1/2 left-1/2 size-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/15 animate-spin-slow" />
+    <section className="relative overflow-hidden px-4 pb-28 pt-8 text-center sm:px-6">
+      <div className="pointer-events-none absolute top-1/2 left-1/2 size-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/20 sm:size-[28rem]" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 size-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-gold/25 animate-spin-slow sm:size-[36rem]" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 size-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/10 animate-spin-rev sm:size-[44rem]" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 size-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(176_137_58_/_0.14),transparent_70%)] animate-gold-breathe" />
       <motion.div
         className="relative mx-auto w-full max-w-3xl"
         initial={reduce ? false : { y: 14 }}

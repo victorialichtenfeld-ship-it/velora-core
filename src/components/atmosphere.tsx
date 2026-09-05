@@ -19,7 +19,7 @@ const dollars = [
 export function Atmosphere() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
-      <div className="animate-gold-breathe absolute inset-x-0 top-[-28%] h-[58%] bg-[radial-gradient(ellipse_at_50%_0%,rgb(176_137_58_/_0.12),transparent_62%)]" />
+      <div className="animate-gold-breathe absolute inset-x-0 top-[-28%] h-[58%] bg-[radial-gradient(ellipse_at_50%_0%,rgb(176_137_58_/_0.18),transparent_62%)]" />
       <div className="absolute top-[22%] right-[-14%] h-[42%] w-[40%] rounded-full bg-[radial-gradient(circle,rgb(176_137_58_/_0.06),transparent_72%)]" />
       <div className="animate-gold-sweep absolute top-[-12%] left-0 h-[70%] w-[38%] bg-[linear-gradient(90deg,transparent,rgb(176_137_58_/_0.08),transparent)]" />
       <div
