@@ -34,18 +34,13 @@ export function HowItWorks() {
   }, [reduce]);
 
   return (
-    <section id="how" className="mx-auto w-full max-w-4xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="how" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="How it works"
         title="A hold in the payment path."
         body="Velora does not ask AP to re-key data. It watches the tools they already run and infers holds in the payment path."
       />
-      <ol className="relative mt-14 space-y-5">
-        <span className="absolute top-8 bottom-8 left-[2.15rem] hidden w-px bg-border sm:block">
-          {reduce ? null : (
-            <span className="animate-bead absolute left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-gold" />
-          )}
-        </span>
+      <ol className="mt-14 grid gap-4 md:grid-cols-3">
         {steps.map((step, index) => (
           <motion.li
             key={step.n}
@@ -53,21 +48,15 @@ export function HowItWorks() {
             whileInView={{ y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ delay: index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            animate={
-              reduce
-                ? undefined
-                : { y: active === index ? -6 : 0, scale: active === index ? 1.015 : 1, borderColor: active === index ? "rgb(147 192 255 / 0.5)" : "rgb(36 48 68)" }
-            }
+            animate={reduce ? undefined : { y: active === index ? -8 : 0 }}
             className={cn(
-              "grid gap-2 rounded-2xl border bg-card p-6 sm:grid-cols-[4.5rem_1fr] sm:gap-8 sm:p-7",
-              active === index ? "border-gold/40" : "border-border"
+              "glass rounded-[1.5rem] p-6 sm:p-7",
+              active === index && "border-gold/40 bg-gold/[0.08]"
             )}
           >
-            <p className={`font-figure text-3xl ${active === index ? "text-gold" : "text-muted-foreground"}`}>{step.n}</p>
-            <div>
-              <h3 className="font-figure text-2xl tracking-[-0.03em]">{step.title}</h3>
-              <p className="mt-2 max-w-xl text-sm leading-7 text-muted-foreground">{step.body}</p>
-            </div>
+            <p className={`font-figure text-3xl ${active === index ? "gradient-text" : "text-muted-foreground"}`}>{step.n}</p>
+            <h3 className="mt-6 text-xl font-semibold tracking-[-0.03em]">{step.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{step.body}</p>
           </motion.li>
         ))}
       </ol>

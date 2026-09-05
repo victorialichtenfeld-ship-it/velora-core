@@ -64,8 +64,8 @@ export function ProductDemo() {
                   key={item.id}
                   type="button"
                   onClick={() => setSelected(item.id)}
-                  className={`w-full border-l-2 px-4 py-4 text-left transition ${
-                    active ? "border-gold bg-gold/12" : "border-transparent hover:bg-gold/6"
+                  className={`w-full rounded-2xl px-4 py-4 text-left transition ${
+                    active ? "bg-gold/12" : "hover:bg-white/5"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -164,7 +164,7 @@ function AlertWorkbench({
       </dl>
 
       {decision ? (
-        <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 border-l-2 border-gold bg-gold/8 py-3 pl-4">
+        <motion.div initial={{ y: 8 }} animate={{ y: 0 }} className="mt-6 rounded-2xl border border-gold/20 bg-gold/8 py-3 pl-4">
           <p className="text-sm font-medium">
             {decision === "resolved" && "Hold recorded. The second payment does not leave the account."}
             {decision === "approved" && "Override recorded. You released it with a named decision."}

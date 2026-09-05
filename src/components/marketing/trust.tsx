@@ -14,23 +14,23 @@ const pillars = [
 export function TrustSection() {
   const reduce = useReducedMotion();
   return (
-    <section id="trust" className="mx-auto w-full max-w-4xl px-4 py-20 sm:px-6 sm:py-24">
+    <section id="trust" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Trust"
         title="A hold only belongs in the payment path if it is boring and auditable."
       />
-      <ul className="mt-12 divide-y divide-border border-y border-border">
+      <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar, index) => (
           <motion.li
             key={pillar.title}
-            className="grid gap-2 py-5 sm:grid-cols-[14rem_1fr] sm:gap-8"
-            initial={reduce ? false : { x: -18 }}
-            whileInView={{ x: 0 }}
+            className={index === 0 ? "glass rounded-[1.5rem] p-6 sm:col-span-2 lg:col-span-1" : "glass rounded-[1.5rem] p-6"}
+            initial={reduce ? false : { y: 16 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ delay: index * 0.04, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="font-figure text-xl">{pillar.title}</p>
-            <p className="text-sm leading-7 text-muted-foreground">{pillar.body}</p>
+            <p className="text-lg font-semibold tracking-[-0.03em]">{pillar.title}</p>
+            <p className="mt-2 text-sm leading-7 text-muted-foreground">{pillar.body}</p>
           </motion.li>
         ))}
       </ul>

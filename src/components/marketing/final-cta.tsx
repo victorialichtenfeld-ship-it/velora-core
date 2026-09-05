@@ -10,28 +10,29 @@ export function FinalCta() {
   return (
     <section className="px-4 pb-20 pt-8 sm:px-6">
       <motion.div
-        className="mx-auto w-full max-w-5xl rounded-2xl border border-gold/25 bg-card px-8 py-16 text-center sm:px-16 sm:py-20"
+        className="glass relative mx-auto w-full max-w-5xl overflow-hidden rounded-[2rem] px-8 py-16 text-center sm:px-16 sm:py-20"
         initial={reduce ? false : { y: 18 }}
         whileInView={{ y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="text-[13px] font-medium text-gold">Start today</p>
-        <h2 className="font-figure mt-3 text-[2.2rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.9rem]">
+        <div className="hero-glow pointer-events-none absolute inset-x-16 top-0 h-40" />
+        <p className="relative text-[13px] font-medium text-gold">Start today</p>
+        <h2 className="relative mt-3 text-[2.15rem] font-semibold leading-[1.12] tracking-[-0.04em] sm:text-[2.8rem]">
           Hold the next duplicate before it{" "}
           <motion.span
-            className="italic text-gold inline-block"
-            animate={reduce ? undefined : { scale: [1, 1.06, 1] }}
+            className="gradient-text inline-block"
+            animate={reduce ? undefined : { scale: [1, 1.04, 1] }}
             transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
           >
             clears
           </motion.span>
           .
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
+        <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
           Free trial. No bank connection required to walk the sample. Put Velora on the cash rail when AP is ready.
         </p>
-        <Link href="/signup" className={cn(buttonVariants(), "mt-8 inline-flex h-11 px-6 text-[14px]")}>
+        <Link href="/signup" className={cn(buttonVariants(), "relative mt-8 inline-flex h-12 px-6 text-[14px]")}>
           Start free trial
         </Link>
       </motion.div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { integrationsCatalog } from "@/lib/data/demo";
 import { SectionIntro } from "@/components/marketing/section-intro";
+import { cn } from "@/lib/utils";
 
 export function IntegrationsSection() {
   const liveNow = integrationsCatalog.filter((item) => item.status === "connected");
@@ -25,23 +26,29 @@ export function IntegrationsSection() {
         body="Live now connectors are simulated here. Coming-soon adapters share the same interface."
       />
       <p className="mt-10 text-[13px] font-medium text-gold">Live now</p>
-      <p className="font-figure mt-3 text-3xl leading-snug tracking-[-0.03em] sm:text-4xl sm:leading-[1.2]">
+      <div className="mt-4 flex flex-wrap gap-2">
         {liveNow.map((item, index) => (
           <motion.span
             key={item.name}
-            className={index === active ? "text-gold" : "text-muted-foreground"}
+            className={cn(
+              "glass rounded-full px-4 py-2 text-sm",
+              index === active ? "border-gold/40 text-gold" : "text-muted-foreground"
+            )}
             animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.04, 1] }}
             transition={{ duration: 0.7, repeat: index === active ? Infinity : 0 }}
           >
             {item.name}
-            {index < liveNow.length - 1 ? "  ·  " : ""}
           </motion.span>
         ))}
-      </p>
+      </div>
       <p className="mt-8 text-[13px] font-medium text-muted-foreground">Coming soon</p>
-      <p className="mt-2 font-figure text-xl leading-9 text-muted-foreground sm:text-2xl">
-        {comingSoon.map((item) => item.name).join("  ·  ")}
-      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {comingSoon.map((item) => (
+          <span key={item.name} className="rounded-full border border-white/8 px-4 py-2 text-sm text-muted-foreground">
+            {item.name}
+          </span>
+        ))}
+      </div>
     </section>
   );
 }

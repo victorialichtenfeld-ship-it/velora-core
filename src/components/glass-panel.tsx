@@ -13,7 +13,7 @@ export function GlassPanel({
   return (
     <div
       className={cn(
-        "glass relative overflow-hidden rounded-2xl ring-1 ring-border",
+        "glass relative overflow-hidden rounded-[1.5rem]",
         glow === "gold" && "gold-glow",
         glow === "protect" && "protect-glow",
         glow === "risk" && "risk-glow",

@@ -45,7 +45,7 @@ export function ProblemSection() {
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <div>
           <p className="text-[13px] font-medium text-muted-foreground">What it catches</p>
-          <h2 className="font-figure mt-3 text-[2.4rem] leading-[1.08] tracking-[-0.035em] sm:text-[3.15rem]">
+          <h2 className="mt-3 text-[2.3rem] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[3.05rem]">
             Two mistakes. Quiet six figures.
           </h2>
           <p className="mt-5 max-w-md text-[16px] leading-8 text-muted-foreground">
@@ -60,10 +60,10 @@ export function ProblemSection() {
                   pauseUntil.current = Date.now() + 8000;
                   setActive(item.id);
                 }}
-                className={`border-l-2 px-4 py-3 text-left text-sm transition ${
+                className={`rounded-2xl px-4 py-3 text-left text-sm transition ${
                   active === item.id
-                    ? "border-gold bg-gold/12 text-foreground"
-                    : "border-transparent text-muted-foreground hover:border-gold/40 hover:text-foreground"
+                    ? "bg-gold/12 text-foreground"
+                    : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                 }`}
               >
                 {item.title}
@@ -79,7 +79,7 @@ export function ProblemSection() {
             animate={{ y: 0 }}
             exit={reduce ? undefined : { y: -12 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="relative rounded-2xl border border-border bg-card p-7"
+            className="glass relative rounded-[1.6rem] p-7"
           >
             <div className="relative">
             <MatchRow side={current.left} />

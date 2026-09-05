@@ -59,8 +59,8 @@ export function Pricing() {
             transition={{ delay: index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             whileHover={reduce ? undefined : { y: -5 }}
             className={cn(
-              "flex flex-col rounded-2xl border p-7",
-              plan.highlighted ? "border-gold/40 bg-gold/[0.06]" : "border-border bg-transparent"
+              "glass flex flex-col rounded-[1.6rem] p-7",
+              plan.highlighted && "border-gold/35 bg-gold/[0.08] gold-glow"
             )}
           >
             <motion.div

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu } from "lucide-react";
-import { motion, useScroll, useSpring } from "motion/react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
@@ -18,27 +17,29 @@ const links = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.2 });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center">
+    <div className="sticky top-0 z-50 px-4 pt-4 sm:px-6">
+      <header className="nav-glass mx-auto flex h-14 w-full max-w-5xl items-center justify-between rounded-full px-3 sm:px-4">
+        <Link href="/" className="flex items-center pl-1">
           <Logo />
         </Link>
-        <nav className="hidden items-center gap-8 text-[14px] text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-1 text-[13px] text-muted-foreground md:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="transition-colors hover:text-foreground">
+            <a
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-3 py-1.5 transition-colors hover:bg-white/6 hover:text-foreground"
+            >
               {link.label}
             </a>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
-          <Link href="/login" className="text-[14px] text-muted-foreground hover:text-foreground">
+        <div className="hidden items-center gap-2 md:flex">
+          <Link href="/login" className="rounded-full px-3 py-1.5 text-[13px] text-muted-foreground hover:text-foreground">
             Sign in
           </Link>
-          <Link href="/signup" className={cn(buttonVariants(), "h-9 px-3.5 text-[13px]")}>
+          <Link href="/signup" className={cn(buttonVariants(), "h-9 px-4 text-[13px]")}>
             Start free trial
           </Link>
         </div>
@@ -71,11 +72,7 @@ export function SiteHeader() {
             </div>
           </SheetContent>
         </Sheet>
-      </div>
-      <motion.div style={{ scaleX }} className="h-px origin-left bg-gold" />
-      <div className="relative h-px overflow-hidden">
-        <span className="animate-rail absolute top-0 h-px w-1/4 bg-gold" />
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }

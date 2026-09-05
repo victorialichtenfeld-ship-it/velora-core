@@ -78,9 +78,28 @@ export function CashScene({
         my.set(0);
       }}
     >
+      <div className="hero-glow pointer-events-none absolute inset-6 -z-10" />
+      {!reduce ? (
+        <>
+          <motion.div
+            className="glass absolute -left-3 top-16 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            99.4% duplicate
+          </motion.div>
+          <motion.div
+            className="glass absolute -right-2 bottom-28 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          >
+            Held · $11,240
+          </motion.div>
+        </>
+      ) : null}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -34, 0], rotate: [0, 1.2, 0, -1.2, 0] }}
-        transition={{ duration: 1.55, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -28, 0] }}
+        transition={{ duration: 1.7, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="product-panel relative">
           {!reduce ? (
@@ -158,7 +177,7 @@ export function CashScene({
                 animate={
                   matching
                     ? {
-                        backgroundColor: "rgb(77 138 245 / 0.2)",
+                          backgroundColor: "rgb(124 108 255 / 0.22)",
                         borderRadius: 12,
                         paddingLeft: 12,
                         paddingRight: 12,
@@ -166,14 +185,14 @@ export function CashScene({
                       }
                     : held
                       ? {
-                          backgroundColor: "rgb(77 138 245 / 0.16)",
+                          backgroundColor: "rgb(124 108 255 / 0.16)",
                           borderRadius: 12,
                           paddingLeft: 12,
                           paddingRight: 12,
                           x: 0,
                         }
                       : {
-                          backgroundColor: "rgb(22 28 40 / 0)",
+                          backgroundColor: "rgb(12 14 26 / 0)",
                           borderRadius: 0,
                           paddingLeft: 0,
                           paddingRight: 0,

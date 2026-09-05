@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { SectionIntro } from "@/components/marketing/section-intro";
+import { cn } from "@/lib/utils";
 
 const cases = [
   { team: "Sales discounts", result: "A 16% quote waits for finance.", amount: "$28,750" },
@@ -19,21 +20,24 @@ export function UseCases() {
         title="Adjacent checks. Not why you buy."
         body="The walkthrough includes these so finance can see the control layer expand. They are not the reason to start a trial today."
       />
-      <div className="mt-12 grid gap-4 sm:grid-cols-2">
+      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cases.map((item, index) => (
           <motion.div
             key={item.team}
-            className="lift-card rounded-2xl border border-border bg-card px-5 py-8 sm:px-8"
+            className={cn(
+              "glass lift-card rounded-[1.5rem] px-5 py-8 sm:px-6",
+              index === 0 && "lg:col-span-2"
+            )}
             initial={reduce ? false : { y: 18 }}
             whileInView={{ y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: index * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             whileHover={reduce ? undefined : { y: -5 }}
           >
-            <motion.div animate={reduce ? undefined : { y: [0, -10, 0] }} transition={{ duration: 1.7 + index * 0.2, repeat: Infinity, ease: "easeInOut" }}>
-            <p className="text-[13px] font-medium text-gold">{item.team}</p>
-            <p className="font-figure mt-3 text-4xl tracking-[-0.04em] text-gold">{item.amount}</p>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>
+            <motion.div animate={reduce ? undefined : { y: [0, -8, 0] }} transition={{ duration: 1.7 + index * 0.2, repeat: Infinity, ease: "easeInOut" }}>
+              <p className="text-[13px] font-medium text-gold">{item.team}</p>
+              <p className="font-figure mt-3 text-3xl tracking-[-0.04em] text-gold lg:text-4xl">{item.amount}</p>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.result}</p>
             </motion.div>
           </motion.div>
         ))}

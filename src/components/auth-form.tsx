@@ -86,7 +86,7 @@ function Field({
         name={name}
         type={type}
         defaultValue={defaultValue}
-        className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        className="h-10 w-full rounded-xl border border-white/12 bg-white/5 px-3 text-sm font-normal text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
       />
     </label>
   );

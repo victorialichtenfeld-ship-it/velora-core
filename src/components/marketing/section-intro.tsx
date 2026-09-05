@@ -27,7 +27,7 @@ export function SectionIntro({
         whileInView={{ y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-3 font-figure text-[2.2rem] leading-[1.1] tracking-[-0.03em] text-foreground sm:text-[2.85rem]"
+        className="mt-3 text-[2.15rem] font-semibold leading-[1.1] tracking-[-0.04em] text-foreground sm:text-[2.7rem]"
       >
         {title}
       </motion.h2>

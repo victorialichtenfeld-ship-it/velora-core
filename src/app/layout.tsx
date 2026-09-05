@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import { IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { Atmosphere } from "@/components/atmosphere";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
@@ -7,12 +7,6 @@ import "./globals.css";
 const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
-});
-
-const serif = Instrument_Serif({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: "400",
 });
 
 const mono = IBM_Plex_Mono({
@@ -39,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable} h-full`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable} h-full dark`}>
       <body className="relative min-h-full flex flex-col font-sans">
         <Atmosphere />
         <TooltipProvider>{children}</TooltipProvider>

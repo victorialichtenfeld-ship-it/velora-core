@@ -18,28 +18,21 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <motion.p
-        className="pointer-events-none absolute -left-6 top-6 hidden select-none font-figure text-[9.5rem] leading-none tracking-[-0.07em] text-gold/[0.08] lg:block"
-        animate={reduce ? undefined : { x: [0, 48, 0], y: [0, -28, 0] }}
-        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        $11,240
-      </motion.p>
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:py-24">
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:py-24">
         <div className="order-2 lg:order-1">
-          <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-gold/25 bg-gold/10 px-3 py-1.5 text-[13px] text-gold">
+          <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-[13px] text-gold backdrop-blur-md">
             <span className="relative flex size-2">
               <span className={reduce ? "hidden" : "animate-pulse-ring absolute inset-0 rounded-full bg-gold"} />
               <span className="relative size-2 rounded-full bg-gold" />
             </span>
             Live hold · Apex · 15 hours later
           </p>
-          <h1 className="font-figure max-w-xl text-[2.75rem] leading-[1.04] tracking-[-0.038em] text-balance text-foreground sm:text-5xl lg:text-[3.75rem]">
+          <h1 className="max-w-xl text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.045em] text-balance text-foreground sm:text-5xl lg:text-[3.65rem]">
             That second payment was about to{" "}
-            <span className="relative inline-block italic">
+            <span className="relative inline-block">
               <motion.span
-                className="inline-block"
-                animate={reduce ? undefined : stage === "held" ? { color: "var(--gold)" } : { color: "var(--foreground)" }}
+                className="gradient-text inline-block"
+                animate={reduce ? undefined : { opacity: stage === "held" ? 1 : 0.82 }}
               >
                 clear
               </motion.span>
@@ -69,7 +62,7 @@ export function Hero() {
             Apex already got paid. The same $11,240 hit the rail again. Velora caught the duplicate in flight and held it before the bank.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Link href="/signup" className={cn(buttonVariants(), "h-11 px-6 text-[14px]")}>
+            <Link href="/signup" className={cn(buttonVariants(), "h-12 px-6 text-[14px]")}>
               Start free trial
               <motion.span
                 animate={reduce ? undefined : { x: [0, 6, 0] }}
@@ -96,7 +89,7 @@ export function Hero() {
                 </motion.span>
               ))}
             </div>
-            <div className="relative mt-2 h-[3px] overflow-hidden rounded-full bg-muted">
+            <div className="relative mt-2 h-[3px] overflow-hidden rounded-full bg-white/8">
               <motion.div
                 className="h-full bg-gold"
                 animate={{ width: fill }}
@@ -111,20 +104,20 @@ export function Hero() {
               )}
             </div>
           </div>
-          <div className="mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-border pt-6">
-            <div>
+          <div className="mt-12 grid max-w-md grid-cols-2 gap-4">
+            <div className="glass rounded-2xl px-4 py-4">
               <p className="font-figure text-2xl tracking-tight text-gold">
                 <AnimatedNumber value={184320} prefix="$" duration={1400} />
               </p>
               <p className="mt-1 text-[12px] text-muted-foreground">Held this month</p>
             </div>
-            <div>
+            <div className="glass rounded-2xl px-4 py-4">
               <p className="font-figure text-2xl tracking-tight text-foreground">
                 <AnimatedNumber value={47} duration={1100} />
               </p>
               <p className="mt-1 flex items-center gap-2 text-[12px] text-muted-foreground">
                 <SampleDataBadge />
-                payments stopped
+                stopped
               </p>
             </div>
           </div>

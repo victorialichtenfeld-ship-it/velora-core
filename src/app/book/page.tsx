@@ -10,8 +10,8 @@ export default function BookPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b border-border">
-        <div className="mx-auto flex h-14 w-full max-w-6xl items-center px-4 sm:px-6">
+      <header className="px-4 pt-4 sm:px-6">
+        <div className="nav-glass mx-auto flex h-14 w-full max-w-5xl items-center rounded-full px-4">
           <Link href="/">
             <Logo />
           </Link>
@@ -19,7 +19,7 @@ export default function BookPage() {
       </header>
       <main className="mx-auto flex w-full max-w-lg flex-1 flex-col justify-center px-4 py-16">
         {sent ? (
-          <div className="rounded-xl bg-card p-6 ring-1 ring-border">
+          <div className="glass rounded-[1.5rem] p-6">
             <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Request received</p>
             <h1 className="mt-2 text-2xl font-semibold tracking-tight">We will reach out to schedule.</h1>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -76,7 +76,7 @@ function Field({
         type={type}
         required
         defaultValue={defaultValue}
-        className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm font-normal outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        className="h-10 w-full rounded-xl border border-white/12 bg-white/5 px-3 text-sm font-normal outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
       />
     </label>
   );
