@@ -14,13 +14,14 @@ export function Hero() {
   const { stage, cycle, reduce } = useHoldLoop();
   const line = holdCopy[stage];
   const active = stage === "send" ? 0 : stage === "match" ? 1 : 2;
+  const fill = stage === "held" ? "100%" : stage === "match" ? "66%" : "33%";
 
   return (
     <section className="relative overflow-hidden">
       <motion.p
-        className="pointer-events-none absolute -left-4 top-10 hidden select-none font-figure text-[8.5rem] leading-none tracking-[-0.06em] text-foreground/[0.04] lg:block"
-        animate={reduce ? undefined : { x: [0, 16, 0], y: [0, -10, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -left-6 top-6 hidden select-none font-figure text-[9.5rem] leading-none tracking-[-0.07em] text-foreground/[0.05] lg:block"
+        animate={reduce ? undefined : { x: [0, 28, 0], y: [0, -18, 0] }}
+        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
       >
         $11,240
       </motion.p>
@@ -38,10 +39,10 @@ export function Hero() {
             <span className="relative inline-block italic">
               clear
               <motion.span
-                className="absolute top-[58%] left-0 h-px origin-left bg-foreground"
+                className="absolute top-[58%] left-0 h-[2px] origin-left bg-gold"
                 initial={false}
                 animate={{ scaleX: stage === "held" ? 1 : 0 }}
-                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 style={{ width: "100%" }}
               />
             </span>
@@ -50,10 +51,10 @@ export function Hero() {
           <AnimatePresence mode="wait">
             <motion.p
               key={line}
-              initial={reduce ? false : { y: 10 }}
+              initial={reduce ? false : { y: 12 }}
               animate={{ y: 0 }}
-              exit={reduce ? undefined : { y: -10 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              exit={reduce ? undefined : { y: -12 }}
+              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
               className="mt-5 text-[15px] font-medium text-foreground"
             >
               {line}
@@ -66,8 +67,8 @@ export function Hero() {
             <Link href="/signup" className={cn(buttonVariants(), "h-11 px-6 text-[14px]")}>
               Start free trial
               <motion.span
-                animate={reduce ? undefined : { x: [0, 4, 0] }}
-                transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut" }}
+                animate={reduce ? undefined : { x: [0, 6, 0] }}
+                transition={{ duration: 0.55, repeat: Infinity, ease: "easeInOut" }}
                 className="inline-flex"
               >
                 <ArrowRight className="size-4" />
@@ -83,19 +84,26 @@ export function Hero() {
                 <motion.span
                   key={label}
                   className={index <= active ? "text-foreground" : ""}
-                  animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.08, 1] }}
-                  transition={{ duration: 0.8, repeat: index === active ? Infinity : 0 }}
+                  animate={reduce || index !== active ? { scale: 1 } : { scale: [1, 1.14, 1] }}
+                  transition={{ duration: 0.55, repeat: index === active ? Infinity : 0 }}
                 >
                   {label}
                 </motion.span>
               ))}
             </div>
-            <div className="mt-2 h-px overflow-hidden bg-border">
+            <div className="relative mt-2 h-[3px] overflow-hidden rounded-full bg-muted">
               <motion.div
                 className="h-full bg-foreground"
-                animate={{ width: stage === "held" ? "100%" : stage === "match" ? "66%" : "33%" }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                animate={{ width: fill }}
+                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               />
+              {reduce ? null : (
+                <motion.span
+                  className="absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-gold"
+                  animate={{ left: fill }}
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                />
+              )}
             </div>
           </div>
           <div className="mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-border pt-6">

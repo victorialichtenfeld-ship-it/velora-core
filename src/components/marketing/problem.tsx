@@ -36,7 +36,7 @@ export function ProblemSection() {
     const id = window.setInterval(() => {
       if (Date.now() < pauseUntil.current) return;
       setActive((prev) => (prev === "dup" ? "price" : "dup"));
-    }, 4800);
+    }, 3600);
     return () => window.clearInterval(id);
   }, [reduce]);
 
@@ -75,9 +75,10 @@ export function ProblemSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
-            initial={reduce ? false : { y: 12 }}
+            initial={reduce ? false : { y: 16 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            exit={reduce ? undefined : { y: -12 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className="relative rounded-2xl border border-border bg-card p-7"
           >
             <div className="relative">
@@ -89,7 +90,7 @@ export function ProblemSection() {
               )}
               <p className="relative text-center text-[12px] font-medium">Match</p>
             </div>
-            <MatchRow side={current.right} emphasis />
+            <MatchRow side={current.right} emphasis reduce={reduce} />
             <p className="font-figure mt-8 text-5xl tracking-[-0.045em] text-foreground sm:text-6xl">
               <AnimatedNumber value={current.amount} prefix="$" duration={900} />
             </p>
@@ -106,17 +107,23 @@ export function ProblemSection() {
 function MatchRow({
   side,
   emphasis = false,
+  reduce = false,
 }: {
   side: { kicker: string; name: string; meta: string };
   emphasis?: boolean;
+  reduce?: boolean | null;
 }) {
   return (
-    <div className={`flex items-end justify-between gap-4 border-b pb-4 ${emphasis ? "border-foreground/20" : "border-border"}`}>
+    <motion.div
+      className={`flex items-end justify-between gap-4 border-b pb-4 ${emphasis ? "border-foreground/20" : "border-border"}`}
+      animate={emphasis && !reduce ? { x: [0, -4, 4, -2, 2, 0] } : { x: 0 }}
+      transition={{ duration: 0.4 }}
+    >
       <div>
         <p className="text-[12px] text-muted-foreground">{side.kicker}</p>
         <p className="font-figure mt-1 text-2xl tracking-[-0.03em] sm:text-[1.85rem]">{side.name}</p>
         <p className="mt-1 text-sm text-muted-foreground">{side.meta}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -17,7 +17,7 @@ function LiveDot({ reduce }: { reduce: boolean | null }) {
 function StatusChip({ stage }: { stage: HoldStage }) {
   if (stage === "held") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-2.5 py-1 text-[11px] font-medium text-foreground">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-gold px-2.5 py-1 text-[11px] font-medium text-gold-foreground">
         <Lock className="size-3" />
         Held
       </span>
@@ -25,7 +25,7 @@ function StatusChip({ stage }: { stage: HoldStage }) {
   }
   if (stage === "match") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-[11px] font-medium text-foreground">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[11px] font-medium text-gold">
         Duplicate · 99.4%
       </span>
     );
@@ -48,11 +48,11 @@ export function CashScene({
 }) {
   const held = stage === "held";
   const matching = stage === "match";
-  const progress = held ? 100 : matching ? 74 : 24;
+  const progress = held ? 100 : matching ? 74 : 28;
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-160, 160], [8, -8]), { stiffness: 160, damping: 20 });
-  const rotateY = useSpring(useTransform(mx, [-160, 160], [-8, 8]), { stiffness: 160, damping: 20 });
+  const rotateX = useSpring(useTransform(my, [-180, 180], [12, -12]), { stiffness: 200, damping: 16 });
+  const rotateY = useSpring(useTransform(mx, [-180, 180], [-12, 12]), { stiffness: 200, damping: 16 });
 
   return (
     <motion.div
@@ -70,10 +70,14 @@ export function CashScene({
       }}
     >
       <motion.div
-        animate={reduce ? undefined : { y: [0, -14, 0] }}
-        transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -22, 0] }}
+        transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="product-panel">
+        <div className="product-panel relative">
+          {!reduce ? (
+            <span className="animate-rail pointer-events-none absolute top-0 z-20 h-px w-1/3 bg-gold" />
+          ) : null}
+
           <div className="flex items-center justify-between border-b border-border px-6 py-3">
             <p className="text-[12px] font-medium">Velora · Meridian Supply</p>
             <div className="flex items-center gap-2">
@@ -87,8 +91,8 @@ export function CashScene({
             <p className="text-[12px] text-muted-foreground">Apex Logistics</p>
             <motion.p
               className="font-figure mt-1 text-[2.85rem] leading-none tracking-[-0.045em] text-foreground sm:text-[3.3rem]"
-              animate={reduce ? undefined : matching ? { scale: [1, 1.03, 1] } : { scale: 1 }}
-              transition={{ duration: 0.4 }}
+              animate={reduce ? undefined : matching ? { scale: [1, 1.06, 1] } : { scale: 1 }}
+              transition={{ duration: 0.35 }}
             >
               $11,240
             </motion.p>
@@ -102,11 +106,14 @@ export function CashScene({
                 <span className="text-[12px] text-muted-foreground">Settled</span>
               </div>
 
-              {!reduce && matching ? (
-                <span className="pointer-events-none absolute left-[4.6rem] top-[3.15rem] h-8 w-px overflow-hidden">
-                  <span className="absolute inset-x-0 h-full origin-top bg-gold animate-line-grow" />
-                </span>
-              ) : null}
+              <span className="pointer-events-none absolute left-[4.6rem] top-[3.15rem] h-8 w-px overflow-hidden">
+                <motion.span
+                  className="absolute inset-x-0 origin-top bg-gold"
+                  initial={false}
+                  animate={{ height: matching || held ? "100%" : "0%" }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                />
+              </span>
 
               <motion.div
                 className="flex items-center justify-between gap-3 py-3.5"
@@ -117,7 +124,7 @@ export function CashScene({
                         borderRadius: 12,
                         paddingLeft: 12,
                         paddingRight: 12,
-                        x: reduce ? 0 : [0, -5, 5, -2, 2, 0],
+                        x: reduce ? 0 : [0, -8, 8, -5, 5, -2, 2, 0],
                       }
                     : held
                       ? {
@@ -135,7 +142,7 @@ export function CashScene({
                           x: 0,
                         }
                 }
-                transition={{ duration: 0.32 }}
+                transition={{ duration: 0.28 }}
               >
                 <div>
                   <p className="text-[13px] font-medium">ACH-4418</p>
@@ -144,10 +151,10 @@ export function CashScene({
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={stage}
-                    initial={reduce ? false : { y: 8 }}
-                    animate={{ y: 0 }}
-                    exit={reduce ? undefined : { y: -8 }}
-                    transition={{ duration: 0.16 }}
+                    initial={reduce ? false : { y: 10, scale: 0.92 }}
+                    animate={{ y: 0, scale: 1 }}
+                    exit={reduce ? undefined : { y: -10, scale: 0.92 }}
+                    transition={{ duration: 0.14 }}
                     className="inline-flex"
                   >
                     <StatusChip stage={stage} />
@@ -156,11 +163,11 @@ export function CashScene({
               </motion.div>
             </div>
 
-            <div className="relative mt-6 h-px overflow-hidden bg-border">
+            <div className="relative mt-6 h-[3px] overflow-hidden rounded-full bg-muted">
               <motion.div
                 className="h-full bg-gold"
                 animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               />
               {!reduce && !held ? (
                 <span className="animate-rail pointer-events-none absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-gold" />
@@ -173,7 +180,7 @@ export function CashScene({
                 initial={reduce ? false : { y: 8 }}
                 animate={{ y: 0 }}
                 exit={reduce ? undefined : { y: -8 }}
-                transition={{ duration: 0.18 }}
+                transition={{ duration: 0.16 }}
                 className="mt-4 text-[13px] leading-6 text-muted-foreground"
               >
                 {holdCopy[stage]}
@@ -185,11 +192,11 @@ export function CashScene({
             {held ? (
               <motion.div
                 key={`banner-${cycle}`}
-                initial={reduce ? false : { y: 28 }}
+                initial={reduce ? false : { y: 40 }}
                 animate={{ y: 0 }}
-                exit={reduce ? undefined : { y: 28 }}
-                transition={{ type: "spring", stiffness: 380, damping: 24 }}
-                className="flex items-center justify-between gap-3 border-t border-border px-6 py-3.5"
+                exit={reduce ? undefined : { y: 40 }}
+                transition={{ type: "spring", stiffness: 460, damping: 22 }}
+                className="flex items-center justify-between gap-3 border-t border-border bg-muted px-6 py-3.5"
               >
                 <p className="text-[13px] font-medium">Held before the bank</p>
                 <p className="text-[12px] text-muted-foreground">Will not leave the account</p>

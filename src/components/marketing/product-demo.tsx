@@ -42,7 +42,13 @@ export function ProductDemo() {
       <div className="gold-desk mt-10 p-6 sm:p-8">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="text-[13px] font-medium">Velora control · Meridian Supply</p>
+            <p className="inline-flex items-center gap-2 text-[13px] font-medium">
+              <span className="relative flex size-2">
+                <span className="animate-pulse-ring absolute inset-0 rounded-full bg-gold" />
+                <span className="relative size-2 rounded-full bg-gold" />
+              </span>
+              Velora control · Meridian Supply
+            </p>
             <p className="mt-1 text-sm text-muted-foreground">Jordan Hale · VP of Finance</p>
           </div>
           <SampleDataBadge />
