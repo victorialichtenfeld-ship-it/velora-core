@@ -14,7 +14,7 @@ export function IntegrationsSection() {
 
   useEffect(() => {
     if (reduce || liveNow.length === 0) return;
-    const id = window.setInterval(() => setActive((n) => (n + 1) % liveNow.length), 900);
+    const id = window.setInterval(() => setActive((n) => (n + 1) % liveNow.length), 700);
     return () => window.clearInterval(id);
   }, [reduce, liveNow.length]);
 

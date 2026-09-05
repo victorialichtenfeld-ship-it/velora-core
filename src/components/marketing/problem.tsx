@@ -66,7 +66,7 @@ export function ProblemSection() {
         const index = cases.findIndex((item) => item.id === prev);
         return cases[(index + 1) % cases.length].id;
       });
-    }, 2200);
+    }, 1600);
     return () => window.clearInterval(id);
   }, [reduce]);
 

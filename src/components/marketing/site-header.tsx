@@ -21,7 +21,8 @@ export function SiteHeader() {
 
   return (
     <div className="sticky top-0 z-50 px-4 pt-4 sm:px-6">
-      <header className="nav-glass mx-auto flex h-14 w-full max-w-5xl items-center justify-between rounded-full px-3 sm:px-4">
+      <header className="nav-glass relative mx-auto flex h-14 w-full max-w-5xl items-center justify-between overflow-hidden rounded-full px-3 sm:px-4">
+        <span className="animate-rail pointer-events-none absolute bottom-0 left-0 h-px w-1/4 bg-gold" />
         <Link href="/" className="flex items-center pl-1">
           <Logo />
         </Link>

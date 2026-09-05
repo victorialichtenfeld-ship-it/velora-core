@@ -78,28 +78,28 @@ export function CashScene({
         my.set(0);
       }}
     >
-      <div className="hero-glow pointer-events-none absolute inset-6 -z-10" />
+      <div className="hero-glow animate-well pointer-events-none absolute inset-6 -z-10" />
       {!reduce ? (
         <>
           <motion.div
             className="glass absolute -left-3 top-16 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           >
             Duplicate ACH · 99.4%
           </motion.div>
           <motion.div
             className="glass absolute -right-2 bottom-28 z-20 hidden rounded-full px-3 py-1.5 text-[11px] font-medium text-gold lg:block"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.55, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
           >
             Flagged · $11,240
           </motion.div>
         </>
       ) : null}
       <motion.div
-        animate={reduce ? undefined : { y: [0, -28, 0] }}
-        transition={{ duration: 1.7, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -34, 0], rotate: [0, 1.1, 0, -1.1, 0] }}
+        transition={{ duration: 1.45, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="product-panel relative">
           {!reduce ? (

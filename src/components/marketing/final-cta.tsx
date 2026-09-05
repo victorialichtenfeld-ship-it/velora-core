@@ -23,7 +23,7 @@ export function FinalCta() {
           <motion.span
             className="gradient-text inline-block"
             animate={reduce ? undefined : { scale: [1, 1.04, 1] }}
-            transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 0.85, repeat: Infinity, ease: "easeInOut" }}
           >
             costs you
           </motion.span>
