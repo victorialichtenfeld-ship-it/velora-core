@@ -74,9 +74,9 @@ export function Pricing() {
             className={cn("flex flex-col p-6", plan.highlighted && "gold-glow ring-gold/35")}
           >
             <p className="text-sm font-medium">{plan.name}</p>
-            <p className="mt-3 font-figure text-4xl tracking-tight">
+            <p className={`mt-3 font-figure text-4xl tracking-tight text-gold ${plan.highlighted ? "money-sheen" : ""}`}>
               {plan.price}
-              <span className="ml-1 font-sans text-base text-muted-foreground">{plan.cadence}</span>
+              <span className="ml-1 font-sans text-base text-gold/60">{plan.cadence}</span>
             </p>
             <p className="mt-3 text-sm text-muted-foreground">{plan.description}</p>
             <ul className="mt-6 flex flex-1 flex-col gap-2 text-sm">

@@ -5,11 +5,11 @@ import { transactions } from "@/lib/data/demo";
 import { formatCurrency, formatRelativeTime } from "@/lib/format";
 
 const tone: Record<string, string> = {
-  Blocked: "text-risk",
-  Held: "text-protect",
-  Warned: "text-risk",
-  "Needs approval": "text-primary",
-  Cleared: "text-protect",
+  Blocked: "text-gold",
+  Held: "text-gold",
+  Warned: "text-gold",
+  "Needs approval": "text-gold",
+  Cleared: "text-gold",
 };
 
 export default function TransactionsPage() {

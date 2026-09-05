@@ -7,6 +7,13 @@ import { SampleDataBadge } from "@/components/sample-data-badge";
 
 type Stage = "draft" | "scan" | "detect" | "alert" | "held";
 
+const coins = [
+  { left: "58%", delay: "0s" },
+  { left: "66%", delay: "0.18s" },
+  { left: "74%", delay: "0.32s" },
+  { left: "62%", delay: "0.48s" },
+];
+
 export function HeroVisual() {
   const [stage, setStage] = useState<Stage>("draft");
   const [clock, setClock] = useState("09:17:04");
@@ -29,10 +36,10 @@ export function HeroVisual() {
     if (reduce) return;
     const sequence: { stage: Stage; at: number }[] = [
       { stage: "draft", at: 0 },
-      { stage: "scan", at: 700 },
-      { stage: "detect", at: 2200 },
-      { stage: "alert", at: 3400 },
-      { stage: "held", at: 4800 },
+      { stage: "scan", at: 550 },
+      { stage: "detect", at: 1700 },
+      { stage: "alert", at: 2700 },
+      { stage: "held", at: 3800 },
     ];
     let timers: number[] = [];
     const run = () => {
@@ -40,7 +47,7 @@ export function HeroVisual() {
       timers = sequence.map(({ stage: next, at }) => window.setTimeout(() => setStage(next), at));
     };
     run();
-    const loop = window.setInterval(run, 7600);
+    const loop = window.setInterval(run, 6200);
     return () => {
       timers.forEach(clearTimeout);
       clearInterval(loop);
@@ -50,15 +57,18 @@ export function HeroVisual() {
   return (
     <a
       href="#demo"
-      className={`product-frame gold-glow relative mx-auto block w-full max-w-[540px] overflow-hidden rounded-lg p-5 ring-1 ring-gold/25 sm:p-6 ${
+      className={`gold-run-border gold-glow relative mx-auto block w-full max-w-[540px] overflow-hidden rounded-lg p-5 sm:p-6 ${
         reduce ? "" : "animate-float"
       }`}
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px gold-hairline" />
       <div className="mb-5 flex items-start justify-between gap-3">
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-gold">Outbound ACH</p>
-          <p className="mt-1 text-sm text-foreground">Meridian Supply · cash path</p>
+          <p className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.22em] text-gold">
+            <span className="size-1.5 rounded-full bg-gold shadow-[0_0_10px_rgb(201_168_106_/_1)] animate-gold-breathe" />
+            Live cash rail
+          </p>
+          <p className="mt-1 text-sm text-foreground">Meridian Supply · outbound ACH</p>
         </div>
         <div className="text-right">
           <p className="font-figure text-[13px] tabular-nums text-gold">{clock}</p>
@@ -75,22 +85,22 @@ export function HeroVisual() {
             y1="8"
             x2="92%"
             y2="8"
-            stroke="#8B6F47"
-            strokeWidth="1"
+            stroke="#C9A86A"
+            strokeWidth="1.4"
             className={scanning || flagged ? "animate-wire" : ""}
             strokeDasharray="8 8"
-            opacity="0.55"
+            opacity="0.85"
           />
           <line
             x1="8"
             y1="56"
             x2={held ? "58%" : "92%"}
             y2="56"
-            stroke={held ? "#C9A86A" : "#8B6F47"}
-            strokeWidth="1.2"
-            className={scanning ? "animate-wire" : ""}
+            stroke="#C9A86A"
+            strokeWidth="1.6"
+            className={scanning || !held ? "animate-wire" : ""}
             strokeDasharray="8 8"
-            opacity="0.8"
+            opacity="0.95"
           />
         </svg>
 
@@ -124,40 +134,55 @@ export function HeroVisual() {
               key="gate"
               initial={reduce ? false : { scale: 0.7, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="absolute top-[86px] right-6 z-20 flex size-11 items-center justify-center rounded-full bg-gold text-primary-foreground shadow-[0_0_24px_rgb(201_168_106_/_0.45)]"
+              className="animate-vault absolute top-[86px] right-6 z-20 flex size-11 items-center justify-center rounded-full bg-gold text-primary-foreground"
             >
-              <Lock className="size-4" />
+              <span className="absolute inset-0 rounded-full bg-gold animate-pulse-ring" />
+              <Lock className="relative size-4" />
+              {coins.map((coin) => (
+                <span
+                  key={coin.left}
+                  className="animate-coin pointer-events-none absolute font-figure text-gold"
+                  style={{ left: coin.left, top: "-8px", animationDelay: coin.delay }}
+                >
+                  $
+                </span>
+              ))}
             </motion.div>
           ) : null}
         </AnimatePresence>
       </div>
 
-      <div className="mt-6 border-t border-bronze/30 pt-4">
-        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-          {held ? "Locked before the bank" : flagged ? "Same vendor · same dollars · 15 hrs" : "Matching paid history"}
+      <div className="mt-6 border-t border-gold/30 pt-4">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-gold/80">
+          {held ? "Locked in the vault" : flagged ? "Same vendor · same dollars · 15 hrs" : "Matching paid history"}
         </p>
         <motion.p
           key={viewStage}
           initial={reduce ? false : { scale: 0.96 }}
           animate={{ scale: 1 }}
-          className={`mt-2 font-figure text-4xl tracking-[-0.04em] ${
-            held ? "text-gold money-sheen" : flagged ? "text-risk" : "text-foreground"
-          }`}
+          className="money-sheen mt-2 font-figure text-4xl tracking-[-0.04em]"
         >
           $11,240
         </motion.p>
+        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-gold/20">
+          <motion.div
+            className="h-full bg-gold shadow-[0_0_12px_rgb(201_168_106_/_0.8)]"
+            animate={{ width: held ? "100%" : flagged ? "68%" : scanning ? "38%" : "12%" }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          />
+        </div>
         <AnimatePresence>
           {held ? (
             <motion.p
               key="stamp"
               initial={reduce ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="animate-hold-stamp mt-2 inline-block rounded-sm border border-gold/50 px-2 py-0.5 text-[11px] font-medium tracking-[0.16em] text-gold uppercase"
+              className="animate-hold-stamp mt-2 inline-block rounded-sm border border-gold/60 bg-gold/10 px-2 py-0.5 text-[11px] font-medium tracking-[0.16em] text-gold uppercase"
             >
-              Held
+              Cash held
             </motion.p>
           ) : (
-            <p className="mt-2 text-xs text-muted-foreground">
+            <p className="mt-2 text-xs text-gold/70">
               {flagged ? "Would have left the account today." : "Second ACH is in the rail."}
             </p>
           )}
@@ -189,24 +214,22 @@ function PaymentChip({
   return (
     <motion.div
       animate={{ x }}
-      transition={{ type: "spring", stiffness: 120, damping: 18 }}
+      transition={{ type: "spring", stiffness: 140, damping: 16 }}
       className={`relative z-10 w-[min(70%,220px)] rounded-md px-3 py-2 ring-1 ${
         held
-          ? "bg-gold/15 ring-gold/50"
+          ? "bg-gold/25 ring-gold/70"
           : danger
-            ? "bg-risk/12 ring-risk/40"
+            ? "bg-gold/15 ring-gold/55 animate-gold-breathe"
             : dim
-              ? "bg-background/80 ring-bronze/25"
-              : "bg-card ring-gold/25"
+              ? "bg-background/80 ring-gold/35"
+              : "bg-card ring-gold/40"
       }`}
     >
       <div className="flex items-center justify-between gap-3">
-        <p className="font-figure text-sm">{label}</p>
-        <p className={`text-[10px] tracking-[0.08em] uppercase ${held ? "text-gold" : danger ? "text-risk" : "text-muted-foreground"}`}>
-          {status}
-        </p>
+        <p className="font-figure text-sm text-gold">{label}</p>
+        <p className="text-[10px] tracking-[0.08em] uppercase text-gold">{status}</p>
       </div>
-      <p className={`mt-1 font-figure text-lg tracking-[-0.03em] ${danger ? "text-risk" : "text-gold"}`}>{amount}</p>
+      <p className="money-sheen mt-1 font-figure text-lg tracking-[-0.03em]">{amount}</p>
     </motion.div>
   );
 }

@@ -28,9 +28,9 @@ export default function OverviewPage() {
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat label="Total value protected" value={dashboardStats.moneyProtected} prefix="$" sample tone="protect" />
-        <Stat label="Mistakes prevented" value={dashboardStats.mistakesPrevented} sample tone="protect" />
-        <Stat label="Open impact" value={open.reduce((sum, alert) => sum + alert.dollarImpact, 0)} prefix="$" tone="risk" />
+        <Stat label="Total value protected" value={dashboardStats.moneyProtected} prefix="$" sample />
+        <Stat label="Mistakes prevented" value={dashboardStats.mistakesPrevented} sample />
+        <Stat label="Open impact" value={open.reduce((sum, alert) => sum + alert.dollarImpact, 0)} prefix="$" />
         <Stat label="Connected systems" value={connected} />
       </div>
       <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
@@ -55,7 +55,7 @@ export default function OverviewPage() {
                     <p className="text-sm">{alert.title}</p>
                     <SeverityBadge severity={alert.severity} />
                   </div>
-                  <p className="mt-1 font-mono text-xs tabular text-risk">{formatCurrency(alert.dollarImpact)}</p>
+                  <p className="mt-1 font-figure text-xs tabular text-gold">{formatCurrency(alert.dollarImpact)}</p>
                 </Link>
               ))}
           </div>
@@ -67,17 +67,7 @@ export default function OverviewPage() {
           <ol className="mt-4 space-y-4">
             {activityTimeline.map((event) => (
               <li key={event.id} className="flex gap-3">
-                <span
-                  className={`mt-1 size-2 rounded-full ${
-                    event.tone === "risk"
-                      ? "bg-risk"
-                      : event.tone === "protect"
-                        ? "bg-protect"
-                        : event.tone === "system"
-                          ? "bg-primary"
-                          : "bg-ink/30"
-                  }`}
-                />
+                <span className="mt-1 size-2 rounded-full bg-gold shadow-[0_0_8px_rgb(201_168_106_/_0.8)]" />
                 <div>
                   <p className="text-sm">{event.title}</p>
                   <p className="text-xs text-muted-foreground">{event.detail}</p>
@@ -110,13 +100,11 @@ function Stat({
   value,
   prefix,
   sample,
-  tone,
 }: {
   label: string;
   value: number;
   prefix?: string;
   sample?: boolean;
-  tone?: "protect" | "risk";
 }) {
   return (
     <GlassPanel className="p-5">
@@ -125,9 +113,7 @@ function Stat({
         {sample ? <SampleDataBadge /> : null}
       </div>
       <p
-        className={`mt-2 font-figure text-3xl tracking-tight ${
-          tone === "protect" ? "text-gold" : tone === "risk" ? "text-risk" : "text-foreground"
-        }`}
+        className={`mt-2 font-figure text-3xl tracking-tight text-gold`}
       >
         <AnimatedNumber value={value} prefix={prefix} />
       </p>

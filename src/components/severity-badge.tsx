@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils";
 import type { Severity } from "@/lib/types";
 
 const styles: Record<Severity, string> = {
-  critical: "bg-risk/15 text-risk ring-risk/30",
-  high: "bg-risk/10 text-risk ring-risk/25",
-  medium: "bg-muted text-muted-foreground ring-border",
-  low: "bg-protect/12 text-protect ring-protect/25",
+  critical: "bg-gold/20 text-gold ring-gold/45",
+  high: "bg-gold/15 text-gold ring-gold/35",
+  medium: "bg-gold/10 text-gold ring-gold/25",
+  low: "bg-gold/8 text-gold/80 ring-gold/20",
 };
 
 export function SeverityBadge({ severity }: { severity: Severity }) {

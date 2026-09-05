@@ -28,7 +28,7 @@ export function Logo({
         <circle cx="18" cy="12.4" r="1.35" fill="#C9A86A" />
       </svg>
       {wordmark ? (
-        <span className="text-[1.05rem] font-medium tracking-[0.08em] text-foreground">
+        <span className="text-[1.05rem] font-medium tracking-[0.08em] text-gold">
           Velora
         </span>
       ) : null}

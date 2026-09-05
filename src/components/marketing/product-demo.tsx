@@ -76,7 +76,7 @@ export function ProductDemo() {
                   <p className="text-sm text-foreground">{item.title}</p>
                   <DecisionChip decision={decisions[item.id]} />
                 </div>
-                <p className="mt-1 font-mono text-sm tabular text-risk">{formatCurrency(item.dollarImpact)}</p>
+                <p className="mt-1 font-figure text-sm tabular text-gold">{formatCurrency(item.dollarImpact)}</p>
               </button>
             ))}
             </LayoutGroup>
@@ -131,7 +131,7 @@ function DecisionChip({ decision }: { decision?: Decision }) {
     return <span className="text-[11px] text-muted-foreground">Open</span>;
   }
   if (decision === "resolved") {
-    return <span className="text-[11px] font-medium text-protect">Held</span>;
+    return <span className="text-[11px] font-medium text-gold">Held</span>;
   }
   if (decision === "approved") {
     return <span className="text-[11px] font-medium text-muted-foreground">Approved</span>;

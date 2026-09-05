@@ -35,7 +35,7 @@ export function RiskTrendChart() {
             dataKey="protected"
             stroke="#C9A86A"
             fill="#C9A86A"
-            fillOpacity={0.1}
+            fillOpacity={0.18}
             strokeWidth={1.75}
           />
         </AreaChart>

@@ -75,23 +75,23 @@
   --muted-foreground: #9c9488;
   --accent: #1e1e28;
   --accent-foreground: #ede8df;
-  --destructive: #b5544a;
-  --border: rgb(139 111 71 / 28%);
-  --input: rgb(139 111 71 / 28%);
-  --ring: rgb(201 168 106 / 40%);
+  --destructive: #c9a86a;
+  --border: rgb(201 168 106 / 32%);
+  --input: rgb(201 168 106 / 32%);
+  --ring: rgb(201 168 106 / 58%);
   --gold: #c9a86a;
   --gold-foreground: #14141a;
   --bronze: #8b6f47;
-  --protect: #6b9e78;
+  --protect: #c9a86a;
   --protect-foreground: #14141a;
-  --risk: #b5544a;
+  --risk: #c9a86a;
   --warn: #c9a86a;
   --sample: #c9a86a;
   --chart-1: #c9a86a;
   --chart-2: #8b6f47;
-  --chart-3: #b5544a;
-  --chart-4: #6b9e78;
-  --chart-5: #9c9488;
+  --chart-3: #d4b478;
+  --chart-4: #c9a86a;
+  --chart-5: #8b6f47;
   --radius: 0.4rem;
   --sidebar: #14141a;
   --sidebar-foreground: #ede8df;
@@ -99,8 +99,8 @@
   --sidebar-primary-foreground: #14141a;
   --sidebar-accent: #1e1e28;
   --sidebar-accent-foreground: #ede8df;
-  --sidebar-border: rgb(139 111 71 / 22%);
-  --sidebar-ring: rgb(201 168 106 / 40%);
+  --sidebar-border: rgb(201 168 106 / 28%);
+  --sidebar-ring: rgb(201 168 106 / 52%);
 }
 
 .dark {
@@ -118,18 +118,31 @@
   --muted-foreground: #9c9488;
   --accent: #1e1e28;
   --accent-foreground: #ede8df;
-  --destructive: #b5544a;
-  --border: rgb(139 111 71 / 28%);
-  --input: rgb(139 111 71 / 28%);
-  --ring: rgb(201 168 106 / 40%);
+  --destructive: #c9a86a;
+  --border: rgb(201 168 106 / 32%);
+  --input: rgb(201 168 106 / 32%);
+  --ring: rgb(201 168 106 / 58%);
+  --gold: #c9a86a;
+  --gold-foreground: #14141a;
+  --bronze: #8b6f47;
+  --protect: #c9a86a;
+  --protect-foreground: #14141a;
+  --risk: #c9a86a;
+  --warn: #c9a86a;
+  --sample: #c9a86a;
+  --chart-1: #c9a86a;
+  --chart-2: #8b6f47;
+  --chart-3: #d4b478;
+  --chart-4: #c9a86a;
+  --chart-5: #8b6f47;
   --sidebar: #14141a;
   --sidebar-foreground: #ede8df;
   --sidebar-primary: #c9a86a;
   --sidebar-primary-foreground: #14141a;
   --sidebar-accent: #1e1e28;
   --sidebar-accent-foreground: #ede8df;
-  --sidebar-border: rgb(139 111 71 / 22%);
-  --sidebar-ring: rgb(201 168 106 / 40%);
+  --sidebar-border: rgb(201 168 106 / 28%);
+  --sidebar-ring: rgb(201 168 106 / 52%);
 }
 
 @layer base {
@@ -163,13 +176,19 @@
     color: #ede8df;
   }
   .gold-glow {
-    box-shadow: 0 0 0 1px rgb(201 168 106 / 28%), 0 14px 36px rgb(8 8 14 / 38%);
+    box-shadow: 0 0 0 1px rgb(201 168 106 / 55%), 0 0 56px rgb(201 168 106 / 22%), 0 18px 40px rgb(8 8 14 / 40%);
   }
-  .protect-glow {
-    box-shadow: 0 0 0 1px rgb(107 158 120 / 28%), 0 12px 28px rgb(8 8 14 / 32%);
-  }
+  .protect-glow,
   .risk-glow {
-    box-shadow: 0 0 0 1px rgb(181 84 74 / 32%), 0 12px 28px rgb(8 8 14 / 32%);
+    box-shadow: 0 0 0 1px rgb(201 168 106 / 50%), 0 0 36px rgb(201 168 106 / 16%);
+  }
+  .gold-run-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#1a1a22, #1a1a22) padding-box,
+      linear-gradient(90deg, #8b6f47, #c9a86a, #e4d3a4, #c9a86a, #8b6f47) border-box;
+    background-size: 100% 100%, 280% 100%;
+    animation: borderRun 2.8s linear infinite;
   }
   .text-balance {
     text-wrap: balance;
@@ -192,12 +211,12 @@
   }
   .text-shimmer,
   .money-sheen {
-    background: linear-gradient(100deg, #8b6f47 0%, #c9a86a 35%, #ede8df 50%, #c9a86a 65%, #8b6f47 100%);
+    background: linear-gradient(100deg, #8b6f47 0%, #c9a86a 32%, #e4d3a4 50%, #c9a86a 68%, #8b6f47 100%);
     background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmerText 3.8s linear infinite;
+    animation: shimmerText 2.4s linear infinite;
   }
   .scan-beam {
     height: 2px;
@@ -271,6 +290,30 @@
   50% { opacity: 1; }
 }
 
+@keyframes goldSweep {
+  0% { transform: translateX(-75%) rotate(14deg); opacity: 0; }
+  14% { opacity: 0.5; }
+  48% { opacity: 0.16; }
+  100% { transform: translateX(175%) rotate(14deg); opacity: 0; }
+}
+
+@keyframes dollarRise {
+  0% { transform: translate3d(0, 28px, 0) scale(0.65); opacity: 0; }
+  16% { opacity: 0.85; }
+  100% { transform: translate3d(12px, -110px, 0) scale(1.05); opacity: 0; }
+}
+
+@keyframes coinPop {
+  0% { transform: translateY(8px) scale(0.4); opacity: 0; }
+  22% { transform: translateY(-6px) scale(1); opacity: 1; }
+  100% { transform: translateY(-42px) scale(0.7); opacity: 0; }
+}
+
+@keyframes vaultPulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgb(201 168 106 / 48%), 0 0 28px rgb(201 168 106 / 14%); }
+  50% { box-shadow: 0 0 0 1px rgb(201 168 106 / 78%), 0 0 52px rgb(201 168 106 / 32%); }
+}
+
 @keyframes holdStamp {
   0% { transform: scale(1.4) rotate(-8deg); opacity: 0; }
   55% { transform: scale(0.96) rotate(-2deg); opacity: 1; }
@@ -297,11 +340,27 @@
 }
 
 .animate-ticker {
-  animation: ticker 16s linear infinite;
+  animation: ticker 8s linear infinite;
 }
 
 .animate-ticker-reverse {
-  animation: tickerReverse 22s linear infinite;
+  animation: tickerReverse 10s linear infinite;
+}
+
+.animate-gold-sweep {
+  animation: goldSweep 5.8s ease-in-out infinite;
+}
+
+.animate-dollar {
+  animation: dollarRise 6.4s ease-out infinite;
+}
+
+.animate-coin {
+  animation: coinPop 1.8s ease-out infinite;
+}
+
+.animate-vault {
+  animation: vaultPulse 2.2s ease-in-out infinite;
 }
 
 .animate-scan {
@@ -347,8 +406,13 @@
   .animate-mote,
   .animate-gold-breathe,
   .animate-border-run,
+  .animate-gold-sweep,
+  .animate-dollar,
+  .animate-coin,
+  .animate-vault,
   .animate-hold-stamp,
   .animate-wire,
+  .gold-run-border,
   .text-shimmer,
   .money-sheen,
   .btn-shine::after {

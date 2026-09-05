@@ -31,13 +31,13 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-7 text-[13px] tracking-[0.04em] text-muted-foreground md:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="transition-colors hover:text-foreground">
+            <a key={link.href} href={link.href} className="transition-colors hover:text-gold">
               {link.label}
             </a>
           ))}
         </nav>
         <div className="hidden items-center gap-3 md:flex">
-          <a href="#demo" className="text-[13px] tracking-[0.04em] text-muted-foreground hover:text-foreground">
+          <a href="#demo" className="text-[13px] tracking-[0.04em] text-gold/80 hover:text-gold">
             See it work
           </a>
           <Link href="/signup" className={cn(buttonVariants(), "h-9 px-3.5 text-[12px] tracking-[0.04em]")}>
