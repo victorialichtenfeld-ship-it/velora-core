@@ -27,7 +27,7 @@ export default function BookPage() {
             <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Request received</p>
             <h1 className="mt-2 text-2xl font-semibold tracking-tight">We will reach out to schedule.</h1>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              You are on the early-access list. Live demo environment — connect your own tools in early access.
+              You are on the early-access list. Import invoices in the dashboard. Live QuickBooks/Gmail connect is not built.
             </p>
             <Link href="/#demo" className="mt-6 inline-flex text-sm text-primary hover:underline">
               Start with demo data

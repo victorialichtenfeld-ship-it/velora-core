@@ -1,5 +1,11 @@
-import { contracts, invoices, payments, purchaseOrders } from "@/lib/data/records";
+import {
+  contracts as demoContracts,
+  invoices as demoInvoices,
+  payments as demoPayments,
+  purchaseOrders as demoPurchaseOrders,
+} from "@/lib/data/records";
 import { defaultRules } from "@/lib/data/rules";
+import type { Books } from "@/lib/books";
 import type { Alert, BusinessRule, EvidenceItem } from "@/lib/types";
 
 function money(value: number) {
@@ -14,7 +20,13 @@ function evidence(items: EvidenceItem[]): EvidenceItem[] {
   return items;
 }
 
-export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
+export function runRiskEngine(rules: BusinessRule[] = defaultRules, books?: Books): Alert[] {
+  const invoices = books?.invoices ?? demoInvoices;
+  const payments = books?.payments ?? demoPayments;
+  const contracts = books?.contracts ?? demoContracts;
+  const purchaseOrders = books?.purchaseOrders ?? demoPurchaseOrders;
+  const usingDemo = !books;
+  const source = usingDemo ? "QuickBooks" : "Import";
   const enabled = rules.filter((rule) => rule.enabled);
   const has = (id: string) => enabled.some((rule) => rule.id === id);
   const alerts: Alert[] = [];
@@ -41,16 +53,17 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
           dollarImpact: invoice.total,
           team: "finance",
           detectedAt: invoice.issuedAt,
-          actor: "AP inbox · Outlook",
-          system: "Microsoft Outlook",
+          actor: usingDemo ? "AP inbox · Outlook" : "Imported invoice",
+          system: usingDemo ? "Microsoft Outlook" : "Your books",
           summary: `${invoice.counterparty} submitted ${invoice.number} matching a paid invoice for ${money(invoice.total)}.`,
-          whyItMatters: "Paying the same invoice twice is one of the most common — and most recoverable — finance losses.",
+          whyItMatters:
+            "Paying the same invoice twice is one of the most common — and most recoverable — finance losses.",
           whyFlagged: `Velora matched vendor, amount, and SKU against ${twin.number}, which was already recorded ${twin.issuedAt.slice(0, 10)}. The duplicate-invoice rule blocks repeats over ${money(duplicateRule.threshold)}.`,
           evidence: evidence([
-            { label: "New invoice", value: invoice.number, source: "Outlook", highlight: true },
-            { label: "Original invoice", value: twin.number, source: "QuickBooks" },
-            { label: "Vendor", value: invoice.counterparty, source: "QuickBooks" },
-            { label: "Amount", value: money(invoice.total), source: "QuickBooks", highlight: true },
+            { label: "New invoice", value: invoice.number, source: usingDemo ? "Outlook" : "Import", highlight: true },
+            { label: "Original invoice", value: twin.number, source },
+            { label: "Vendor", value: invoice.counterparty, source },
+            { label: "Amount", value: money(invoice.total), source, highlight: true },
           ]),
           recommendedActions: [
             { id: "reject", label: "Block payment", intent: "primary" },
@@ -82,6 +95,10 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
         other.paidAt < payment.paidAt
     );
     if (!original) continue;
+    const hours = Math.max(
+      1,
+      Math.round((+new Date(payment.paidAt) - +new Date(original.paidAt)) / 36e5)
+    );
     alerts.push({
       id: `alert-dup-pay-${payment.id}`,
       title: "Duplicate vendor payment",
@@ -91,16 +108,26 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
       dollarImpact: payment.amount,
       team: "finance",
       detectedAt: payment.paidAt,
-      actor: "Treasury · Stripe + QuickBooks",
-      system: "QuickBooks",
+      actor: usingDemo ? "Treasury · Stripe + QuickBooks" : "Imported payments",
+      system: usingDemo ? "QuickBooks" : "Your books",
       summary: `A second ${payment.method} to ${payment.vendor} for ${money(payment.amount)} was initiated after ${original.reference} already cleared.`,
-      whyItMatters: "Duplicate payments leave the business chasing refunds and can quietly drain cash if they clear.",
-      whyFlagged: `Velora compared ACH instructions across QuickBooks and the bank feed. Same vendor, same amount, 15 hours apart.`,
+      whyItMatters:
+        "Duplicate payments leave the business chasing refunds and can quietly drain cash if they clear.",
+      whyFlagged: `Velora compared payments. Same vendor, same amount, ${hours} hours apart.`,
       evidence: evidence([
-        { label: "First payment", value: `${original.reference} · ${money(original.amount)}`, source: "QuickBooks" },
-        { label: "Second payment", value: `${payment.reference} · ${money(payment.amount)}`, source: "Stripe", highlight: true },
-        { label: "Vendor", value: payment.vendor, source: "QuickBooks" },
-        { label: "Window", value: "15 hours", source: "Velora" },
+        {
+          label: "First payment",
+          value: `${original.reference} · ${money(original.amount)}`,
+          source: usingDemo ? "QuickBooks" : "Import",
+        },
+        {
+          label: "Second payment",
+          value: `${payment.reference} · ${money(payment.amount)}`,
+          source: usingDemo ? "Stripe" : "Import",
+          highlight: true,
+        },
+        { label: "Vendor", value: payment.vendor, source: usingDemo ? "QuickBooks" : "Import" },
+        { label: "Window", value: `${hours} hours`, source: "Velora" },
       ]),
       recommendedActions: [
         { id: "block", label: "Stop the second payment", intent: "primary" },
@@ -116,14 +143,15 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
       const contract = contracts.find(
         (item) => item.party === invoice.counterparty && item.sku === invoice.sku
       );
-      if (!contract) continue;
-      if (invoice.unitPrice >= contract.unitPrice) continue;
-      const computed = (contract.unitPrice - invoice.unitPrice) * invoice.quantity;
+      const expectedRate = contract?.unitPrice ?? invoice.expectedUnitPrice;
+      if (!expectedRate || invoice.unitPrice >= expectedRate) continue;
+      const computed = Math.round((expectedRate - invoice.unitPrice) * invoice.quantity);
       if (computed <= 0) continue;
-      const isHero = invoice.id === "inv-10482";
+      const isHero = usingDemo && invoice.id === "inv-10482";
       const delta = isHero ? 8_600 : computed;
       const invoiceTotal = isHero ? 48_300 : invoice.total;
-      const expectedTotal = isHero ? 56_900 : contract.unitPrice * invoice.quantity;
+      const expectedTotal = isHero ? 56_900 : expectedRate * invoice.quantity;
+      const contractName = contract?.name ?? "Listed contract / expected price";
       alerts.push({
         id: `alert-contract-${invoice.id}`,
         title: isHero ? "Invoice pricing mismatch" : "Contract vs invoice mismatch",
@@ -133,17 +161,18 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
         dollarImpact: delta,
         team: "sales",
         detectedAt: invoice.issuedAt,
-        actor: "Billing · Salesforce",
-        system: "Salesforce",
-        summary: `${invoice.number} uses ${money(invoice.unitPrice)}/unit. Contract rate is ${money(contract.unitPrice)}/unit.`,
-        whyItMatters: "Under-pricing contracted work is silent revenue leakage — it rarely looks like an error until month-end.",
-        whyFlagged: `Customer contract specifies ${money(contract.unitPrice)}/unit but the invoice uses ${money(invoice.unitPrice)}/unit.`,
+        actor: usingDemo ? "Billing · Salesforce" : "Imported invoice",
+        system: usingDemo ? "Salesforce" : "Your books",
+        summary: `${invoice.number} uses ${money(invoice.unitPrice)}/unit. Contract rate is ${money(expectedRate)}/unit.`,
+        whyItMatters:
+          "Under-pricing contracted work is silent revenue leakage — it rarely looks like an error until month-end.",
+        whyFlagged: `Customer contract specifies ${money(expectedRate)}/unit but the invoice uses ${money(invoice.unitPrice)}/unit.`,
         evidence: evidence([
           { label: "Invoice total", value: money(invoiceTotal), source: invoice.number, highlight: true },
-          { label: "Expected total", value: money(expectedTotal), source: contract.name, highlight: true },
-          { label: "Invoice unit price", value: money(invoice.unitPrice), source: "QuickBooks" },
-          { label: "Contract unit price", value: money(contract.unitPrice), source: "Google Drive" },
-          { label: "Quantity", value: invoice.quantity.toLocaleString(), source: "Salesforce" },
+          { label: "Expected total", value: money(expectedTotal), source: contractName, highlight: true },
+          { label: "Invoice unit price", value: money(invoice.unitPrice), source },
+          { label: "Contract unit price", value: money(expectedRate), source: usingDemo ? "Google Drive" : "Import" },
+          { label: "Quantity", value: invoice.quantity.toLocaleString(), source: usingDemo ? "Salesforce" : "Import" },
           { label: "Potential loss", value: money(delta), source: "Velora", highlight: true },
         ]),
         recommendedActions: [
@@ -160,26 +189,36 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
   if (discountRule) {
     for (const invoice of invoices) {
       if (invoice.discountPct <= discountRule.threshold) continue;
+      const expected = invoice.expectedUnitPrice ?? invoice.unitPrice;
+      const impact =
+        Math.round((invoice.discountPct / 100) * expected * invoice.quantity) ||
+        Math.round(invoice.total * (invoice.discountPct / 100));
       alerts.push({
         id: `alert-discount-${invoice.id}`,
         title: "Unauthorized discount",
         riskType: "large_discount",
         severity: "high",
         status: "open",
-        dollarImpact: 4_275,
+        dollarImpact: usingDemo && invoice.id === "inv-10471" ? 4_275 : impact,
         team: "sales",
         detectedAt: invoice.issuedAt,
-        actor: "Account executive · HubSpot",
-        system: "HubSpot",
+        actor: usingDemo ? "Account executive · HubSpot" : "Imported invoice",
+        system: usingDemo ? "HubSpot" : "Your books",
         summary: `${invoice.counterparty} received a ${invoice.discountPct}% discount on ${invoice.number}, above the ${discountRule.threshold}% policy.`,
-        whyItMatters: "Discounts above policy train customers to expect exceptions and permanently compress margin.",
+        whyItMatters:
+          "Discounts above policy train customers to expect exceptions and permanently compress margin.",
         whyFlagged: `Sales applied ${invoice.discountPct}% off. Company rule warns when discounts exceed ${discountRule.threshold}%. No Finance approval was attached.`,
         evidence: evidence([
-          { label: "Discount applied", value: `${invoice.discountPct}%`, source: "HubSpot", highlight: true },
+          { label: "Discount applied", value: `${invoice.discountPct}%`, source: usingDemo ? "HubSpot" : "Import", highlight: true },
           { label: "Policy limit", value: `${discountRule.threshold}%`, source: "Velora rules" },
-          { label: "Invoice", value: `${invoice.number} · ${money(invoice.total)}`, source: "QuickBooks" },
+          { label: "Invoice", value: `${invoice.number} · ${money(invoice.total)}`, source },
           { label: "List / contract price", value: money(invoice.expectedUnitPrice ?? 55), source: "Contract" },
-          { label: "Revenue at risk", value: money(4_275), source: "Velora", highlight: true },
+          {
+            label: "Revenue at risk",
+            value: money(usingDemo && invoice.id === "inv-10471" ? 4_275 : impact),
+            source: "Velora",
+            highlight: true,
+          },
         ]),
         recommendedActions: [
           { id: "revert", label: "Revert to policy pricing", intent: "primary" },
@@ -205,16 +244,17 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
         team: "purchasing",
         detectedAt: po.createdAt,
         actor: po.requester,
-        system: "Microsoft 365",
+        system: usingDemo ? "Microsoft 365" : "Your books",
         summary: `${po.number} to ${po.vendor} is ${money(po.amount)}, which exceeds the ${money(poRule.threshold)} approval threshold.`,
-        whyItMatters: "Unreviewed spend above the approval limit creates budget surprises and weakens control of vendors.",
+        whyItMatters:
+          "Unreviewed spend above the approval limit creates budget surprises and weakens control of vendors.",
         whyFlagged: `${po.requester} submitted ${po.number} for ${money(po.amount)}. Rule requires Finance approval above ${money(poRule.threshold)}.`,
         evidence: evidence([
-          { label: "Purchase order", value: po.number, source: "Microsoft 365" },
-          { label: "Vendor", value: po.vendor, source: "Purchasing" },
+          { label: "Purchase order", value: po.number, source: usingDemo ? "Microsoft 365" : "Import" },
+          { label: "Vendor", value: po.vendor, source: usingDemo ? "Purchasing" : "Import" },
           { label: "Amount", value: money(po.amount), source: "PO", highlight: true },
           { label: "Approval limit", value: money(poRule.threshold), source: "Velora rules", highlight: true },
-          { label: "Requester", value: `${po.requester} · ${po.department}`, source: "Microsoft 365" },
+          { label: "Requester", value: `${po.requester} · ${po.department}`, source: usingDemo ? "Microsoft 365" : "Import" },
         ]),
         recommendedActions: [
           { id: "hold", label: "Hold for Finance approval", intent: "primary" },
@@ -229,8 +269,9 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
   const suspiciousRule = enabled.find((rule) => rule.id === "rule-suspicious");
   if (suspiciousRule) {
     for (const payment of payments) {
+      const vendorCount = payments.filter((item) => item.vendor === payment.vendor).length;
       const cents = Math.round((payment.amount % 1) * 100);
-      const isFirstTime = payment.vendor === "Nimbus Facilities LLC";
+      const isFirstTime = usingDemo ? payment.vendor === "Nimbus Facilities LLC" : vendorCount === 1;
       if (!isFirstTime || payment.amount < suspiciousRule.threshold) continue;
       alerts.push({
         id: `alert-sus-${payment.id}`,
@@ -238,20 +279,21 @@ export function runRiskEngine(rules: BusinessRule[] = defaultRules): Alert[] {
         riskType: "suspicious_payment",
         severity: "medium",
         status: "open",
-        dollarImpact: 2_875,
+        dollarImpact: usingDemo ? 2_875 : payment.amount,
         team: "security",
         detectedAt: payment.paidAt,
-        actor: "AP clerk · QuickBooks",
-        system: "QuickBooks",
-        summary: `Wire ${payment.reference} to a first-time vendor uses an anomalous amount (${money(payment.amount)}).`,
-        whyItMatters: "Odd-cent wires to new vendors are a common pattern in invoice-fraud and vendor-master attacks.",
-        whyFlagged: `Nimbus Facilities LLC is not in the approved vendor master. Amount ${money(payment.amount)} includes a ${cents.toString().padStart(2, "0")} cent suffix, which does not match any open PO.`,
+        actor: usingDemo ? "AP clerk · QuickBooks" : "Imported payment",
+        system: usingDemo ? "QuickBooks" : "Your books",
+        summary: `${payment.method} ${payment.reference} to a first-time vendor uses an anomalous amount (${money(payment.amount)}).`,
+        whyItMatters:
+          "Odd-cent wires to new vendors are a common pattern in invoice-fraud and vendor-master attacks.",
+        whyFlagged: `${payment.vendor} appears as a first-time payee. Amount ${money(payment.amount)}${cents ? ` includes a ${cents.toString().padStart(2, "0")} cent suffix` : ""}.`,
         evidence: evidence([
-          { label: "Vendor", value: payment.vendor, source: "QuickBooks", highlight: true },
-          { label: "Vendor status", value: "Not in approved master", source: "Velora", highlight: true },
-          { label: "Payment", value: `${payment.method} ${money(payment.amount)}`, source: "Bank feed" },
+          { label: "Vendor", value: payment.vendor, source, highlight: true },
+          { label: "Vendor status", value: "First-time payee", source: "Velora", highlight: true },
+          { label: "Payment", value: `${payment.method} ${money(payment.amount)}`, source: usingDemo ? "Bank feed" : "Import" },
           { label: "Matching PO", value: "None", source: "Purchasing" },
-          { label: "Amount at risk", value: money(2_875), source: "Velora" },
+          { label: "Amount at risk", value: money(usingDemo ? 2_875 : payment.amount), source: "Velora" },
         ]),
         recommendedActions: [
           { id: "hold", label: "Hold wire and verify vendor", intent: "primary" },

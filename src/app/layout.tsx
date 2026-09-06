@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s · Velora",
   },
   description:
-    "Velora is an AI safety layer for finance and ops. It watches the tools you already use and flags duplicate payments, pricing errors, and other rule breaks before they go through. A human always decides. Nothing is auto-executed.",
+    "Velora is an AI safety layer for finance and ops. Import invoices and payments, and it flags duplicate payments, pricing errors, and other rule breaks before they go through. A human always decides. Nothing is auto-executed.",
   openGraph: {
     title: "Velora — Catch costly mistakes before they cost you money",
     description:
-      "AI safety layer for finance and ops. Live demo environment — connect your own tools in early access.",
+      "AI safety layer for finance and ops. Import invoices and payments; a human always decides.",
     type: "website",
   },
   twitter: {

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Shield } from "lucide-react";
+import { useDemo } from "@/components/demo-store";
 import { demoUser } from "@/lib/data/demo";
 import type { SessionUser } from "@/lib/types";
 
@@ -12,6 +13,7 @@ export function WorkspaceIdentity() {
       .then((response) => response.json())
       .then((data: { user?: SessionUser | null }) => setUser(data.user ?? null));
   }, []);
+  const { usingYourBooks } = useDemo();
   const shown = user ?? demoUser;
   const initials = shown.name
     .split(" ")
@@ -29,8 +31,8 @@ export function WorkspaceIdentity() {
         <div className="min-w-0">
           <p className="truncate text-sm">{shown.name}</p>
           <p className="truncate text-xs text-muted-foreground">
-            {shown.company}
-            {shown.paid ? "" : " walkthrough"}
+            {usingYourBooks ? "Your books" : shown.company}
+            {shown.paid || usingYourBooks ? "" : " walkthrough"}
           </p>
         </div>
       </div>

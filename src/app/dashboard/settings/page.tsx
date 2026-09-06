@@ -29,7 +29,7 @@ export default function SettingsPage() {
         <Row label="Send Slack summaries for critical alerts" defaultChecked />
         <Row label="Allow Velora to auto-fix invoice drafts" />
         <p className="text-xs text-muted-foreground">
-          Auto-fix stays off. Velora recommends; people decide. Live demo environment — connect your own tools in early access.
+          Auto-fix stays off. Velora recommends; people decide. Live QuickBooks/Gmail/Slack connect is not built — import a CSV on Integrations.
         </p>
       </GlassPanel>
       <form action={signOut}>

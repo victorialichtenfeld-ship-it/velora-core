@@ -26,7 +26,7 @@ export function AskVelora({ alert }: { alert: Alert }) {
     const response = await fetch("/api/ai/explain", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ alertId: alert.id, question }),
+      body: JSON.stringify({ alertId: alert.id, alert, question }),
     });
     const json = (await response.json()) as { explanation?: string; error?: string };
     setAnswer(json.explanation ?? json.error ?? "Velora could not explain this alert.");

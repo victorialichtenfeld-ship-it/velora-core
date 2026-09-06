@@ -15,37 +15,37 @@ export function IntegrationsSection() {
   const inView = useInView(ref, { amount: 0.2 });
 
   useEffect(() => {
-    if (reduce || liveNow.length === 0 || !inView) return;
-    const id = window.setInterval(() => setActive((n) => (n + 1) % liveNow.length), 2800);
+    if (reduce || !inView) return;
+    const id = window.setInterval(() => setActive((n) => (n + 1) % 3), 2800);
     return () => window.clearInterval(id);
-  }, [reduce, liveNow.length, inView]);
+  }, [reduce, inView]);
 
   return (
     <section id="integrations" ref={ref} className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="Your existing tools"
-        title="Email, accounting, CRM, payments, and files."
-        body="Velora monitors the systems finance and ops already run. Live demo environment — connect your own tools in early access. The hold path is the same: flag the mistake, wait for a person."
+        title="Export from the tools finance already runs."
+        body="Live QuickBooks, Gmail, bank, and Slack connect is not built. Today you export a CSV of bills and payments (or add rows by hand). Velora scans those rows with the same hold path: flag the mistake, wait for a person."
       />
-      <p className="mt-10 text-[13px] font-medium text-gold">Live now</p>
+      <p className="mt-10 text-[13px] font-medium text-gold">Works today</p>
       <div className="mt-4 flex flex-wrap gap-2">
-        {liveNow.map((item, index) => (
+        {["CSV import", "Manual invoice", "Manual payment"].map((item, index) => (
           <motion.span
-            key={item.name}
+            key={item}
             className={cn(
               "glass rounded-full px-4 py-2 text-sm",
-              index === active ? "border-gold/40 text-gold" : "text-muted-foreground"
+              index === active % 3 ? "border-gold/40 text-gold" : "text-muted-foreground"
             )}
-            animate={reduce ? undefined : { scale: index === active ? 1.04 : 1 }}
+            animate={reduce ? undefined : { scale: index === active % 3 ? 1.04 : 1 }}
             transition={{ duration: 0.28 }}
           >
-            {item.name}
+            {item}
           </motion.span>
         ))}
       </div>
-      <p className="mt-8 text-[13px] font-medium text-muted-foreground">Coming soon</p>
+      <p className="mt-8 text-[13px] font-medium text-muted-foreground">Not built — import CSV instead</p>
       <div className="mt-3 flex flex-wrap gap-2">
-        {comingSoon.map((item) => (
+        {[...liveNow, ...comingSoon].map((item) => (
           <span key={item.name} className="rounded-full border border-white/8 px-4 py-2 text-sm text-muted-foreground">
             {item.name}
           </span>

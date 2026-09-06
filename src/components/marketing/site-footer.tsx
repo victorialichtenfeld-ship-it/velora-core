@@ -41,7 +41,7 @@ export function SiteFooter() {
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl px-4 text-[12px] text-muted-foreground sm:px-6">
-        Live demo environment — connect your own tools in early access. Nothing is auto-executed.
+        Sample walkthrough. Import invoices on Integrations. Nothing is auto-executed.
       </p>
     </footer>
   );

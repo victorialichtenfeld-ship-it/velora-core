@@ -16,7 +16,7 @@ const filters: { id: "all" | Severity; label: string }[] = [
 ];
 
 export default function AlertsPage() {
-  const { alerts } = useDemo();
+  const { alerts, usingYourBooks } = useDemo();
   const [severity, setSeverity] = useState<"all" | Severity>("all");
   const visible = useMemo(
     () => (severity === "all" ? alerts : alerts.filter((alert) => alert.severity === severity)),
@@ -29,7 +29,9 @@ export default function AlertsPage() {
         <p className="text-xs uppercase tracking-[0.18em] text-gold">Alerts</p>
         <h1 className="mt-1 font-serif text-3xl">What Velora caught</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Every alert answers four questions: what happened, why it matters, what evidence supports it, and what you should do.
+          {usingYourBooks
+            ? "Flags on the invoices and payments you imported. Every alert answers what happened, why it matters, the evidence, and what to do."
+            : "Meridian sample flags. Import a CSV on Integrations to watch a company’s invoices instead."}
         </p>
       </div>
       <div className="flex flex-wrap gap-2">
@@ -48,6 +50,15 @@ export default function AlertsPage() {
         ))}
       </div>
       <div className="space-y-3">
+        {visible.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            No flags on this set.{" "}
+            <Link href="/dashboard/integrations" className="text-gold hover:underline">
+              Import more invoices
+            </Link>{" "}
+            or relax a rule.
+          </p>
+        ) : null}
         {visible.map((alert) => (
           <Link key={alert.id} href={`/dashboard/alerts/${alert.id}`}>
             <GlassPanel className="p-5 transition hover:-translate-y-0.5 hover:ring-gold/30">

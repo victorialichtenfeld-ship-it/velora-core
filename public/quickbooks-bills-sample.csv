@@ -1,0 +1,6 @@
+Date,Transaction Type,Num,Name,Amount
+09/03/2026,Bill,AP-1001,Apex Logistics,11240
+09/04/2026,Bill,AP-1001-DUP,Apex Logistics,11240
+09/03/2026,Check,ACH-4410,Apex Logistics,11240
+09/04/2026,Check,ACH-4418,Apex Logistics,11240
+09/04/2026,Check,WIRE-4502,Nimbus Facilities LLC,2875.43

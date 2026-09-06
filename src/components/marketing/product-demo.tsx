@@ -38,7 +38,7 @@ export function ProductDemo() {
       <SectionIntro
         eyebrow="Walk a flag"
         title="See the evidence. Then you decide."
-        body="This is the Meridian Supply walkthrough. Live demo environment — connect your own tools in early access. Open a flag, read why it broke a company rule, then hold, approve, or dismiss. Velora does not execute the payment."
+        body="This is the Meridian Supply walkthrough. Live QuickBooks, Gmail, bank, and Slack connect is not built. Open a flag, read why it broke a company rule, then hold, approve, or dismiss. Import your own CSV in the dashboard to watch a company’s invoices. Velora does not execute the payment."
       />
 
       <div className="gold-desk relative mt-10 overflow-hidden p-6 sm:p-8">
@@ -176,7 +176,7 @@ function AlertWorkbench({
             {decision === "approved" && "You released it. That was a named human decision, not an autonomous agent."}
             {decision === "ignored" && "You dismissed the flag. The alert is closed without a hold."}
           </p>
-          <p className="mt-1 text-xs text-muted-foreground">Live demo environment — connect your own tools in early access. No live bank or ERP action was taken.</p>
+          <p className="mt-1 text-xs text-muted-foreground">Sample walkthrough. No live bank or ERP action was taken. Import a CSV in the dashboard to watch a company’s invoices.</p>
           <button type="button" onClick={onReset} className={cn(buttonVariants({ variant: "ghost" }), "mt-2 h-8 px-2")}>
             Reset this alert
           </button>

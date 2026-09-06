@@ -30,7 +30,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                 <DashboardSidebar onNavigate={() => setOpen(false)} />
               </SheetContent>
             </Sheet>
-            <p className="text-sm text-muted-foreground">Meridian Supply</p>
+            <p className="text-sm text-muted-foreground">Velora workspace</p>
           </header>
           <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
         </div>

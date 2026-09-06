@@ -20,7 +20,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             {mode === "signup" ? "Open the live demo environment." : "Open the Meridian walkthrough."}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Live demo environment — connect your own tools in early access. A human still decides every action.
+            Sample walkthrough. Import invoices in the dashboard — live QuickBooks/Gmail connect is not built. A human still decides every action.
           </p>
           <form action={startWorkspace} className="mt-6 space-y-4">
             {mode === "signup" ? (

@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
 const steps = [
   {
     n: "01",
-    title: "Connects to your tools",
-    body: "Email, accounting, CRM, payments, and file storage. Velora watches invoices, payments, discounts, and purchase orders as they move. You do not re-key data. Live demo environment — connect your own tools in early access.",
+    title: "Watches invoices and payments",
+    body: "Export a CSV from QuickBooks or your bank, or add bills by hand. Live OAuth into QuickBooks, Gmail, bank, and Slack is not built. The risk engine still runs on the rows you give it.",
   },
   {
     n: "02",
@@ -39,7 +39,7 @@ export function HowItWorks() {
     <section id="how" ref={ref} className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <SectionIntro
         eyebrow="How it works"
-        title="Connect your tools. Learn your rules. Stop the costly ones."
+        title="Import the books. Learn your rules. Stop the costly ones."
         body="Velora is a control system sitting in the path of invoices and payments. It is not a chatbot you have to ask questions to, and it is not an agent that spends money on its own."
       />
       <ol className="mt-14 grid gap-4 md:grid-cols-3">

@@ -21,11 +21,15 @@ const tooltipStyle = {
   color: "#C9C2B4",
 };
 
-export function RiskTrendChart() {
+export function RiskTrendChart({
+  data = riskTrend,
+}: {
+  data?: { day: string; protected: number; alerts?: number }[];
+}) {
   return (
     <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={riskTrend}>
+        <AreaChart data={data}>
           <CartesianGrid stroke="rgba(176,137,58,0.12)" vertical={false} />
           <XAxis dataKey="day" stroke="#A39470" fontSize={12} tickLine={false} axisLine={false} />
           <YAxis stroke="#A39470" fontSize={12} tickLine={false} axisLine={false} />
@@ -44,11 +48,12 @@ export function RiskTrendChart() {
   );
 }
 
-export function RiskTypeChart() {
+export function RiskTypeChart({ data = riskByType }: { data?: { type: string; value: number }[] }) {
+  const rows = data.length ? data : [{ type: "No flags yet", value: 0 }];
   return (
     <div className="h-64 w-full min-w-0">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={riskByType} layout="vertical" margin={{ left: 24 }}>
+        <BarChart data={rows} layout="vertical" margin={{ left: 24 }}>
           <CartesianGrid stroke="rgba(176,137,58,0.12)" horizontal={false} />
           <XAxis type="number" hide />
           <YAxis

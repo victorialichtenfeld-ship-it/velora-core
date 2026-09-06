@@ -1,7 +1,7 @@
 /**
- * Integration adapters are intentionally provider-agnostic.
- * The MVP uses simulated connectors. Swap a simulator for a live client
- * without changing dashboard UI.
+ * Live QuickBooks / Gmail / bank / Slack OAuth is not built.
+ * Connect tiles in the UI are labels only. Import a CSV of invoices
+ * and payments — that is the working path today.
  */
 
 export type ConnectorHealth = "ok" | "degraded" | "disconnected";
@@ -15,41 +15,42 @@ export type IntegrationAdapter = {
   pullSample: () => Promise<{ label: string; count: number }>;
 };
 
-function simulate(id: string, displayName: string): IntegrationAdapter {
+function notBuilt(id: string, displayName: string): IntegrationAdapter {
   return {
     id,
     displayName,
     async connect() {
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      return { ok: true, message: `${displayName} connected in demo mode.` };
+      return {
+        ok: false,
+        message: `${displayName} live connect is not built. Export a CSV and import it on Integrations.`,
+      };
     },
     async disconnect() {
-      await new Promise((resolve) => setTimeout(resolve, 300));
       return { ok: true };
     },
     async health() {
-      return "ok";
+      return "disconnected";
     },
     async pullSample() {
-      return { label: "records", count: 42 };
+      return { label: "records", count: 0 };
     },
   };
 }
 
 export const integrationAdapters: Record<string, IntegrationAdapter> = {
-  gmail: simulate("gmail", "Gmail"),
-  outlook: simulate("outlook", "Microsoft Outlook"),
-  slack: simulate("slack", "Slack"),
-  teams: simulate("teams", "Microsoft Teams"),
-  quickbooks: simulate("quickbooks", "QuickBooks"),
-  xero: simulate("xero", "Xero"),
-  salesforce: simulate("salesforce", "Salesforce"),
-  hubspot: simulate("hubspot", "HubSpot"),
-  stripe: simulate("stripe", "Stripe"),
-  "google-drive": simulate("google-drive", "Google Drive"),
-  "microsoft-365": simulate("microsoft-365", "Microsoft 365"),
+  gmail: notBuilt("gmail", "Gmail"),
+  outlook: notBuilt("outlook", "Microsoft Outlook"),
+  slack: notBuilt("slack", "Slack"),
+  teams: notBuilt("teams", "Microsoft Teams"),
+  quickbooks: notBuilt("quickbooks", "QuickBooks"),
+  xero: notBuilt("xero", "Xero"),
+  salesforce: notBuilt("salesforce", "Salesforce"),
+  hubspot: notBuilt("hubspot", "HubSpot"),
+  stripe: notBuilt("stripe", "Stripe"),
+  "google-drive": notBuilt("google-drive", "Google Drive"),
+  "microsoft-365": notBuilt("microsoft-365", "Microsoft 365"),
 };
 
 export function getIntegrationAdapter(id: string) {
-  return integrationAdapters[id] ?? simulate(id, id);
+  return integrationAdapters[id] ?? notBuilt(id, id);
 }

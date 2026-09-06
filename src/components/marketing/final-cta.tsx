@@ -30,7 +30,7 @@ export function FinalCta() {
           .
         </h2>
         <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-7 text-muted-foreground">
-          Walk flags with evidence. You decide hold, approve, or dismiss. Live demo environment — connect your own tools in early access.
+          Walk flags with evidence. You decide hold, approve, or dismiss. Import a company’s invoices as CSV — live QuickBooks/Gmail connect is not built.
         </p>
         <EarlyAccessCta cta="try_velora" source="final_cta" className={cn(buttonVariants(), "relative mt-8 inline-flex h-12 px-6 text-[14px]")}>
           Try Velora

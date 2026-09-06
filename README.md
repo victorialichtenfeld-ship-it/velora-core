@@ -74,7 +74,7 @@ Without the webhook, records still save locally.
 | Transactions | `/dashboard/transactions` | Sample money in motion |
 | Contracts | `/dashboard/contracts` | Rates the engine holds invoices to |
 | Rules | `/dashboard/rules` | Visual builder, deterministic policy |
-| Integrations | `/dashboard/integrations` | Simulated connectors |
+| Integrations | `/dashboard/integrations` | CSV / manual invoices. Live OAuth is not built |
 | Analytics | `/dashboard/analytics` | Which mistake type is most valuable |
 | Settings | `/dashboard/settings` | Profile, billing, human-approval posture |
 
@@ -90,7 +90,7 @@ src/
     risk-engine.ts      Deterministic detectors
     data/               Meridian Supply sample records
     ai.ts               LLM adapter (OpenAI / Anthropic / deterministic)
-    integrations.ts     Connector adapters (simulated)
+    integrations.ts     Connector adapters (not built — CSV import is the live path)
     billing.ts           Stripe Checkout, prices, webhook helpers
     plans.ts             Starter $299 / Growth $799 (client-safe)
     auth.ts              Cookie session for demo and paid workspaces
@@ -98,7 +98,14 @@ src/
     supabase.ts         Optional Postgres client
 ```
 
-**Risk engine.** Sample invoices, payments, POs, and contracts are scored on every load:
+**Risk engine.** Sample invoices, payments, POs, and contracts are scored on every load. Import a CSV on Integrations to run the same detectors on a company’s books:
+
+1. Duplicate invoice
+2. Duplicate / repeated vendor payment
+3. Invoice vs contract unit price
+4. Discount above policy
+5. Purchase over approval limit
+6. Suspicious first-time vendor payment
 
 1. Duplicate invoice
 2. Duplicate / repeated vendor payment
@@ -111,7 +118,7 @@ Rules in `/dashboard/rules` are the policy layer. AI never silently changes mone
 
 **Auth.** HTTP-only cookie session. Ready to replace with Supabase Auth, Clerk, or Auth0 via `auth-adapters.ts`.
 
-**Data.** In-memory demo store on the client (approve / ignore / escalate, connect integrations, add rules). Persist to Supabase Postgres when you leave prototype mode.
+**Data.** Client workspace (approve / ignore / escalate, add rules, import CSV). Books stay in the browser (`localStorage`). Persist to Supabase Postgres when you leave prototype mode.
 
 ## API integration roadmap
 
@@ -144,7 +151,7 @@ Run 8–12 conversations with finance or ops leaders at $5M–$80M companies. Us
 
 1. Watch the hero. Ask them to restate the product in their words.
 2. Click through the eight mistake types. Note which one they lean toward.
-3. Complete onboarding as *their* company and stack.
+3. Watch flags with evidence. Then import a CSV of invoices (QuickBooks export or the template) — live OAuth is not built.
 4. Open the highest-dollar alert. Ask: “Would you hold this, or is this noise?”
 5. Show $299 / $799. Ask what would have to be true to pay.
 

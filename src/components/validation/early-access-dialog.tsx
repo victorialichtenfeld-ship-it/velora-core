@@ -215,7 +215,7 @@ export function EarlyAccessDialog() {
                     : "Open workspace"}
             </Button>
             <p className="mt-3 text-[12px] leading-5 text-muted-foreground">
-              Live demo environment — connect your own tools in early access. Nothing is auto-executed.
+              Sample walkthrough. Import a CSV of invoices — live QuickBooks/Gmail connect is not built. Nothing is auto-executed.
             </p>
           </form>
         )}

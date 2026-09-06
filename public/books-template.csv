@@ -1,0 +1,10 @@
+kind,number,counterparty,sku,unit_price,expected_unit_price,quantity,discount_pct,total,date,direction,vendor,amount,method,reference,party,name,requester,department,terms
+invoice,INV-1001,Apex Logistics,SHIP-1,11240,,1,0,11240,2026-09-03,payable,,,,,,,,,
+invoice,INV-1001-DUP,Apex Logistics,SHIP-1,11240,,1,0,11240,2026-09-04,payable,,,,,,,,,
+payment,ACH-4410,Apex Logistics,,,,,,11240,2026-09-03,,,11240,ACH,ACH-4410,,,,,
+payment,ACH-4418,Apex Logistics,,,,,,11240,2026-09-04,,,11240,ACH,ACH-4418,,,,,
+invoice,INV-2001,Harborline Retail,VL-THERM-440,84,102,820,0,68880,2026-09-04,receivable,,,,,,,,,
+contract,,Harborline Retail,VL-THERM-440,102,,,,,2026-01-01,,,,,,,,,,Fixed unit price of $102
+invoice,INV-2108,Northwind Clinics,VL-FILTER-12,46.2,55,500,16,23100,2026-09-04,receivable,,,,,,,,,
+payment,WIRE-4502,Nimbus Facilities LLC,,,,,,2875.43,2026-09-04,,,2875.43,Wire,WIRE-4502,,,,,
+po,PO-9001,Helios Industrial,,,,,,26760,2026-09-04,,,,,,,,Priya Raman,Operations,

@@ -21,8 +21,9 @@ export default function TermsPage() {
         must approve or reject every action. Velora does not auto-execute payments, wires, or accounting entries.
       </p>
       <p>
-        The public walkthrough uses sample data for Meridian Supply. Connecting your own email, accounting, CRM, or
-        files requires a later integration setup and your authorization.
+        The public walkthrough uses sample data for Meridian Supply. You can import your own invoices and payments as
+        CSV. Live connections to email, accounting, banks, or Slack are not included in this subscription until we
+        enable them and you authorize them.
       </p>
       <p>
         Use of Velora is limited to lawful business purposes. Do not submit data you are not allowed to process. We may

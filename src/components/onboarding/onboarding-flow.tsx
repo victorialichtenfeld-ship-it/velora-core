@@ -41,7 +41,7 @@ const risks = [
 ];
 
 const scanSteps = [
-  "Connecting business systems…",
+  "Loading sample invoices…",
   "Analyzing company rules…",
   "Checking transactions…",
   "Reviewing contracts…",
@@ -100,7 +100,7 @@ export function OnboardingFlow() {
             </Step>
           )}
           {step === 1 && (
-            <Step title="Which systems do you use?" subtitle="We’ll simulate these connectors in the demo workspace.">
+            <Step title="Which systems do you use?" subtitle="For context only. Live connect to QuickBooks, Gmail, bank, and Slack is not built — import a CSV after the sample scan.">
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {systems.map((item) => (
                   <Choice
@@ -153,7 +153,7 @@ export function OnboardingFlow() {
                     <div className="size-full animate-spin rounded-full border-2 border-transparent border-t-gold" />
                   </div>
                   <p className="font-serif text-2xl">{scanSteps[scanIndex]}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">Reading Meridian Supply demo activity</p>
+                  <p className="mt-2 text-sm text-muted-foreground">Reading Meridian Supply sample activity — not a live connection</p>
                   <div className="mt-8 w-full max-w-sm space-y-2">
                     {scanSteps.map((label, index) => (
                       <div key={label} className="flex items-center gap-3 text-left text-sm">
@@ -180,7 +180,7 @@ export function OnboardingFlow() {
                     Velora found {issueCount} potential issues worth {formatCurrency(Math.round(impact))}.
                   </h2>
                   <p className="mx-auto mt-4 max-w-md text-sm text-muted-foreground">
-                    None of these have been sent, paid, or approved. Open the dashboard to inspect evidence and decide.
+                    None of these have been sent, paid, or approved. Open the dashboard, then import your CSV on Integrations to watch a real company’s invoices.
                   </p>
                   <form action={completeOnboarding}>
                     <input type="hidden" name="businessType" value={businessType} />
