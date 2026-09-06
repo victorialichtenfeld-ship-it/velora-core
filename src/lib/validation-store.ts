@@ -7,12 +7,9 @@ const dataDir = path.join(process.cwd(), "data");
 
 function fileFor(kind: StoredKind) {
   return path.join(dataDir, `${kind}.jsonl`);
-}
-
 export async function appendRecord(kind: StoredKind, record: Record<string, unknown>) {
   await mkdir(dataDir, { recursive: true });
   await appendFile(fileFor(kind), `${JSON.stringify(record)}\n`, "utf8");
-}
 
 export async function readRecords(kind: StoredKind): Promise<Record<string, unknown>[]> {
   try {
