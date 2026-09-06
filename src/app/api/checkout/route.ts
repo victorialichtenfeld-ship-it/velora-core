@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { applyWorkspaceSessionCookies } from "@/lib/auth";
 import { checkoutUrls, getStripe, isPaidPlan, paidPlans, priceIdFor, stripeConfigured } from "@/lib/billing";
 import { appendRecord, forwardToSheet } from "@/lib/validation-store";
 import { isEmail } from "@/lib/validation";
@@ -108,13 +109,40 @@ export async function POST(request: Request) {
   }
 
   if (process.env.ALLOW_OFFLINE_CHECKOUT !== "true") {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Stripe is not connected on this deployment. Add STRIPE_SECRET_KEY (see GO-LIVE.md).",
-      },
-      { status: 503 }
-    );
+    const order = {
+      id: crypto.randomUUID(),
+      at: new Date().toISOString(),
+      status: "pending_processor",
+      provider: "workspace",
+      plan,
+      name,
+      email,
+      company,
+      role,
+      source,
+      amount: catalog.amount,
+    };
+    await appendRecord("orders", order);
+    try {
+      await forwardToSheet("orders", order);
+    } catch {
+      // Local store still holds the order.
+    }
+
+    const response = NextResponse.json({
+      ok: true,
+      url: "/dashboard",
+      provider: "workspace",
+    });
+    applyWorkspaceSessionCookies(response, {
+      name,
+      email,
+      company,
+      role: role || "Other",
+      plan,
+      paid: false,
+    });
+    return response;
   }
 
   const order = {

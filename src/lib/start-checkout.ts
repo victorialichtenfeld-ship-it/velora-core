@@ -11,6 +11,7 @@ export async function startCheckout(input: {
   const response = await fetch("/api/checkout", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify(input),
   });
   const result = (await response.json()) as { ok: boolean; url?: string; error?: string };

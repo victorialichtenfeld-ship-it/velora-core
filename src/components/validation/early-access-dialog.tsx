@@ -162,7 +162,9 @@ export function EarlyAccessDialog() {
               <DialogDescription>
                 {lead?.cta === "talk_to_us"
                   ? "Tell us who to reach for Enterprise, SSO, or a security review."
-                  : "Company details first. Then pay monthly — or walk the live demo."}
+                  : stripeReady
+                    ? "Company details first. Then pay monthly — or walk the live demo."
+                    : "Company details first. Then we open the live demo as your company. Card billing starts after Stripe is connected."}
               </DialogDescription>
             </DialogHeader>
             {lead?.plan ? (
@@ -202,13 +204,15 @@ export function EarlyAccessDialog() {
             <Button type="submit" className="mt-5 h-11 w-full" disabled={pending || paying}>
               {pending || paying
                 ? paying
-                  ? "Opening checkout…"
+                  ? stripeReady
+                    ? "Opening checkout…"
+                    : "Opening workspace…"
                   : "Saving…"
                 : lead?.cta === "talk_to_us"
                   ? "Talk to us"
                   : stripeReady
                     ? `Continue to pay ${paidPlans[paidPlan].label}`
-                    : "Continue to payment"}
+                    : "Open workspace"}
             </Button>
             <p className="mt-3 text-[12px] leading-5 text-muted-foreground">
               Live demo environment — connect your own tools in early access. Nothing is auto-executed.

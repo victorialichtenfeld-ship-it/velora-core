@@ -28,11 +28,15 @@ export function paidSessionUser(user: SessionUser): SessionUser {
   return { ...demoUser, ...user, paid: true };
 }
 
-export function applyPaidSessionCookies(response: NextResponse, user: SessionUser) {
-  const payload = paidSessionUser(user);
+export function applyWorkspaceSessionCookies(response: NextResponse, user: SessionUser) {
+  const payload: SessionUser = { ...demoUser, ...user, paid: Boolean(user.paid) };
   response.cookies.set(SESSION_COOKIE, JSON.stringify(payload), sessionCookieOptions());
   response.cookies.set(ONBOARDING_COOKIE, JSON.stringify(paidOnboarding), sessionCookieOptions());
   return payload;
+}
+
+export function applyPaidSessionCookies(response: NextResponse, user: SessionUser) {
+  return applyWorkspaceSessionCookies(response, paidSessionUser(user));
 }
 
 export async function writePaidSession(user: SessionUser) {
