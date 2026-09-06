@@ -30,7 +30,7 @@ Visit [http://localhost:4317](http://localhost:4317).
 
 Optional: copy `.env.example` to `.env.local` and add `OPENAI_API_KEY` (or `ANTHROPIC_API_KEY`) so “Ask Velora why this was flagged” uses a live model. Without a key, explanations are generated from the alert evidence.
 
-**Go live (domain + real cards):** follow [GO-LIVE.md](./GO-LIVE.md). Deploy to Vercel for a public URL, connect Stripe, then optionally attach a custom domain such as `usevelora.com`.
+**Go live with $0:** follow [GO-LIVE.md](./GO-LIVE.md). Free Vercel URL (`*.vercel.app`) + free Stripe account. No domain purchase required. Stripe only takes a cut when a customer actually pays.
 
 Deploy on Vercel as a standard Next.js app. Leads and orders persist on disk in this environment. On Vercel, set `GOOGLE_SHEETS_WEBHOOK_URL` so submissions survive deploys, and set Stripe keys so Checkout can charge.
 
