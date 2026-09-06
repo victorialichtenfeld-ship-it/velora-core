@@ -7,9 +7,16 @@ const dataDir = path.join(process.cwd(), "data");
 
 function fileFor(kind: StoredKind) {
   return path.join(dataDir, `${kind}.jsonl`);
+}
+
 export async function appendRecord(kind: StoredKind, record: Record<string, unknown>) {
-  await mkdir(dataDir, { recursive: true });
-  await appendFile(fileFor(kind), `${JSON.stringify(record)}\n`, "utf8");
+  try {
+    await mkdir(dataDir, { recursive: true });
+    await appendFile(fileFor(kind), `${JSON.stringify(record)}\n`, "utf8");
+  } catch {
+    // Vercel has no durable disk. Stripe is the source of truth.
+  }
+}
 
 export async function readRecords(kind: StoredKind): Promise<Record<string, unknown>[]> {
   try {
