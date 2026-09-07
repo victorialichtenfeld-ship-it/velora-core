@@ -12,24 +12,24 @@ const plans = [
   {
     name: "Starter",
     plan: "starter" as const,
-    price: "$299",
+    price: "$99",
     cadence: "/mo",
     description: "Watch invoices and payments for one finance team. Human approval on every flag.",
-    features: ["Up to 3 systems", "Duplicate payments", "Pricing and contracts", "Email alerts"],
+    features: ["Up to 3 systems", "Duplicate payments", "Pricing and contracts", "Email alerts", "14-day free trial"],
     highlighted: false,
     cta: "try_velora" as const,
-    label: "Subscribe · $299/mo",
+    label: "Start free trial",
   },
   {
     name: "Growth",
     plan: "growth" as const,
-    price: "$799",
+    price: "$249",
     cadence: "/mo",
     description: "Velora in the path of invoices, payments, discounts, and POs for growing finance and ops.",
-    features: ["Up to 8 systems", "Discounts and wires", "Slack to the owner", "Priority onboarding"],
+    features: ["Up to 8 systems", "Discounts and wires", "Slack to the owner", "Priority onboarding", "14-day free trial"],
     highlighted: true,
     cta: "try_velora" as const,
-    label: "Subscribe · $799/mo",
+    label: "Start free trial",
   },
   {
     name: "Enterprise",
@@ -61,7 +61,7 @@ export function Pricing() {
       <SectionIntro
         eyebrow="Pricing"
         title="A control in the payment path. Not a chatbot seat."
-        body="Starter is $299/mo. Growth is $799/mo, billed monthly through Stripe. Cancel any time. Enterprise is a conversation with finance and IT."
+        body="Starter is $99/mo. Growth is $249/mo, billed monthly through Stripe. Cancel any time — and both plans include a 14-day free trial. Enterprise is a conversation with finance and IT."
       />
       <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
         {plans.map((plan, index) => (

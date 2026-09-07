@@ -24,6 +24,10 @@ const pillars = [
     title: "Your rules, not ours",
     body: "If the rule is off, the flag is off. Velora enforces the policies your company already has.",
   },
+  {
+    title: "Your data stays yours",
+    body: "Encrypted in transit and at rest. Velora never trains on your data and never shares it. Delete your account and your data is gone.",
+  },
 ];
 
 export function TrustSection() {

@@ -63,7 +63,7 @@ export function Hero() {
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <EarlyAccessCta cta="try_velora" plan="starter" source="hero" className={cn(buttonVariants(), "h-12 px-6 text-[14px]")}>
-              Try Velora
+              Start free 14-day trial
               <motion.span
                 className="inline-flex"
                 animate={reduce ? undefined : { x: [0, 4, 0] }}

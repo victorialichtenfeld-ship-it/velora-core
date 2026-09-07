@@ -30,6 +30,18 @@ const TrustSection = nextDynamic(() =>
 const FinalCta = nextDynamic(() =>
   import("@/components/marketing/final-cta").then((mod) => mod.FinalCta)
 );
+const Testimonials = nextDynamic(() =>
+  import("@/components/marketing/testimonials").then((mod) => mod.Testimonials)
+);
+const RoiCalculator = nextDynamic(() =>
+  import("@/components/marketing/roi-calculator").then((mod) => mod.RoiCalculator)
+);
+const ComparisonTable = nextDynamic(() =>
+  import("@/components/marketing/comparison").then((mod) => mod.ComparisonTable)
+);
+const Faq = nextDynamic(() =>
+  import("@/components/marketing/faq").then((mod) => mod.Faq)
+);
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +65,15 @@ export default function HomePage() {
           <UseCases />
         </Reveal>
         <Reveal className="below-fold">
+          <Testimonials />
+        </Reveal>
+        <Reveal className="below-fold">
+          <RoiCalculator />
+        </Reveal>
+        <Reveal className="below-fold">
+          <ComparisonTable />
+        </Reveal>
+        <Reveal className="below-fold">
           <IntegrationsSection />
         </Reveal>
         <Reveal className="below-fold">
@@ -60,6 +81,9 @@ export default function HomePage() {
         </Reveal>
         <Reveal className="below-fold">
           <Pricing />
+        </Reveal>
+        <Reveal className="below-fold">
+          <Faq />
         </Reveal>
         <Reveal className="below-fold">
           <FinalCta />

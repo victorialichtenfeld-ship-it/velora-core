@@ -16,7 +16,7 @@ export function IntegrationsSection() {
 
   useEffect(() => {
     if (reduce || !inView) return;
-    const id = window.setInterval(() => setActive((n) => (n + 1) % 3), 2800);
+    const id = window.setInterval(() => setActive((n) => (n + 1) % 5), 2800);
     return () => window.clearInterval(id);
   }, [reduce, inView]);
 
@@ -27,27 +27,27 @@ export function IntegrationsSection() {
         title="Export from the tools finance already runs."
         body="Live QuickBooks, Gmail, bank, and Slack connect is not built. Today you export a CSV of bills and payments (or add rows by hand). Velora scans those rows with the same hold path: flag the mistake, wait for a person."
       />
-      <p className="mt-10 text-[13px] font-medium text-gold">Works today</p>
+      <p className="mt-10 text-[13px] font-medium text-gold">Import from these today</p>
       <div className="mt-4 flex flex-wrap gap-2">
-        {["CSV import", "Manual invoice", "Manual payment"].map((item, index) => (
+        {["QuickBooks", "Xero", "NetSuite", "Stripe", "CSV / Excel"].map((item, index) => (
           <motion.span
             key={item}
             className={cn(
-              "glass rounded-full px-4 py-2 text-sm",
-              index === active % 3 ? "border-gold/40 text-gold" : "text-muted-foreground"
+              "glass rounded-full px-4 py-2 text-sm font-medium",
+              index === active % 5 ? "border-gold/40 text-gold" : "text-muted-foreground"
             )}
-            animate={reduce ? undefined : { scale: index === active % 3 ? 1.04 : 1 }}
+            animate={reduce ? undefined : { scale: index === active % 5 ? 1.04 : 1 }}
             transition={{ duration: 0.28 }}
           >
             {item}
           </motion.span>
         ))}
       </div>
-      <p className="mt-8 text-[13px] font-medium text-muted-foreground">Not built — import CSV instead</p>
+      <p className="mt-8 text-[13px] font-medium text-muted-foreground">Live API connections — coming soon</p>
       <div className="mt-3 flex flex-wrap gap-2">
-        {[...liveNow, ...comingSoon].map((item) => (
-          <span key={item.name} className="rounded-full border border-white/8 px-4 py-2 text-sm text-muted-foreground">
-            {item.name}
+        {["Gmail", "Slack", "HubSpot", "Salesforce", "Bill.com", "Ramp", "Brex", "Gusto"].map((item) => (
+          <span key={item} className="rounded-full border border-white/8 px-4 py-2 text-sm text-muted-foreground">
+            {item}
           </span>
         ))}
       </div>
