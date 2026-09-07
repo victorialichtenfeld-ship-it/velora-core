@@ -15,6 +15,7 @@ const links = [
   { href: "#how", label: "How it works" },
   { href: "#trust", label: "Human approval" },
   { href: "#pricing", label: "Pricing" },
+  { href: "/roadmap", label: "Roadmap" },
 ];
 
 export function SiteHeader() {

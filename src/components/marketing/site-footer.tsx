@@ -32,6 +32,9 @@ export function SiteFooter() {
           <a href="/login" className="hover:text-foreground">
             Sign in
           </a>
+          <a href="/roadmap" className="hover:text-foreground">
+            Roadmap
+          </a>
           <a href="/legal/terms" className="hover:text-foreground">
             Terms
           </a>
