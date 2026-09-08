@@ -4,7 +4,9 @@ import { Check, X, Minus } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { SectionIntro } from "@/components/marketing/section-intro";
 
-const features = [
+type FeatureValue = boolean | "partial";
+
+const features: { label: string; velora: FeatureValue; manual: FeatureValue; erp: FeatureValue }[] = [
   { label: "Catches duplicate payments", velora: true, manual: false, erp: "partial" },
   { label: "Catches pricing vs contract errors", velora: true, manual: false, erp: false },
   { label: "Human approves every flag", velora: true, manual: true, erp: false },
